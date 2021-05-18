@@ -3,4 +3,32 @@
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: baseline;
+	color: #ffffff;
+}
+
+.TitleGroup {
+	/* background-color: red; */
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 7px 0px 0px 12px;
+}
+
+.BurgerToggle {
+	font-size: 2em;
+	color: #ff335c;
+}
+
+.Title {
+	padding: 2px 0px 0px 70px;
+	margin: 0px;
+	font-size: 1.5em;
+}
+
+.Links {
+	padding: 0px 12px;
+}
+
+.SearchButton {
+	font-size: 1.5em;
 }

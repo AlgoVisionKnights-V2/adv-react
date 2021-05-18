@@ -6,10 +6,12 @@ import { MdMenu, MdSearch } from 'react-icons/md';
 function Header() {
 	return (
 		<div className='Header'>
-			<MdMenu />
-			<h1>Dashboard</h1>
+			<span className='TitleGroup'>
+				<MdMenu className='BurgerToggle' />
+				<p className='Title'>Dashboard</p>
+			</span>
 			<span className='Links'>
-				<MdSearch />
+				<MdSearch className='SearchButton' />
 			</span>
 		</div>
 	);
