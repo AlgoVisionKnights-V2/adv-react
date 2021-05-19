@@ -26,9 +26,9 @@ import Navigation from './components/navigation/Navigation';
 function App() {
 	return (
 		<div className='App'>
+			{/* <Navigation /> */}
 			<Header />
 			{/* <Dashboard /> */}
-			<Navigation />
 		</div>
 	);
 }
