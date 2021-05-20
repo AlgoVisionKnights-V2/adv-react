@@ -5,8 +5,26 @@ import Dashboard from './components/dashboard/Dashboard';
 import Header from './components/header/Header';
 import Navigation from './components/navigation/Navigation';
 
-// Unity Webgl components
-import Unity, { UnityContext } from 'react-unity-webgl';
+// Unity Webgl components for Unity test
+import Unity, { UnityContent } from 'react-unity-webgl';
+
+const unityContent = new UnityContent(
+	'build/build.json',
+	'build/UnityLoader.js'
+);
+
+function App() {
+	console.log(unityContent);
+	return (
+		<div className='App'>
+			{/* <Navigation /> */}
+			<Header />
+
+			{/* Uniy Test */}
+			{/* <Unity className='Unity' unityContent={unityContent} /> */}
+		</div>
+	);
+}
 
 // const axios = require('axios');
 
@@ -25,25 +43,5 @@ import Unity, { UnityContext } from 'react-unity-webgl';
 // 		console.log(response);
 // 	});
 // };
-
-const unityContext = new UnityContext({
-	loaderUrl: 'UnityLoader.js',
-	dataUrl: 'build.data.unityweb',
-	frameworkUrl: 'build.wasm.framework.unityweb',
-	codeUrl: 'build.wasm.code.unityweb',
-});
-
-function App() {
-	return (
-		<div className='App'>
-			{/* <Navigation /> */}
-			<Header />
-			{/* <div>
-				<Unity unityContext={unityContext} />
-			</div> */}
-			{/* <Dashboard /> */}
-		</div>
-	);
-}
 
 export default App;
