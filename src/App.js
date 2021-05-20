@@ -19,6 +19,7 @@ function App() {
 		<div className='App'>
 			{/* <Navigation /> */}
 			<Header />
+			<Dashboard />
 
 			{/* Uniy Test */}
 			{/* <Unity className='Unity' unityContent={unityContent} /> */}
