@@ -6,14 +6,35 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+// Material UI Styles
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+	drawer: {
+		backgroundColor: '#262d4a',
+		color: '#ffffff',
+	},
+}));
+
 function Navigation() {
+	// List of categories. Note: There will be more
+	const links = ['Dashboard', 'Searching', 'Sorting', 'Graphs', 'Trees'];
+
+	// Instantiating useStyles
+	const classes = useStyles();
+
 	return (
 		<div className='Navigation'>
-			<Drawer className='NavContainer' variant='permanent' open>
+			<Drawer
+				variant='permanent'
+				classes={{ paper: classes.drawer }}
+				open>
 				<List>
-					<ListItem button>
-						<ListItemText primary='hello' />
-					</ListItem>
+					{links.map((link) => (
+						<ListItem button key={link}>
+							<ListItemText>{link}</ListItemText>
+						</ListItem>
+					))}
 				</List>
 			</Drawer>
 		</div>
