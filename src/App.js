@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 
 // Components
 import Dashboard from './components/dashboard/Dashboard';
@@ -14,12 +15,20 @@ const unityContent = new UnityContent(
 );
 
 function App() {
-	console.log(unityContent);
+	// Drawer setters
+	const [open, setOpen] = React.useState(true);
+
+	// Open or close drawer
+	const toggleDrawer = () => {
+		setOpen(!open);
+		console.log('Toggle');
+	};
+
 	return (
 		<div className='App'>
-			<Navigation />
+			<Navigation open={open} />
 			<div className='Main'>
-				<Header />
+				<Header toggleDrawer={toggleDrawer} />
 				<Dashboard />
 			</div>
 			{/* Uniy Test */}

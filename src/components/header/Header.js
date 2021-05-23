@@ -11,13 +11,13 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
-function Header() {
+function Header({ toggleDrawer }) {
 	return (
 		<div className='Header'>
 			<AppBar id='header-bar' elevation={0}>
 				<Toolbar id='toolbar'>
 					<div id='menu-tools'>
-						<IconButton>
+						<IconButton onClick={toggleDrawer}>
 							<MenuIcon id='menu-icon' />
 						</IconButton>
 
