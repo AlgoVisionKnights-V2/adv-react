@@ -9,19 +9,21 @@ import Navigation from './components/navigation/Navigation';
 import Unity, { UnityContent } from 'react-unity-webgl';
 
 const unityContent = new UnityContent(
-	'build/build.json',
-	'build/UnityLoader.js'
+	'build/test/build.json',
+	'build/test/UnityLoader.js'
 );
 
 function App() {
 	console.log(unityContent);
 	return (
 		<div className='App'>
-			{/* <Navigation /> */}
-			<Header />
-			<Dashboard />
+			<Navigation />
+			<div className='Main'>
+				<Header />
+				<Dashboard />
+			</div>
 			{/* Uniy Test */}
-			<Unity className='Unity' unityContent={unityContent} />
+			{/* <Unity className='Unity' unityContent={unityContent} /> */}
 		</div>
 	);
 }
