@@ -3,7 +3,7 @@ const customTitlebar = require('custom-electron-titlebar');
 
 window.addEventListener('DOMContentLoaded', () => {
 	new customTitlebar.Titlebar({
-		backgroundColor: customTitlebar.Color.fromHex('#1b203d'),
+		backgroundColor: customTitlebar.Color.fromHex('#262d4a'),
 	});
 
 	const replaceText = (selector, text) => {
