@@ -1,0 +1,23 @@
+#nav-group {
+	background-color: #262d4a;
+	color: #ffffff;
+	box-shadow: none;
+}
+
+#accordion-summary {
+	width: 100%;
+}
+
+div.MuiAccordionSummary-content {
+	margin: 0;
+}
+
+#nav-group-button,
+#accordion-details {
+	padding: 0;
+}
+
+#accordion-details {
+	display: flex;
+	flex-direction: column;
+}
