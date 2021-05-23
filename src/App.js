@@ -18,8 +18,10 @@ function App() {
 	return (
 		<div className='App'>
 			<Navigation />
-			<Header />
-			{/* <Dashboard /> */}
+			<div className='Main'>
+				<Header />
+				<Dashboard />
+			</div>
 			{/* Uniy Test */}
 			{/* <Unity className='Unity' unityContent={unityContent} /> */}
 		</div>

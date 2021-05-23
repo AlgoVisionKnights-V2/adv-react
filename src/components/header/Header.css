@@ -1,34 +1,29 @@
-.Header {
+#header-bar {
+	position: inherit;
+	background-color: #1b203d;
+}
+
+#toolbar {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-items: baseline;
-	color: #ffffff;
 }
 
-.TitleGroup {
-	/* background-color: red; */
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-	padding: 7px 0px 0px 12px;
+#menu-tools {
+	display: inherit;
+	align-items: center;
 }
 
-.BurgerToggle {
-	font-size: 2em;
+#menu-icon {
+	font-size: 1.5em;
 	color: #ff335c;
 }
 
-.Title {
-	padding: 2px 0px 0px 70px;
-	margin: 0px;
+#header-title {
 	font-size: 1.5em;
 }
 
-.Links {
-	padding: 0px 12px;
-}
-
-.SearchButton {
-	font-size: 1.5em;
+#search-icon {
+	color: #ffffff;
+	opacity: 1;
 }

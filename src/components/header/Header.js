@@ -1,18 +1,33 @@
 import './Header.css';
 
-// Assets
-import { MdMenu, MdSearch } from 'react-icons/md';
+// Material UI
+import {
+	AppBar,
+	Toolbar,
+	IconButton,
+	Typography,
+	InputBase,
+} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
 
 function Header() {
 	return (
 		<div className='Header'>
-			<span className='TitleGroup'>
-				<MdMenu className='BurgerToggle' />
-				<p className='Title'>Dashboard</p>
-			</span>
-			<span className='Links'>
-				<MdSearch className='SearchButton' />
-			</span>
+			<AppBar id='header-bar' elevation={0}>
+				<Toolbar id='toolbar'>
+					<div id='menu-tools'>
+						<IconButton>
+							<MenuIcon id='menu-icon' />
+						</IconButton>
+
+						<Typography id='header-title'>Dashboard</Typography>
+					</div>
+					<IconButton>
+						<SearchIcon id='search-icon' />
+					</IconButton>
+				</Toolbar>
+			</AppBar>
 		</div>
 	);
 }
