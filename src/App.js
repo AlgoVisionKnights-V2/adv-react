@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import 'github-syntax-dark/lib/github-dark.css';
 
 import test from './Test.md';
 
@@ -9,9 +10,9 @@ import Header from './components/header/Header';
 import Navigation from './components/navigation/Navigation';
 
 // Markdown React renderer
-import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+// import ReactMarkdown from 'react-markdown';
+// import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+// import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 // Unity Webgl components for Unity test
 import Unity, { UnityContent } from 'react-unity-webgl';
@@ -43,9 +44,9 @@ function App() {
 					algoPage={algoPage}
 					setAlgoPage={setAlgoPage}
 				/>
+
 				<Dashboard />
 				{/* <Unity className='Unity' unityContent={unityContent} /> */}
-				{/* <ReactMarkdown components={components} children={markdown} /> */}
 			</div>
 		</div>
 	);
