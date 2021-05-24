@@ -1,3 +1,14 @@
 .Dashboard {
 	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+#card {
+	width: 350px;
+	height: 250px;
+	background-color: #262D4A;
+	border-radius: 15px;
+	margin-bottom: 10px;
 }
