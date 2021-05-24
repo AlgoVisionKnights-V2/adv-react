@@ -1,10 +1,17 @@
 import './App.css';
 import React from 'react';
 
+import test from './Test.md';
+
 // Components
 import Dashboard from './components/dashboard/Dashboard';
 import Header from './components/header/Header';
 import Navigation from './components/navigation/Navigation';
+
+// Markdown React renderer
+import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 // Unity Webgl components for Unity test
 import Unity, { UnityContent } from 'react-unity-webgl';
@@ -38,6 +45,7 @@ function App() {
 				/>
 				<Dashboard />
 				{/* <Unity className='Unity' unityContent={unityContent} /> */}
+				{/* <ReactMarkdown components={components} children={markdown} /> */}
 			</div>
 		</div>
 	);

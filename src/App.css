@@ -17,3 +17,7 @@ body,
 	display: flex;
 	flex-direction: column;
 }
+
+#markdown-renderer {
+	background-color: #1b203d;
+}

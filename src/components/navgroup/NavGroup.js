@@ -13,7 +13,6 @@ import {
 import NavLink from '../navlink/NavLink';
 
 function NavGroup({ group, groups, panel, expanded, handleChange }) {
-	console.log(panel);
 	const names = groups[group];
 	return (
 		<Accordion
