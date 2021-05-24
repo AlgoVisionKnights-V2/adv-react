@@ -7,7 +7,6 @@ import {
 	AccordionSummary,
 	ListItem,
 	ListItemText,
-	Typography,
 } from '@material-ui/core';
 
 // Child Components

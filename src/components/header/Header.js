@@ -1,8 +1,11 @@
 import './Header.css';
+import React from 'react';
 
 // Material UI
 import {
 	AppBar,
+	Button,
+	ButtonGroup,
 	Toolbar,
 	IconButton,
 	Typography,
@@ -10,8 +13,62 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import { fade, makeStyles } from '@material-ui/core/styles';
 
-function Header({ toggleDrawer }) {
+const useStyles = makeStyles((theme) => ({
+	search: {
+		position: 'relative',
+		borderRadius: theme.shape.borderRadius,
+		backgroundColor: fade(theme.palette.common.white, 0.15),
+		'&:hover': {
+			backgroundColor: fade(theme.palette.common.white, 0.25),
+		},
+		marginLeft: 0,
+		width: '100%',
+		[theme.breakpoints.up('sm')]: {
+			marginLeft: theme.spacing(1),
+			width: 'auto',
+		},
+	},
+	searchIcon: {
+		padding: theme.spacing(0, 2),
+		height: '100%',
+		position: 'absolute',
+		pointerEvents: 'none',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	inputRoot: {
+		color: 'inherit',
+	},
+	inputInput: {
+		padding: theme.spacing(1, 1, 1, 0),
+		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+		transition: theme.transitions.create('width'),
+		width: '100%',
+		[theme.breakpoints.up('sm')]: {
+			width: '12ch',
+			'&:focus': {
+				width: '20ch',
+			},
+		},
+	},
+}));
+
+function Header({ toggleDrawer, algoPage, setAlgoPage }) {
+	const [page, setPage] = React.useState('information');
+	const color = '#ff335c';
+	const classes = useStyles();
+
+	const handleInformationPage = () => {
+		setPage('information');
+	};
+
+	const handleVisualizerPage = () => {
+		setPage('visualizer');
+	};
+
 	return (
 		<div className='Header'>
 			<AppBar id='header-bar' elevation={0}>
@@ -23,9 +80,47 @@ function Header({ toggleDrawer }) {
 
 						<Typography id='header-title'>Dashboard</Typography>
 					</div>
-					<IconButton>
-						<SearchIcon id='search-icon' />
-					</IconButton>
+					<div className='PageControllers'>
+						{algoPage ? (
+							<ButtonGroup id='button-group' variant='text'>
+								<Button
+									id='information-button'
+									onClick={handleInformationPage}
+									style={{
+										color:
+											page === 'information'
+												? color
+												: '#ffffff',
+									}}>
+									<Typography>Information</Typography>
+								</Button>
+								<Button
+									id='visualizer-button'
+									onClick={handleVisualizerPage}
+									style={{
+										color:
+											page === 'visualizer'
+												? color
+												: '#ffffff',
+									}}>
+									<Typography>Visualizer</Typography>
+								</Button>
+							</ButtonGroup>
+						) : null}
+
+						<div className={classes.search}>
+							<SearchIcon
+								id='search-icon'
+								className={classes.searchIcon}
+							/>
+							<InputBase
+								placeholder='Search...'
+								classes={{
+									root: classes.inputRoot,
+									input: classes.inputInput,
+								}}></InputBase>
+						</div>
+					</div>
 				</Toolbar>
 			</AppBar>
 		</div>
