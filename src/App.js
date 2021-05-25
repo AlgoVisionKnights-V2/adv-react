@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import 'github-syntax-dark/lib/github-dark.css';
 
 // Components
 import Dashboard from './components/dashboard/Dashboard';
