@@ -8,7 +8,7 @@ import Navigation from './components/navigation/Navigation';
 
 // Markdown controls
 import MarkdownPreview from '@uiw/react-markdown-preview';
-import source from './test.md';
+import source from './assets/test.md';
 
 // Unity Webgl components for Unity test
 import Unity, { UnityContent } from 'react-unity-webgl';
@@ -29,13 +29,13 @@ function App() {
 
 	// Markdown Renderer test
 	const [markdown, setMarkdown] = React.useState('');
-	// React.useEffect(() => {
-	// 	fetch(source)
-	// 		.then((res) => res.text())
-	// 		.then((text) => {
-	// 			setMarkdown(text);
-	// 		});
-	// });
+	React.useEffect(() => {
+		fetch(source)
+			.then((res) => res.text())
+			.then((text) => {
+				setMarkdown(text);
+			});
+	});
 
 	// Open or close drawer
 	const toggleDrawer = () => {
@@ -44,23 +44,21 @@ function App() {
 	};
 
 	// This is a test api call. Call this in the App function if you want to communicate with the API.
-	const test = () => {
-		axios({
-			method: 'POST',
-			url: 'http://localhost:5000/algorithms/getAlgorithm',
-			data: {
-				name: 'bubblesort',
-			},
-			config: {
-				headers: { 'Content-Type': 'application/json' },
-			},
-		}).then((response) => {
-			console.log(response);
-			// setMarkdown(response.data.file);
-		});
-	};
-
-	test();
+	// const test = () => {
+	// 	axios({
+	// 		method: 'POST',
+	// 		url: 'http://localhost:5000/algorithms/getAlgorithm',
+	// 		data: {
+	// 			name: 'bubblesort',
+	// 		},
+	// 		config: {
+	// 			headers: { 'Content-Type': 'application/json' },
+	// 		},
+	// 	}).then((response) => {
+	// 		console.log(response);
+	// 		// setMarkdown(response.data.file);
+	// 	});
+	// };
 
 	return (
 		<div className='App'>
