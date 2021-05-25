@@ -2,17 +2,16 @@ import './App.css';
 import React from 'react';
 import 'github-syntax-dark/lib/github-dark.css';
 
-import test from './Test.md';
-
 // Components
 import Dashboard from './components/dashboard/Dashboard';
 import Header from './components/header/Header';
 import Navigation from './components/navigation/Navigation';
 
-// Markdown React renderer
 // import ReactMarkdown from 'react-markdown';
 // import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 // import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import MarkdownPreview from '@uiw/react-markdown-preview';
+import source from './test.md';
 
 // Unity Webgl components for Unity test
 import Unity, { UnityContent } from 'react-unity-webgl';
@@ -28,6 +27,16 @@ function App() {
 
 	// PageToggler: Set to true if you want to see them
 	const [algoPage, setAlgoPage] = React.useState(true);
+
+	// Markdown Renderer test
+	const [markdown, setMarkdown] = React.useState('');
+	React.useEffect(() => {
+		fetch(source)
+			.then((res) => res.text())
+			.then((text) => {
+				setMarkdown(text);
+			});
+	});
 
 	// Open or close drawer
 	const toggleDrawer = () => {
@@ -48,6 +57,7 @@ function App() {
 				<Dashboard />
 				{/* <Unity className='Unity' unityContent={unityContent} /> */}
 			</div>
+			{/* <MarkdownPreview source={markdown} style={{ color: 'white' }} /> */}
 		</div>
 	);
 }
