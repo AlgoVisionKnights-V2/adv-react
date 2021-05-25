@@ -7,9 +7,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Header from './components/header/Header';
 import Navigation from './components/navigation/Navigation';
 
-// import ReactMarkdown from 'react-markdown';
-// import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-// import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+// Markdown controls
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import source from './test.md';
 
@@ -56,8 +54,8 @@ function App() {
 
 				<Dashboard />
 				{/* <Unity className='Unity' unityContent={unityContent} /> */}
+				{/* <MarkdownPreview source={markdown} style={{ color: 'white' }} /> */}
 			</div>
-			{/* <MarkdownPreview source={markdown} style={{ color: 'white' }} /> */}
 		</div>
 	);
 }
