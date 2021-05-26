@@ -55,7 +55,7 @@ function Navigation({ open }) {
 			<Drawer
 				id='drawer'
 				variant='permanent'
-				// classes={{ paper: classes.drawer }}
+				classes={{ paper: classes.drawer }}
 				classes={{
 					paper: clsx({
 						[classes.drawer]: open,
