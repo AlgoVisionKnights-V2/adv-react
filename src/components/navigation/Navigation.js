@@ -19,6 +19,9 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+	burger: {
+		backgroundColor: '#262d4a',
+	},
 	drawer: {
 		backgroundColor: '#262d4a',
 		color: '#ffffff',
@@ -40,9 +43,22 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Navigation({ open }) {
+function Navigation({ open, toggleDrawer }) {
 	const [expanded, setExpanded] = React.useState('');
+	const [viewWidth, setViewWidth] = React.useState(window.innerWidth);
 
+	React.useLayoutEffect(() => {
+		// Records the width the screen in real-time
+		const handleResize = () => {
+			setViewWidth(window.innerWidth);
+		};
+		window.addEventListener('resize', handleResize);
+		handleResize();
+
+		return () => window.removeEventListener('resize', handleResize);
+	});
+
+	// Handles panel clicks
 	const handleChange = (panel) => (event, newExpanded) => {
 		setExpanded(newExpanded ? panel : false);
 	};
@@ -54,19 +70,23 @@ function Navigation({ open }) {
 		<div className='Navigation'>
 			<Drawer
 				id='drawer'
-				variant='permanent'
-				classes={{ paper: classes.drawer }}
+				variant={viewWidth > 1275 ? 'permanent' : null}
+				open={open}
+				onClose={toggleDrawer}
 				classes={{
-					paper: clsx({
-						[classes.drawer]: open,
-						[classes.drawerClose]: !open,
-					}),
+					paper:
+						viewWidth <= 1275
+							? classes.burger
+							: clsx({
+									[classes.drawer]: open,
+									[classes.drawerClose]: !open,
+							  }),
 				}}>
 				<div id='toolbar-container' className={classes.toolbar}>
 					<Typography id='nav-title'>ADV</Typography>
 				</div>
 				<List>
-					<ListItem button>
+					<ListItem id='dashboard-nav-button' button>
 						<ListItemText>Dashboard</ListItemText>
 					</ListItem>
 					{Object.keys(groups).map((group, i) => (

@@ -6,63 +6,43 @@ import Dashboard from './components/dashboard/Dashboard';
 import Header from './components/header/Header';
 import Navigation from './components/navigation/Navigation';
 
-// Markdown controls
-import MarkdownPreview from '@uiw/react-markdown-preview';
-import source from './assets/test.md';
+// ! Markdown controls
+// import MarkdownPreview from '@uiw/react-markdown-preview';
+// import source from './assets/test.md';
 
-// Unity Webgl components for Unity test
-import Unity, { UnityContent } from 'react-unity-webgl';
+// ! Unity Webgl components for Unity test
+// import Unity, { UnityContent } from 'react-unity-webgl';
 
-const unityContent = new UnityContent(
-	'build/test/build.json',
-	'build/test/UnityLoader.js'
-);
-
-const axios = require('axios');
+// const unityContent = new UnityContent(
+// 	'build/test/build.json',
+// 	'build/test/UnityLoader.js'
+// );
 
 function App() {
 	// Drawer setters
-	const [open, setOpen] = React.useState(true);
+	const [open, setOpen] = React.useState(false);
 
 	// PageToggler: Set to true if you want to see them
 	const [algoPage, setAlgoPage] = React.useState(true);
 
-	// Markdown Renderer test
-	const [markdown, setMarkdown] = React.useState('');
-	React.useEffect(() => {
-		fetch(source)
-			.then((res) => res.text())
-			.then((text) => {
-				setMarkdown(text);
-			});
-	});
+	// ! Markdown Renderer test
+	// const [markdown, setMarkdown] = React.useState('');
+	// React.useEffect(() => {
+	// 	fetch(source)
+	// 		.then((res) => res.text())
+	// 		.then((text) => {
+	// 			setMarkdown(text);
+	// 		});
+	// });
 
 	// Open or close drawer
-	const toggleDrawer = () => {
+	const toggleDrawer = (event) => {
 		setOpen(!open);
-		console.log('Toggle');
 	};
-
-	// This is a test api call. Call this in the App function if you want to communicate with the API.
-	// const test = () => {
-	// 	axios({
-	// 		method: 'POST',
-	// 		url: 'http://localhost:5000/algorithms/getAlgorithm',
-	// 		data: {
-	// 			name: 'bubblesort',
-	// 		},
-	// 		config: {
-	// 			headers: { 'Content-Type': 'application/json' },
-	// 		},
-	// 	}).then((response) => {
-	// 		console.log(response);
-	// 		// setMarkdown(response.data.file);
-	// 	});
-	// };
 
 	return (
 		<div className='App'>
-			<Navigation open={open} />
+			<Navigation open={open} toggleDrawer={toggleDrawer} />
 			<div className='Main'>
 				<Header
 					toggleDrawer={toggleDrawer}
@@ -78,4 +58,22 @@ function App() {
 	);
 }
 
+// ! This is a test api call. Call this in the App function if you want to communicate with the API.
+// const axios = require('axios');
+
+// const test = () => {
+// 	axios({
+// 		method: 'POST',
+// 		url: 'http://localhost:5000/algorithms/getAlgorithm',
+// 		data: {
+// 			name: 'bubblesort',
+// 		},
+// 		config: {
+// 			headers: { 'Content-Type': 'application/json' },
+// 		},
+// 	}).then((response) => {
+// 		console.log(response);
+// 		// setMarkdown(response.data.file);
+// 	});
+// };
 export default App;

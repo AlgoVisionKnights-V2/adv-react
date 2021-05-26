@@ -8,7 +8,6 @@ import {
 	AccordionSummary,
 	ListItem,
 	ListItemText,
-	ListItemIcon,
 } from '@material-ui/core';
 
 // Child Components
