@@ -14,6 +14,7 @@
 	display: inherit;
 	width: 850px;
 	align-items: center;
+	justify-content: inherit;
 }
 
 .LeftMenus {
@@ -39,12 +40,39 @@
 	color: #ffffff;
 }
 
-.TopPageToggle {
-	margin: 0px 0px 0px 7px;
+.SearchInputMobile {
+	display: none;
 }
 
-@media (max-width: 600px) {
+#search-button-mobile {
+	padding: 0;
+}
+
+.TopPageToggle {
+	margin: 0px 0px 0px 15px;
+}
+
+@media (max-width: 610px) {
 	.TopPageToggle {
 		display: none;
+	}
+
+	#toolbar {
+		padding: 0px 10px 0px 3px;
+	}
+}
+
+@media (max-width: 450px) {
+	#search-input {
+		display: none;
+	}
+
+	.SearchInputMobile {
+		display: inherit;
+	}
+
+	#search-icon-mobile {
+		font-size: 1.3em;
+		color: #ffffff;
 	}
 }

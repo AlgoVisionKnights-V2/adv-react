@@ -80,6 +80,11 @@ function Header({ toggleDrawer, algoPage, setAlgoPage }) {
 								}}
 							/>
 						</div>
+						<div className='SearchInputMobile'>
+							<IconButton id='search-button-mobile'>
+								<SearchIcon id='search-icon-mobile' />
+							</IconButton>
+						</div>
 					</div>
 
 					<div className='TopPageToggle'>
