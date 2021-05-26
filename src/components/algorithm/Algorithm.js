@@ -12,19 +12,21 @@ function Algorithm({ title, description }) {
 		<div class='Algorithm'>
 			<Card id='card'>
 				<CardContent id='card-content'>
-					<Typography id='cardHeader'> {title} </Typography>
-					<IconButton id='favorite-icon'>
-						<FavoriteIcon
-							style={{
-								fontSize: '1.4em',
-								color: heartColor ? '#ff335c' : '#1b203d',
-							}}
-							onClick={handleHeartColor}
-						/>
-					</IconButton>
-				</CardContent>
-				<CardContent id='card-content'>
-					<Typography id='cardInfo'>{description}</Typography>
+					<div className='CardHeader'>
+						<Typography id='card-title'> {title} </Typography>
+						<IconButton id='favorite-icon'>
+							<FavoriteIcon
+								style={{
+									fontSize: '1.4em',
+									color: heartColor ? '#ff335c' : '#1b203d',
+								}}
+								onClick={handleHeartColor}
+							/>
+						</IconButton>
+					</div>
+					<div>
+						<Typography id='cardInfo'>{description}</Typography>
+					</div>
 				</CardContent>
 			</Card>
 		</div>

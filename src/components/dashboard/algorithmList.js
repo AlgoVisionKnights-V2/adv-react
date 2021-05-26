@@ -28,5 +28,53 @@ const algorithms = [
 		title: 'Backtracking',
 		description: 'Yet to be filled.',
 	},
+	{
+		title: 'Searching Algorithms',
+		description: 'Yet to be filled.',
+	},
+	{
+		title: 'Graphs',
+		description: 'Yet to be filled.',
+	},
+	{
+		title: 'Trees',
+		description: 'Yet to be filled.',
+	},
+	{
+		title: 'Dynamic Programming',
+		description: 'Yet to be filled.',
+	},
+	{
+		title: 'Data Structures',
+		description: 'Yet to be filled.',
+	},
+	{
+		title: 'Backtracking',
+		description: 'Yet to be filled.',
+	},
+	{
+		title: 'Searching Algorithms',
+		description: 'Yet to be filled.',
+	},
+	{
+		title: 'Graphs',
+		description: 'Yet to be filled.',
+	},
+	{
+		title: 'Trees',
+		description: 'Yet to be filled.',
+	},
+	{
+		title: 'Dynamic Programming',
+		description: 'Yet to be filled.',
+	},
+	{
+		title: 'Data Structures',
+		description: 'Yet to be filled.',
+	},
+	{
+		title: 'Backtracking',
+		description: 'Yet to be filled.',
+	},
 ];
 export default algorithms;
