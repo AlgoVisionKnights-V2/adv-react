@@ -22,7 +22,7 @@ const axios = require('axios');
 
 function App() {
 	// Drawer setters
-	const [open, setOpen] = React.useState(true);
+	const [open, setOpen] = React.useState(false);
 
 	// PageToggler: Set to true if you want to see them
 	const [algoPage, setAlgoPage] = React.useState(true);
@@ -38,31 +38,13 @@ function App() {
 	});
 
 	// Open or close drawer
-	const toggleDrawer = () => {
+	const toggleDrawer = (event) => {
 		setOpen(!open);
-		console.log('Toggle');
 	};
-
-	// This is a test api call. Call this in the App function if you want to communicate with the API.
-	// const test = () => {
-	// 	axios({
-	// 		method: 'POST',
-	// 		url: 'http://localhost:5000/algorithms/getAlgorithm',
-	// 		data: {
-	// 			name: 'bubblesort',
-	// 		},
-	// 		config: {
-	// 			headers: { 'Content-Type': 'application/json' },
-	// 		},
-	// 	}).then((response) => {
-	// 		console.log(response);
-	// 		// setMarkdown(response.data.file);
-	// 	});
-	// };
 
 	return (
 		<div className='App'>
-			<Navigation open={open} />
+			<Navigation open={open} toggleDrawer={toggleDrawer} />
 			<div className='Main'>
 				<Header
 					toggleDrawer={toggleDrawer}
@@ -78,4 +60,20 @@ function App() {
 	);
 }
 
+// This is a test api call. Call this in the App function if you want to communicate with the API.
+// const test = () => {
+// 	axios({
+// 		method: 'POST',
+// 		url: 'http://localhost:5000/algorithms/getAlgorithm',
+// 		data: {
+// 			name: 'bubblesort',
+// 		},
+// 		config: {
+// 			headers: { 'Content-Type': 'application/json' },
+// 		},
+// 	}).then((response) => {
+// 		console.log(response);
+// 		// setMarkdown(response.data.file);
+// 	});
+// };
 export default App;

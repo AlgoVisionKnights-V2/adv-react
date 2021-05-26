@@ -1,6 +1,9 @@
 import './Header.css';
 import React from 'react';
 
+// Child Components
+import PageToggle from '../pageController/PageToggle';
+
 // Material UI
 import {
 	AppBar,
@@ -57,17 +60,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header({ toggleDrawer, algoPage, setAlgoPage }) {
-	const [page, setPage] = React.useState('information');
-	const color = '#ff335c';
 	const classes = useStyles();
-
-	const handleInformationPage = () => {
-		setPage('information');
-	};
-
-	const handleVisualizerPage = () => {
-		setPage('visualizer');
-	};
 
 	return (
 		<div className='Header'>
@@ -81,32 +74,9 @@ function Header({ toggleDrawer, algoPage, setAlgoPage }) {
 						<Typography id='header-title'>Dashboard</Typography>
 					</div>
 					<div className='PageControllers'>
-						{algoPage ? (
-							<ButtonGroup id='button-group' variant='text'>
-								<Button
-									id='information-button'
-									onClick={handleInformationPage}
-									style={{
-										color:
-											page === 'information'
-												? color
-												: '#ffffff',
-									}}>
-									<Typography>Information</Typography>
-								</Button>
-								<Button
-									id='visualizer-button'
-									onClick={handleVisualizerPage}
-									style={{
-										color:
-											page === 'visualizer'
-												? color
-												: '#ffffff',
-									}}>
-									<Typography>Visualizer</Typography>
-								</Button>
-							</ButtonGroup>
-						) : null}
+						<div className='TopPageToggle'>
+							{algoPage ? <PageToggle /> : null}
+						</div>
 
 						<div className={classes.search}>
 							<SearchIcon
