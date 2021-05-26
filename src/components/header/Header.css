@@ -7,6 +7,7 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	padding: 0px 3px 0px 3px;
 }
 
 .MenuTools {
@@ -36,6 +37,10 @@
 
 #search-icon {
 	color: #ffffff;
+}
+
+.TopPageToggle {
+	margin: 0px 0px 0px 7px;
 }
 
 @media (max-width: 600px) {
