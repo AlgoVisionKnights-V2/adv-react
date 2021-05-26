@@ -44,18 +44,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 	inputRoot: {
 		color: 'inherit',
+		width: '100%',
 	},
 	inputInput: {
 		padding: theme.spacing(1, 1, 1, 0),
 		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-		transition: theme.transitions.create('width'),
 		width: '100%',
-		[theme.breakpoints.up('sm')]: {
-			width: '12ch',
-			'&:focus': {
-				width: '20ch',
-			},
-		},
 	},
 }));
 
@@ -66,19 +60,16 @@ function Header({ toggleDrawer, algoPage, setAlgoPage }) {
 		<div className='Header'>
 			<AppBar id='header-bar' elevation={0}>
 				<Toolbar id='toolbar'>
-					<div id='menu-tools'>
-						<IconButton onClick={toggleDrawer}>
-							<MenuIcon id='menu-icon' />
-						</IconButton>
+					<div className='MenuTools'>
+						<div className='LeftMenus'>
+							<IconButton onClick={toggleDrawer}>
+								<MenuIcon id='menu-icon' />
+							</IconButton>
 
-						<Typography id='header-title'>Dashboard</Typography>
-					</div>
-					<div className='PageControllers'>
-						<div className='TopPageToggle'>
-							{algoPage ? <PageToggle /> : null}
+							<Typography id='header-title'>Dashboard</Typography>
 						</div>
 
-						<div className={classes.search}>
+						<div id='search-input' className={classes.search}>
 							<SearchIcon
 								id='search-icon'
 								className={classes.searchIcon}
@@ -88,8 +79,13 @@ function Header({ toggleDrawer, algoPage, setAlgoPage }) {
 								classes={{
 									root: classes.inputRoot,
 									input: classes.inputInput,
-								}}></InputBase>
+								}}
+							/>
 						</div>
+					</div>
+
+					<div className='TopPageToggle'>
+						{algoPage ? <PageToggle /> : null}
 					</div>
 				</Toolbar>
 			</AppBar>
