@@ -7,6 +7,7 @@ import {
 	AccordionSummary,
 	ListItem,
 	ListItemText,
+	ListItemIcon,
 } from '@material-ui/core';
 
 // Child Components
@@ -21,7 +22,7 @@ function NavGroup({ group, groups, panel, expanded, handleChange }) {
 			onChange={handleChange(panel)}>
 			<ListItem id='nav-group-button' button>
 				<AccordionSummary id='accordion-summary'>
-					<ListItemText>{group}</ListItemText>
+					<ListItemText id='nav-item-text'>{group}</ListItemText>
 				</AccordionSummary>
 			</ListItem>
 			<AccordionDetails id='accordion-details'>
