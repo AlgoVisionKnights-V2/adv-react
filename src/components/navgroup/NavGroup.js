@@ -1,3 +1,4 @@
+import React from 'react';
 import './NavGroup.css';
 
 // Material UI
@@ -25,9 +26,9 @@ function NavGroup({ group, groups, panel, expanded, handleChange }) {
 					<ListItemText id='nav-item-text'>{group}</ListItemText>
 				</AccordionSummary>
 			</ListItem>
-			<AccordionDetails id='accordion-details'>
+			<AccordionDetails id='accordion-details' ref={React.createRef()}>
 				{names.map((name) => (
-					<NavLink name={name} />
+					<NavLink name={name} key={name} />
 				))}
 			</AccordionDetails>
 		</Accordion>
