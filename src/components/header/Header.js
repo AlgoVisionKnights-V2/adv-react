@@ -2,7 +2,7 @@ import './Header.css';
 import React from 'react';
 
 // Child Components
-import PageToggle from '../pageController/PageToggle';
+import PageToggle from '../pageToggle/PageToggle';
 
 // Material UI
 import {
