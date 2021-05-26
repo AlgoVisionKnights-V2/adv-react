@@ -1,15 +1,7 @@
 import React from 'react';
 import './PageToggle.css';
 
-import {
-	AppBar,
-	Button,
-	ButtonGroup,
-	Toolbar,
-	IconButton,
-	Typography,
-	InputBase,
-} from '@material-ui/core';
+import { Button, ButtonGroup, Typography } from '@material-ui/core';
 
 function PageToggle() {
 	const [page, setPage] = React.useState('information');

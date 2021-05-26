@@ -7,8 +7,6 @@ import PageToggle from '../pageToggle/PageToggle';
 // Material UI
 import {
 	AppBar,
-	Button,
-	ButtonGroup,
 	Toolbar,
 	IconButton,
 	Typography,
