@@ -1,6 +1,22 @@
 .Navigation {
 	background-color: #1b203d;
-	/* overflow: hidden; */
+}
+
+/* Scroll Bar */
+/* width */
+::-webkit-scrollbar {
+	width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #ff335c;
+	border-radius: 10px;
 }
 
 #drawer {

@@ -1,5 +1,6 @@
 import './Navigation.css';
 import React from 'react';
+import groups from './AlgoList';
 
 // Child components
 import NavGroup from '../navgroup/NavGroup';
@@ -43,27 +44,7 @@ function Navigation({ open }) {
 	const [expanded, setExpanded] = React.useState('');
 
 	const handleChange = (panel) => (event, newExpanded) => {
-		console.log(panel);
 		setExpanded(newExpanded ? panel : false);
-	};
-
-	// List of categories. Note: There will be more
-	const groups = {
-		Searching: ['Binary Search', 'Linear Search'],
-		Sorting: [
-			'Bubble Sort',
-			'Bucket Sort',
-			'Heap Sort',
-			'Selection Sort',
-			'Quick Sort',
-			'Merge Sort',
-			'Radix',
-		],
-		Graphs: ["Dijkstra's", 'Bellman Ford'],
-		Trees: ['Binary Tree', 'AVL', 'Min Heap'],
-		'Dynamic Programming': ['Fibonacci'],
-		Backtracking: ['nQueens'],
-		'Basic Data Structure': ['Linked List', 'Hash table'],
 	};
 
 	// Instantiating useStyles
@@ -74,7 +55,7 @@ function Navigation({ open }) {
 			<Drawer
 				id='drawer'
 				variant='permanent'
-				// classes={{ paper: classes.drawer }}
+				classes={{ paper: classes.drawer }}
 				classes={{
 					paper: clsx({
 						[classes.drawer]: open,

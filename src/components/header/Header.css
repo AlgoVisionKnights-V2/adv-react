@@ -23,7 +23,24 @@
 	font-size: 1.5em;
 }
 
+.PageControllers {
+	display: inherit;
+}
+
+#information-button {
+	border-right: 1px solid #ffffff;
+}
+
+#information-button,
+#visualizer-button {
+	text-transform: none;
+}
+
+.SearchContainer {
+	display: inherit;
+	align-items: center;
+}
+
 #search-icon {
 	color: #ffffff;
-	opacity: 1;
 }
