@@ -1,30 +1,11 @@
 import './Dashboard.css';
 import {Card} from '@material-ui/core';
+import Algorithm from '../algorithm/Algorithm';
 
 function Dashboard() {
 	return (
 		<div className='Dashboard'>
-			<Card id="card">
-
-			</Card>
-			<Card id="card">
-
-			</Card>
-			<Card id="card">
-
-			</Card>
-			<Card id="card">
-
-			</Card>
-			<Card id="card">
-
-			</Card>
-			<Card id="card">
-
-			</Card>
-			<Card id="card">
-
-			</Card>
+			<Algorithm/>
 		</div>
 	);
 }

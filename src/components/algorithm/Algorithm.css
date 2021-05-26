@@ -1,3 +1,32 @@
 .Algorithm{
     height: 100%;
 }
+
+#card {
+	width: 350px;
+	height: 250px;
+	background-color: #262D4A;
+	border-radius: 15px;
+	margin-bottom: 10px;
+}
+
+#card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#favorite-icon {
+    padding: 0;
+}
+
+#cardHeader {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#cardInfo {
+    font-size: 1em;
+    color: #ffffff;
+}
