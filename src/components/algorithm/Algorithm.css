@@ -1,32 +1,32 @@
-.Algorithm{
-    margin-left: 32.5px;
-    margin-bottom: 20px;
+.Algorithm {
+	margin-left: 32.5px;
+	margin-bottom: 20px;
 }
 
 #card {
 	width: 350px;
 	height: 250px;
-	background-color: #262D4A;
+	background-color: #262d4a;
 	border-radius: 15px;
 }
 
 #card-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 #favorite-icon {
-    padding: 0;
+	padding: 0;
 }
 
 #cardHeader {
-    font-size: 1.3em;
-    font-weight: bold;
-    color: #ffffff;
+	font-size: 1.3em;
+	font-weight: bold;
+	color: #ffffff;
 }
 
 #cardInfo {
-    font-size: 1em;
-    color: #ffffff;
+	font-size: 1em;
+	color: #ffffff;
 }
