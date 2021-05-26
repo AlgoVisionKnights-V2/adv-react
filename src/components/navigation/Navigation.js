@@ -70,12 +70,12 @@ function Navigation({ open, toggleDrawer }) {
 		<div className='Navigation'>
 			<Drawer
 				id='drawer'
-				variant={viewWidth > 830 ? 'permanent' : null}
+				variant={viewWidth > 1265 ? 'permanent' : null}
 				open={open}
 				onClose={toggleDrawer}
 				classes={{
 					paper:
-						viewWidth <= 830
+						viewWidth <= 1265
 							? classes.burger
 							: clsx({
 									[classes.drawer]: open,
