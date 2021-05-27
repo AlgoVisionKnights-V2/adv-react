@@ -24,7 +24,7 @@ function Algorithm({ title, description }) {
 							/>
 						</IconButton>
 					</div>
-					<div>
+					<div className='CardBody'>
 						<Typography id='cardInfo'>{description}</Typography>
 					</div>
 				</CardContent>
