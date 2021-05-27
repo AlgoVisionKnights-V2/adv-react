@@ -9,27 +9,7 @@ const algorithms = [
 		description: 'Yet to be filled.',
 	},
 	{
-		title: 'Graphs',
-		description: 'Yet to be filled.',
-	},
-	{
-		title: 'Trees',
-		description: 'Yet to be filled.',
-	},
-	{
-		title: 'Dynamic Programming',
-		description: 'Yet to be filled.',
-	},
-	{
 		title: 'Data Structures',
-		description: 'Yet to be filled.',
-	},
-	{
-		title: 'Backtracking',
-		description: 'Yet to be filled.',
-	},
-	{
-		title: 'Searching Algorithms',
 		description: 'Yet to be filled.',
 	},
 	{
@@ -41,11 +21,7 @@ const algorithms = [
 		description: 'Yet to be filled.',
 	},
 	{
-		title: 'Dynamic Programming',
-		description: 'Yet to be filled.',
-	},
-	{
-		title: 'Data Structures',
+		title: 'Probabilistic Data Structures',
 		description: 'Yet to be filled.',
 	},
 	{
@@ -53,27 +29,15 @@ const algorithms = [
 		description: 'Yet to be filled.',
 	},
 	{
-		title: 'Searching Algorithms',
+		title: 'Linked List',
 		description: 'Yet to be filled.',
 	},
 	{
-		title: 'Graphs',
-		description: 'Yet to be filled.',
-	},
-	{
-		title: 'Trees',
+		title: 'Divide and Conquer',
 		description: 'Yet to be filled.',
 	},
 	{
 		title: 'Dynamic Programming',
-		description: 'Yet to be filled.',
-	},
-	{
-		title: 'Data Structures',
-		description: 'Yet to be filled.',
-	},
-	{
-		title: 'Backtracking',
 		description: 'Yet to be filled.',
 	},
 ];

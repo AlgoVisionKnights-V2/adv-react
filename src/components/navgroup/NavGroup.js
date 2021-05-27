@@ -14,6 +14,7 @@ import {
 import NavLink from '../navlink/NavLink';
 
 function NavGroup({ group, groups, panel, expanded, handleChange }) {
+	console.log(expanded);
 	const names = groups[group];
 	return (
 		<Accordion
@@ -22,7 +23,13 @@ function NavGroup({ group, groups, panel, expanded, handleChange }) {
 			onChange={handleChange(panel)}>
 			<ListItem id='nav-group-button' button>
 				<AccordionSummary id='accordion-summary'>
-					<ListItemText id='nav-item-text'>{group}</ListItemText>
+					<ListItemText
+						id='nav-item-text'
+						style={{
+							color: expanded == panel ? '#ff335c' : '#ffffff',
+						}}>
+						{group}
+					</ListItemText>
 				</AccordionSummary>
 			</ListItem>
 			<AccordionDetails id='accordion-details' ref={React.createRef()}>
