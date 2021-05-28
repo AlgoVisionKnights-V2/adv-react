@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Header({ toggleDrawer, page, setPage }) {
+function Header({ toggleDrawer, page, algoPage, setAlgoPage }) {
 	const classes = useStyles();
 
 	return (
@@ -88,7 +88,12 @@ function Header({ toggleDrawer, page, setPage }) {
 					</div>
 
 					<div className='TopPageToggle'>
-						{page !== 'dashboard' ? <PageToggle /> : null}
+						{page !== 'dashboard' ? (
+							<PageToggle
+								setAlgoPage={setAlgoPage}
+								algoPage={algoPage}
+							/>
+						) : null}
 					</div>
 				</Toolbar>
 			</AppBar>

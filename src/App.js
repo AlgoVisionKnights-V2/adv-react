@@ -5,18 +5,7 @@ import React from 'react';
 import Dashboard from './components/dashboard/Dashboard';
 import Header from './components/header/Header';
 import Navigation from './components/navigation/Navigation';
-
-// ! Markdown controls
-// import MarkdownPreview from '@uiw/react-markdown-preview';
-// import source from './assets/test.md';
-
-// ! Unity Webgl components for Unity test
-// import Unity, { UnityContent } from 'react-unity-webgl';
-
-// const unityContent = new UnityContent(
-// 	'build/test/build.json',
-// 	'build/test/UnityLoader.js'
-// );
+import AlgorithmPage from './components/algorithmPage/AlgorithmPage';
 
 function App() {
 	// Drawer setters
@@ -25,15 +14,8 @@ function App() {
 	// PageToggler: Set to true if you want to see them
 	const [page, setPage] = React.useState('dashboard');
 
-	// ! Markdown Renderer test
-	// const [markdown, setMarkdown] = React.useState('');
-	// React.useEffect(() => {
-	// 	fetch(source)
-	// 		.then((res) => res.text())
-	// 		.then((text) => {
-	// 			setMarkdown(text);
-	// 		});
-	// });
+	// Visualizer and Information page toggler
+	const [algoPage, setAlgoPage] = React.useState('visualizer');
 
 	// Open or close drawer
 	const toggleDrawer = (event) => {
@@ -46,17 +28,22 @@ function App() {
 				open={open}
 				toggleDrawer={toggleDrawer}
 				setPage={setPage}
+				setAlgoPage={setAlgoPage}
 			/>
 			<div className='Main'>
 				<Header
 					toggleDrawer={toggleDrawer}
 					page={page}
 					setPage={setPage}
+					setAlgoPage={setAlgoPage}
+					algoPage={algoPage}
 				/>
 
-				<Dashboard />
-				{/* <Unity className='Unity' unityContent={unityContent} /> */}
-				{/* <MarkdownPreview source={markdown} style={{ color: 'white' }} /> */}
+				{page === 'dashboard' ? (
+					<Dashboard />
+				) : (
+					<AlgorithmPage page={page} algoPage={algoPage} />
+				)}
 			</div>
 		</div>
 	);

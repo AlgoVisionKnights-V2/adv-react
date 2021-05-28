@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Navigation({ open, toggleDrawer, setPage }) {
+function Navigation({ open, toggleDrawer, setPage, setAlgoPage }) {
 	const [expanded, setExpanded] = React.useState('dashboard');
 	const [viewWidth, setViewWidth] = React.useState(window.innerWidth);
 
@@ -112,6 +112,7 @@ function Navigation({ open, toggleDrawer, setPage }) {
 								expanded={expanded}
 								handleChange={handleChange}
 								setPage={setPage}
+								setAlgoPage={setAlgoPage}
 							/>
 						);
 					})}

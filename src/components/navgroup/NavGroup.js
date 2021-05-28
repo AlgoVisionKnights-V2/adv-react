@@ -13,7 +13,15 @@ import {
 // Child Components
 import NavLink from '../navlink/NavLink';
 
-function NavGroup({ title, group, panel, expanded, handleChange, setPage }) {
+function NavGroup({
+	title,
+	group,
+	panel,
+	expanded,
+	handleChange,
+	setPage,
+	setAlgoPage,
+}) {
 	return (
 		<Accordion
 			id='nav-group'
@@ -32,7 +40,12 @@ function NavGroup({ title, group, panel, expanded, handleChange, setPage }) {
 			</ListItem>
 			<AccordionDetails id='accordion-details' ref={React.createRef()}>
 				{group.map((name) => (
-					<NavLink name={name} key={name} setPage={setPage} />
+					<NavLink
+						name={name}
+						key={name}
+						setPage={setPage}
+						setAlgoPage={setAlgoPage}
+					/>
 				))}
 			</AccordionDetails>
 		</Accordion>
