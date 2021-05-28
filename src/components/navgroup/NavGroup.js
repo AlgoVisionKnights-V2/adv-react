@@ -26,7 +26,7 @@ function NavGroup({ group, groups, panel, expanded, handleChange }) {
 					<ListItemText
 						id='nav-item-text'
 						style={{
-							color: expanded == panel ? '#ff335c' : '#ffffff',
+							color: expanded === panel ? '#ff335c' : '#ffffff',
 						}}>
 						{group}
 					</ListItemText>
