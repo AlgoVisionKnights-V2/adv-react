@@ -43,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Navigation({ open, toggleDrawer }) {
-	const [expanded, setExpanded] = React.useState('');
+function Navigation({ open, toggleDrawer, setPage }) {
+	const [expanded, setExpanded] = React.useState('dashboard');
 	const [viewWidth, setViewWidth] = React.useState(window.innerWidth);
 
 	React.useLayoutEffect(() => {
@@ -61,6 +61,10 @@ function Navigation({ open, toggleDrawer }) {
 	// Handles panel clicks
 	const handleChange = (panel) => (event, newExpanded) => {
 		setExpanded(newExpanded || panel === 'dashboard' ? panel : false);
+
+		if (panel === 'dashboard') {
+			setPage(panel);
+		}
 	};
 
 	// Instantiating useStyles
@@ -98,16 +102,19 @@ function Navigation({ open, toggleDrawer }) {
 						button>
 						<ListItemText>Dashboard</ListItemText>
 					</ListItem>
-					{groups.map((group, i) => (
-						<NavGroup
-							title={group.title}
-							group={group.group}
-							key={group.title}
-							panel={'panel' + i}
-							expanded={expanded}
-							handleChange={handleChange}
-						/>
-					))}
+					{groups.map((group, i) => {
+						return (
+							<NavGroup
+								title={group.title}
+								group={group.group}
+								key={group.title}
+								panel={group.title}
+								expanded={expanded}
+								handleChange={handleChange}
+								setPage={setPage}
+							/>
+						);
+					})}
 				</List>
 			</Drawer>
 		</div>

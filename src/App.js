@@ -23,7 +23,7 @@ function App() {
 	const [open, setOpen] = React.useState(false);
 
 	// PageToggler: Set to true if you want to see them
-	const [algoPage, setAlgoPage] = React.useState(true);
+	const [page, setPage] = React.useState('dashboard');
 
 	// ! Markdown Renderer test
 	// const [markdown, setMarkdown] = React.useState('');
@@ -42,12 +42,16 @@ function App() {
 
 	return (
 		<div className='App'>
-			<Navigation open={open} toggleDrawer={toggleDrawer} />
+			<Navigation
+				open={open}
+				toggleDrawer={toggleDrawer}
+				setPage={setPage}
+			/>
 			<div className='Main'>
 				<Header
 					toggleDrawer={toggleDrawer}
-					algoPage={algoPage}
-					setAlgoPage={setAlgoPage}
+					page={page}
+					setPage={setPage}
 				/>
 
 				<Dashboard />
