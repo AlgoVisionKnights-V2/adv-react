@@ -14,13 +14,14 @@ function Algorithm({ title, description }) {
 				<CardContent id='card-content'>
 					<div className='CardHeader'>
 						<Typography id='card-title'> {title} </Typography>
-						<IconButton id='favorite-icon'>
+						<IconButton
+							onClick={handleHeartColor}
+							id='favorite-icon'>
 							<FavoriteIcon
 								style={{
 									fontSize: '1.4em',
 									color: heartColor ? '#ff335c' : '#1b203d',
 								}}
-								onClick={handleHeartColor}
 							/>
 						</IconButton>
 					</div>

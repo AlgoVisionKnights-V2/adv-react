@@ -9,6 +9,7 @@ function Dashboard() {
 				<Algorithm
 					title={algorithm.title}
 					description={algorithm.description}
+					key={algorithm.title}
 				/>
 			))}
 		</div>
