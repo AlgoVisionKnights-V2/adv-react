@@ -60,7 +60,7 @@ function Navigation({ open, toggleDrawer }) {
 
 	// Handles panel clicks
 	const handleChange = (panel) => (event, newExpanded) => {
-		setExpanded(newExpanded ? panel : false);
+		setExpanded(newExpanded || panel === 'dashboard' ? panel : false);
 	};
 
 	// Instantiating useStyles
@@ -86,14 +86,23 @@ function Navigation({ open, toggleDrawer }) {
 					<Typography id='nav-title'>ADV</Typography>
 				</div>
 				<List>
-					<ListItem id='dashboard-nav-button' button>
+					<ListItem
+						id='dashboard-nav-button'
+						style={{
+							color:
+								expanded === 'dashboard'
+									? '#ff335c'
+									: '#ffffff',
+						}}
+						onClick={handleChange('dashboard')}
+						button>
 						<ListItemText>Dashboard</ListItemText>
 					</ListItem>
 					{groups.map((group, i) => (
 						<NavGroup
 							title={group.title}
 							group={group.group}
-							key={group}
+							key={group.title}
 							panel={'panel' + i}
 							expanded={expanded}
 							handleChange={handleChange}

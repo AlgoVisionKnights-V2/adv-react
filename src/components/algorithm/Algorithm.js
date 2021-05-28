@@ -9,7 +9,7 @@ function Algorithm({ title, description }) {
 		setHeartColor(!heartColor);
 	};
 	return (
-		<div class='Algorithm'>
+		<div className='Algorithm'>
 			<Card id='card'>
 				<CardContent id='card-content'>
 					<div className='CardHeader'>
