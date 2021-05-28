@@ -89,10 +89,10 @@ function Navigation({ open, toggleDrawer }) {
 					<ListItem id='dashboard-nav-button' button>
 						<ListItemText>Dashboard</ListItemText>
 					</ListItem>
-					{Object.keys(groups).map((group, i) => (
+					{groups.map((group, i) => (
 						<NavGroup
-							group={group}
-							groups={groups}
+							title={group.title}
+							group={group.group}
 							key={group}
 							panel={'panel' + i}
 							expanded={expanded}
