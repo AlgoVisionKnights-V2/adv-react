@@ -2,7 +2,7 @@ import './Header.css';
 import React from 'react';
 
 // Child Components
-import PageToggle from '../pageToggle/PageToggle';
+import MenuToggle from '../menu/MenuToggle';
 
 // Material UI
 import {
@@ -59,7 +59,7 @@ function Header({ toggleDrawer, page, algoPage, setAlgoPage, viewWidth }) {
 
 	React.useEffect(() => {
 		const checkSize = () => {
-			if (viewWidth > 450) {
+			if (viewWidth > 650) {
 				setSearch(false);
 			}
 		};
@@ -77,7 +77,7 @@ function Header({ toggleDrawer, page, algoPage, setAlgoPage, viewWidth }) {
 			<AppBar id='header-bar' elevation={0}>
 				<Toolbar id='toolbar'>
 					<div className='MenuTools'>
-						{viewWidth > 450 || !search ? (
+						{viewWidth > 650 || !search ? (
 							<div className='LeftMenus'>
 								<IconButton onClick={toggleDrawer}>
 									<MenuIcon id='menu-icon' />
@@ -89,9 +89,9 @@ function Header({ toggleDrawer, page, algoPage, setAlgoPage, viewWidth }) {
 							</div>
 						) : null}
 
-						{viewWidth > 450 || search ? (
+						{viewWidth > 650 || search ? (
 							<div id='search-input' className={classes.search}>
-								{viewWidth > 450 ? (
+								{viewWidth > 650 ? (
 									<SearchIcon
 										id='input-icon'
 										className={classes.inputIcon}
@@ -124,14 +124,13 @@ function Header({ toggleDrawer, page, algoPage, setAlgoPage, viewWidth }) {
 						)}
 					</div>
 
-					<div className='TopPageToggle'>
-						{page !== 'dashboard' ? (
-							<PageToggle
-								setAlgoPage={setAlgoPage}
-								algoPage={algoPage}
-							/>
-						) : null}
-					</div>
+					{page !== 'dashboard' ? (
+						<MenuToggle
+							setAlgoPage={setAlgoPage}
+							algoPage={algoPage}
+							viewWidth={viewWidth}
+						/>
+					) : null}
 				</Toolbar>
 			</AppBar>
 		</div>

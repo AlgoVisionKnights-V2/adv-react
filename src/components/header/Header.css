@@ -65,7 +65,7 @@
 	}
 }
 
-@media (max-width: 450px) {
+@media (max-width: 650px) {
 	#search-input {
 		margin: 0px 0px 0px 10px;
 	}
