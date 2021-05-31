@@ -1,7 +1,16 @@
-.Algorithm {
+#algorithm {
 	margin: 0px 26px 20px 0px;
 	width: 320px;
 	height: 220px;
+	padding: 0;
+	text-transform: none;
+	text-align: unset;
+	z-index: 0;
+}
+
+span.MuiButton-label {
+	height: 100%;
+
 }
 
 #card {
@@ -29,6 +38,7 @@
 	flex-direction: row;
 	justify-content: space-between;
 	width: 100%;
+	align-items: flex-start;
 }
 
 .CardBody {
@@ -37,15 +47,16 @@
 
 #favorite-icon {
 	padding: 0;
+	z-index: 100;
 }
 
 #card-title {
-	font-size: 1.3em;
+	font-size: 1.5em;
 	font-weight: bold;
 	color: #ffffff;
 }
 
 #card-info {
-	font-size: 1em;
+	font-size: 1.14em;
 	color: #99afc2;
 }

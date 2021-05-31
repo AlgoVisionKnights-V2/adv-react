@@ -1,16 +1,22 @@
 import React from 'react';
 import './Algorithm.css';
-import { Card, CardContent, IconButton, Typography } from '@material-ui/core';
+import { Card, CardContent, IconButton, Typography, Button } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import {BrowserRouter} from 'react-dom';
 
 function Algorithm({ title, description }) {
 	const [heartColor, setHeartColor] = React.useState(false);
 	const handleHeartColor = () => {
 		setHeartColor(!heartColor);
 	};
+	const [topicPage, setTopicPage] = React.useState(true);
+	const handleTopicPage = () => {
+		console.log('clicked');
+		setTopicPage(!topicPage);
+	};
 	return (
-		<div className='Algorithm'>
-			<Card id='card'>
+		<Button id='algorithm'>
+			<Card onClick={handleTopicPage} id='card'>
 				<CardContent id='card-content'>
 					<div className='CardHeader'>
 						<Typography id='card-title'> {title} </Typography>
@@ -30,7 +36,7 @@ function Algorithm({ title, description }) {
 					</div>
 				</CardContent>
 			</Card>
-		</div>
+		</Button>
 	);
 }
 
