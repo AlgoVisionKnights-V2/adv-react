@@ -58,9 +58,13 @@ function Header({ toggleDrawer, page, algoPage, setAlgoPage, viewWidth }) {
 	const classes = useStyles();
 
 	React.useEffect(() => {
-		if (viewWidth > 450) {
-			setSearch(false);
-		}
+		const checkSize = () => {
+			if (viewWidth > 450) {
+				setSearch(false);
+			}
+		};
+
+		checkSize();
 	});
 
 	// Toggles mobile search
