@@ -17,6 +17,7 @@ function Algorithm({
 	group,
 	setCategory,
 	categories,
+	setAlgoPage,
 }) {
 	// const [heartColor, setHeartColor] = React.useState(false);
 	// const handleHeartColor = () => {
@@ -25,6 +26,7 @@ function Algorithm({
 
 	const handleTopicPage = () => {
 		setPage(title);
+		setAlgoPage('visualizer');
 
 		if (categories.has(title)) {
 			setCategory(group);

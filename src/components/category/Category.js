@@ -3,7 +3,7 @@ import './Category.css';
 // Child Components
 import Algorithm from '../algorithm/Algorithm';
 
-function Category({ category, setPage, categories }) {
+function Category({ category, setPage, categories, setAlgoPage }) {
 	// const description = category.description;
 	const group = category.group;
 
@@ -15,6 +15,7 @@ function Category({ category, setPage, categories }) {
 					key={name}
 					setPage={setPage}
 					categories={categories}
+					setAlgoPage={setAlgoPage}
 				/>
 			))}
 		</div>
