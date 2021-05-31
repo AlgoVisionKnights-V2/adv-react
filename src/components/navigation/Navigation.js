@@ -43,7 +43,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Navigation({ open, toggleDrawer, setPage, setAlgoPage, viewWidth }) {
+function Navigation({
+	open,
+	toggleDrawer,
+	setPage,
+	setAlgoPage,
+	viewWidth,
+	page,
+}) {
 	const [expanded, setExpanded] = React.useState('dashboard');
 
 	// Handles panel clicks
@@ -82,7 +89,7 @@ function Navigation({ open, toggleDrawer, setPage, setAlgoPage, viewWidth }) {
 						id='dashboard-nav-button'
 						style={{
 							color:
-								expanded === 'dashboard'
+								expanded === 'dashboard' || page === 'dashboard'
 									? '#ff335c'
 									: '#ffffff',
 						}}

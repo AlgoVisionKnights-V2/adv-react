@@ -41,6 +41,7 @@ function App() {
 				open={open}
 				toggleDrawer={toggleDrawer}
 				setPage={setPage}
+				page={page}
 				setAlgoPage={setAlgoPage}
 				viewWidth={viewWidth}
 			/>
