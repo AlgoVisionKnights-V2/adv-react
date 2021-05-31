@@ -74,9 +74,14 @@ function App() {
 						groups={groups}
 						setPage={setPage}
 						setCategory={setCategory}
+						categories={categories}
 					/>
 				) : categories.has(page) ? (
-					<Category category={category} />
+					<Category
+						category={category}
+						setPage={setPage}
+						categories={categories}
+					/>
 				) : (
 					<AlgorithmPage page={page} algoPage={algoPage} />
 				)}

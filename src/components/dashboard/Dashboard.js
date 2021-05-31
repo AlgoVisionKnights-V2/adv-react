@@ -1,7 +1,7 @@
 import './Dashboard.css';
 import Algorithm from '../algorithm/Algorithm';
 
-function Dashboard({ groups, setPage, setCategory }) {
+function Dashboard({ groups, setPage, setCategory, categories }) {
 	return (
 		<div className='Dashboard'>
 			{groups.map((group) => (
@@ -12,6 +12,7 @@ function Dashboard({ groups, setPage, setCategory }) {
 					setPage={setPage}
 					group={group}
 					setCategory={setCategory}
+					categories={categories}
 				/>
 			))}
 		</div>
