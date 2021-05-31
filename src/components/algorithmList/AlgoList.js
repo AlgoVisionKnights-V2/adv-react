@@ -2,6 +2,8 @@
 const groups = [
 	{
 		title: 'Sorting',
+		description:
+			'Sorting Algorithms are used to rearrange elements in an array or list. Some of the most commonly used sorting algorithms include bubble sort, merge sort, and quick sort.',
 		group: [
 			'Bubble Sort',
 			'Selection Sort',
@@ -14,6 +16,7 @@ const groups = [
 	},
 	{
 		title: 'Searching',
+		description: 'Yet to be filled.',
 		group: [
 			'Linear Search',
 			'Binary Search',
@@ -23,6 +26,7 @@ const groups = [
 	},
 	{
 		title: 'Data Structure',
+		description: 'Yet to be filled.',
 		group: [
 			'Arrays',
 			'Stacks',
@@ -35,6 +39,7 @@ const groups = [
 	},
 	{
 		title: 'Graphs',
+		description: 'Yet to be filled.',
 		group: [
 			"Dijkstra's",
 			'Bellman Ford',
@@ -46,6 +51,7 @@ const groups = [
 	},
 	{
 		title: 'Trees',
+		description: 'Yet to be filled.',
 		group: [
 			'AVL',
 			'Binary Tree',
@@ -60,15 +66,29 @@ const groups = [
 	},
 	{
 		title: 'Probabilistic Data Structures',
+		description: 'Yet to be filled.',
 		group: ['Bloom Filters', 'Skip List'],
 	},
-	{ title: 'Backtracking', group: ['nQueens'] },
-	{ title: 'Linked List', group: ['Singly', 'Doubly', 'Circular'] },
+	{
+		title: 'Backtracking',
+		description: 'Yet to be filled.',
+		group: ['nQueens'],
+	},
+	{
+		title: 'Linked List',
+		description: 'Yet to be filled.',
+		group: ['Singly', 'Doubly', 'Circular'],
+	},
 	{
 		title: 'Divide and Conquer',
+		description: 'Yet to be filled.',
 		group: ['Merge Sort', 'Quick Sort', 'Radix Sort'],
 	},
-	{ title: 'Dynamic Programming', group: ['Floyd-Warshal'] },
+	{
+		title: 'Dynamic Programming',
+		description: 'Yet to be filled.',
+		group: ['Floyd-Warshal'],
+	},
 ];
 
 export default groups;

@@ -6,13 +6,22 @@ import Dashboard from './components/dashboard/Dashboard';
 import Header from './components/header/Header';
 import Navigation from './components/navigation/Navigation';
 import AlgorithmPage from './components/algorithmPage/AlgorithmPage';
+import Category from './components/category/Category';
+
+// Algorithm Objects
+import groups from './components/algorithmList/AlgoList';
 
 function App() {
 	// Drawer setters
 	const [open, setOpen] = React.useState(false);
 
+	// Open or close drawer
+	const toggleDrawer = (event) => {
+		setOpen(!open);
+	};
+
 	// PageToggler: Set to true if you want to see them
-	const [page, setPage] = React.useState('dashboard');
+	const [page, setPage] = React.useState('Dashboard');
 
 	// Visualizer and Information page toggler
 	const [algoPage, setAlgoPage] = React.useState('visualizer');
@@ -30,10 +39,13 @@ function App() {
 		return () => window.removeEventListener('resize', handleResize);
 	});
 
-	// Open or close drawer
-	const toggleDrawer = (event) => {
-		setOpen(!open);
-	};
+	const [category, setCategory] = React.useState(null);
+
+	const categories = new Set();
+
+	groups.forEach((group) => {
+		categories.add(group.title);
+	});
 
 	return (
 		<div className='App'>
@@ -44,6 +56,7 @@ function App() {
 				page={page}
 				setAlgoPage={setAlgoPage}
 				viewWidth={viewWidth}
+				groups={groups}
 			/>
 			<div className='Main'>
 				<Header
@@ -55,8 +68,14 @@ function App() {
 					viewWidth={viewWidth}
 				/>
 
-				{page === 'dashboard' ? (
-					<Dashboard />
+				{page === 'Dashboard' ? (
+					<Dashboard
+						groups={groups}
+						setPage={setPage}
+						setCategory={setCategory}
+					/>
+				) : categories.has(page) ? (
+					<Category category={category} />
 				) : (
 					<AlgorithmPage page={page} algoPage={algoPage} />
 				)}

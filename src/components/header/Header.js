@@ -84,7 +84,7 @@ function Header({ toggleDrawer, page, algoPage, setAlgoPage, viewWidth }) {
 								</IconButton>
 
 								<Typography id='header-title'>
-									Dashboard
+									{page}
 								</Typography>
 							</div>
 						) : null}
@@ -124,7 +124,7 @@ function Header({ toggleDrawer, page, algoPage, setAlgoPage, viewWidth }) {
 						)}
 					</div>
 
-					{page !== 'dashboard' ? (
+					{page !== 'Dashboard' ? (
 						<MenuToggle
 							setAlgoPage={setAlgoPage}
 							algoPage={algoPage}

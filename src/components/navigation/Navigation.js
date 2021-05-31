@@ -1,6 +1,5 @@
 import './Navigation.css';
 import React from 'react';
-import groups from './AlgoList';
 
 // Child components
 import NavGroup from '../navgroup/NavGroup';
@@ -50,14 +49,15 @@ function Navigation({
 	setAlgoPage,
 	viewWidth,
 	page,
+	groups,
 }) {
-	const [expanded, setExpanded] = React.useState('dashboard');
+	const [expanded, setExpanded] = React.useState('Dashboard');
 
 	// Handles panel clicks
 	const handleChange = (panel) => (event, newExpanded) => {
-		setExpanded(newExpanded || panel === 'dashboard' ? panel : false);
+		setExpanded(newExpanded || panel === 'Dashboard' ? panel : false);
 
-		if (panel === 'dashboard') {
+		if (panel === 'Dashboard') {
 			setPage(panel);
 		}
 	};
@@ -88,12 +88,9 @@ function Navigation({
 					<ListItem
 						id='dashboard-nav-button'
 						style={{
-							color:
-								expanded === 'dashboard' || page === 'dashboard'
-									? '#ff335c'
-									: '#ffffff',
+							color: page === 'Dashboard' ? '#ff335c' : '#ffffff',
 						}}
-						onClick={handleChange('dashboard')}
+						onClick={handleChange('Dashboard')}
 						button>
 						<ListItemText>Dashboard</ListItemText>
 					</ListItem>

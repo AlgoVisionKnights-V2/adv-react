@@ -1,15 +1,17 @@
 import './Dashboard.css';
-import algorithms from './algorithmList';
 import Algorithm from '../algorithm/Algorithm';
 
-function Dashboard() {
+function Dashboard({ groups, setPage, setCategory }) {
 	return (
 		<div className='Dashboard'>
-			{algorithms.map((algorithm) => (
+			{groups.map((group) => (
 				<Algorithm
-					title={algorithm.title}
-					description={algorithm.description}
-					key={algorithm.title}
+					title={group.title}
+					description={group.description}
+					key={group.title}
+					setPage={setPage}
+					group={group}
+					setCategory={setCategory}
 				/>
 			))}
 		</div>

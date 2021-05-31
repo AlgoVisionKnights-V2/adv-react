@@ -10,7 +10,7 @@ import {
 import Tilt from 'react-tilt';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 
-function Algorithm({ title, description }) {
+function Algorithm({ title, description, setPage, group, setCategory }) {
 	// const [heartColor, setHeartColor] = React.useState(false);
 	// const handleHeartColor = () => {
 	// 	setHeartColor(!heartColor);
@@ -18,6 +18,8 @@ function Algorithm({ title, description }) {
 
 	const handleTopicPage = () => {
 		console.log(title);
+		setPage(title);
+		setCategory(group);
 	};
 
 	return (

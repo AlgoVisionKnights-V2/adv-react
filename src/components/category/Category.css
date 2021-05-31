@@ -1,4 +1,4 @@
-.Dashboard {
+.Category {
 	height: 100%;
 	display: flex;
 	flex-wrap: wrap;
@@ -9,7 +9,7 @@
 }
 
 @media (max-width: 1358px) {
-	.Dashboard {
+	.DashboCategoryard {
 		justify-content: center;
 	}
 }
