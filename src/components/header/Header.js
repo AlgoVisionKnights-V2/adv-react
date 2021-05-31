@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { fade, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,11 +32,11 @@ const useStyles = makeStyles((theme) => ({
 			width: 'auto',
 		},
 	},
-	searchIcon: {
+	inputIcon: {
 		padding: theme.spacing(0, 2),
 		height: '100%',
 		position: 'absolute',
-		pointerEvents: 'none',
+		zIndex: 1,
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -51,40 +52,72 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Header({ toggleDrawer, page, algoPage, setAlgoPage }) {
+function Header({ toggleDrawer, page, algoPage, setAlgoPage, viewWidth }) {
+	const [search, setSearch] = React.useState(false);
+
 	const classes = useStyles();
+
+	React.useEffect(() => {
+		if (viewWidth > 450) {
+			setSearch(false);
+		}
+	});
+
+	// Toggles mobile search
+	const toggleSearch = () => {
+		setSearch(!search);
+	};
 
 	return (
 		<div className='Header'>
 			<AppBar id='header-bar' elevation={0}>
 				<Toolbar id='toolbar'>
 					<div className='MenuTools'>
-						<div className='LeftMenus'>
-							<IconButton onClick={toggleDrawer}>
-								<MenuIcon id='menu-icon' />
-							</IconButton>
+						{viewWidth > 450 || !search ? (
+							<div className='LeftMenus'>
+								<IconButton onClick={toggleDrawer}>
+									<MenuIcon id='menu-icon' />
+								</IconButton>
 
-							<Typography id='header-title'>Dashboard</Typography>
-						</div>
+								<Typography id='header-title'>
+									Dashboard
+								</Typography>
+							</div>
+						) : null}
 
-						<div id='search-input' className={classes.search}>
-							<SearchIcon
-								id='search-icon'
-								className={classes.searchIcon}
-							/>
-							<InputBase
-								placeholder='Search...'
-								classes={{
-									root: classes.inputRoot,
-									input: classes.inputInput,
-								}}
-							/>
-						</div>
-						<div className='SearchInputMobile'>
-							<IconButton id='search-button-mobile'>
-								<SearchIcon id='search-icon-mobile' />
-							</IconButton>
-						</div>
+						{viewWidth > 450 || search ? (
+							<div id='search-input' className={classes.search}>
+								{viewWidth > 450 ? (
+									<SearchIcon
+										id='input-icon'
+										className={classes.inputIcon}
+									/>
+								) : (
+									<IconButton
+										id='input-icon'
+										className={classes.inputIcon}
+										onClick={toggleSearch}>
+										<ArrowBackIcon />
+									</IconButton>
+								)}
+
+								<InputBase
+									placeholder='Search...'
+									classes={{
+										root: classes.inputRoot,
+										input: classes.inputInput,
+									}}
+								/>
+							</div>
+						) : (
+							<div className='SearchInputMobile'>
+								<IconButton
+									id='search-button-mobile'
+									onClick={toggleSearch}>
+									<SearchIcon id='search-icon-mobile' />
+								</IconButton>
+							</div>
+						)}
 					</div>
 
 					<div className='TopPageToggle'>

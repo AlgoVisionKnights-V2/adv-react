@@ -17,6 +17,19 @@ function App() {
 	// Visualizer and Information page toggler
 	const [algoPage, setAlgoPage] = React.useState('visualizer');
 
+	const [viewWidth, setViewWidth] = React.useState(window.innerWidth);
+
+	React.useLayoutEffect(() => {
+		// Records the width the screen in real-time
+		const handleResize = () => {
+			setViewWidth(window.innerWidth);
+		};
+		window.addEventListener('resize', handleResize);
+		handleResize();
+
+		return () => window.removeEventListener('resize', handleResize);
+	});
+
 	// Open or close drawer
 	const toggleDrawer = (event) => {
 		setOpen(!open);
@@ -29,6 +42,7 @@ function App() {
 				toggleDrawer={toggleDrawer}
 				setPage={setPage}
 				setAlgoPage={setAlgoPage}
+				viewWidth={viewWidth}
 			/>
 			<div className='Main'>
 				<Header
@@ -37,6 +51,7 @@ function App() {
 					setPage={setPage}
 					setAlgoPage={setAlgoPage}
 					algoPage={algoPage}
+					viewWidth={viewWidth}
 				/>
 
 				{page === 'dashboard' ? (

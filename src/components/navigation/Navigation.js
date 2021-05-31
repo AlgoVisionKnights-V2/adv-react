@@ -43,20 +43,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Navigation({ open, toggleDrawer, setPage, setAlgoPage }) {
+function Navigation({ open, toggleDrawer, setPage, setAlgoPage, viewWidth }) {
 	const [expanded, setExpanded] = React.useState('dashboard');
-	const [viewWidth, setViewWidth] = React.useState(window.innerWidth);
-
-	React.useLayoutEffect(() => {
-		// Records the width the screen in real-time
-		const handleResize = () => {
-			setViewWidth(window.innerWidth);
-		};
-		window.addEventListener('resize', handleResize);
-		handleResize();
-
-		return () => window.removeEventListener('resize', handleResize);
-	});
 
 	// Handles panel clicks
 	const handleChange = (panel) => (event, newExpanded) => {

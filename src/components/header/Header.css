@@ -32,20 +32,23 @@
 }
 
 #search-input {
+	display: inherit;
 	margin: 0px 0px 0px 30px;
 	width: 100%;
 }
 
-#search-icon {
+#input-icon {
 	color: #ffffff;
 }
 
 .SearchInputMobile {
-	display: none;
+	display: inherit;
 }
 
 #search-button-mobile {
 	padding: 0;
+	font-size: 1.3em;
+	color: #ffffff;
 }
 
 .TopPageToggle {
@@ -64,15 +67,6 @@
 
 @media (max-width: 450px) {
 	#search-input {
-		display: none;
-	}
-
-	.SearchInputMobile {
-		display: inherit;
-	}
-
-	#search-icon-mobile {
-		font-size: 1.3em;
-		color: #ffffff;
+		margin: 0px 0px 0px 10px;
 	}
 }
