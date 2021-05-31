@@ -17,7 +17,6 @@ function Algorithm({ title, description, setPage, group, setCategory }) {
 	// };
 
 	const handleTopicPage = () => {
-		console.log(title);
 		setPage(title);
 		setCategory(group);
 	};

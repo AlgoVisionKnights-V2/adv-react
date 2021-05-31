@@ -52,7 +52,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Header({ toggleDrawer, page, algoPage, setAlgoPage, viewWidth }) {
+function Header({
+	toggleDrawer,
+	page,
+	algoPage,
+	setAlgoPage,
+	viewWidth,
+	categories,
+}) {
 	const [search, setSearch] = React.useState(false);
 
 	const classes = useStyles();
@@ -124,7 +131,7 @@ function Header({ toggleDrawer, page, algoPage, setAlgoPage, viewWidth }) {
 						)}
 					</div>
 
-					{page !== 'Dashboard' ? (
+					{page !== 'Dashboard' && !categories.has(page) ? (
 						<MenuToggle
 							setAlgoPage={setAlgoPage}
 							algoPage={algoPage}

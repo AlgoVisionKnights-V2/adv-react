@@ -66,6 +66,7 @@ function App() {
 					setAlgoPage={setAlgoPage}
 					algoPage={algoPage}
 					viewWidth={viewWidth}
+					categories={categories}
 				/>
 
 				{page === 'Dashboard' ? (
