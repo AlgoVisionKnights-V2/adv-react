@@ -39,7 +39,9 @@ function MenuToggle({ setAlgoPage, algoPage, viewWidth }) {
 
 	const webToggle = () => {
 		return (
-			<ButtonGroup id='button-group-web' variant='text'>
+			<ButtonGroup
+				id={viewWidth > 650 ? 'button-group-web' : null}
+				variant='text'>
 				<Button
 					id='information-button'
 					onClick={handleInformationPage}
@@ -71,30 +73,7 @@ function MenuToggle({ setAlgoPage, algoPage, viewWidth }) {
 					anchorEl={anchorEl}
 					open={Boolean(anchorEl)}
 					onClose={closeMenu}>
-					<ButtonGroup variant='text'>
-						<Button
-							id='information-button'
-							onClick={handleInformationPage}
-							style={{
-								color:
-									algoPage === 'information'
-										? color
-										: '#ffffff',
-							}}>
-							<Typography>Information</Typography>
-						</Button>
-						<Button
-							id='visualizer-button'
-							onClick={handleVisualizerPage}
-							style={{
-								color:
-									algoPage === 'visualizer'
-										? color
-										: '#ffffff',
-							}}>
-							<Typography>Visualizer</Typography>
-						</Button>
-					</ButtonGroup>
+					{webToggle()}
 				</Menu>
 			</div>
 		);
