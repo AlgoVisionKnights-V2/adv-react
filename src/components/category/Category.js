@@ -2,6 +2,7 @@ import './Category.css';
 
 // Child Components
 import Algorithm from '../algorithm/Algorithm';
+import SubtopicCard from '../subtopicCard/SubtopicCard'
 
 function Category({ category, setPage, categories, setAlgoPage }) {
 	// const description = category.description;
@@ -10,7 +11,7 @@ function Category({ category, setPage, categories, setAlgoPage }) {
 	return (
 		<div className='Category'>
 			{group.map((name) => (
-				<Algorithm
+				<SubtopicCard 
 					title={name}
 					key={name}
 					setPage={setPage}

@@ -8,6 +8,11 @@
 	padding: 17px 0px 0px 30px;
 }
 
+.algorithm {
+	width: 800px;
+	height: 400px;
+}
+
 @media (max-width: 1358px) {
 	.DashboCategoryard {
 		justify-content: center;
