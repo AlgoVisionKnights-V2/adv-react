@@ -1,5 +1,5 @@
 import React from 'react';
-import './Algorithm.css';
+import './SubtopicCard.css';
 import {
 	Card,
 	CardContent,
@@ -10,7 +10,7 @@ import {
 import Tilt from 'react-tilt';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 
-function Algorithm({
+function SubtopicCard({
 	title,
 	description,
 	setPage,
@@ -35,7 +35,7 @@ function Algorithm({
 
 	return (
 		<Tilt options={{ max: 1.5, scale: 1.07 }}>
-			<Button onClick={handleTopicPage} id='algorithm'>
+			<Button onClick={handleTopicPage} id='subtopic'>
 				<Card id='card'>
 					<CardContent id='card-content'>
 						<div className='CardHeader'>
@@ -65,4 +65,4 @@ function Algorithm({
 	);
 }
 
-export default Algorithm;
+export default SubtopicCard;
