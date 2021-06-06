@@ -1,6 +1,6 @@
 {
-"companyName": "ADV",
-"productName": "adv-unity-test",
+"companyName": "DefaultCompany",
+"productName": "AlgoVision Test 1",
 "productVersion": "0.1",
 "dataUrl": "build.data.unityweb",
 "wasmCodeUrl": "build.wasm.code.unityweb",
