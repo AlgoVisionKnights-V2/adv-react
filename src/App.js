@@ -76,6 +76,7 @@ function App() {
 						setCategory={setCategory}
 						categories={categories}
 						setAlgoPage={setAlgoPage}
+						inCategory={false}
 					/>
 				) : categories.has(page) ? (
 					<Category
@@ -83,6 +84,7 @@ function App() {
 						setPage={setPage}
 						categories={categories}
 						setAlgoPage={setAlgoPage}
+						inCategory={true}
 					/>
 				) : (
 					<AlgorithmPage page={page} algoPage={algoPage} />
@@ -92,22 +94,4 @@ function App() {
 	);
 }
 
-// ! This is a test api call. Call this in the App function if you want to communicate with the API.
-// const axios = require('axios');
-
-// const test = () => {
-// 	axios({
-// 		method: 'POST',
-// 		url: 'http://localhost:5000/algorithms/getAlgorithm',
-// 		data: {
-// 			name: 'bubblesort',
-// 		},
-// 		config: {
-// 			headers: { 'Content-Type': 'application/json' },
-// 		},
-// 	}).then((response) => {
-// 		console.log(response);
-// 		// setMarkdown(response.data.file);
-// 	});
-// };
 export default App;
