@@ -6,7 +6,6 @@ const groups = [
 		description:
 			'Sorting Algorithms are used to rearrange elements in an array or list. Some of the most commonly used sorting algorithms include bubble sort, merge sort, and quick sort.',
 		group: [
-			'Overview',
 			'Bubble Sort',
 			'Selection Sort',
 			'Insertion Sort',
@@ -21,7 +20,6 @@ const groups = [
 		title: 'Searching',
 		description: 'Yet to be filled.',
 		group: [
-			'Overview',
 			'Linear Search',
 			'Binary Search',
 			'Fibonacci Search',
@@ -33,7 +31,6 @@ const groups = [
 		title: 'Data Structures',
 		description: 'Yet to be filled.',
 		group: [
-			'Overview',
 			'Arrays',
 			'Stacks',
 			'Queues',
@@ -48,7 +45,6 @@ const groups = [
 		title: 'Graphs',
 		description: 'Yet to be filled.',
 		group: [
-			'Overview',
 			"Dijkstra's",
 			'Bellman Ford',
 			'Breadth First Search',
@@ -62,7 +58,6 @@ const groups = [
 		title: 'Trees',
 		description: 'Yet to be filled.',
 		group: [
-			'Overview',
 			'AVL',
 			'Binary Tree',
 			'Heaps',
@@ -78,31 +73,31 @@ const groups = [
 		path: 'probabilisticdatastructures',
 		title: 'Probabilistic Data Structures',
 		description: 'Yet to be filled.',
-		group: ['Overview', 'Bloom Filters', 'Skip List'],
+		group: ['Bloom Filters', 'Skip List'],
 	},
 	{
 		path: 'backtracking',
 		title: 'Backtracking',
 		description: 'Yet to be filled.',
-		group: ['Overview', 'nQueens'],
+		group: ['nQueens'],
 	},
 	{
 		path: 'linkedlist',
 		title: 'Linked List',
 		description: 'Yet to be filled.',
-		group: ['Overview', 'Singly', 'Doubly', 'Circular'],
+		group: ['Singly', 'Doubly', 'Circular'],
 	},
 	{
 		path: 'divideconquer',
 		title: 'Divide and Conquer',
 		description: 'Yet to be filled.',
-		group: ['Overview', 'Merge Sort', 'Quick Sort', 'Radix Sort'],
+		group: ['Merge Sort', 'Quick Sort', 'Radix Sort'],
 	},
 	{
 		path: 'dynamicprogramming',
 		title: 'Dynamic Programming',
 		description: 'Yet to be filled.',
-		group: ['Overview', 'Floyd-Warshal'],
+		group: ['Floyd-Warshal'],
 	},
 ];
 

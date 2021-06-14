@@ -18,12 +18,10 @@ function Algorithm({
 	setCategory,
 	categories,
 	setAlgoPage,
+	width,
+	height,
+	inCategory,
 }) {
-	// const [heartColor, setHeartColor] = React.useState(false);
-	// const handleHeartColor = () => {
-	// 	setHeartColor(!heartColor);
-	// };
-
 	const handleTopicPage = () => {
 		setPage(title);
 		setAlgoPage('visualizer');
@@ -34,24 +32,17 @@ function Algorithm({
 	};
 
 	return (
-		<Tilt options={{ max: 1.5, scale: 1.07 }}>
-			<Button onClick={handleTopicPage} id='algorithm'>
+		<Tilt
+			style={{ width: inCategory ? '87%' : 'unset' }}
+			options={{ max: 1.5, scale: 1.05 }}>
+			<Button
+				onClick={handleTopicPage}
+				id='algorithm'
+				style={{ width: width, height: height }}>
 				<Card id='card'>
 					<CardContent id='card-content'>
 						<div className='CardHeader'>
 							<Typography id='card-title'> {title} </Typography>
-							{/*  
-							Removed Favorites for now
-							<IconButton
-								onClick={handleHeartColor}
-								id='favorite-icon'>
-								<FavoriteIcon
-									style={{
-										fontSize: '1.4em',
-										color: heartColor ? '#ff335c' : '#1b203d',
-									}}
-								/>
-							</IconButton> */}
 						</div>
 						<div className='CardBody'>
 							<Typography id='card-info'>
