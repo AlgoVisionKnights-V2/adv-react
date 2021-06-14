@@ -1,5 +1,6 @@
 import './Navigation.css';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Child components
 import NavGroup from '../navgroup/NavGroup';
@@ -85,27 +86,34 @@ function Navigation({
 					<Typography id='nav-title'>ADV</Typography>
 				</div>
 				<List>
-					<ListItem
-						id='dashboard-nav-button'
-						style={{
-							color: page === 'Dashboard' ? '#ff335c' : '#ffffff',
-						}}
-						onClick={handleChange('Dashboard')}
-						button>
-						<ListItemText>Dashboard</ListItemText>
-					</ListItem>
+					<Link className='Link' to='/'>
+						<ListItem
+							id='dashboard-nav-button'
+							style={{
+								color:
+									page === 'Dashboard'
+										? '#ff335c'
+										: '#ffffff',
+							}}
+							onClick={handleChange('Dashboard')}
+							button>
+							<ListItemText>Dashboard</ListItemText>
+						</ListItem>
+					</Link>
 					{groups.map((group, i) => {
 						return (
-							<NavGroup
-								title={group.title}
-								group={group.group}
-								key={group.title}
-								panel={group.title}
-								expanded={expanded}
-								handleChange={handleChange}
-								setPage={setPage}
-								setAlgoPage={setAlgoPage}
-							/>
+							<Link className='Link' to={group.path}>
+								<NavGroup
+									title={group.title}
+									group={group.group}
+									key={group.title}
+									panel={group.title}
+									expanded={expanded}
+									handleChange={handleChange}
+									setPage={setPage}
+									setAlgoPage={setAlgoPage}
+								/>
+							</Link>
 						);
 					})}
 				</List>

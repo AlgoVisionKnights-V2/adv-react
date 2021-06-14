@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 // Components
 import Dashboard from './components/dashboard/Dashboard';
@@ -49,27 +50,43 @@ function App() {
 
 	return (
 		<div className='App'>
-			<Navigation
-				open={open}
-				toggleDrawer={toggleDrawer}
-				setPage={setPage}
-				page={page}
-				setAlgoPage={setAlgoPage}
-				viewWidth={viewWidth}
-				groups={groups}
-			/>
-			<div className='Main'>
-				<Header
+			<Router>
+				<Navigation
+					open={open}
 					toggleDrawer={toggleDrawer}
-					page={page}
 					setPage={setPage}
+					page={page}
 					setAlgoPage={setAlgoPage}
-					algoPage={algoPage}
 					viewWidth={viewWidth}
-					categories={categories}
+					groups={groups}
 				/>
+				<div className='Main'>
+					<Header
+						toggleDrawer={toggleDrawer}
+						page={page}
+						setPage={setPage}
+						setAlgoPage={setAlgoPage}
+						algoPage={algoPage}
+						viewWidth={viewWidth}
+						categories={categories}
+					/>
 
-				{page === 'Dashboard' ? (
+					<Route
+						exact={true}
+						path='/'
+						render={() => (
+							<Dashboard
+								groups={groups}
+								setPage={setPage}
+								setCategory={setCategory}
+								categories={categories}
+								setAlgoPage={setAlgoPage}
+								inCategory={false}
+							/>
+						)}
+					/>
+
+					{/* {page === 'Dashboard' ? (
 					<Dashboard
 						groups={groups}
 						setPage={setPage}
@@ -88,8 +105,9 @@ function App() {
 					/>
 				) : (
 					<AlgorithmPage page={page} algoPage={algoPage} />
-				)}
-			</div>
+				)} */}
+				</div>
+			</Router>
 		</div>
 	);
 }
