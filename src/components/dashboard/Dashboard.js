@@ -1,7 +1,14 @@
 import './Dashboard.css';
 import Algorithm from '../algorithm/Algorithm';
 
-function Dashboard({ groups, setPage, setCategory, categories, setAlgoPage }) {
+function Dashboard({
+	groups,
+	setPage,
+	setCategory,
+	categories,
+	setAlgoPage,
+	inCategory,
+}) {
 	return (
 		<div className='Dashboard'>
 			{groups.map((group) => (
@@ -14,6 +21,9 @@ function Dashboard({ groups, setPage, setCategory, categories, setAlgoPage }) {
 					setCategory={setCategory}
 					categories={categories}
 					setAlgoPage={setAlgoPage}
+					width={320}
+					height={220}
+					inCategory={inCategory}
 				/>
 			))}
 		</div>
