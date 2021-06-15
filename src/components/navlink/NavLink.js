@@ -4,12 +4,12 @@ import './NavLink.css';
 import { ListItem, ListItemText } from '@material-ui/core';
 
 function NavGroup({ name, setPage, setAlgoPage }) {
-	const hello = () => {
+	const handlePage = () => {
 		setPage(name);
 		setAlgoPage('visualizer');
 	};
 	return (
-		<ListItem id='accordian-button' onClick={hello} button>
+		<ListItem id='accordian-button' onClick={handlePage} button>
 			<ListItemText id='accordian-text'>{name}</ListItemText>
 		</ListItem>
 	);

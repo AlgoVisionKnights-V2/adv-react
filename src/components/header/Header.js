@@ -1,5 +1,6 @@
 import './Header.css';
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 // Child Components
 import MenuToggle from '../menu/MenuToggle';
@@ -59,6 +60,7 @@ function Header({
 	setAlgoPage,
 	viewWidth,
 	categories,
+	algorithms,
 }) {
 	const [search, setSearch] = React.useState(false);
 
@@ -131,13 +133,17 @@ function Header({
 						)}
 					</div>
 
-					{page !== 'Dashboard' && !categories.has(page) ? (
-						<MenuToggle
-							setAlgoPage={setAlgoPage}
-							algoPage={algoPage}
-							viewWidth={viewWidth}
-						/>
-					) : null}
+					{Object.keys(algorithms).map((key) =>
+						algorithms[key].map((algorithm) => (
+							<Route exact={true} path={'/' + algorithm.path}>
+								<MenuToggle
+									setAlgoPage={setAlgoPage}
+									algoPage={algoPage}
+									viewWidth={viewWidth}
+								/>
+							</Route>
+						))
+					)}
 				</Toolbar>
 			</AppBar>
 		</div>

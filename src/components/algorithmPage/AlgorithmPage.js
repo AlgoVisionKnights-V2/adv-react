@@ -4,10 +4,14 @@ import './AlgorithmPage.css';
 import InformationPage from '../informationPage/InformationPage';
 import Visualizer from '../visualizer/Visualizer';
 
-function AlgorithmPage({ page, algoPage }) {
+function AlgorithmPage({ path, algoPage }) {
 	return (
 		<div className='AlgorithmPage'>
-			{algoPage === 'visualizer' ? <Visualizer /> : <InformationPage />}
+			{algoPage === 'visualizer' ? (
+				<Visualizer path={path} />
+			) : (
+				<InformationPage path={path} />
+			)}
 		</div>
 	);
 }

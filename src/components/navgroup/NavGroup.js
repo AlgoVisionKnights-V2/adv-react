@@ -1,5 +1,6 @@
 import React from 'react';
 import './NavGroup.css';
+import { Link } from 'react-router-dom';
 
 // Material UI
 import {
@@ -15,7 +16,7 @@ import NavLink from '../navlink/NavLink';
 
 function NavGroup({
 	title,
-	group,
+	algorithms,
 	panel,
 	expanded,
 	handleChange,
@@ -39,13 +40,15 @@ function NavGroup({
 				</AccordionSummary>
 			</ListItem>
 			<AccordionDetails id='accordion-details' ref={React.createRef()}>
-				{group.map((name) => (
-					<NavLink
-						name={name}
-						key={name}
-						setPage={setPage}
-						setAlgoPage={setAlgoPage}
-					/>
+				{algorithms.map((algorithm) => (
+					<Link className='Link' to={algorithm.path}>
+						<NavLink
+							name={algorithm.name}
+							key={algorithm.name}
+							setPage={setPage}
+							setAlgoPage={setAlgoPage}
+						/>
+					</Link>
 				))}
 			</AccordionDetails>
 		</Accordion>

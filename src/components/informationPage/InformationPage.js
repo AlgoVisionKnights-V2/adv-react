@@ -2,9 +2,12 @@ import React from 'react';
 
 // Markdown controls
 import MarkdownPreview from '@uiw/react-markdown-preview';
-import source from '../../assets/test.md';
+function InformationPage({ path }) {
+	const source =
+		path === 'bubblesort'
+			? require(`../../assets/${path}.md`).default
+			: require(`../../assets/test.md`).default;
 
-function InformationPage() {
 	// Markdown Renderer test
 	const [markdown, setMarkdown] = React.useState('');
 	React.useEffect(() => {

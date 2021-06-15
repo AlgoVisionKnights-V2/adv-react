@@ -25,3 +25,9 @@ body,
 #markdown-renderer {
 	background-color: #1b203d;
 }
+
+.Link {
+	text-decoration: none;
+	color: '#ffffff';
+	display: contents;
+}

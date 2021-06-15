@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // Components
 import Dashboard from './components/dashboard/Dashboard';
@@ -9,7 +10,8 @@ import AlgorithmPage from './components/algorithmPage/AlgorithmPage';
 import Category from './components/category/Category';
 
 // Algorithm Objects
-import groups from './components/algorithmList/AlgoList';
+import groups from './components/algorithmList/Categories';
+import algorithms from './components/algorithmList/Algorithms';
 
 function App() {
 	// Drawer setters
@@ -49,47 +51,70 @@ function App() {
 
 	return (
 		<div className='App'>
-			<Navigation
-				open={open}
-				toggleDrawer={toggleDrawer}
-				setPage={setPage}
-				page={page}
-				setAlgoPage={setAlgoPage}
-				viewWidth={viewWidth}
-				groups={groups}
-			/>
-			<div className='Main'>
-				<Header
+			<Router>
+				<Navigation
+					open={open}
 					toggleDrawer={toggleDrawer}
-					page={page}
 					setPage={setPage}
+					page={page}
 					setAlgoPage={setAlgoPage}
-					algoPage={algoPage}
 					viewWidth={viewWidth}
-					categories={categories}
+					groups={groups}
+					algorithms={algorithms}
 				/>
+				<div className='Main'>
+					<Header
+						toggleDrawer={toggleDrawer}
+						page={page}
+						setPage={setPage}
+						setAlgoPage={setAlgoPage}
+						algoPage={algoPage}
+						viewWidth={viewWidth}
+						categories={categories}
+						algorithms={algorithms}
+					/>
 
-				{page === 'Dashboard' ? (
-					<Dashboard
-						groups={groups}
-						setPage={setPage}
-						setCategory={setCategory}
-						categories={categories}
-						setAlgoPage={setAlgoPage}
-						inCategory={false}
+					<Route
+						exact={true}
+						path='/'
+						render={() => (
+							<Dashboard
+								groups={groups}
+								algorithms={algorithms}
+								setPage={setPage}
+								setCategory={setCategory}
+								categories={categories}
+								setAlgoPage={setAlgoPage}
+								inCategory={false}
+							/>
+						)}
 					/>
-				) : categories.has(page) ? (
-					<Category
-						category={category}
-						setPage={setPage}
-						categories={categories}
-						setAlgoPage={setAlgoPage}
-						inCategory={true}
-					/>
-				) : (
-					<AlgorithmPage page={page} algoPage={algoPage} />
-				)}
-			</div>
+
+					{Object.keys(algorithms).map((key) => (
+						<Route exact={true} path={'/' + key}>
+							<Category
+								category={category}
+								setPage={setPage}
+								categories={categories}
+								setAlgoPage={setAlgoPage}
+								inCategory={true}
+								algorithms={algorithms[key]}
+							/>
+						</Route>
+					))}
+
+					{Object.keys(algorithms).map((key) =>
+						algorithms[key].map((algorithm) => (
+							<Route exact={true} path={'/' + algorithm.path}>
+								<AlgorithmPage
+									path={algorithm.path}
+									algoPage={algoPage}
+								/>
+							</Route>
+						))
+					)}
+				</div>
+			</Router>
 		</div>
 	);
 }
