@@ -29,4 +29,5 @@ body,
 .Link {
 	text-decoration: none;
 	color: '#ffffff';
+	display: contents;
 }

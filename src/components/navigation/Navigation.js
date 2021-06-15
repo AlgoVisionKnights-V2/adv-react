@@ -51,6 +51,7 @@ function Navigation({
 	viewWidth,
 	page,
 	groups,
+	algorithms,
 }) {
 	const [expanded, setExpanded] = React.useState('Dashboard');
 
@@ -58,9 +59,7 @@ function Navigation({
 	const handleChange = (panel) => (event, newExpanded) => {
 		setExpanded(newExpanded || panel === 'Dashboard' ? panel : false);
 
-		if (panel === 'Dashboard') {
-			setPage(panel);
-		}
+		setPage(panel);
 	};
 
 	// Instantiating useStyles
@@ -105,7 +104,7 @@ function Navigation({
 							<Link className='Link' to={group.path}>
 								<NavGroup
 									title={group.title}
-									group={group.group}
+									algorithms={algorithms[group.path]}
 									key={group.title}
 									panel={group.title}
 									expanded={expanded}
