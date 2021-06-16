@@ -19,9 +19,6 @@ const algorithms = {
 		{ name: 'Stacks', path: 'stacks' },
 		{ name: 'Queues', path: 'queues' },
 		{ name: 'Hash Tables', path: 'hashtables' },
-		{ name: 'Linked List', path: 'linkedlist' },
-		{ name: 'Graphs', path: 'graphs' },
-		{ name: 'Trees', path: 'trees' },
 	],
 	graphs: [
 		{ name: "Dijkstra's", path: 'dijkstras' },

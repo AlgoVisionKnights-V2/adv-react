@@ -72,6 +72,7 @@ function App() {
 						viewWidth={viewWidth}
 						categories={categories}
 						algorithms={algorithms}
+						groups={groups}
 					/>
 
 					<Route
@@ -90,15 +91,15 @@ function App() {
 						)}
 					/>
 
-					{Object.keys(algorithms).map((key) => (
-						<Route exact={true} path={'/' + key}>
+					{groups.map((group) => (
+						<Route exact={true} path={'/' + group.path}>
 							<Category
 								category={category}
 								setPage={setPage}
 								categories={categories}
 								setAlgoPage={setAlgoPage}
 								inCategory={true}
-								algorithms={algorithms[key]}
+								algorithms={algorithms[group.path]}
 							/>
 						</Route>
 					))}

@@ -61,6 +61,7 @@ function Header({
 	viewWidth,
 	categories,
 	algorithms,
+	groups,
 }) {
 	const [search, setSearch] = React.useState(false);
 
@@ -92,9 +93,31 @@ function Header({
 									<MenuIcon id='menu-icon' />
 								</IconButton>
 
-								<Typography id='header-title'>
-									{page}
-								</Typography>
+								<Route exact={true} path='/'>
+									<Typography id='header-title'>
+										Dashboard
+									</Typography>
+								</Route>
+
+								{groups.map((group) => (
+									<Route exact={true} path={'/' + group.path}>
+										<Typography id='header-title'>
+											{group.title}
+										</Typography>
+									</Route>
+								))}
+
+								{Object.keys(algorithms).map((key) =>
+									algorithms[key].map((algorithm) => (
+										<Route
+											exact={true}
+											path={'/' + algorithm.path}>
+											<Typography id='header-title'>
+												{algorithm.name}
+											</Typography>
+										</Route>
+									))
+								)}
 							</div>
 						) : null}
 
