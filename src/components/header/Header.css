@@ -1,6 +1,8 @@
 #header-bar {
 	position: inherit;
 	background-color: #1b203d;
+	display: flex;
+	flex-direction: column;
 }
 
 #toolbar {
@@ -54,6 +56,34 @@
 
 .TopPageToggle {
 	margin: 0px 0px 0px 15px;
+}
+
+.Results {
+	background-color: #bfcdd9;
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	max-height: 500px;
+	top: 37px;
+	border-radius: 7px;
+	overflow: overlay;
+	display: flex;
+	flex-direction: column;
+}
+
+#result-item {
+	padding: 0;
+}
+
+#result-button {
+	color: #4d6780;
+	text-transform: none;
+	width: 100%;
+	text-align: left;
+	justify-content: flex-start;
+	font-size: 1.05em;
+	font-weight: 100;
+	padding-left: 25px;
 }
 
 @media (max-width: 610px) {
