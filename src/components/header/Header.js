@@ -1,6 +1,9 @@
 import './Header.css';
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+
+// Assets
+import queries from './queries';
 
 // Child Components
 import MenuToggle from '../menu/MenuToggle';
@@ -8,10 +11,12 @@ import MenuToggle from '../menu/MenuToggle';
 // Material UI
 import {
 	AppBar,
+	Button,
 	Toolbar,
 	IconButton,
 	Typography,
 	InputBase,
+	ListItem,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -82,6 +87,31 @@ function Header({
 		setSearch(!search);
 	};
 
+	const [focused, setFocused] = React.useState(false);
+
+	const handleFocus = () => {
+		setFocused(true);
+	};
+	const handleBlur = () => {
+		setFocused(false);
+	};
+
+	const [filteredData, setFilterData] = React.useState(queries);
+	const handleSearch = (event) => {
+		let value = event.target.value.toLowerCase();
+
+		console.log(value);
+
+		let result = queries.filter((data) => {
+			return (
+				data.name.toLowerCase().search(value) !== -1 ||
+				data.path.toLowerCase().search(value) !== -1
+			);
+		});
+
+		setFilterData(result);
+	};
+
 	return (
 		<div className='Header'>
 			<AppBar id='header-bar' elevation={0}>
@@ -136,14 +166,39 @@ function Header({
 										<ArrowBackIcon />
 									</IconButton>
 								)}
-
 								<InputBase
 									placeholder='Search...'
 									classes={{
 										root: classes.inputRoot,
 										input: classes.inputInput,
 									}}
+									onChange={(event) => handleSearch(event)}
+									onFocus={handleFocus}
+									onBlur={handleBlur}
 								/>
+
+								{focused ? (
+									<div className='Results'>
+										{filteredData.map((value, i) => (
+											<Link
+												className='Link'
+												to={value.path}
+												onMouseDown={(event) =>
+													event.preventDefault()
+												}>
+												<ListItem
+													id='result-item'
+													key={i}>
+													<Button
+														id='result-button'
+														onClick={handleBlur}>
+														{value.name}
+													</Button>
+												</ListItem>
+											</Link>
+										))}
+									</div>
+								) : null}
 							</div>
 						) : (
 							<div className='SearchInputMobile'>
