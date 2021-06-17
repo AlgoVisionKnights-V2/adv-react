@@ -1,3 +1,4 @@
+import './InformationPage.css';
 import React from 'react';
 
 // Markdown controls
