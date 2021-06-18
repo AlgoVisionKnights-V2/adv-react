@@ -19,7 +19,7 @@ function InformationPage({ path }) {
 
 	return (
 		<div className='InformationPage'>
-			<MarkdownPreview source={markdown} style={{ color: 'white' }} />
+			<MarkdownPreview source={markdown} style={{ color: 'black' }} />
 		</div>
 	);
 }
