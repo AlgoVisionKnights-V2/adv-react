@@ -20,7 +20,7 @@ const algorithms = {
 	],
 	trees: [
 		{ name: 'AVL', path: 'avl' },
-		{ name: 'Binary Tree', path: 'binaryttree' },
+		{ name: 'Binary Tree', path: 'binarytree' },
 		{ name: 'Preorder', path: 'preorder' },
 		{ name: 'Inorder', path: 'inorder' },
 		{ name: 'Postorder', path: 'postorder' },
