@@ -100,6 +100,8 @@ function Header({
 	const handleSearch = (event) => {
 		let value = event.target.value.toLowerCase();
 
+		handleFocus();
+
 		console.log(value);
 
 		let result = queries.filter((data) => {
