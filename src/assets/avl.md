@@ -8,15 +8,15 @@ Along with the value and a left and right child, each tree node also has a balan
 
 ## Left Rotation
 A
- \
+ \\
   B
-   \
+   \\
     C
 
 In this tree, A's balance factor is 2 because it has a right child height 2 and left child height 0. B's balance factor is 1 because it's right child height is 1 and its left child height is 0. To rebalance this tree, AVL will rotate the nodes left so that B becomes the parent node, A becomes its left child and C remains its right child.
 
   B
- / \
+ / \\
 A   C
 
 ## Right Rotation
@@ -29,12 +29,12 @@ A
 In this tree, C's balance factor is -2 because it has a left child height 2 and right child height 0. B's balance factor is -1 because it's left child height is 1 and its right child height is 0. To rebalance this tree, AVL will rotate the nodes right so that B becomes the parent node, A becomes its left child and C remains its right child.
 
   B
- / \
+ / \\
 A   C
 
 ## Right-Left Rotation
 A
- \
+ \\
   C
  /
 B
@@ -42,20 +42,20 @@ B
 In this tree, A's balance factor is 2 because it has a right child height 2 and left child height 0. C's balance factor is -1 because it's left child height is 1 and its right child height is 0. To rebalance this tree, AVL will first rotate B and C to the right. Then it will rotate all three nodes to the left.
 
 A      right rotation
- \
+ \\
   B
-   \
+   \\
     C
 
   B    left rotation
- / \
+ / \\
 A   C
 
 ## Left-Rightt Rotation
   C
  /
 A
- \
+ \\
   B
 
 In this tree, C's balance factor is -2 because it has a left child height 2 and right child height 0. A's balance factor is 1 because it's right child height is 1 and its left child height is 0. To rebalance this tree, AVL will first rotate A and B to the left. Then it will rotate all three nodes to the right.
@@ -67,7 +67,7 @@ In this tree, C's balance factor is -2 because it has a left child height 2 and 
 A
 
   B    right rotation
- / \
+ / \\
 A   C
 
 
