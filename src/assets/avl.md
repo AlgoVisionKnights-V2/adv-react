@@ -41,7 +41,13 @@ In this tree, C's balance factor is -2 because it has a left child height 2 and 
 
 ![balanced](avlAssets/balanced.png) right rotation
 
+# Big O Stats
 
+|            | Worst Case | Average Case | Best Case |
+|------------|------------|--------------|-----------|
+| Insert     | O(log n)   | O(log n)     |  O(log n) |
+| Delete     | O(log n)   | O(log n)     |  O(log n) |
+| Search     | O(log n)   | O(log n)     |  O(log n) |
 
 
 
