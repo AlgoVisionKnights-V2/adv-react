@@ -1,6 +1,8 @@
 {
 	"name": "adv-react",
 	"productName": "ADV",
+	"main": "src/electron.starter.js",
+	"homepage": "./",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
@@ -23,28 +25,16 @@
 		"react-unity-webgl": "^7.1.10",
 		"web-vitals": "^1.1.2"
 	},
-	"main": "src/electron.starter.js",
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
+		"serve-electron": "nf start -p 3000",
+		"react-start": "export BROWSER=none && react-scripts start",
+		"electron-start": "node src/wait-for-react.js",
 		"electron": "electron .",
 		"build-installer": "electron-builder"
-	},
-	"build": {
-		"appId": "ADV",
-		"win": {
-			"target": [
-				"nsis"
-			],
-			"requestedExecutionLevel": "requireAdministrator"
-		},
-		"nsis": {
-			"uninstallDisplayName": "ADV",
-			"oneClick": false,
-			"allowToChangeInstallationDirectory": true
-		}
 	},
 	"eslintConfig": {
 		"extends": [
@@ -67,6 +57,7 @@
 	"devDependencies": {
 		"electron": "^13.1.2",
 		"electron-builder": "^22.11.7",
+		"foreman": "^3.0.1",
 		"raw-loader": "^4.0.2"
 	}
 }
