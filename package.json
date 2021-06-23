@@ -33,8 +33,7 @@
 		"serve-electron": "nf start -p 3000",
 		"react-start": "export BROWSER=none && react-scripts start",
 		"electron-start": "node src/wait-for-react.js",
-		"electron": "electron .",
-		"build-installer": "electron-builder"
+		"electron": "electron ."
 	},
 	"eslintConfig": {
 		"extends": [
@@ -56,7 +55,6 @@
 	},
 	"devDependencies": {
 		"electron": "^13.1.2",
-		"electron-builder": "^22.11.7",
 		"foreman": "^3.0.1",
 		"raw-loader": "^4.0.2"
 	}
