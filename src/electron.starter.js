@@ -1,10 +1,10 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
 function createWindow() {
 	const win = new BrowserWindow({
-		width: 800,
-		height: 600,
+		width: 1500,
+		height: 1000,
 		frame: false,
 		webPreferences: {
 			nodeIntegration: true,
@@ -13,10 +13,17 @@ function createWindow() {
 		},
 	});
 
+	const startUrl = process.env.ELECTRON_START_URL || url.format({
+		pathname: path.join(__dirname, '../index.html'),
+		protocol: 'file:',
+		slashes: true
+	});
+	
 	// Removes the top menu toolbar
 	win.setMenu(null);
-
+	// mainWindow.loadURL(startUrl);
 	win.loadURL('http://localhost:3000');
+	// win.loadURL('https://algovisionknights.com/');
 
 	// Open DevTools
 	// win.webContents.openDevTools();
