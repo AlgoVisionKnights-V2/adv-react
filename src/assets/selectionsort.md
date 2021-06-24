@@ -69,3 +69,7 @@ We first set smallestIndex to 1 and will compare array[smallestIndex] with each 
 |[0]|[1]|[2]|[3]|[4]|
 
 Selection Sort will continue this process for each index in the array. It will stop after setting the value that would go into array[3]. There's no need to check for the value that would go into array[4] because there is only one single value left.
+
+# Further Information
+
+For further information about selection sort, please click [here](https://en.wikipedia.org/wiki/Selection_sort).
