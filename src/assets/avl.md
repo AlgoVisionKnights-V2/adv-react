@@ -26,9 +26,11 @@ In this tree, C's balance factor is -2 because it has a left child height 2 and 
 
 In this tree, A's balance factor is 2 because it has a right child height 2 and left child height 0. C's balance factor is -1 because it's left child height is 1 and its right child height is 0. To rebalance this tree, AVL will first rotate B and C to the right. Then it will rotate all three nodes to the left.
 
-![Left Rotation](https://raw.githubusercontent.com/AlgoVisionKnights/adv-react/main/src/assets/avlAssets/left.png) right rotation
+right rotation:
+![Left Rotation](https://raw.githubusercontent.com/AlgoVisionKnights/adv-react/main/src/assets/avlAssets/left.png)
 
-![balanced](https://raw.githubusercontent.com/AlgoVisionKnights/adv-react/main/src/assets/avlAssets/balanced.png) left rotation
+left rotation:
+![balanced](https://raw.githubusercontent.com/AlgoVisionKnights/adv-react/main/src/assets/avlAssets/balanced.png)
 
 
 ## Left-Right Rotation
@@ -36,10 +38,11 @@ In this tree, A's balance factor is 2 because it has a right child height 2 and 
 
 In this tree, C's balance factor is -2 because it has a left child height 2 and right child height 0. A's balance factor is 1 because it's right child height is 1 and its left child height is 0. To rebalance this tree, AVL will first rotate A and B to the left. Then it will rotate all three nodes to the right.
 
-![Right Rotation](https://raw.githubusercontent.com/AlgoVisionKnights/adv-react/main/src/assets/avlAssets/right.png) left rotation
+left rotation: 
+![Right Rotation](https://raw.githubusercontent.com/AlgoVisionKnights/adv-react/main/src/assets/avlAssets/right.png)
 
-
-![balanced](https://raw.githubusercontent.com/AlgoVisionKnights/adv-react/main/src/assets/avlAssets/balanced.png) right rotation
+right rotation:
+![balanced](https://raw.githubusercontent.com/AlgoVisionKnights/adv-react/main/src/assets/avlAssets/balanced.png)
 
 # Big O Stats
 
