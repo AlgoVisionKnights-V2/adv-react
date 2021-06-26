@@ -1,6 +1,5 @@
 import './InformationPage.css';
 import React from 'react';
-// import image from './left.png';
 
 // Markdown controls
 import MarkdownPreview from '@uiw/react-markdown-preview';

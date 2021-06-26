@@ -9,6 +9,7 @@ function NavGroup({ name, setPage, setAlgoPage }) {
 		setPage(name);
 		setAlgoPage('visualizer');
 	};
+
 	return (
 		<ListItem id='accordian-button' onClick={handlePage} button>
 			<ListItemText id='accordian-text'>{name}</ListItemText>

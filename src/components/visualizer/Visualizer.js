@@ -6,8 +6,8 @@ import Unity, { UnityContent } from 'react-unity-webgl';
 
 function Visualizer({ path }) {
 	const unityContent = new UnityContent(
-		`build/${path}/build.json`,
-		`build/${path}/UnityLoader.js`
+		`UnityBuilds/${path}/build.json`,
+		`UnityBuilds/${path}/UnityLoader.js`
 	);
 
 	return (
