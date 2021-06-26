@@ -1,7 +1,7 @@
 {
 	"name": "adv-react",
 	"productName": "ADV",
-	"main": "src/electron.starter.js",
+	"main": "src/electron.js",
 	"homepage": "./",
 	"version": "0.1.0",
 	"private": true,
@@ -20,7 +20,7 @@
 		"react-dom": "^17.0.2",
 		"react-icons": "^4.2.0",
 		"react-router-dom": "^5.2.0",
-		"react-scripts": "4.0.3",
+		"react-scripts": "^1.1.5",
 		"react-tilt": "^0.1.4",
 		"react-unity-webgl": "^7.1.10",
 		"web-vitals": "^1.1.2"
@@ -30,9 +30,6 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"serve-electron": "nf start -p 3000",
-		"react-start": "export BROWSER=none && react-scripts start",
-		"electron-start": "node src/wait-for-react.js",
 		"electron": "electron ."
 	},
 	"eslintConfig": {
@@ -55,8 +52,6 @@
 	},
 	"devDependencies": {
 		"electron": "^12.0.12",
-		"firebase": "^8.6.8",
-		"foreman": "^3.0.1",
-		"raw-loader": "^4.0.2"
+		"firebase": "^8.6.8"
 	}
 }
