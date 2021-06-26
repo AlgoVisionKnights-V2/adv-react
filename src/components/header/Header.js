@@ -23,6 +23,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
+// Device detection modules
+import { isMobile, isElectron, isTablet } from 'react-device-detect';
+
 import { fade, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -110,6 +113,15 @@ function Header({
 		});
 
 		setFilterData(result);
+	};
+
+	// Check which device the user in on.
+	const renderDownload = () => {
+		if (isElectron || isMobile || isTablet) {
+			return null;
+		} else {
+			return <Download />;
+		}
 	};
 
 	return (
@@ -225,8 +237,7 @@ function Header({
 								</Route>
 							))
 						)}
-
-						<Download />
+						{renderDownload()}
 					</div>
 				</Toolbar>
 			</AppBar>
