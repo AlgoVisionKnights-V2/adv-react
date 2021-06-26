@@ -17,7 +17,20 @@
 		"files": [
 			"build/**/*",
 			"node_modules/**/*"
-		]
+		],
+		"linux": {
+			"target": [
+				"deb"
+			]
+		},
+		"win": {
+			"target": [
+				"nsis"
+			]
+		},
+		"mac": {
+			"target": "dmg"
+		}
 	},
 	"dependencies": {
 		"@material-ui/core": "^4.11.4",
