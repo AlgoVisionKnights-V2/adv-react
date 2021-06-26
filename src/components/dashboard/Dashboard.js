@@ -1,4 +1,5 @@
 import './Dashboard.css';
+import React from 'react';
 import Algorithm from '../algorithm/Algorithm';
 import { Link } from 'react-router-dom';
 
