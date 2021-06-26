@@ -28,8 +28,8 @@ function App() {
 	// Visualizer and Information page toggler
 	const [algoPage, setAlgoPage] = React.useState('visualizer');
 
+	// Resize screen handlers
 	const [viewWidth, setViewWidth] = React.useState(window.innerWidth);
-
 	React.useLayoutEffect(() => {
 		// Records the width the screen in real-time
 		const handleResize = () => {
