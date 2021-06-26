@@ -47,10 +47,9 @@ function Navigation({
 	open,
 	toggleDrawer,
 	setPage,
-	setAlgoPage,
 	viewWidth,
 	page,
-	groups,
+	categories,
 	algorithms,
 }) {
 	const [expanded, setExpanded] = React.useState('Dashboard');
@@ -58,7 +57,6 @@ function Navigation({
 	// Handles panel clicks
 	const handleChange = (panel) => (event, newExpanded) => {
 		setExpanded(newExpanded || panel === 'Dashboard' ? panel : false);
-
 		setPage(panel);
 	};
 
@@ -99,18 +97,16 @@ function Navigation({
 							<ListItemText>Dashboard</ListItemText>
 						</ListItem>
 					</Link>
-					{groups.map((group, i) => {
+					{categories.map((category, i) => {
 						return (
-							<Link className='Link' to={group.path}>
+							<Link className='Link' to={category.path}>
 								<NavGroup
-									title={group.title}
-									algorithms={algorithms[group.path]}
-									key={group.title}
-									panel={group.title}
+									title={category.title}
+									algorithms={algorithms[category.path]}
+									key={category.title}
+									panel={category.title}
 									expanded={expanded}
 									handleChange={handleChange}
-									setPage={setPage}
-									setAlgoPage={setAlgoPage}
 								/>
 							</Link>
 						);
