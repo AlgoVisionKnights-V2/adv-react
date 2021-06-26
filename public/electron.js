@@ -1,8 +1,12 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const isdev = require('electron-is-dev');
+const { start } = require('repl');
 
-function createWindow() {
-	const win = new BrowserWindow({
+let win;
+
+const createWindow = () => {
+	win = new BrowserWindow({
 		width: 1500,
 		height: 1000,
 		frame: false,
@@ -13,29 +17,31 @@ function createWindow() {
 		},
 	});
 
-	// Removes the top menu toolbar
 	win.setMenu(null);
-	// mainWindow.loadURL(startUrl);
-	win.loadURL('http://localhost:3000');
-	// win.loadURL('https://algovisionknights.com/');
 
-	// Open DevTools
+	// Runs on localhost:3000 if in development mode other url in production mode.
+	const startURL = isdev
+		? 'http://localhost:3000'
+		: `file://${path.join(__dirname, '../build/index.html')}`;
+
+	win.loadURL(startURL);
+
+	// Open DevTools for debugging purposes
 	// win.webContents.openDevTools();
-}
 
-app.whenReady().then(() => {
-	createWindow();
+	win.on('closed', () => (win = null));
+};
 
-	app.on('activate', () => {
-		if (BrowserWindow.getAllWindows().length === 0) {
-			createWindow();
-		}
-	});
-});
+app.on('ready', createWindow);
 
-// Quit when all windows are closed
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
 		app.quit();
+	}
+});
+
+app.on('activate', () => {
+	if (win === null) {
+		createWindow();
 	}
 });
