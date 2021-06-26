@@ -10,35 +10,12 @@ import {
 import Tilt from 'react-tilt';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 
-function Algorithm({
-	title,
-	description,
-	setPage,
-	group,
-	setCategory,
-	categories,
-	setAlgoPage,
-	width,
-	height,
-	inCategory,
-}) {
-	const handleTopicPage = () => {
-		setPage(title);
-		setAlgoPage('visualizer');
-
-		if (categories.has(title)) {
-			setCategory(group);
-		}
-	};
-
+function Algorithm({ title, description, width, height, inCategory }) {
 	return (
 		<Tilt
 			style={{ width: inCategory ? '87%' : 'unset' }}
 			options={{ max: 1.5, scale: 1.05 }}>
-			<Button
-				onClick={handleTopicPage}
-				id='algorithm'
-				style={{ width: width, height: height }}>
+			<Button id='algorithm' style={{ width: width, height: height }}>
 				<Card id='card'>
 					<CardContent id='card-content'>
 						<div className='CardHeader'>

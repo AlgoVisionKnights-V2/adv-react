@@ -60,18 +60,15 @@ const useStyles = makeStyles((theme) => ({
 
 function Header({
 	toggleDrawer,
-	page,
 	algoPage,
 	setAlgoPage,
 	viewWidth,
-	categories,
 	algorithms,
-	groups,
+	categories,
 }) {
-	const [search, setSearch] = React.useState(false);
-
 	const classes = useStyles();
 
+	const [search, setSearch] = React.useState(false);
 	React.useEffect(() => {
 		const checkSize = () => {
 			if (viewWidth > 650) {
@@ -88,7 +85,6 @@ function Header({
 	};
 
 	const [focused, setFocused] = React.useState(false);
-
 	const handleFocus = () => {
 		setFocused(true);
 	};
@@ -131,10 +127,12 @@ function Header({
 									</Typography>
 								</Route>
 
-								{groups.map((group) => (
-									<Route exact={true} path={'/' + group.path}>
+								{categories.map((category) => (
+									<Route
+										exact={true}
+										path={'/' + category.path}>
 										<Typography id='header-title'>
-											{group.title}
+											{category.title}
 										</Typography>
 									</Route>
 								))}

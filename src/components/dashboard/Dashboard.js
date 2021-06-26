@@ -3,27 +3,15 @@ import React from 'react';
 import Algorithm from '../algorithm/Algorithm';
 import { Link } from 'react-router-dom';
 
-function Dashboard({
-	groups,
-	setPage,
-	setCategory,
-	categories,
-	setAlgoPage,
-	inCategory,
-}) {
+function Dashboard({ categories, inCategory }) {
 	return (
 		<div className='Dashboard'>
-			{groups.map((group) => (
-				<Link className='Link' to={group.path}>
+			{categories.map((category) => (
+				<Link className='Link' to={category.path}>
 					<Algorithm
-						title={group.title}
-						description={group.description}
-						key={group.title}
-						setPage={setPage}
-						group={group}
-						setCategory={setCategory}
-						categories={categories}
-						setAlgoPage={setAlgoPage}
+						title={category.title}
+						description={category.description}
+						key={category.title}
 						width={320}
 						height={220}
 						inCategory={inCategory}
