@@ -9,7 +9,7 @@ import React from 'react';
 
 import windows from './desktops/windows.txt';
 import mac from './desktops/mac.txt';
-import linux from './desktops/linux.txt';
+import linux from './desktops/linux/adv-react_0.1.0_amd64.deb';
 
 function Download() {
 	let file;
