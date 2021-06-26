@@ -1,4 +1,5 @@
 import './NavLink.css';
+import React from 'react';
 
 // Material UI
 import { ListItem, ListItemText } from '@material-ui/core';

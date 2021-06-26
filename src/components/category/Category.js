@@ -1,5 +1,6 @@
 import './Category.css';
 import { Link } from 'react-router-dom';
+import React from 'react';
 
 // Child Components
 import Algorithm from '../algorithm/Algorithm';

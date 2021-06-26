@@ -1,4 +1,5 @@
 import './AlgorithmPage.css';
+import React from 'react';
 
 // Child Components
 import InformationPage from '../informationPage/InformationPage';

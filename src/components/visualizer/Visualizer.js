@@ -1,4 +1,5 @@
 import './Visualizer.css';
+import React from 'react';
 
 // Unity Webgl components for Unity test
 import Unity, { UnityContent } from 'react-unity-webgl';
