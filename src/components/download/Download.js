@@ -7,35 +7,38 @@ import { FaLinux, FaApple, FaWindows } from 'react-icons/fa';
 import { isWindows, isMacOs } from 'react-device-detect';
 import React from 'react';
 
+import windows from './desktops/windows.txt';
+import mac from './desktops/mac.txt';
+import linux from './desktops/linux.txt';
+
 function Download() {
-	let os;
+	let file;
+
+	if (isWindows) {
+		file = windows;
+	} else if (isMacOs) {
+		file = mac;
+	} else {
+		file = linux;
+	}
 
 	// Determines which download package suits the device's OS.
 	const renderTypeOfDownload = () => {
 		if (isWindows) {
-			os = 'Windows';
-			return <FaWindows />;
+			return <FaWindows id='os-icon' />;
 		} else if (isMacOs) {
-			os = 'OSX';
-			return <FaApple />;
+			return <FaApple id='os-icon' />;
 		} else {
-			os = 'Linux';
-			return <FaLinux />;
+			return <FaLinux id='os-icon' />;
 		}
 	};
-
-	// Download Application
-	const download = () => {
-		console.log(`Downloading for ${os}`);
-	};
-
 	return (
 		<ButtonGroup id='download-container'>
-			<Button id='download-button' onClick={download}>
+			<Button id='download-button' href={file} download>
 				{renderTypeOfDownload()}
 			</Button>
-			<Button id='dropdown-button' onClick={download}>
-				<GetAppIcon />
+			<Button id='dropdown-button' href={file} download>
+				<GetAppIcon id='download-icon' />
 			</Button>
 		</ButtonGroup>
 	);

@@ -19,9 +19,16 @@
 
 #dropdown-button {
 	padding: 4px 4px 4px 2px;
-	color: #1b203d;
 	background-color: #b4c5e4;
 	border-radius: 0px 31px 31px 0px;
+}
+
+#os-icon {
+	color: #b4c5e4;
+}
+
+#download-icon {
+	color: #1b203d;
 }
 
 @media (max-width: 770px) {
