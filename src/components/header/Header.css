@@ -19,7 +19,8 @@
 	justify-content: inherit;
 }
 
-.LeftMenus {
+.LeftMenus,
+.RightMenus {
 	display: inherit;
 	align-items: inherit;
 }
@@ -36,7 +37,7 @@
 
 #search-input {
 	display: inherit;
-	margin: 0px 0px 0px 30px;
+	margin: 0px 10px 0px 30px;
 	width: 100%;
 }
 

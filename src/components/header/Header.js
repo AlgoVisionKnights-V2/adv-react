@@ -7,6 +7,7 @@ import queries from './queries';
 
 // Child Components
 import MenuToggle from '../menu/MenuToggle';
+import Download from '../download/Download';
 
 // Material UI
 import {
@@ -21,6 +22,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 import { fade, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -211,17 +213,21 @@ function Header({
 						)}
 					</div>
 
-					{Object.keys(algorithms).map((key) =>
-						algorithms[key].map((algorithm) => (
-							<Route exact={true} path={'/' + algorithm.path}>
-								<MenuToggle
-									setAlgoPage={setAlgoPage}
-									algoPage={algoPage}
-									viewWidth={viewWidth}
-								/>
-							</Route>
-						))
-					)}
+					<div className='RightMenus'>
+						{Object.keys(algorithms).map((key) =>
+							algorithms[key].map((algorithm) => (
+								<Route exact={true} path={'/' + algorithm.path}>
+									<MenuToggle
+										setAlgoPage={setAlgoPage}
+										algoPage={algoPage}
+										viewWidth={viewWidth}
+									/>
+								</Route>
+							))
+						)}
+
+						<Download />
+					</div>
 				</Toolbar>
 			</AppBar>
 		</div>
