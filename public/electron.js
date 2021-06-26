@@ -9,12 +9,12 @@ const createWindow = () => {
 	win = new BrowserWindow({
 		width: 1500,
 		height: 1000,
-		// frame: false,
-		// webPreferences: {
-		// 	nodeIntegration: true,
-		// 	enableRemoteModule: true,
-		// 	preload: path.join(__dirname, 'preload.js'),
-		// },
+		frame: false,
+		webPreferences: {
+			nodeIntegration: true,
+			enableRemoteModule: true,
+			preload: path.join(__dirname, 'preload.js'),
+		},
 	});
 
 	win.setMenu(null);

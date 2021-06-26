@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, Redirect, HashRouter } from 'react-router-dom';
 
 // Components
 import Dashboard from './components/dashboard/Dashboard';
@@ -51,7 +51,8 @@ function App() {
 
 	return (
 		<div className='App'>
-			<Router>
+			<HashRouter>
+				<Redirect exact to='/' />
 				<Navigation
 					open={open}
 					toggleDrawer={toggleDrawer}
@@ -74,6 +75,7 @@ function App() {
 						algorithms={algorithms}
 						groups={groups}
 					/>
+					<Route component={'Page404'} />
 
 					<Route
 						exact={true}
@@ -115,7 +117,7 @@ function App() {
 						))
 					)}
 				</div>
-			</Router>
+			</HashRouter>
 		</div>
 	);
 }
