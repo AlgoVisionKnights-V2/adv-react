@@ -51,7 +51,7 @@
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "^4.0.3",
 		"react-tilt": "^0.1.4",
-		"react-unity-webgl": "^7.1.10",
+		"react-unity-webgl": "^8.4.3",
 		"web-vitals": "^1.1.2"
 	},
 	"scripts": {
