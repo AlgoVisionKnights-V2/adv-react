@@ -1,6 +1,6 @@
 # Overview
 
-Bubble sort is one of the more simple sorting algorithms. Due to the simplicity of the algorithm, the Big O runtime suffers heavily.
+Bubble sort is one of the more simple sorting algorithms. Due to the simplicity of the algorithm, the Big O runtime suffers heavily. One way to view bubble sort is to compare it to king of the hill. In terms of bubble sort, we can act as though we start from the beginning of the array and as we go through the array, 2 numbers compete with each other. The larger number is the winning number and the number that wins gets to continue going through the array until the end of the array is reached.
 
 # How does it work?
 
@@ -77,6 +77,6 @@ On this third pass, bubble sort will compare the values at each of the indicies 
 |---|---|---|---|---|
 |[0]|[1]|[2]|[3]|[4]|
 
-# Further Reading
+# Further Information
 
 For more information about bubble sort, click [here](https://en.wikipedia.org/wiki/Bubble_sort).

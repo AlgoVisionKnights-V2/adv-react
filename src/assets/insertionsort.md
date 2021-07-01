@@ -92,4 +92,4 @@ Now we compare the new value at index 2 with index 1 to make sure that it is sti
 
 # Further Information
 
-For more information about inserstion sort, please click [here](https://en.wikipedia.org/wiki/Insertion_sort).
+For more information about inserstion sort, click [here](https://en.wikipedia.org/wiki/Insertion_sort).
