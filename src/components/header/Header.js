@@ -7,6 +7,7 @@ import queries from './queries';
 
 // Child Components
 import MenuToggle from '../menu/MenuToggle';
+import Download from '../download/Download';
 
 // Material UI
 import {
@@ -21,6 +22,10 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
+// Device detection modules
+import { isMobile, isElectron, isTablet } from 'react-device-detect';
+
 import { fade, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -60,18 +65,15 @@ const useStyles = makeStyles((theme) => ({
 
 function Header({
 	toggleDrawer,
-	page,
 	algoPage,
 	setAlgoPage,
 	viewWidth,
-	categories,
 	algorithms,
-	groups,
+	categories,
 }) {
-	const [search, setSearch] = React.useState(false);
-
 	const classes = useStyles();
 
+	const [search, setSearch] = React.useState(false);
 	React.useEffect(() => {
 		const checkSize = () => {
 			if (viewWidth > 650) {
@@ -88,7 +90,6 @@ function Header({
 	};
 
 	const [focused, setFocused] = React.useState(false);
-
 	const handleFocus = () => {
 		setFocused(true);
 	};
@@ -114,6 +115,15 @@ function Header({
 		setFilterData(result);
 	};
 
+	// Check which device the user in on.
+	const renderDownload = () => {
+		if (isElectron || isMobile || isTablet) {
+			return null;
+		} else {
+			return <Download />;
+		}
+	};
+
 	return (
 		<div className='Header'>
 			<AppBar id='header-bar' elevation={0}>
@@ -131,10 +141,12 @@ function Header({
 									</Typography>
 								</Route>
 
-								{groups.map((group) => (
-									<Route exact={true} path={'/' + group.path}>
+								{categories.map((category) => (
+									<Route
+										exact={true}
+										path={'/' + category.path}>
 										<Typography id='header-title'>
-											{group.title}
+											{category.title}
 										</Typography>
 									</Route>
 								))}
@@ -213,17 +225,20 @@ function Header({
 						)}
 					</div>
 
-					{Object.keys(algorithms).map((key) =>
-						algorithms[key].map((algorithm) => (
-							<Route exact={true} path={'/' + algorithm.path}>
-								<MenuToggle
-									setAlgoPage={setAlgoPage}
-									algoPage={algoPage}
-									viewWidth={viewWidth}
-								/>
-							</Route>
-						))
-					)}
+					<div className='RightMenus'>
+						{Object.keys(algorithms).map((key) =>
+							algorithms[key].map((algorithm) => (
+								<Route exact={true} path={'/' + algorithm.path}>
+									<MenuToggle
+										setAlgoPage={setAlgoPage}
+										algoPage={algoPage}
+										viewWidth={viewWidth}
+									/>
+								</Route>
+							))
+						)}
+						{renderDownload()}
+					</div>
 				</Toolbar>
 			</AppBar>
 		</div>

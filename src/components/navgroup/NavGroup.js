@@ -14,15 +14,7 @@ import {
 // Child Components
 import NavLink from '../navlink/NavLink';
 
-function NavGroup({
-	title,
-	algorithms,
-	panel,
-	expanded,
-	handleChange,
-	setPage,
-	setAlgoPage,
-}) {
+function NavGroup({ title, algorithms, panel, expanded, handleChange }) {
 	return (
 		<Accordion
 			id='nav-group'
@@ -42,12 +34,7 @@ function NavGroup({
 			<AccordionDetails id='accordion-details' ref={React.createRef()}>
 				{algorithms.map((algorithm) => (
 					<Link className='Link' to={algorithm.path}>
-						<NavLink
-							name={algorithm.name}
-							key={algorithm.name}
-							setPage={setPage}
-							setAlgoPage={setAlgoPage}
-						/>
+						<NavLink name={algorithm.name} key={algorithm.name} />
 					</Link>
 				))}
 			</AccordionDetails>

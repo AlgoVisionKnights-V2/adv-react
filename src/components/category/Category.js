@@ -1,4 +1,5 @@
 import './Category.css';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Child Components
@@ -18,9 +19,6 @@ function Category({
 			<Algorithm
 				title={'Overview'}
 				key={'Overview'}
-				setPage={setPage}
-				categories={categories}
-				setAlgoPage={setAlgoPage}
 				width={'100%'}
 				height={280}
 				inCategory={inCategory}
@@ -31,9 +29,6 @@ function Category({
 					<Algorithm
 						title={algorithm.name}
 						key={algorithm.name}
-						setPage={setPage}
-						categories={categories}
-						setAlgoPage={setAlgoPage}
 						width={'100%'}
 						height={280}
 						inCategory={inCategory}

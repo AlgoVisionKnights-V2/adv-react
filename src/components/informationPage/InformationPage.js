@@ -5,7 +5,6 @@ import React from 'react';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 function InformationPage({ path }) {
 	const source = require(`../../assets/${path}.md`).default;
-			
 
 	// Markdown Renderer test
 	const [markdown, setMarkdown] = React.useState('');

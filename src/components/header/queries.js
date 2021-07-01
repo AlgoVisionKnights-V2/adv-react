@@ -6,7 +6,7 @@ const queries = [
 	{ name: 'Graphs', path: 'graphs' },
 	{ name: 'Trees', path: 'trees' },
 	{ name: 'Backtracking', path: 'backtracking' },
-	{ name: 'Divide and Conquer', path: 'divideconquer' },
+	{ name: 'Binary Search', path: 'binarysearch' },
 	{ name: 'Bubble Sort', path: 'bubblesort' },
 	{ name: 'Selection Sort', path: 'selectionsort' },
 	{ name: 'Insertion Sort', path: 'insertionsort' },
