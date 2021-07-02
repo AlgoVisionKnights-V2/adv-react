@@ -24,8 +24,8 @@ span.MuiButton-label {
 	display: flex;
 	flex-direction: column;
 	width: 90%;
-	height: 90%;
-	padding: 0px;
+	height: 100%;
+	padding: 13px 0px 0px 0px;
 	margin: 0px;
 }
 
@@ -54,4 +54,16 @@ span.MuiButton-label {
 #card-info {
 	font-size: 1.14em;
 	color: #99afc2;
+}
+
+@media (max-width: 639px) {
+	#algorithm {
+		margin: 0px 0px 20px 0px;
+	}
+}
+
+@media (max-width: 358px) {
+	#algorithm {
+		width: 280px !important;
+	}
 }

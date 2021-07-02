@@ -3,11 +3,5 @@
 	flex-direction: column;
 	overflow: overlay;
 	align-items: center;
-	padding: 17px 0px 0px 30px;
-}
-
-@media (max-width: 1358px) {
-	.DashboCategoryard {
-		justify-content: center;
-	}
+	padding: 15px 0px 0px 0px;
 }
