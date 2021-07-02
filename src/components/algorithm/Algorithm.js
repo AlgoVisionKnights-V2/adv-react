@@ -13,7 +13,7 @@ import Tilt from 'react-tilt';
 function Algorithm({ title, description, width, height, inCategory }) {
 	return (
 		<Tilt
-			style={{ width: inCategory ? '87%' : 'unset' }}
+			style={{ width: inCategory ? '84%' : 'unset' }}
 			options={{ max: 1.5, scale: 1.05 }}>
 			<Button id='algorithm' style={{ width: width, height: height }}>
 				<Card id='card'>
