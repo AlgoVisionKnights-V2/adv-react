@@ -11,5 +11,6 @@
 @media (max-width: 1358px) {
 	.Dashboard {
 		justify-content: center;
+		padding: 17px 0px 0px 0px;
 	}
 }
