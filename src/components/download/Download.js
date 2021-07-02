@@ -7,7 +7,7 @@ import { FaLinux, FaApple, FaWindows } from 'react-icons/fa';
 import { isWindows, isMacOs } from 'react-device-detect';
 import React from 'react';
 
-import windows from './desktops/windows.txt';
+import windows from './desktops/windows/ADV-Setup-0.1.0.exe';
 import mac from './desktops/mac.txt';
 import linux from './desktops/linux/adv-react_0.1.0_amd64.deb';
 
