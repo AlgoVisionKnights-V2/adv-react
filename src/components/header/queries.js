@@ -20,7 +20,7 @@ const queries = [
 	{ name: 'Depth First Search', path: 'depthfirstsearch' },
 	{ name: "Prim's", path: 'prims' },
 	{ name: 'AVL', path: 'avl' },
-	{ name: 'Binary Tree', path: 'binarytree' },
+	{ name: 'Binary Search Tree', path: 'binarysearchtree' },
 	{ name: 'Preorder', path: 'preorder' },
 	{ name: 'Inorder', path: 'inorder' },
 	{ name: 'Postorder', path: 'postorder' },
