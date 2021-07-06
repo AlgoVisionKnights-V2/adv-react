@@ -35,10 +35,7 @@ function Download() {
 	return (
 		<ButtonGroup id='download-container'>
 			<Button id='download-button' href={file} download>
-				{renderTypeOfDownload()}
-			</Button>
-			<Button id='dropdown-button' href={file} download>
-				<GetAppIcon id='download-icon' />
+				<span id='os-container'>{renderTypeOfDownload()}</span><span id='download-icon-container'><GetAppIcon id='download-icon'/></span>
 			</Button>
 		</ButtonGroup>
 	);
