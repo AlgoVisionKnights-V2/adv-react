@@ -8,7 +8,7 @@ import { isWindows, isMacOs } from 'react-device-detect';
 import React from 'react';
 
 import windows from './desktops/windows/ADV-Setup-0.1.0.exe';
-import mac from './desktops/mac/mac.txt';
+import mac from './desktops/mac/ADV-0.1.0.dmg';
 import linux from './desktops/linux/adv-react_0.1.0_amd64.deb';
 
 function Download() {
