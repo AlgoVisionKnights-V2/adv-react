@@ -28,27 +28,35 @@ Now we will use selection sort to sort the array.
 
 ## Pass 1
 
-| 8 | 4 | 9 | 2 | 6 | int smallestIndex = 0
+| 8 | 4 | 9 | 2 | 6 | 
 |---|---|---|---|---|
 |[0]|[1]|[2]|[3]|[4]|
+
+int smallestIndex = 0
 
 We first want to find the smallest value which will be inserted into index 0. We begin by setting the variable smallestIndex to 0 because that index is storing the smallest value selection sort has found so far.
 
-| 8 | 4 | 9 | 2 | 6 | int smallestIndex = 1
+| 8 | 4 | 9 | 2 | 6 |
 |---|---|---|---|---|
 |[0]|[1]|[2]|[3]|[4]|
+
+int smallestIndex = 1
 
 We then compare array[smallestIndex] to array[1]. Because the value at array[1] is smaller, smallestIndex is now 1.
 
-| 8 | 4 | 9 | 2 | 6 | int smallestIndex = 3
+| 8 | 4 | 9 | 2 | 6 |
 |---|---|---|---|---|
 |[0]|[1]|[2]|[3]|[4]|
+
+int smallestIndex = 3
 
 When it compares array[smallestIndex] and array[2], nothing changes because array[smallestIndex] is still the smallest value found. However smallestIndex will update after comparing array[smallestIndex] and array[3]. In the end, array[3] has the smallest value.
 
-| 2 | 4 | 9 | 8 | 6 | int smallestIndex = 3
+| 2 | 4 | 9 | 8 | 6 |
 |---|---|---|---|---|
 |[0]|[1]|[2]|[3]|[4]|
+
+int smallestIndex = 3
 
 After reaching the end of the array, array[0] swaps values with array[smallestIndex].
 
@@ -56,9 +64,11 @@ After reaching the end of the array, array[0] swaps values with array[smallestIn
 
 We now repeat the process, starting at index 1 of the array obtained after the first pass.
 
-| 2 | 4 | 9 | 8 | 6 | int smallestIndex = 1
+| 2 | 4 | 9 | 8 | 6 |
 |---|---|---|---|---|
 |[0]|[1]|[2]|[3]|[4]|
+
+int smallestIndex = 1
 
 We first set smallestIndex to 1 and will compare array[smallestIndex] with each reamining value. Because array[1] is already the smallest value, nothing will change this pass.
 
