@@ -14,6 +14,8 @@ This process repeats until the queue is empty.
 
 Let's look at the following graph.
 
+![graph](./images/primAssets/graph.png)
+
 We want to create a minimum spanning tree. The nodes will all be initially unvisited and the priority queue will be empty.
 
 The initial values will look like this:

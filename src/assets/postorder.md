@@ -19,3 +19,24 @@ The iterative process for completing the post-order traversal is less efficient 
 | Iterative Runtime | O(n)       | O(n)         |  O(n)     |
 | Recursive Runtime | O(n)       | O(n)         |  O(n)     |
 
+# Tips
+
+When attemping to traverse a tree by hand using pre-order, there is a simple and easy-to-use technique. The main idea behind the technique is to place points on the right of each node of the tree. For instance, lets say we have the following binary search tree:
+
+![tree](./images/postorderAssets/sample-tree.png)
+
+Now we place points at the right of each of the nodes. This can be seen with the following example:
+
+![preorder](./images/postorderAssets/postorder-d1.png)
+
+After we place the points, we draw a line starting from the left of the root node and continuously draw around the tree following around the nodes. This can be seen on the following example:
+
+![preorder2](./images/postorderAssets/postorder-d2.png)
+
+As we draw the line, any time we pass a point, we write down the value of the node. If we use this method on the example above, we get the following output:
+
+2 7 3 23 13 10
+
+# Further Information
+
+For more information about post-order traversal, click [here](https://en.wikipedia.org/wiki/Tree_traversal#Pre-order,_NLR).
