@@ -1,3 +1,5 @@
+// import { Graphs } from './utils/utils'
+
 const algorithms = {
 	sorting: [
 		{ name: 'Bubble Sort', path: 'bubblesort' },
