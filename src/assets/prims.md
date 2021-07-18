@@ -14,7 +14,7 @@ This process repeats until the queue is empty.
 
 Let's look at the following graph.
 
-![graph](./images/primAssets/graph.png)
+![graph](./images/graphAssets/graph.png)
 
 We want to create a minimum spanning tree. The nodes will all be initially unvisited and the priority queue will be empty.
 
@@ -31,6 +31,9 @@ Priority queue: (empty)
 
 We'll arbitrarily begin at node D. We'll insert the edges connecting D to B and C into the queue and then mark D as visited.
 
+![graph](./images/graphAssets/prim1.png)
+
+
 |  | visited |
 |---|---|
 |A|false|
@@ -41,6 +44,9 @@ We'll arbitrarily begin at node D. We'll insert the edges connecting D to B and 
 Priority queue: (B,D), (C,D)
 
 Next, we'll dequeue the edge connecting B and D. B is unvisited so we will enqueue the edges connecting to B and then mark B as visited.
+
+![graph](./images/graphAssets/prim2.png)
+
 
 |  | visited |
 |---|---|
@@ -53,6 +59,9 @@ Priority queue: (A,B), (B,C), (C,D)
 
 Next, we dequeue the edge connecting A and B. A is unvisited so we enqueue its edges and mark A as visited.
 
+![graph](./images/graphAssets/prim3.png)
+
+
 |  | visited |
 |---|---|
 |A|true|
@@ -64,6 +73,9 @@ Priority queue: (B,C), (C,D), (A,C)
 
 Next, we dequeue the edge connecting B and C. C is unvisited so we enqueue its edges and mark it as visited.
 
+![graph](./images/graphAssets/prim4.png)
+
+
 |  | visited |
 |---|---|
 |A|true|
@@ -74,3 +86,5 @@ Next, we dequeue the edge connecting B and C. C is unvisited so we enqueue its e
 Priority queue: (C,D), (A,C)
 
 In the next loop, we dequeue the edge connecting C and D. Both nodes were previously visited so the edge is discarded. In the final loop, the edge connecting A and C is dequeued. Both nodes were also visited so the edge is also discarded.
+
+![graph](./images/graphAssets/prim5.png)
