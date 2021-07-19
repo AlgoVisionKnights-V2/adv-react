@@ -16,6 +16,9 @@ This process repeats until the priority queue is empty.
 
 Let's look at the following graph.
 
+![graph](./images/graphAssets/graph.png)
+
+
 We want to find the shortest path from node A to all other nodes in the graph.
 The initial values will look like this:
 
@@ -31,6 +34,9 @@ A's distance + the edge value connecting A and B is less than B's current distan
 
 After checking all of A's unvisited neighbors, the node values will look like this:
 
+![graph](./images/graphAssets/dijkstra1.png)
+
+
 |  | distance | parent | visited |
 |---|---|---|---|
 |A|0|null|true|
@@ -42,6 +48,9 @@ In the next loop, we'll check B's neighbors because B is the unvisited node with
 
 After checking all of B's unvisited neighbors, the node values will look like this:
 
+![graph](./images/graphAssets/dijkstra2.png)
+
+
 |  | distance | parent | visited |
 |---|---|---|---|
 |A|0|null|true|
@@ -50,4 +59,7 @@ After checking all of B's unvisited neighbors, the node values will look like th
 |D|7|B|false|
 
 In the next loop, C will be selected. The only unvisited neighbor it has is D, however C's distance plus the edge value connecting C and D is greater than D's current distance so nothing is changed.
+
+![graph](./images/graphAssets/dijkstra3.png)
+
 

@@ -15,6 +15,9 @@ If any nodes are updated during a loop, the loop repeats. Repeat until a loop ma
 
 Let's look at the following graph.
 
+![graph](./images/graphAssets/graph.png)
+
+
 We want to find the shortest path from node C to all other nodes in the graph.
 The initial values will look like this:
 
@@ -30,6 +33,9 @@ We'll visit each node in order, starting at A. Because there is no viable path f
 We'll next check C. Because it is the source node, it automatically has a valid path to itself. We then check all its neighbors and update them.
 The new values will look like this:
 
+![graph](./images/graphAssets/bf1.png)
+
+
 |  | distance | parent |
 |---|---|---|
 |A|12|C|
@@ -40,6 +46,9 @@ The new values will look like this:
 Finally we'll check D. D does not update any of its neighbors because its distance plus the connecting edge value is greater than any of its neighbors' current distances.
 
 Because a change happened this loop, we'll check each node again. This time, A has a route to C so we'll check its neighbors. The distance for B to reach C through A is greater than its current distance so nothing changes. Next we'll check B. It also has a route to C so we check its neighbors. The distance for A to reach C through B is less than the distance if A directly travels to C so A gets updated.
+
+![graph](./images/graphAssets/bf2.png)
+
 
 |  | distance | parent |
 |---|---|---|
