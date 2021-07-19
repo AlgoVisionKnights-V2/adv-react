@@ -13,7 +13,7 @@ function Dashboard({ categories, inCategory }) {
 						description={category.description}
 						key={category.title}
 						width={320}
-						height={220}
+						height={265}
 						inCategory={inCategory}
 					/>
 				</Link>
