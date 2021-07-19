@@ -32,11 +32,16 @@ function NavGroup({ title, algorithms, panel, expanded, handleChange }) {
 				</AccordionSummary>
 			</ListItem>
 			<AccordionDetails id='accordion-details' ref={React.createRef()}>
-				{algorithms.map((algorithm) => (
-					<Link className='Link' to={algorithm.path}>
-						<NavLink name={algorithm.name} key={algorithm.name} />
-					</Link>
-				))}
+				{algorithms.map((algorithm, i) =>
+					i > 0 ? (
+						<Link className='Link' to={algorithm.path}>
+							<NavLink
+								name={algorithm.name}
+								key={algorithm.name}
+							/>
+						</Link>
+					) : null
+				)}
 			</AccordionDetails>
 		</Accordion>
 	);

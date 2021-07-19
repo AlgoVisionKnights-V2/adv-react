@@ -14,8 +14,9 @@ function Category({ inCategory, algorithms }) {
 					<Algorithm
 						title={algorithm.name}
 						key={algorithm.name}
+						description={algorithm.description}
 						width={'100%'}
-						height={280}
+						height={'auto'}
 						inCategory={inCategory}
 					/>
 				</Link>

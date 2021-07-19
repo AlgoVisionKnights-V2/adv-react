@@ -14,7 +14,7 @@ function Algorithm({ title, description, width, height, inCategory }) {
 	return (
 		<Tilt
 			style={{ width: inCategory ? '84%' : 'unset' }}
-			options={{ max: 1.5, scale: 1.05 }}>
+			options={{ max: 1.5, scale: 1.03 }}>
 			<Button id='algorithm' style={{ width: width, height: height }}>
 				<Card id='card'>
 					<CardContent id='card-content'>
