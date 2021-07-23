@@ -80,7 +80,7 @@ function Navigation({
 							  }),
 				}}>
 				<div id='toolbar-container' className={classes.toolbar}>
-					<Typography id='nav-title'>ADV</Typography>
+					<Typography id='nav-title'>AVK</Typography>
 				</div>
 				<List>
 					<Link className='Link' to='/'>

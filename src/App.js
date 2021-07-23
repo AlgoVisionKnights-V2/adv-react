@@ -44,7 +44,6 @@ function App() {
 	return (
 		<div className='App'>
 			<HashRouter>
-				<Redirect exact to='/' />
 				<Navigation
 					open={open}
 					toggleDrawer={toggleDrawer}
