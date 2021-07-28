@@ -2,7 +2,9 @@
 .SelectionSort,
 .InsertionSort,
 .QuickSort,
-.MergeSort {
+.MergeSort,
+.LinearSearch,
+.BinarySearch {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -17,7 +19,7 @@
 	padding: 6px;
 }
 
-#card-info span td span {
+#card-info div td span {
 	text-align: left !important;
 	margin: 0px;
 }

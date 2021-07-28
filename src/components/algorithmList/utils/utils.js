@@ -9,12 +9,15 @@ import selectiongif from './images/selectiongif.gif';
 import insertiongif from './images/insertiongif.gif';
 import quicksortgif from './images/quicksortgif.gif';
 import mergergif from './images/mergegif.gif';
+import binarysearchgif from './images/binarysearchgif.gif';
 
 const constant = <MathJax.Node formula={`O(1)`} />;
-const logarithmic = <MathJax.Node formula={`O(1)`} />;
+const log = <MathJax.Node formula={`O(log \\ n)`} />;
 const linear = <MathJax.Node formula={`O(n)`} />;
 const nlogn = <MathJax.Node formula={`O(n \\ log \\ n)`} />;
 const n2 = <MathJax.Node formula={`O(n^2)`} />;
+
+const nd2 = <MathJax.Node formula={`O(n / 2)`} />;
 
 // Sorting
 export function Sorting() {
@@ -23,9 +26,9 @@ export function Sorting() {
 
 export function BubbleSort() {
 	return (
-		<div className='BubbleSort' style={{}}>
+		<div className='BubbleSort'>
 			<MathJax.Provider>
-				<span>
+				<div>
 					<p className='SubHeader'>Time Complexity:</p>
 					<table>
 						<tr>
@@ -42,13 +45,13 @@ export function BubbleSort() {
 						</tr>
 						<tr>
 							<td>Swaps</td>
-							<td>{nlogn}</td>
+							<td>{constant}</td>
 							<td>{n2}</td>
 							<td>{n2}</td>
 						</tr>
 					</table>
-				</span>
-				<span>
+				</div>
+				<div>
 					<p className='SubHeader'>Space Complexity:</p>
 					<table>
 						<tr>
@@ -61,7 +64,7 @@ export function BubbleSort() {
 							<td>{linear}</td>
 						</tr>
 					</table>
-				</span>
+				</div>
 			</MathJax.Provider>
 
 			<img src={bubblegif} alt='graphs' rel='noreferrer' />
@@ -73,7 +76,7 @@ export function SelectionSort() {
 	return (
 		<div className='SelectionSort'>
 			<MathJax.Provider>
-				<span>
+				<div>
 					<p className='SubHeader'>Time Complexity:</p>
 					<table>
 						<tr>
@@ -90,13 +93,13 @@ export function SelectionSort() {
 						</tr>
 						<tr>
 							<td>Swaps</td>
-							<td>{nlogn}</td>
+							<td>{constant}</td>
 							<td>{linear}</td>
 							<td>{linear}</td>
 						</tr>
 					</table>
-				</span>
-				<span>
+				</div>
+				<div>
 					<p className='SubHeader'>Space Complexity:</p>
 					<table>
 						<tr>
@@ -106,10 +109,10 @@ export function SelectionSort() {
 
 						<tr>
 							<td>Worst Case</td>
-							<td>{nlogn}</td>
+							<td>{constant}</td>
 						</tr>
 					</table>
-				</span>
+				</div>
 			</MathJax.Provider>
 			<img src={selectiongif} alt='graphs' rel='noreferrer' />
 		</div>
@@ -120,7 +123,7 @@ export function InsertionSort() {
 	return (
 		<div className='InsertionSort'>
 			<MathJax.Provider>
-				<span>
+				<div>
 					<p className='SubHeader'>Time Complexity:</p>
 					<table>
 						<tr>
@@ -137,13 +140,13 @@ export function InsertionSort() {
 						</tr>
 						<tr>
 							<td>Swaps</td>
-							<td>{nlogn}</td>
+							<td>{constant}</td>
 							<td>{n2}</td>
 							<td>{n2}</td>
 						</tr>
 					</table>
-				</span>
-				<span>
+				</div>
+				<div>
 					<p className='SubHeader'>Space Complexity:</p>
 					<table>
 						<tr>
@@ -156,7 +159,7 @@ export function InsertionSort() {
 							<td>{linear}</td>
 						</tr>
 					</table>
-				</span>
+				</div>
 			</MathJax.Provider>
 			<img src={insertiongif} alt='graphs' rel='noreferrer' />
 		</div>
@@ -167,7 +170,7 @@ export function QuickSort() {
 	return (
 		<div className='QuickSort'>
 			<MathJax.Provider>
-				<span>
+				<div>
 					<p className='SubHeader'>Time Complexity:</p>
 					<table>
 						<tr>
@@ -187,8 +190,8 @@ export function QuickSort() {
 							<td>{n2}</td>
 						</tr>
 					</table>
-				</span>
-				<span>
+				</div>
+				<div>
 					<p className='SubHeader'>Space Complexity:</p>
 					<table>
 						<tr>
@@ -201,7 +204,7 @@ export function QuickSort() {
 							<td>{linear}</td>
 						</tr>
 					</table>
-				</span>
+				</div>
 			</MathJax.Provider>
 			<img src={quicksortgif} alt='graphs' rel='noreferrer' />
 		</div>
@@ -212,7 +215,7 @@ export function MergeSort() {
 	return (
 		<div className='MergeSort'>
 			<MathJax.Provider>
-				<span>
+				<div>
 					<p className='SubHeader'>Time Complexity:</p>
 					<table>
 						<tr>
@@ -232,8 +235,8 @@ export function MergeSort() {
 							<td>{nlogn}</td>
 						</tr>
 					</table>
-				</span>
-				<span>
+				</div>
+				<div>
 					<p className='SubHeader'>Space Complexity:</p>
 					<table>
 						<tr>
@@ -246,7 +249,7 @@ export function MergeSort() {
 							<td>{linear}</td>
 						</tr>
 					</table>
-				</span>
+				</div>
 			</MathJax.Provider>
 			<img src={mergergif} alt='graphs' rel='noreferrer' />
 		</div>
@@ -259,11 +262,92 @@ export function Searching() {
 }
 
 export function LinearSearch() {
-	return <div className='LinearSearch'>Linear Search JSX</div>;
+	return (
+		<div className='LinearSearch'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Runtime</th>
+						</tr>
+						<tr>
+							<td>Best Case</td>
+							<td>{constant}</td>
+						</tr>
+						<tr>
+							<td>Average Case</td>
+							<td>{nd2}</td>
+						</tr>
+						<tr>
+							<td>Worst Case</td>
+							<td>{linear}</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p className='SubHeader'>Space Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Space</th>
+						</tr>
+
+						<tr>
+							<td>Worst Case</td>
+							<td>{constant}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+		</div>
+	);
 }
 
 export function BinarySearch() {
-	return <div className='BinarySearch'>Binary Search JSX</div>;
+	return (
+		<div className='BinarySearch'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Runtime</th>
+						</tr>
+						<tr>
+							<td>Best Case</td>
+							<td>{constant}</td>
+						</tr>
+						<tr>
+							<td>Average Case</td>
+							<td>{log}</td>
+						</tr>
+						<tr>
+							<td>Worst Case</td>
+							<td>{log}</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p className='SubHeader'>Space Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Space</th>
+						</tr>
+
+						<tr>
+							<td>Worst Case</td>
+							<td>{constant}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+			<img src={binarysearchgif} alt='graphs' rel='noreferrer' />
+		</div>
+	);
 }
 
 // Data Structures
