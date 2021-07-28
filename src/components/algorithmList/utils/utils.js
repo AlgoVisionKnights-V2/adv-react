@@ -16,7 +16,6 @@ const log = <MathJax.Node formula={`O(log \\ n)`} />;
 const linear = <MathJax.Node formula={`O(n)`} />;
 const nlogn = <MathJax.Node formula={`O(n \\ log \\ n)`} />;
 const n2 = <MathJax.Node formula={`O(n^2)`} />;
-
 const nd2 = <MathJax.Node formula={`O(n / 2)`} />;
 
 // Sorting
@@ -355,8 +354,38 @@ export function DataStructures() {
 	return <div className='DataStructures'>Data Structures JSX</div>;
 }
 
-export function LinkedList() {
-	return <div className='LinkedList'>Linked List JSX</div>;
+export function SinglyLinkedList() {
+	return (
+		<div className='SinglyLinkedList'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Operation</th>
+							<th>Best Case</th>
+							<th>Worst Case</th>
+						</tr>
+						<tr>
+							<td>Search</td>
+							<td>{constant}</td>
+							<td>{linear}</td>
+						</tr>
+						<tr>
+							<td>Insertion</td>
+							<td>{constant}</td>
+							<td>{linear}</td>
+						</tr>
+						<tr>
+							<td>Deletion</td>
+							<td>{constant}</td>
+							<td>{linear}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+		</div>
+	);
 }
 
 // Graphs
@@ -368,30 +397,204 @@ export function Graphs() {
 	);
 }
 
+const dijkstratime = (
+	<MathJax.Node formula={`O(|E| \\ + \\ |V| \\ log \\ |V|)`} />
+);
+
+const dijkstraspace = <MathJax.Node formula={`O(|V| \\ + \\ |E|)`} />;
+
 export function Dijkstras() {
-	return <div className='Dijkstras'>Dijkstra's JSX</div>;
+	return (
+		<div className='Dijkstras'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Runtime</th>
+						</tr>
+						<tr>
+							<td>Worst Case</td>
+							<td>{dijkstratime}</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p className='SubHeader'>Space Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Space</th>
+						</tr>
+
+						<tr>
+							<td>Worst Case</td>
+							<td>{dijkstraspace}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+		</div>
+	);
 }
 
+const bellmantimebest = <MathJax.Node formula={`O(|E|)`} />;
+const bellmantimeworst = <MathJax.Node formula={`O(|V||E|)`} />;
+const bellmanspace = <MathJax.Node formula={`O(|V|)`} />;
+
 export function BellmanFord() {
-	return <div className='BellmanFord'>Bellman Ford JSX</div>;
+	return (
+		<div className='BellmanFord'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Runtime</th>
+						</tr>
+						<tr>
+							<td>Best Case</td>
+							<td>{bellmantimebest}</td>
+						</tr>
+						<tr>
+							<td>Worst Case</td>
+							<td>{bellmantimeworst}</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p className='SubHeader'>Space Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Space</th>
+						</tr>
+
+						<tr>
+							<td>Worst Case</td>
+							<td>{bellmanspace}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+		</div>
+	);
 }
+
+const bfstime = <MathJax.Node formula={`O(|V| \\ + \\ |E|) \\ = \\ O(b^d)`} />;
+const bfsspace = <MathJax.Node formula={`O(|V|) \\ = \\ O(b^d)`} />;
 
 export function BreadthFirstSearch() {
 	return (
 		<div
 			className='
     BreadthFirstSearch'>
-			Breadth First Search JSX
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Runtime</th>
+						</tr>
+						<tr>
+							<td>Worst Case</td>
+							<td>{bfstime}</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p className='SubHeader'>Space Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Space</th>
+						</tr>
+
+						<tr>
+							<td>Worst Case</td>
+							<td>{bfsspace}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
 		</div>
 	);
 }
 
+const dfstime = <MathJax.Node formula={`O(|V| \\ + \\ |E|)`} />;
+const dfsspace = <MathJax.Node formula={`O(|V|)`} />;
+
 export function DepthFirstSearch() {
-	return <div className='DepthFirstSearch'>Depth First Search JSX</div>;
+	return (
+		<div className='DepthFirstSearch'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Runtime</th>
+						</tr>
+						<tr>
+							<td>Worst Case</td>
+							<td>{dfstime}</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p className='SubHeader'>Space Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Space</th>
+						</tr>
+
+						<tr>
+							<td>Worst Case</td>
+							<td>{dfsspace}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+		</div>
+	);
 }
 
+const matrix = <MathJax.Node formula={`O(|V|^2)`} />;
+const binary = <MathJax.Node formula={`O(|V| \\ + \\ |E| \\ log \\ |V|)`} />;
+const fibonacci = <MathJax.Node formula={`O(|E| \\ + \\ |V| \\ log \\ |V|)`} />;
+
 export function Prims() {
-	return <div className='Prims'>Prim's JSX</div>;
+	return (
+		<div className='Prims'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Implementation</th>
+							<th>Worst Case</th>
+						</tr>
+						<tr>
+							<td>Adjacency Matrix</td>
+							<td>{matrix}</td>
+						</tr>
+						<tr>
+							<td>Binary Heap and Adjacency List</td>
+							<td>{binary}</td>
+						</tr>
+						<tr>
+							<td>Fibonacci Heap and Adjacency List</td>
+							<td>{fibonacci}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+		</div>
+	);
 }
 
 // Trees

@@ -4,14 +4,20 @@
 .QuickSort,
 .MergeSort,
 .LinearSearch,
-.BinarySearch {
+.BinarySearch,
+.SinglyLinkedList,
+.Dijkstras,
+.BellmanFord,
+.BreadthFirstSearch,
+.DepthFirstSearch,
+.Prims {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
 #card-info div {
-	margin: 0px;
+	margin: 0px 20px 0px 0px;
 	width: 100%;
 }
 

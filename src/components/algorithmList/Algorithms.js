@@ -9,7 +9,7 @@ import {
 	LinearSearch,
 	BinarySearch,
 	DataStructures,
-	LinkedList,
+	SinglyLinkedList,
 	Graphs,
 	Dijkstras,
 	BellmanFord,
@@ -64,9 +64,9 @@ const algorithms = {
 		// { name: 'Overview', description: <DataStructures /> },
 		// { name: 'Arrays', path: 'arrays' },
 		{
-			name: 'Linked List',
-			path: 'linkedlist',
-			description: <LinkedList />,
+			name: 'Singly Linked List',
+			path: 'singlylinkedlist',
+			description: <SinglyLinkedList />,
 		},
 	],
 	graphs: [

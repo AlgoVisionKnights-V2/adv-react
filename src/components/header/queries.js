@@ -14,7 +14,7 @@ const queries = [
 	{ name: 'Quick Sort', path: 'quicksort' },
 	{ name: 'Merge Sort', path: 'mergesort' },
 	{ name: 'Arrays', path: 'arrays' },
-	{ name: 'Linked List', path: 'linkedlist' },
+	{ name: 'Singly Linked List', path: 'singlylinkedlist' },
 	{ name: "Dijkstra's", path: 'dijkstras' },
 	{ name: 'Bellman Ford', path: 'bellmanford' },
 	{ name: 'Breadth First Search', path: 'breadthfirstsearch' },
