@@ -10,7 +10,13 @@
 .BellmanFord,
 .BreadthFirstSearch,
 .DepthFirstSearch,
-.Prims {
+.Prims,
+.AVL,
+.BinarySearchTree,
+.Preorder,
+.Inorder,
+.Postorder,
+.Queens {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -34,25 +40,25 @@
 	border-radius: 10px;
 }
 
-div .SubHeader {
+#card-info div .SubHeader {
 	font-size: 1.1em;
 }
 
-img {
+#card-info img {
 	width: auto;
 	height: 200px;
 }
 
-table {
+#card-info table {
 	color: #99afc2;
 	width: 100%;
 }
 
-table tr:nth-child(even) {
+#card-info table tr:nth-child(even) {
 	background-color: #272b3f;
 }
 
-table tr {
+#card-info table tr {
 	text-align: left !important;
 	margin: 0px;
 }

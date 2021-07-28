@@ -603,23 +603,207 @@ export function Trees() {
 }
 
 export function AVL() {
-	return <div className='AVL'>AVL JSX</div>;
+	return (
+		<div className='AVL'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Operation</th>
+							<th>Average Case</th>
+							<th>Worst Case</th>
+						</tr>
+						<tr>
+							<td>Search</td>
+							<td>{log}</td>
+							<td>{log}</td>
+						</tr>
+						<tr>
+							<td>Insertion</td>
+							<td>{log}</td>
+							<td>{log}</td>
+						</tr>
+						<tr>
+							<td>Deletion</td>
+							<td>{log}</td>
+							<td>{log}</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p className='SubHeader'>Space Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Space</th>
+						</tr>
+
+						<tr>
+							<td>Worst Case</td>
+							<td>{linear}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+		</div>
+	);
 }
 
 export function BinarySearchTree() {
-	return <div className='BinarySearchTree'>Binary Search Tree JSX</div>;
+	return (
+		<div className='BinarySearchTree'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Operation</th>
+							<th>Average Case</th>
+							<th>Worst Case</th>
+						</tr>
+						<tr>
+							<td>Search</td>
+							<td>{log}</td>
+							<td>{linear}</td>
+						</tr>
+						<tr>
+							<td>Insertion</td>
+							<td>{log}</td>
+							<td>{linear}</td>
+						</tr>
+						<tr>
+							<td>Deletion</td>
+							<td>{log}</td>
+							<td>{linear}</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p className='SubHeader'>Space Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Space</th>
+						</tr>
+
+						<tr>
+							<td>Worst Case</td>
+							<td>{linear}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+		</div>
+	);
 }
 
 export function Preorder() {
-	return <div className='Preorder'>Preorder JSX</div>;
+	return (
+		<div className='Preorder'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Runtime</th>
+						</tr>
+						<tr>
+							<td>Worst Case</td>
+							<td>{dfstime}</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p className='SubHeader'>Space Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Space</th>
+						</tr>
+
+						<tr>
+							<td>Worst Case</td>
+							<td>{dfsspace}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+		</div>
+	);
 }
 
 export function Inorder() {
-	return <div className='Inorder'>Inorder JSX</div>;
+	return (
+		<div className='Inorder'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Runtime</th>
+						</tr>
+						<tr>
+							<td>Worst Case</td>
+							<td>{dfstime}</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p className='SubHeader'>Space Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Space</th>
+						</tr>
+
+						<tr>
+							<td>Worst Case</td>
+							<td>{dfsspace}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+		</div>
+	);
 }
 
 export function Postorder() {
-	return <div className='Postorder'>Postorder JSX</div>;
+	return (
+		<div className='Postorder'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Runtime</th>
+						</tr>
+						<tr>
+							<td>Worst Case</td>
+							<td>{dfstime}</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p className='SubHeader'>Space Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Space</th>
+						</tr>
+
+						<tr>
+							<td>Worst Case</td>
+							<td>{dfsspace}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+		</div>
+	);
 }
 
 // Backtracking
@@ -630,6 +814,15 @@ export function Backtracking() {
 export function Queens() {
 	return (
 		<div className='Queens'>
+			<div>
+				<p>
+					<strong>Problem Statement:</strong> Given an integer,{' '}
+					<strong>n</strong>, representing the number of queens given
+					to you. Place all <strong>n</strong> queens on an{' '}
+					<strong>n x n</strong> chessboard such that no two queens
+					can attack each other.
+				</p>
+			</div>
 			<img src={queens} alt='queens' rel='noreferrer' />
 		</div>
 	);
