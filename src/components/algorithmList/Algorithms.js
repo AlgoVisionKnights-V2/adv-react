@@ -28,7 +28,7 @@ import {
 
 const algorithms = {
 	sorting: [
-		{ name: 'Overview', description: <Sorting /> },
+		// { name: 'Overview', description: <Sorting /> },
 		{
 			name: 'Bubble Sort',
 			path: 'bubblesort',
@@ -44,11 +44,11 @@ const algorithms = {
 			path: 'insertionsort',
 			description: <InsertionSort />,
 		},
-		{ name: 'Quick Sort', path: 'quicksort', description: <MergeSort /> },
-		{ name: 'Merge Sort', path: 'mergesort', description: <QuickSort /> },
+		{ name: 'Quick Sort', path: 'quicksort', description: <QuickSort /> },
+		{ name: 'Merge Sort', path: 'mergesort', description: <MergeSort /> },
 	],
 	searching: [
-		{ name: 'Overview', description: <Searching /> },
+		// { name: 'Overview', description: <Searching /> },
 		{
 			name: 'Linear Search',
 			path: 'linearsearch',
@@ -61,7 +61,7 @@ const algorithms = {
 		},
 	],
 	datastructures: [
-		{ name: 'Overview', description: <DataStructures /> },
+		// { name: 'Overview', description: <DataStructures /> },
 		// { name: 'Arrays', path: 'arrays' },
 		{
 			name: 'Linked List',
@@ -70,7 +70,7 @@ const algorithms = {
 		},
 	],
 	graphs: [
-		{ name: 'Overview', description: <Graphs /> },
+		// { name: 'Overview', description: <Graphs /> },
 		{ name: "Dijkstra's", path: 'dijkstras', description: <Dijkstras /> },
 		{
 			name: 'Bellman Ford',
@@ -90,7 +90,7 @@ const algorithms = {
 		{ name: "Prim's", path: 'prims', description: <Prims /> },
 	],
 	trees: [
-		{ name: 'Overview', description: <Trees /> },
+		// { name: 'Overview', description: <Trees /> },
 		{ name: 'AVL', path: 'avl', description: <AVL /> },
 		{
 			name: 'Binary Search Tree',
@@ -106,7 +106,7 @@ const algorithms = {
 	// 	{ name: 'Skip List', path: 'skiplist' },
 	// ],
 	backtracking: [
-		{ name: 'Overview', description: <Backtracking /> },
+		// { name: 'Overview', description: <Backtracking /> },
 		{ name: 'nQueens', path: 'nqueens', description: <Queens /> },
 	],
 	// linkedlist: [

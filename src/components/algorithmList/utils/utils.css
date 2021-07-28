@@ -1,4 +1,50 @@
+.BubbleSort,
+.SelectionSort,
+.InsertionSort,
+.QuickSort,
+.MergeSort {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#card-info div {
+	margin: 0px;
+	width: 100%;
+}
+
+#card-info div td {
+	padding: 6px;
+}
+
+#card-info span td span {
+	text-align: left !important;
+	margin: 0px;
+}
+
+#card-info img {
+	border-radius: 10px;
+}
+
+div .SubHeader {
+	font-size: 1.1em;
+}
+
 img {
 	width: auto;
 	height: 200px;
+}
+
+table {
+	color: #99afc2;
+	width: 100%;
+}
+
+table tr:nth-child(even) {
+	background-color: #272b3f;
+}
+
+table tr {
+	text-align: left !important;
+	margin: 0px;
 }
