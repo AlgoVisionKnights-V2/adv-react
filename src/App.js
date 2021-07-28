@@ -14,6 +14,8 @@ import categories from './components/algorithmList/Categories';
 import algorithms from './components/algorithmList/Algorithms';
 
 function App() {
+	console.log(algorithms);
+
 	// Drawer setters
 	const [open, setOpen] = React.useState(false);
 
