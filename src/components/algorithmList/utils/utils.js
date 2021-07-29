@@ -17,6 +17,11 @@ import dijkstrasgif from './images/dijkstragif.gif';
 import breadthfirstsearchgif from './images/breadthfirstsearch.gif';
 import depthfirstsearchgif from './images/depthfirstsearch.gif';
 import primsgif from './images/primsgif.gif';
+import avlgif from './images/avlgif.gif';
+import binarysearchtreegif from './images/binarysearchtreegif.gif';
+import preordergif from './images/preordergif.gif';
+import inordergif from './images/inordergif.gif';
+import postordergif from './images/postordergif.gif';
 
 const constant = <MathJax.Node formula={`O(1)`} />;
 const log = <MathJax.Node formula={`O(log \\ n)`} />;
@@ -660,6 +665,7 @@ export function AVL() {
 					</table>
 				</div>
 			</MathJax.Provider>
+			<img src={avlgif} alt='graphs' rel='noreferrer' />
 		</div>
 	);
 }
@@ -708,6 +714,7 @@ export function BinarySearchTree() {
 					</table>
 				</div>
 			</MathJax.Provider>
+			<img src={binarysearchtreegif} alt='graphs' rel='noreferrer' />
 		</div>
 	);
 }
@@ -744,6 +751,7 @@ export function Preorder() {
 					</table>
 				</div>
 			</MathJax.Provider>
+			<img src={preordergif} alt='graphs' rel='noreferrer' />
 		</div>
 	);
 }
@@ -780,6 +788,7 @@ export function Inorder() {
 					</table>
 				</div>
 			</MathJax.Provider>
+			<img src={inordergif} alt='graphs' rel='noreferrer' />
 		</div>
 	);
 }
@@ -816,6 +825,7 @@ export function Postorder() {
 					</table>
 				</div>
 			</MathJax.Provider>
+			<img src={postordergif} alt='graphs' rel='noreferrer' />
 		</div>
 	);
 }
