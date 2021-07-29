@@ -12,6 +12,11 @@ import mergergif from './images/mergegif.gif';
 import binarysearchgif from './images/binarysearchgif.gif';
 import singlylinkedlistgif from './images/singlylinkedlistgif.gif';
 import linearsearchgif from './images/linearsearchgif.gif';
+import bellmanford from './images/bellmanford.png';
+import dijkstrasgif from './images/dijkstragif.gif';
+import breadthfirstsearchgif from './images/breadthfirstsearch.gif';
+import depthfirstsearchgif from './images/depthfirstsearch.gif';
+import primsgif from './images/primsgif.gif';
 
 const constant = <MathJax.Node formula={`O(1)`} />;
 const log = <MathJax.Node formula={`O(log \\ n)`} />;
@@ -439,6 +444,7 @@ export function Dijkstras() {
 					</table>
 				</div>
 			</MathJax.Provider>
+			<img src={dijkstrasgif} alt='graphs' rel='noreferrer' />
 		</div>
 	);
 }
@@ -483,6 +489,7 @@ export function BellmanFord() {
 					</table>
 				</div>
 			</MathJax.Provider>
+			<img src={bellmanford} alt='graphs' rel='noreferrer' />
 		</div>
 	);
 }
@@ -524,6 +531,7 @@ export function BreadthFirstSearch() {
 					</table>
 				</div>
 			</MathJax.Provider>
+			<img src={breadthfirstsearchgif} alt='graphs' rel='noreferrer' />
 		</div>
 	);
 }
@@ -563,6 +571,7 @@ export function DepthFirstSearch() {
 					</table>
 				</div>
 			</MathJax.Provider>
+			<img src={depthfirstsearchgif} alt='graphs' rel='noreferrer' />
 		</div>
 	);
 }
@@ -597,6 +606,7 @@ export function Prims() {
 					</table>
 				</div>
 			</MathJax.Provider>
+			<img src={primsgif} alt='graphs' rel='noreferrer' />
 		</div>
 	);
 }
