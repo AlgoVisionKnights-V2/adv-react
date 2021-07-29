@@ -10,6 +10,8 @@ import insertiongif from './images/insertiongif.gif';
 import quicksortgif from './images/quicksortgif.gif';
 import mergergif from './images/mergegif.gif';
 import binarysearchgif from './images/binarysearchgif.gif';
+import singlylinkedlistgif from './images/singlylinkedlistgif.gif';
+import linearsearchgif from './images/linearsearchgif.gif';
 
 const constant = <MathJax.Node formula={`O(1)`} />;
 const log = <MathJax.Node formula={`O(log \\ n)`} />;
@@ -300,6 +302,7 @@ export function LinearSearch() {
 					</table>
 				</div>
 			</MathJax.Provider>
+			<img src={linearsearchgif} alt='graphs' rel='noreferrer' />
 		</div>
 	);
 }
@@ -384,6 +387,7 @@ export function SinglyLinkedList() {
 					</table>
 				</div>
 			</MathJax.Provider>
+			<img src={singlylinkedlistgif} alt='graphs' rel='noreferrer' />
 		</div>
 	);
 }
