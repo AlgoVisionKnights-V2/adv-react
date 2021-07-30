@@ -225,3 +225,9 @@ The time and space complexities can differ depending on how the traversal is imp
 
 -   **\|V\|**: Total number of nodes in a given graph.
 -   **\|E\|**: Total number of edges in a given graph.
+
+# References
+
+Gif pulled from:
+
+[https://www.codeabbey.com/index/task_view/breadth-first-search](https://www.codeabbey.com/index/task_view/breadth-first-search)

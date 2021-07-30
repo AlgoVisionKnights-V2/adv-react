@@ -41,3 +41,8 @@ As we draw the line, any time we pass a point, we write down the value of the no
 
 For more information about pre-order traversal, click [here](https://en.wikipedia.org/wiki/Tree_traversal#Pre-order,_NLR).
 
+# References
+
+Gif pulled from:
+
+[https://commons.wikimedia.org/wiki/File:Preorder-traversal.gif](https://commons.wikimedia.org/wiki/File:Preorder-traversal.gif)

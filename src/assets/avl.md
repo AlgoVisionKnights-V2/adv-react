@@ -45,3 +45,9 @@ In this tree, Node 12's balance factor is 2 because its left subtree is two node
 | Insert | O(log n)   | O(log n)     | O(1)      |
 | Delete | O(log n)   | O(log n)     | O(1)      |
 | Search | O(log n)   | O(log n)     | O(1)      |
+
+# References
+
+Gif pulled from:
+
+[https://commons.wikimedia.org/wiki/File:AVL_Tree_Example.gif](https://commons.wikimedia.org/wiki/File:AVL_Tree_Example.gif)

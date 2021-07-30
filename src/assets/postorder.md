@@ -40,3 +40,9 @@ As we draw the line, any time we pass a point, we write down the value of the no
 # Further Information
 
 For more information about post-order traversal, click [here](https://en.wikipedia.org/wiki/Tree_traversal#Pre-order,_NLR).
+
+# References
+
+Gif pulled from:
+
+[https://commons.wikimedia.org/wiki/File:Postorder-traversal.gif](https://commons.wikimedia.org/wiki/File:Postorder-traversal.gif)

@@ -39,7 +39,7 @@ When deleting a key, three algorithms are needed. The initial delete algorithm i
 
 1. If the current node's key is null, the key you are deleting is not in the tree.
 2. If the current node's key is equal to the key your deleting, change the current node's key to the value of the current node's leftmost node in the right tree (via findLeftmostNode), then replace the original node with the new value for the current node with it right subtree (via removeLeftmostNode).
-3. 3. If the current node's key is greater than the key you are deleting, repeat the previous steps with the current node's left child.
+3. If the current node's key is greater than the key you are deleting, repeat the previous steps with the current node's left child.
 4. If the current node's key is less than the key you are deleting, repeat the previous steps with the current node's right child.
 
 Once you find the node you need to delete, you need to find its leftmost node in its right subtree, which can be achieved with the following algorithm, starting with the current node's right child:
@@ -61,3 +61,9 @@ removeLeftmostNode:
 | Insert | O(n)       | O(log n)     | O(1)      |
 | Delete | O(n)       | O(log n)     | O(1)      |
 | Search | O(n)       | O(log n)     | O(1)      |
+
+# References
+
+Gif pulled from:
+
+[https://daankolthof.com/2020/01/05/trees-and-binary-search-trees/](https://daankolthof.com/2020/01/05/trees-and-binary-search-trees/)

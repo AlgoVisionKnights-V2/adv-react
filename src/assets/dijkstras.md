@@ -62,4 +62,8 @@ In the next loop, C will be selected. The only unvisited neighbor it has is D, h
 
 ![graph](./images/graphAssets/dijkstra3.png)
 
+# References
 
+Gif pulled from:
+
+[https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)

@@ -12,3 +12,9 @@ In trees and graphs, a node's value can be checked either before (preorder), dur
 Trees don't typcially need to track if they've been visited or discovered unless multiple tree nodes point to the same child nodes.
 
 Graphs need to track if they were visited because nodes can potentially loop in a cycle.
+
+# References
+
+Gif pulled from:
+
+[https://commons.wikimedia.org/wiki/File:Depth-First-Search.gif](https://commons.wikimedia.org/wiki/File:Depth-First-Search.gif)
