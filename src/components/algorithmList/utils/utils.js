@@ -28,7 +28,6 @@ const log = <MathJax.Node formula={`O(log \\ n)`} />;
 const linear = <MathJax.Node formula={`O(n)`} />;
 const nlogn = <MathJax.Node formula={`O(n \\ log \\ n)`} />;
 const n2 = <MathJax.Node formula={`O(n^2)`} />;
-const nd2 = <MathJax.Node formula={`O(n / 2)`} />;
 
 // Sorting
 export function Sorting() {
@@ -289,7 +288,7 @@ export function LinearSearch() {
 						</tr>
 						<tr>
 							<td>Average Case</td>
-							<td>{nd2}</td>
+							<td>{linear}</td>
 						</tr>
 						<tr>
 							<td>Worst Case</td>
@@ -499,7 +498,10 @@ export function BellmanFord() {
 	);
 }
 
-const bfstime = <MathJax.Node formula={`O(|V| \\ + \\ |E|) \\ = \\ O(b^d)`} />;
+const bfstimelist = (
+	<MathJax.Node formula={`O(|V| \\ + \\ |E|) \\ = \\ O(b^d)`} />
+);
+const bfstimematrix = <MathJax.Node formula={`O(|V|^2) \\ = \\ O(b^d)`} />;
 const bfsspace = <MathJax.Node formula={`O(|V|) \\ = \\ O(b^d)`} />;
 
 export function BreadthFirstSearch() {
@@ -512,12 +514,16 @@ export function BreadthFirstSearch() {
 					<p className='SubHeader'>Time Complexity:</p>
 					<table>
 						<tr>
-							<th>Cases</th>
-							<th>Runtime</th>
+							<th>Implementation</th>
+							<th>Worst Case</th>
 						</tr>
 						<tr>
-							<td>Worst Case</td>
-							<td>{bfstime}</td>
+							<td>Adjacency List</td>
+							<td>{bfstimelist}</td>
+						</tr>
+						<tr>
+							<td>Adjacency Matrix</td>
+							<td>{bfstimematrix}</td>
 						</tr>
 					</table>
 				</div>
@@ -732,7 +738,7 @@ export function Preorder() {
 						</tr>
 						<tr>
 							<td>Worst Case</td>
-							<td>{dfstime}</td>
+							<td>{linear}</td>
 						</tr>
 					</table>
 				</div>
@@ -746,7 +752,7 @@ export function Preorder() {
 
 						<tr>
 							<td>Worst Case</td>
-							<td>{dfsspace}</td>
+							<td>{linear}</td>
 						</tr>
 					</table>
 				</div>
@@ -769,7 +775,7 @@ export function Inorder() {
 						</tr>
 						<tr>
 							<td>Worst Case</td>
-							<td>{dfstime}</td>
+							<td>{linear}</td>
 						</tr>
 					</table>
 				</div>
@@ -783,7 +789,7 @@ export function Inorder() {
 
 						<tr>
 							<td>Worst Case</td>
-							<td>{dfsspace}</td>
+							<td>{linear}</td>
 						</tr>
 					</table>
 				</div>
@@ -806,7 +812,7 @@ export function Postorder() {
 						</tr>
 						<tr>
 							<td>Worst Case</td>
-							<td>{dfstime}</td>
+							<td>{linear}</td>
 						</tr>
 					</table>
 				</div>
@@ -820,7 +826,7 @@ export function Postorder() {
 
 						<tr>
 							<td>Worst Case</td>
-							<td>{dfsspace}</td>
+							<td>{linear}</td>
 						</tr>
 					</table>
 				</div>
