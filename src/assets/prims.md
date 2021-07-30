@@ -88,3 +88,9 @@ Priority queue: (C,D), (A,C)
 In the next loop, we dequeue the edge connecting C and D. Both nodes were previously visited so the edge is discarded. In the final loop, the edge connecting A and C is dequeued. Both nodes were also visited so the edge is also discarded.
 
 ![graph](./images/graphAssets/prim5.png)
+
+# References
+
+Gif pulled from:
+
+[https://gfycat.com/fortunateshrillhen](https://gfycat.com/fortunateshrillhen)

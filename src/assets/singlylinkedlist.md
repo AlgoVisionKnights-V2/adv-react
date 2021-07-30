@@ -27,3 +27,9 @@ Along with referencing the head, you can also have a linked list reference to th
 |Delete(head)|O(1)      |O(1)      |O(1)      |
 |Delete(tail)|O(1)      |O(1)      |O(1)      |
 |Delete(other)|O(n)      |O(n)      |O(1)      |
+
+# References
+
+Gif pulled from:
+
+[https://www.geeksforgeeks.org/remove-last-node-of-the-linked-list/](https://www.geeksforgeeks.org/remove-last-node-of-the-linked-list/)

@@ -7,3 +7,10 @@ Linear search is typically used when searching through unsortable or uncomparabl
 |        | Worst Case | Average Case | Best Case |
 | ------ | ---------- | ------------ | --------- |
 | Search | O(n)       | O(n)         | O(1)      |
+
+# References
+
+Gif pulled from:
+
+[https://www.tutorialspoint.com/data_structures_algorithms/linear_search_algorithm.htm](https://www.tutorialspoint.com/data_structures_algorithms/linear_search_algorithm.htm)
+

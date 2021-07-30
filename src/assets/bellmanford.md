@@ -60,3 +60,9 @@ Because a change happened this loop, we'll check each node again. This time, A h
 All other checks this loop do not make any changes.
 
 We then loop again. In this third loop, no changes happen to any nodes, so we stop the algorithm.
+
+# References
+
+Gif pulled from:
+
+[https://algorithms.discrete.ma.tum.de/graph-algorithms/spp-bellman-ford/index_en.html](https://algorithms.discrete.ma.tum.de/graph-algorithms/spp-bellman-ford/index_en.html)
