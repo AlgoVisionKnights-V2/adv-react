@@ -27,4 +27,4 @@ yarn-error.log*
 /dist
 
 # Heavy files
-/src/components/download/desktops
+/src/components/download/desktops/
