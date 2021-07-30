@@ -61,3 +61,9 @@ removeLeftmostNode:
 | Insert | O(n)       | O(log n)     | O(1)      |
 | Delete | O(n)       | O(log n)     | O(1)      |
 | Search | O(n)       | O(log n)     | O(1)      |
+
+# References
+
+Gif pulled from:
+
+[https://daankolthof.com/2020/01/05/trees-and-binary-search-trees/](https://daankolthof.com/2020/01/05/trees-and-binary-search-trees/)
