@@ -28,7 +28,6 @@ const log = <MathJax.Node formula={`O(log \\ n)`} />;
 const linear = <MathJax.Node formula={`O(n)`} />;
 const nlogn = <MathJax.Node formula={`O(n \\ log \\ n)`} />;
 const n2 = <MathJax.Node formula={`O(n^2)`} />;
-const nd2 = <MathJax.Node formula={`O(n / 2)`} />;
 
 // Sorting
 export function Sorting() {
@@ -289,7 +288,7 @@ export function LinearSearch() {
 						</tr>
 						<tr>
 							<td>Average Case</td>
-							<td>{nd2}</td>
+							<td>{linear}</td>
 						</tr>
 						<tr>
 							<td>Worst Case</td>
