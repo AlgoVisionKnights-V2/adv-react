@@ -38,13 +38,17 @@ In this tree, Node 4's balance factor is -2 because its right subtree is two nod
 
 In this tree, Node 12's balance factor is 2 because its left subtree is two node levels higher than its right, and its left subtree is right heavy. This is a Left-Right case scenario, and requires a left rotation on node 4 and then a right rotation on node 12. To make the left rotation, the subtree at node 6 is made the new right subtree of node 4, and node 4 is made the new left subtree of node 8. To make the right rotation, the subtree at node 10 is made the new left subtree of node 12, and node 12 is made node 8's right subtree.
 
+# Why AVL?
+
+The main advantage to using AVL trees over Binary Search Trees is that AVL reduces the worse case runtime for operations from O(n) to O(log n). BSTs can devolve into essentially linked lists if given the right conditions, but AVL trees can rotate linear sections of BSTs into more complete trees. This reduces the amount of nodes an operation needs to traverse to get to the bottom nodes of a tree.
+
 # Big O Stats
 
-|        | Worst Case | Average Case | Best Case |
-| ------ | ---------- | ------------ | --------- |
-| Insert | O(log n)   | O(log n)     | O(1)      |
-| Delete | O(log n)   | O(log n)     | O(1)      |
-| Search | O(log n)   | O(log n)     | O(1)      |
+|        | Worst Case | Average Case |
+| ------ | ---------- | ------------ |
+| Insert | O(log n)   | O(log n)     |
+| Delete | O(log n)   | O(log n)     |
+| Search | O(log n)   | O(log n)     |
 
 # References
 

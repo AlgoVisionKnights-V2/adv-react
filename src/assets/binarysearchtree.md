@@ -56,11 +56,11 @@ removeLeftmostNode:
 
 # Big O Stats
 
-|        | Worst Case | Average Case | Best Case |
-| ------ | ---------- | ------------ | --------- |
-| Insert | O(n)       | O(log n)     | O(1)      |
-| Delete | O(n)       | O(log n)     | O(1)      |
-| Search | O(n)       | O(log n)     | O(1)      |
+|        | Worst Case | Average Case |
+| ------ | ---------- | ------------ |
+| Insert | O(n)       | O(log n)     |
+| Delete | O(n)       | O(log n)     |
+| Search | O(n)       | O(log n)     |
 
 # References
 
