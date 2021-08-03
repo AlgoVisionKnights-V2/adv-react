@@ -5,6 +5,7 @@ import {
 	InsertionSort,
 	MergeSort,
 	QuickSort,
+	HeapSort,
 	// Searching,
 	LinearSearch,
 	BinarySearch,
@@ -46,6 +47,7 @@ const algorithms = {
 		},
 		{ name: 'Quick Sort', path: 'quicksort', description: <QuickSort /> },
 		{ name: 'Merge Sort', path: 'mergesort', description: <MergeSort /> },
+		{ name: 'Heap Sort', path: 'heapsort', description: <HeapSort /> },
 	],
 	searching: [
 		// { name: 'Overview', description: <Searching /> },

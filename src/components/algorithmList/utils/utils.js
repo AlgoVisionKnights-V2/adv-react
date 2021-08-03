@@ -266,6 +266,50 @@ export function MergeSort() {
 	);
 }
 
+export function HeapSort() {
+	return (
+		<div className='HeapSort'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Runtime</th>
+						</tr>
+						<tr>
+							<td>Best Case</td>
+							<td>{nlogn}</td>
+						</tr>
+						<tr>
+							<td>Average Case</td>
+							<td>{nlogn}</td>
+						</tr>
+						<tr>
+							<td>Worst Case</td>
+							<td>{nlogn}</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p className='SubHeader'>Space Complexity:</p>
+					<table>
+						<tr>
+							<th>Cases</th>
+							<th>Space</th>
+						</tr>
+
+						<tr>
+							<td>Worst Case</td>
+							<td>{linear}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+		</div>
+	);
+}
+
 // Searching
 export function Searching() {
 	return <div className='Searching'></div>;

@@ -26,6 +26,7 @@ const queries = [
 	{ name: 'Inorder', path: 'inorder' },
 	{ name: 'Postorder', path: 'postorder' },
 	{ name: 'nQueens', path: 'nqueens' },
+	{name: 'Heap Sort', path: 'heapsort' },
 ];
 
 export default queries;
