@@ -1,6 +1,6 @@
 # Overview
 
-Breadth First Search (BFS) is a traversal or search algorithm for graphs and trees. This tutorial will discuss about BFS for graphs that are represented by an adjacency matrix and list. Unlike Depth First Search, BFS starts at the initial node and explores all nodes that are in the current depth of the initial node.
+Breadth First Search (BFS) is a traversal or search algorithm for graphs and trees. This tutorial will discuss BFS for graphs that are represented by an adjacency matrix and list. Unlike Depth First Search, BFS starts at the initial node and explores all nodes that are in the current depth of the initial node.
 
 # How does it work?
 
@@ -80,7 +80,7 @@ Look for **`B's`** neighboring nodes.
 
 ![undirected](./images/graphAssets/graphs.png)
 
-Since we're dealing with an undirected graph, the nodes we see are **`A`**, **`C`**, and **`E`**. Nodes **`A`** and **`C`** are marked as "visited" so we won't store those in our queue in our array.
+Since we're dealing with an undirected graph, the nodes we see are **`A`**, **`C`**, and **`E`**. Nodes **`A`** and **`C`** are marked as "visited" so we won't store those in our queue.
 
 | 0 (A) | 1 (B) | 2 (C) | 3 (D) | 4 (E) | 5 (F) |
 | ----- | ----- | ----- | ----- | ----- | ----- |
@@ -228,6 +228,6 @@ The time and space complexities can differ depending on how the traversal is imp
 
 # References
 
-Gif pulled from:
+GIF pulled from:
 
 [https://www.codeabbey.com/index/task_view/breadth-first-search](https://www.codeabbey.com/index/task_view/breadth-first-search)
