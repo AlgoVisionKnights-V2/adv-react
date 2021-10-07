@@ -7,7 +7,7 @@ import queries from './queries';
 
 // Child Components
 import MenuToggle from '../menu/MenuToggle';
-import Download from '../download/Download';
+//import Download from '../download/Download';
 
 // Material UI
 import {
@@ -116,13 +116,13 @@ function Header({
 	};
 
 	// Check which device the user in on.
-	const renderDownload = () => {
-		if (isElectron || isMobile || isTablet) {
-			return null;
-		} else {
-			return <Download />;
-		}
-	};
+	//const renderDownload = () => {
+	//	if (isElectron || isMobile || isTablet) {
+	//		return null;
+	//	} else {
+	//		return <Download />;
+	//	}
+	//};
 
 	return (
 		<div className='Header'>
@@ -237,7 +237,6 @@ function Header({
 								</Route>
 							))
 						)}
-						{renderDownload()}
 					</div>
 				</Toolbar>
 			</AppBar>
