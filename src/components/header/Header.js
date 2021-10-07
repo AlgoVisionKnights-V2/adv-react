@@ -7,7 +7,7 @@ import queries from './queries';
 
 // Child Components
 import MenuToggle from '../menu/MenuToggle';
-import Download from '../download/Download';
+// import Download from '../download/Download';
 
 // Material UI
 import {
@@ -23,8 +23,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
+// NOTE: For V1 only
 // Device detection modules
-import { isMobile, isElectron, isTablet } from 'react-device-detect';
+// import { isMobile, isElectron, isTablet } from 'react-device-detect';
 
 import { fade, makeStyles } from '@material-ui/core/styles';
 
@@ -115,14 +116,15 @@ function Header({
 		setFilterData(result);
 	};
 
+	// NOTE: For V1 only
 	// Check which device the user in on.
-	const renderDownload = () => {
-		if (isElectron || isMobile || isTablet) {
-			return null;
-		} else {
-			return <Download />;
-		}
-	};
+	// const renderDownload = () => {
+	// 	if (isElectron || isMobile || isTablet) {
+	// 		return null;
+	// 	} else {
+	// 		return <Download />;
+	// 	}
+	// };
 
 	return (
 		<div className='Header'>
@@ -237,7 +239,7 @@ function Header({
 								</Route>
 							))
 						)}
-						{renderDownload()}
+						{/* {renderDownload()} */}
 					</div>
 				</Toolbar>
 			</AppBar>
