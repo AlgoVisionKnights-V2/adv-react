@@ -5,11 +5,11 @@ import React from 'react';
 import InformationPage from '../informationPage/InformationPage';
 import Visualizer from '../visualizer/Visualizer';
 
-function AlgorithmPage({ path, algoPage }) {
+function AlgorithmPage({ path, type, algoPage }) {
 	return (
 		<div className='AlgorithmPage'>
 			{algoPage === 'visualizer' ? (
-				<Visualizer path={path} />
+				<Visualizer path={path} type={type}/>
 			) : (
 				<InformationPage path={path} />
 			)}
