@@ -33,7 +33,7 @@ const algorithms = {
 		{
 			name: 'Bubble Sort',
 			path: 'bubblesort',
-			type: 'js',
+			type: 'unity',
 			description: <BubbleSort />,
 		},
 		{
@@ -45,12 +45,12 @@ const algorithms = {
 		{
 			name: 'Insertion Sort',
 			path: 'insertionsort',
-			type: 'js',
+			type: 'unity',
 			description: <InsertionSort />,
 		},
-		{ name: 'Quick Sort', path: 'quicksort', type: 'js', description: <QuickSort /> },
-		{ name: 'Merge Sort', path: 'mergesort', type: 'js', description: <MergeSort /> },
-		{ name: 'Heap Sort', path: 'heapsort', type: 'js', description: <HeapSort /> },
+		{ name: 'Quick Sort', path: 'quicksort', type: 'unity', description: <QuickSort /> },
+		{ name: 'Merge Sort', path: 'mergesort', type: 'unity', description: <MergeSort /> },
+		{ name: 'Heap Sort', path: 'heapsort', type: 'unity', description: <HeapSort /> },
 	],
 	searching: [
 		// { name: 'Overview', description: <Searching /> },
@@ -79,7 +79,7 @@ const algorithms = {
 	],
 	graphs: [
 		// { name: 'Overview', description: <Graphs /> },
-		{ name: "Dijkstra's", path: 'dijkstras', description: <Dijkstras /> },
+		{ name: "Dijkstra's", path: 'dijkstras', type: 'unity', description: <Dijkstras /> },
 		{
 			name: 'Bellman Ford',
 			path: 'bellmanford',
