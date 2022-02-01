@@ -95,6 +95,7 @@ function App() {
 							<Route exact={true} path={'/' + algorithm.path}>
 								<AlgorithmPage
 									path={algorithm.path}
+									type={algorithm.type}
 									algoPage={algoPage}
 								/>
 							</Route>
