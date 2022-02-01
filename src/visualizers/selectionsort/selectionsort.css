@@ -1,6 +1,6 @@
 .dark-mode {
 	background-color: #112;
-	color: #d3d3d3
+	color: #d3d3d3;
 }
 
 .center-screen {
@@ -8,4 +8,19 @@
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+}
+
+#message-pane {
+	height: 150px;
+	width: 100%;
+}
+
+#banner {
+	height: 50px;
+	width: 100%;
+}
+
+#sorted-division {
+	height: 100px;
+	padding-left: 50px;
 }
