@@ -33,7 +33,7 @@ const algorithms = {
 		{
 			name: 'Bubble Sort',
 			path: 'bubblesort',
-			type: 'unity',
+			type: 'js',
 			description: <BubbleSort />,
 		},
 		{
