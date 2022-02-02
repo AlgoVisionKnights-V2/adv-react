@@ -1,6 +1,6 @@
 import './Header.css';
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
 
 // Assets
 import queries from './queries';
@@ -135,33 +135,43 @@ function Header({
 									<MenuIcon id='menu-icon' />
 								</IconButton>
 
-								<Route exact={true} path='/'>
-									<Typography id='header-title'>
-										Dashboard
-									</Typography>
-								</Route>
-
-								{categories.map((category) => (
+								<Routes>
 									<Route
 										exact={true}
-										path={'/' + category.path}>
-										<Typography id='header-title'>
-											{category.title}
-										</Typography>
-									</Route>
-								))}
+										path='/'
+										element={
+											<Typography id='header-title'>
+												Dashboard
+											</Typography>
+										}
+									/>
 
-								{Object.keys(algorithms).map((key) =>
-									algorithms[key].map((algorithm) => (
+									{categories.map((category) => (
 										<Route
 											exact={true}
-											path={'/' + algorithm.path}>
-											<Typography id='header-title'>
-												{algorithm.name}
-											</Typography>
-										</Route>
-									))
-								)}
+											path={'/' + category.path}
+											element={
+												<Typography id='header-title'>
+													{category.title}
+												</Typography>
+											}
+										/>
+									))}
+
+									{Object.keys(algorithms).map((key) =>
+										algorithms[key].map((algorithm) => (
+											<Route
+												exact={true}
+												path={'/' + algorithm.path}
+												element={
+													<Typography id='header-title'>
+														{algorithm.name}
+													</Typography>
+												}
+											/>
+										))
+									)}
+								</Routes>
 							</div>
 						) : null}
 
@@ -226,17 +236,23 @@ function Header({
 					</div>
 
 					<div className='RightMenus'>
-						{Object.keys(algorithms).map((key) =>
-							algorithms[key].map((algorithm) => (
-								<Route exact={true} path={'/' + algorithm.path}>
-									<MenuToggle
-										setAlgoPage={setAlgoPage}
-										algoPage={algoPage}
-										viewWidth={viewWidth}
+						<Routes>
+							{Object.keys(algorithms).map((key) =>
+								algorithms[key].map((algorithm) => (
+									<Route
+										exact={true}
+										path={'/' + algorithm.path}
+										element={
+											<MenuToggle
+												setAlgoPage={setAlgoPage}
+												algoPage={algoPage}
+												viewWidth={viewWidth}
+											/>
+										}
 									/>
-								</Route>
-							))
-						)}
+								))
+							)}
+						</Routes>
 					</div>
 				</Toolbar>
 			</AppBar>

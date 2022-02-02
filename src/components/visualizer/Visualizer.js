@@ -15,9 +15,10 @@ function renderVisualizer(path, type) {
 
 		return <Unity className='Unity' unityContext={unityContext} />;
 	} else if (type === 'js') {
-		const JSVisual = require(`../../visualizers/${path}/${path}.js`).default;
+		const JSVisual =
+			require(`../../visualizers/${path}/${path}.js`).default;
 
-		return <JSVisual/>;
+		return <JSVisual />;
 	}
 }
 
@@ -26,13 +27,7 @@ function Visualizer({ path, type }) {
 	// 	`UnityBuilds/${path}/build.json`,
 	// 	`UnityBuilds/${path}/UnityLoader.js`
 	// );
-
-	return (
-		<div className='Visualizer'>
-				{renderVisualizer(path, type)}
-		</div>
-	);
-
+	return <div className='Visualizer'>{renderVisualizer(path, type)}</div>;
 }
 
 export default Visualizer;

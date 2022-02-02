@@ -1,6 +1,6 @@
 import './App.css';
-import React from 'react';
-import { Route, HashRouter } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { Route, Routes, HashRouter } from 'react-router-dom';
 
 // Components
 import Dashboard from './components/dashboard/Dashboard';
@@ -67,40 +67,50 @@ function App() {
 						algorithms={algorithms}
 						categories={categories}
 					/>
-					<Route component={'Page404'} />
+					<Routes>
+						<Route element={'Page404'} />
 
-					<Route
-						exact={true}
-						path='/'
-						render={() => (
-							<Dashboard
-								categories={categories}
-								algorithms={algorithms}
-								inCategory={false}
-							/>
-						)}
-					/>
-
-					{categories.map((category) => (
-						<Route exact={true} path={'/' + category.path}>
-							<Category
-								inCategory={true}
-								algorithms={algorithms[category.path]}
-							/>
-						</Route>
-					))}
-
-					{Object.keys(algorithms).map((key) =>
-						algorithms[key].map((algorithm) => (
-							<Route exact={true} path={'/' + algorithm.path}>
-								<AlgorithmPage
-									path={algorithm.path}
-									type={algorithm.type}
-									algoPage={algoPage}
+						<Route
+							exact={true}
+							path='/'
+							element={
+								<Dashboard
+									categories={categories}
+									algorithms={algorithms}
+									inCategory={false}
 								/>
-							</Route>
-						))
-					)}
+							}
+						/>
+
+						{categories.map((category) => (
+							<Route
+								exact={true}
+								path={'/' + category.path}
+								element={
+									<Category
+										inCategory={true}
+										algorithms={algorithms[category.path]}
+									/>
+								}
+							/>
+						))}
+
+						{Object.keys(algorithms).map((key) =>
+							algorithms[key].map((algorithm) => (
+								<Route
+									exact={true}
+									path={'/' + algorithm.path}
+									element={
+										<AlgorithmPage
+											path={algorithm.path}
+											type={algorithm.type}
+											algoPage={algoPage}
+										/>
+									}
+								/>
+							))
+						)}
+					</Routes>
 				</div>
 			</HashRouter>
 		</div>
