@@ -48,7 +48,7 @@ const algorithms = {
 			type: 'unity',
 			description: <InsertionSort />,
 		},
-		{ name: 'Quick Sort', path: 'quicksort', type: 'unity', description: <QuickSort /> },
+		{ name: 'Quick Sort', path: 'quicksort', type: 'js', description: <QuickSort /> },
 		{ name: 'Merge Sort', path: 'mergesort', type: 'unity', description: <MergeSort /> },
 		{ name: 'Heap Sort', path: 'heapsort', type: 'unity', description: <HeapSort /> },
 	],
