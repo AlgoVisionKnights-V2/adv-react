@@ -50,7 +50,7 @@ const algorithms = {
 		},
 		{ name: 'Quick Sort', path: 'quicksort', type: 'unity', description: <QuickSort /> },
 		{ name: 'Merge Sort', path: 'mergesort', type: 'unity', description: <MergeSort /> },
-		{ name: 'Heap Sort', path: 'heapsort', type: 'unity', description: <HeapSort /> },
+		{ name: 'Heap Sort', path: 'heapsort', type: 'js', description: <HeapSort /> },
 	],
 	searching: [
 		// { name: 'Overview', description: <Searching /> },
