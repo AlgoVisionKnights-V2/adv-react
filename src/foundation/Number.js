@@ -16,7 +16,6 @@ class Number {
     this.style = {
       fill: fill,
     };
-    console.log(text);
     d3.select(ref.current)
       .select("svg")
       .append("text")
