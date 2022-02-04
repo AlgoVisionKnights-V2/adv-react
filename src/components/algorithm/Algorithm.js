@@ -10,7 +10,10 @@ import {
 import Tilt from 'react-tilt';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 
+// Algorithm card for the dashboard.
 function Algorithm({ title, description, width, height, inCategory }) {
+	console.log(`Render: ${title} card`);
+
 	return (
 		<Tilt
 			style={{ width: inCategory ? '84%' : 'unset' }}

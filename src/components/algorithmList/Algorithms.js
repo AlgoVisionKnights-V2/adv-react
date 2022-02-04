@@ -48,9 +48,24 @@ const algorithms = {
 			type: 'js',
 			description: <InsertionSort />,
 		},
-		{ name: 'Quick Sort', path: 'quicksort', type: 'js', description: <QuickSort /> },
-		{ name: 'Merge Sort', path: 'mergesort', type: 'unity', description: <MergeSort /> },
-		{ name: 'Heap Sort', path: 'heapsort', type: 'js', description: <HeapSort /> },
+		{
+			name: 'Quick Sort',
+			path: 'quicksort',
+			type: 'js',
+			description: <QuickSort />,
+		},
+		{
+			name: 'Merge Sort',
+			path: 'mergesort',
+			type: 'unity',
+			description: <MergeSort />,
+		},
+		{
+			name: 'Heap Sort',
+			path: 'heapsort',
+			type: 'js',
+			description: <HeapSort />,
+		},
 	],
 	searching: [
 		// { name: 'Overview', description: <Searching /> },
@@ -79,7 +94,12 @@ const algorithms = {
 	],
 	graphs: [
 		// { name: 'Overview', description: <Graphs /> },
-		{ name: "Dijkstra's", path: 'dijkstras', type: 'unity', description: <Dijkstras /> },
+		{
+			name: "Dijkstra's",
+			path: 'dijkstras',
+			type: 'unity',
+			description: <Dijkstras />,
+		},
 		{
 			name: 'Bellman Ford',
 			path: 'bellmanford',
@@ -98,7 +118,12 @@ const algorithms = {
 			type: 'unity',
 			description: <DepthFirstSearch />,
 		},
-		{ name: "Prim's", path: 'prims', type: 'unity', description: <Prims /> },
+		{
+			name: "Prim's",
+			path: 'prims',
+			type: 'unity',
+			description: <Prims />,
+		},
 	],
 	trees: [
 		// { name: 'Overview', description: <Trees /> },
@@ -109,9 +134,24 @@ const algorithms = {
 			type: 'unity',
 			description: <BinarySearchTree />,
 		},
-		{ name: 'Preorder', path: 'preorder', type: 'unity', description: <Preorder /> },
-		{ name: 'Inorder', path: 'inorder', type: 'unity', description: <Inorder /> },
-		{ name: 'Postorder', path: 'postorder', type: 'unity', description: <Postorder /> },
+		{
+			name: 'Preorder',
+			path: 'preorder',
+			type: 'unity',
+			description: <Preorder />,
+		},
+		{
+			name: 'Inorder',
+			path: 'inorder',
+			type: 'unity',
+			description: <Inorder />,
+		},
+		{
+			name: 'Postorder',
+			path: 'postorder',
+			type: 'unity',
+			description: <Postorder />,
+		},
 	],
 	// probabilisticdatastructures: [
 	// 	{ name: 'Bloom Filters', path: 'bloomfilters' },
@@ -119,7 +159,12 @@ const algorithms = {
 	// ],
 	backtracking: [
 		// { name: 'Overview', description: <Backtracking /> },
-		{ name: 'nQueens', path: 'nqueens', type: 'unity', description: <Queens /> },
+		{
+			name: 'nQueens',
+			path: 'nqueens',
+			type: 'unity',
+			description: <Queens />,
+		},
 	],
 	// linkedlist: [
 	// 	{ name: 'Singly', path: 'singly' },

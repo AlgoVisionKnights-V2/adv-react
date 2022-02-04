@@ -1,6 +1,6 @@
 import './App.css';
-import React, { Fragment } from 'react';
-import { Route, Routes, HashRouter } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes, HashRouter, Outlet } from 'react-router-dom';
 
 // Components
 import Dashboard from './components/dashboard/Dashboard';
@@ -14,7 +14,7 @@ import categories from './components/algorithmList/Categories';
 import algorithms from './components/algorithmList/Algorithms';
 
 function App() {
-	console.log(algorithms);
+	console.log('App.js');
 
 	// Drawer setters
 	const [open, setOpen] = React.useState(false);
@@ -70,6 +70,7 @@ function App() {
 					<Routes>
 						<Route element={'Page404'} />
 
+						{/* Home page. Where you will see the Category Algorithm cards */}
 						<Route
 							exact={true}
 							path='/'
@@ -85,7 +86,7 @@ function App() {
 						{categories.map((category) => (
 							<Route
 								exact={true}
-								path={'/' + category.path}
+								path={category.path}
 								element={
 									<Category
 										inCategory={true}
@@ -95,20 +96,37 @@ function App() {
 							/>
 						))}
 
+						{/* Temporary Fix :( */}
+						{/* TODO: V1 team needs to overhaul and refactor navigation system after V2 team is done.  */}
 						{Object.keys(algorithms).map((key) =>
-							algorithms[key].map((algorithm) => (
-								<Route
-									exact={true}
-									path={'/' + algorithm.path}
-									element={
-										<AlgorithmPage
+							algorithms[key].map((algorithm) => {
+								return (
+									<>
+										<Route
+											exact={true}
 											path={algorithm.path}
-											type={algorithm.type}
-											algoPage={algoPage}
+											element={
+												<AlgorithmPage
+													path={algorithm.path}
+													type={algorithm.type}
+													algoPage={algoPage}
+												/>
+											}
 										/>
-									}
-								/>
-							))
+										<Route
+											exact={true}
+											path={key + '/' + algorithm.path}
+											element={
+												<AlgorithmPage
+													path={algorithm.path}
+													type={algorithm.type}
+													algoPage={algoPage}
+												/>
+											}
+										/>
+									</>
+								);
+							})
 						)}
 					</Routes>
 				</div>

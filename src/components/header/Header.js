@@ -23,8 +23,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-// Device detection modules
-import { isMobile, isElectron, isTablet } from 'react-device-detect';
+// Device detection modules. Use for Desktop downloadable
+// import { isMobile, isElectron, isTablet } from 'react-device-detect';
 
 import { fade, makeStyles } from '@material-ui/core/styles';
 
