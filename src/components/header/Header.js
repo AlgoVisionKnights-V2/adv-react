@@ -255,17 +255,30 @@ function Header({
 						<Routes>
 							{Object.keys(algorithms).map((key) =>
 								algorithms[key].map((algorithm) => (
-									<Route
-										exact={true}
-										path={'/' + algorithm.path}
-										element={
-											<MenuToggle
-												setAlgoPage={setAlgoPage}
-												algoPage={algoPage}
-												viewWidth={viewWidth}
-											/>
-										}
-									/>
+									<>
+										<Route
+											exact={true}
+											path={'/' + algorithm.path}
+											element={
+												<MenuToggle
+													setAlgoPage={setAlgoPage}
+													algoPage={algoPage}
+													viewWidth={viewWidth}
+												/>
+											}
+										/>
+										<Route
+                                                                                        exact={true}
+                                                                                        path={'/' + key + '/' + algorithm.path}
+                                                                                        element={
+                                                                                                <MenuToggle
+                                                                                                        setAlgoPage={setAlgoPage}
+                                                                                                        algoPage={algoPage}
+                                                                                                        viewWidth={viewWidth}
+                                                                                                />
+                                                                                        }
+                                                                                />
+									</>
 								))
 							)}
 						</Routes>
