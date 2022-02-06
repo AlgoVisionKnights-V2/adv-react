@@ -160,15 +160,31 @@ function Header({
 
 									{Object.keys(algorithms).map((key) =>
 										algorithms[key].map((algorithm) => (
-											<Route
-												exact={true}
-												path={'/' + algorithm.path}
-												element={
-													<Typography id='header-title'>
-														{algorithm.name}
-													</Typography>
-												}
-											/>
+											<>
+												<Route
+													exact={true}
+													path={'/' + algorithm.path}
+													element={
+														<Typography id='header-title'>
+															{algorithm.name}
+														</Typography>
+													}
+												/>
+												<Route
+													exact={true}
+													path={
+														'/' +
+														key +
+														'/' +
+														algorithm.path
+													}
+													element={
+														<Typography id='header-title'>
+															{algorithm.name}
+														</Typography>
+													}
+												/>
+											</>
 										))
 									)}
 								</Routes>
