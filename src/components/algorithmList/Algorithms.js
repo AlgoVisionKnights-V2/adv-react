@@ -121,7 +121,7 @@ const algorithms = {
 		{
 			name: "Prim's",
 			path: 'prims',
-			type: 'unity',
+			type: 'js',
 			description: <Prims />,
 		},
 	],
