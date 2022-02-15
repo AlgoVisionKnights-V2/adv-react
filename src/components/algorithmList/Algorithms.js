@@ -11,6 +11,7 @@ import {
 	BinarySearch,
 	// DataStructures,
 	SinglyLinkedList,
+	HashTable,
 	// Graphs,
 	Dijkstras,
 	BellmanFord,
@@ -25,6 +26,9 @@ import {
 	Postorder,
 	// Backtracking,
 	Queens,
+	// Recursion
+	TowersofHanoi,
+	FibonacciSequence
 } from './utils/utils';
 
 const algorithms = {
@@ -91,6 +95,12 @@ const algorithms = {
 			type: 'unity',
 			description: <SinglyLinkedList />,
 		},
+		{
+			name: 'Hash Table',
+			path: 'hashtable',
+			type: 'unity',
+			description: <HashTable />,
+		},
 	],
 	graphs: [
 		// { name: 'Overview', description: <Graphs /> },
@@ -115,7 +125,7 @@ const algorithms = {
 		{
 			name: 'Depth First Search',
 			path: 'depthfirstsearch',
-			type: 'unity',
+			type: 'js',
 			description: <DepthFirstSearch />,
 		},
 		{
@@ -176,6 +186,20 @@ const algorithms = {
 	// 	{ name: 'Quick Sort', path: 'quicksort' },
 	// ],
 	// dynamicprogramming: [{ name: 'Floyd-Warshal', path: 'floydwarshall' }],
+	recursion: [
+		{
+			name: 'Fibonacci Sequence',
+			path: 'fibonaccisequence',
+			type: 'unity',
+			description: <FibonacciSequence />
+		},
+		{
+			name: 'Towers of Hanoi', 
+			path: 'towersofhanoi', 
+			type: 'unity',
+			description: <TowersofHanoi />
+		},
+	],
 };
 
 export default algorithms;
