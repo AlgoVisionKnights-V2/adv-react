@@ -1,6 +1,9 @@
 import randInRange from "../../utils/RandInRange";
+import DirectedEdge from "./DirectedEdge";
 import LabeledNode from "./LabeledNode";
 import UndirectedEdge from "./UndirectedEdge";
+import UnlabeledNode from "./UnlabeledNode";
+import WeightedDirectedEdge from "./WeightedDirectedEdge";
 import WeightedUndirectedEdge from "./WeightedUndirectedEdge";
 
 // Creates the default graph that can be used for any graph algorithm
@@ -10,15 +13,15 @@ function createDefaultGraph(ref, isWeighted = false, isDirected = false) {
   let numberOfNodes = 6;
   let numberOfEdges = 9;
   var edges = [
-    [0, 1],
-    [0, 2],
-    [1, 2],
-    [2, 3],
-    [1, 3],
-    [2, 4],
-    [4, 3],
+    [5, 3],
     [4, 5],
-    [3, 5],
+    [2, 4],
+    [3, 4],
+    [1, 3],
+    [1, 2],
+    [0, 1],
+    [3, 2],
+    [2, 0],
   ];
 
   let graph = {
@@ -45,12 +48,27 @@ function createDefaultGraph(ref, isWeighted = false, isDirected = false) {
     if (isWeighted) {
       if (isDirected) {
         // weighted directed graph
-        console.log("NO DIRECTED EDGES YET");
+
+        edge = new WeightedDirectedEdge(
+          ref,
+          "edge" + i,
+          "weightback" + i,
+          "weight" + i,
+          "wing1_" + i,
+          "wing2_" + i,
+          x1 + "%",
+          y1 + "%",
+          x2 + "%",
+          y2 + "%",
+          weight
+        );
 
         graph.adjacencyList[node1].push([node1, node2, weight, i]);
-        edges[i].push(weight, i);
+        edges[i].push(weight);
+        edges[i].push(i);
       } else {
         // weighted undirected graph
+
         edge = new WeightedUndirectedEdge(
           ref,
           "edge" + i,
@@ -71,12 +89,24 @@ function createDefaultGraph(ref, isWeighted = false, isDirected = false) {
     } else {
       if (isDirected) {
         // unweighted directed graph
-        console.log("NO DIRECTED EDGES YET");
+
+        edge = new DirectedEdge(
+          ref,
+          "edge" + i,
+          "wing1_" + i,
+          "wing2_" + i,
+          x1 + "%",
+          y1 + "%",
+          x2 + "%",
+          y2 + "%",
+          "visible"
+        );
 
         graph.adjacencyList[node1].push([node1, node2, i]);
         edges[i].push(i);
       } else {
         // unweighted undirected graph
+
         edge = new UndirectedEdge(
           ref,
           "edge" + i,
