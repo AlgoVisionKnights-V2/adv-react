@@ -11,6 +11,7 @@ import quicksortgif from './images/quicksortgif.gif';
 import mergergif from './images/mergegif.gif';
 import binarysearchgif from './images/binarysearchgif.gif';
 import singlylinkedlistgif from './images/singlylinkedlistgif.gif';
+import hashtable from './images/hashtable.png';
 import linearsearchgif from './images/linearsearchgif.gif';
 import bellmanford from './images/bellmanford.png';
 import dijkstrasgif from './images/dijkstragif.gif';
@@ -22,6 +23,8 @@ import binarysearchtreegif from './images/binarysearchtreegif.gif';
 import preordergif from './images/preordergif.gif';
 import inordergif from './images/inordergif.gif';
 import postordergif from './images/postordergif.gif';
+import towersofhanoi from './images/towersofhanoi.png';
+import fibonaccipng from './images/fibonacci.png';
 
 const constant = <MathJax.Node formula={`O(1)`} />;
 const log = <MathJax.Node formula={`O(log \\ n)`} />;
@@ -441,6 +444,41 @@ export function SinglyLinkedList() {
 				</div>
 			</MathJax.Provider>
 			<img src={singlylinkedlistgif} alt='graphs' rel='noreferrer' />
+		</div>
+	);
+}
+
+export function HashTable() {
+	return (
+		<div className='HashTable'>
+			<MathJax.Provider>
+				<div>
+					<p className='SubHeader'>Time Complexity:</p>
+					<table>
+						<tr>
+							<th>Operation</th>
+							<th>Best Case</th>
+							<th>Worst Case</th>
+						</tr>
+						<tr>
+							<td>Search</td>
+							<td>{constant}</td>
+							<td>{linear}</td>
+						</tr>
+						<tr>
+							<td>Insertion</td>
+							<td>{constant}</td>
+							<td>{linear}</td>
+						</tr>
+						<tr>
+							<td>Deletion</td>
+							<td>{constant}</td>
+							<td>{linear}</td>
+						</tr>
+					</table>
+				</div>
+			</MathJax.Provider>
+			<img src={hashtable} alt='hashtable' rel='noreferrer' />
 		</div>
 	);
 }
@@ -898,6 +936,47 @@ export function Queens() {
 				</p>
 			</div>
 			<img src={queens} alt='queens' rel='noreferrer' />
+		</div>
+	);
+}
+
+export function Recursion() {
+	return <div className='Recursion'>Recursion JSX</div>;
+}
+
+export function FibonacciSequence() {
+	return (
+		<div className='FibonacciSequence'>
+			<div>
+				<p>
+					<strong>Problem Statement:</strong> Find the <strong>nth</strong> number of the
+					Fibonacci sequence.
+				</p> <br></br>
+				<p>
+					Each number of the Fibonacci sequence, is defined as being the sum of the previous two numbers in the sequence.
+					This problem is often given as an introduction to programming recursively.
+				</p>
+			</div>
+			<img src={fibonaccipng} alt='fibonaccisequence' rel='noreferrer' />
+		</div>
+	);
+}
+
+export function TowersofHanoi() {
+	return (
+		<div className='TowersOfHanoi'>
+			<div>
+				<p>
+					<strong>Problem Statement:</strong> Move all of the disks from the first
+					tower to the last tower, with the following conditions:
+					<ul>
+						<li>Can only move one disk at a time.</li>
+						<li>Each move can only move the top disk from one stack to the top of another.</li>
+						<li>Disks cannot be place on top of smaller disks.</li>
+					</ul>
+				</p>
+			</div>
+			<img src={towersofhanoi} alt='towersofhanoi' rel='noreferrer' />
 		</div>
 	);
 }
