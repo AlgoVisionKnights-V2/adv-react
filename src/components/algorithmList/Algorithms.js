@@ -109,7 +109,7 @@ const algorithms = {
 		{
 			name: 'Breadth First Search',
 			path: 'breadthfirstsearch',
-			type: 'unity',
+			type: 'js',
 			description: <BreadthFirstSearch />,
 		},
 		{

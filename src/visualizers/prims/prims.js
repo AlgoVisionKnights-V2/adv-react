@@ -1,6 +1,6 @@
 import React from "react";
 import * as d3 from "d3";
-import "./prim.css";
+import "./prims.css";
 import createDefaultGraph from "../../foundation/graph/CreateDefaultGraph";
 
 // returns a random number in the range [lo, hi)
