@@ -172,7 +172,7 @@ const algorithms = {
 		{
 			name: 'nQueens',
 			path: 'nqueens',
-			type: 'unity',
+			type: 'js',
 			description: <Queens />,
 		},
 	],
