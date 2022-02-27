@@ -78,7 +78,6 @@ class ColorEdgeStep {
 	}
 
 	forward(svg) {
-		console.log(svg.select(this.edgeID));
 		svg.select(this.edgeID).style("stroke", this.newColor);
 		svg.select(this.weightID).style("fill", this.newColor);
 	}
@@ -99,8 +98,8 @@ export default class Dijkstras extends React.Component {
             running: false,
             steps: [],
             stepId: 0,
-            stepTime: 1900,
-            waitTime: 6000,
+            stepTime: 500,
+            waitTime: 4000,
 		};
 
 		this.ref = React.createRef();
@@ -114,6 +113,21 @@ export default class Dijkstras extends React.Component {
 		this.run = this.run.bind(this);
 	}
 
+	minInsert(minQueue, v, dist) {
+		minQueue.push([v, dist]);
+
+		var min = minQueue[0][1];
+		var indx = 0;
+
+		for (var i = 1; i < minQueue.length; i++) {
+			if (minQueue[i][1] < min) {
+				min = minQueue[i][1];
+				indx = i;
+			}
+		}
+
+		[minQueue[0], minQueue[indx]] = [minQueue[indx], minQueue[0]];
+	}
 
     dijkstras(graph, first)
 	{
@@ -136,82 +150,81 @@ export default class Dijkstras extends React.Component {
 		console.log("LIST");
 		console.log(graph.adjacencyList);
 
-		for (var i = first; i < graph.numberOfNodes && visitedNum !== graph.numberOfNodes; i++) {
-			if (graph.visited[i] === true) {
-				if (i + 1 === graph.numberOfNodes)
-					i = 0;
+		var minQueue = [[first, 0]];
 
+		while (minQueue.length !== 0 && visitedNum !== graph.numberOfNodes) {
+			var head = minQueue.shift();
+			if (graph.visited[head[0]] === true) {
                 continue;
             }
 
-			messages.push("<h1>Node " + i + " is the current head node.</h1>");
-
-			if (i === first) {
-				steps.push(new ColorNodeStep(i, "green", "yellow"));
-			}
-			else {
-				steps.push(new ColorNodeStep(i, "gray", "yellow"));
+			if (head[0] !== first) {
+				messages.push("<h1>Node " + head[0] + " is the unvisited neighbor with the smallest distance.</h1>");
+				steps.push(new EmptyStep());
 			}
 
-			for (var j = 0; j < graph.adjacencyList[i].length; j++) {
-				var v = graph.adjacencyList[i][j][1];
-				var weight = graph.adjacencyList[i][j][2];
-				var edge = graph.adjacencyList[i][j][3];
+			messages.push("<h1>Node " + head[0] + " is the current head node.</h1>");
+			steps.push(new ColorNodeStep(head[0], (head[0] === first) ? "green" : "gray", "yellow"));
+
+			for (var i = 0; i < graph.adjacencyList[head[0]].length; i++) {
+				var v = graph.adjacencyList[head[0]][i][1];
+				var weight = graph.adjacencyList[head[0]][i][2];
+				var edge = graph.adjacencyList[head[0]][i][3];
 
 				if (graph.visited[v] === true) {
 					continue;
 				}
 
-				messages.push("<h1>Compare " + i + " to " + v + ".</h1>");
-				steps.push(new ColorNodeStep(v, "gray", "red"));
+				messages.push("<h1>Compare " + head[0] + " to " + v + ".</h1>");
+				steps.push(new ColorNodeStep(v, (graph.visited[head[0]]) ? "black" : "gray", "red"));
 
 				if (graph.distances[v] === -1) {
-					messages.push("<h1>Compare " + i + " to " + v + ".</h1>");
-					steps.push(new ColorEdgeStep(edge, "gray", "white"));
+					messages.push("<h1>Compare " + head[0] + " to " + v + ".</h1>");
+					steps.push(new ColorEdgeStep(edge, (graph.parentEdges.includes(edge)) ? "black" : "gray", "white"));
 
-					messages.push("<h1>" + graph.distances[i] + " + " + weight + " < ∞.</h1>");
+					messages.push("<h1>" + graph.distances[head[0]] + " + " + weight + " < ∞.</h1>");
 					steps.push(new EmptyStep());
 
-					messages.push("<h1>Distance through " + i + " is less than the current distance.</h1>");
+					messages.push("<h1>Distance through " + head[0] + " is less than the current distance.</h1>");
 					steps.push(new EmptyStep());
 
-					messages.push("<h1>" + v +"'s parent is now " + i + ".</h1>");
-					steps.push(new SetInfoStep(v, graph.parents[v], i, -1, -1));
+					messages.push("<h1>" + v +"'s parent is now " + head[0] + ".</h1>");
+					steps.push(new SetInfoStep(v, graph.parents[v], head[0], -1, -1));
 
-					graph.parents[v] = i;
+					graph.parents[v] = head[0];
 					graph.parentEdges[v] = edge;
 
-					messages.push("<h1>" + v +"'s distance is now " + parseInt(graph.distances[i] + weight) + ".</h1>");
-					steps.push(new SetInfoStep(v, -1, -1, graph.distances[v], graph.distances[i] + weight));
+					messages.push("<h1>" + v +"'s distance is now " + parseInt(graph.distances[head[0]] + weight) + ".</h1>");
+					steps.push(new SetInfoStep(v, -1, -1, graph.distances[v], graph.distances[head[0]] + weight));
 
-					graph.distances[v] = graph.distances[i] + weight;
+					graph.distances[v] = graph.distances[head[0]] + weight;
 					
 					messages.push("<h1>" + v +"'s distance is now " + graph.distances[v] + ".</h1>");
 					steps.push(new ColorEdgeStep(edge, "white", "black"));
 
 					messages.push("<h1>" + v +"'s distance is now " + graph.distances[v] + ".</h1>");
 				}
-				else if (graph.distances[i] + weight < graph.distances[v]) {
+				else if (graph.distances[head[0]] + weight < graph.distances[v]) {
 
-					messages.push("<h1>Compare " + i + " to " + v + ".</h1>");
-					steps.push(new ColorEdgeStep(edge, "gray", "white"));
+					messages.push("<h1>Compare " + head[0] + " to " + v + ".</h1>");
+					steps.push(new ColorEdgeStep(edge, (graph.parentEdges.includes(edge)) ? "black" : "gray", "white"));
 
-					messages.push("<h1>" + graph.distances[i] + " + " + weight + " < " + graph.distances[v] + ".</h1>");
+					messages.push("<h1>" + graph.distances[head[0]] + " + " + weight + " < " + graph.distances[v] + ".</h1>");
 					steps.push(new EmptyStep());
 
-					messages.push("<h1>Distance through " + i + " is less than the current distance.</h1>");
+					messages.push("<h1>Distance through " + head[0] + " is less than the current distance.</h1>");
 					steps.push(new ColorEdgeStep(graph.parentEdges[v], "black", "gray"));
 
-					messages.push("<h1>" + v +"'s parent is now " + i + ".</h1>");
-					steps.push(new SetInfoStep(v, graph.parents[v], i, -1, -1));
+					messages.push("<h1>" + v +"'s parent is now " + head[0] + ".</h1>");
+					steps.push(new SetInfoStep(v, graph.parents[v], head[0], -1, -1));
 
-					graph.parents[v] = i;
+					graph.parents[v] = head[0];
 					graph.parentEdges[v] = edge;
 
-					messages.push("<h1>" + v +"'s distance is now " + parseInt(graph.distances[i] + weight) + ".</h1>");
-					steps.push(new SetInfoStep(v, -1, -1, graph.distances[v], graph.distances[i] + weight));
+					messages.push("<h1>" + v +"'s distance is now " + parseInt(graph.distances[head[0]] + weight) + ".</h1>");
+					steps.push(new SetInfoStep(v, -1, -1, graph.distances[v], graph.distances[head[0]] + weight));
 
-					graph.distances[v] = graph.distances[i] + weight;
+					graph.distances[v] = graph.distances[head[0]] + weight;
 					
 					messages.push("<h1>" + v +"'s distance is now " + graph.distances[v] + ".</h1>");
 					steps.push(new ColorEdgeStep(edge, "white", "black"));
@@ -220,31 +233,28 @@ export default class Dijkstras extends React.Component {
 				}
 				else
 				{
-					messages.push("<h1>Compare " + i + " to " + v + ".</h1>");
-					steps.push(new ColorEdgeStep(edge, "gray", "white"));
+					messages.push("<h1>Compare " + head[0] + " to " + v + ".</h1>");
+					steps.push(new ColorEdgeStep(edge, (graph.parentEdges.includes(edge)) ? "black" : "gray", "white"));
 
-					messages.push("<h1>" + graph.distances[i] + " + " + weight + " > " + graph.distances[v] + ".</h1>");
+					messages.push("<h1>" + graph.distances[head[0]] + " + " + weight + " > " + graph.distances[v] + ".</h1>");
 					steps.push(new EmptyStep());
 
-					messages.push("<h1>Distance through " + i + " is not less than the current distance. No change.</h1>");
-					steps.push(new ColorEdgeStep(edge, "white", "gray"));
+					messages.push("<h1>Distance through " + head[0] + " is not less than the current distance. No change.</h1>");
+					steps.push(new ColorEdgeStep(edge, "white", (graph.parentEdges.includes(edge)) ? "black" : "gray"));
 
-					messages.push("<h1>Distance through " + i + " is not less than the current distance. No change.</h1>");
+					messages.push("<h1>Distance through " + head[0] + " is not less than the current distance. No change.</h1>");
 				}
 
 				steps.push(new ColorNodeStep(v, "red", "gray"));
+
+				this.minInsert(minQueue, v, graph.distances[v]);
 			}
 
-			graph.visited[i] = true;
+			graph.visited[head[0]] = true;
+			visitedNum++;
 
-			messages.push("<h1>Finished with Node " + i + ".</h1>");
-
-			if (i !== first) {
-				steps.push(new ColorNodeStep(i, "yellow", "black"));
-			}
-			else {
-				steps.push(new ColorNodeStep(i, "yellow", "green"));
-			}
+			messages.push("<h1>Finished with Node " + head[0] + ".</h1>");
+			steps.push(new ColorNodeStep(head[0], "yellow", (head[0] !== first) ? "black" : "green"));
 		}
 
         messages.push("<h1>Found shortest paths from Node " + first +  " to all nodes</h1>");
