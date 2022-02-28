@@ -14,30 +14,27 @@ class EmptyStep {
 }
 
 class VisibilityStep{
-  constructor( pieceID, visible,hidden,boolean){
-    this.pieceID = pieceID;
+  constructor( rowID,colID, visible,hidden){
+    this.rowID = rowID;
+    this.colID = colID;
     this.visible = visible;
     this.hidden = hidden;
   }
 
-  forward(piece){
+  forward(){
     
-    if(this.boolean==true)
-    piece.select(this.pieceID).attr("visibility",this.visible);
+    
+    d3.select("#code"+ this.rowID + this.colID).attr("visibility",this.visible);
 
-    else
-    piece.select(this.pieceID).attr("visibility",this.hidden);
 
     
   }
 
-  backward(piece){
+  backward(){
 
-    if(this.boolean==false)
-    piece.select(this.pieceID).attr("visibility",this.hidden);
+   
+    d3.select("#code"+ this.rowID + this.colID).attr("visibility",this.hidden);
 
-    else
-    piece.select(this.pieceID).attr("visibility",this.visible);
     
   }
 }
@@ -54,10 +51,6 @@ export default class Queens extends React.Component {
       row: 0,
       col: 0,
       board: [],
-      nextRow: 0,
-      nextColumn: 0,
-      placeQueen: [],
-			arr: [],
 			size: 10,
 			steps: [],
 			ids: [],
@@ -80,15 +73,13 @@ export default class Queens extends React.Component {
   
   initialize(){
 
-    let n = 6;
+    let n = randInRange(4, 7);
 
       const queen = {
         name: "Black Queen",    
         code: "\u265B",
     };
 
-    //var ind = this.state.n;
-    //var sizeN= 4;
 
     const size = 100, matrix = size*n;
 
@@ -177,78 +168,120 @@ var currentMessage = "";
     createMessage("The objective is to find the squares of the chess board where the queens do not hit.");
     flushBuffer();
 
-function solveNQUtil(board,col){
+function solveNQ(board,col){
 
   if(col >= n){
 
       addStep(new EmptyStep());
-    createMessage("Row Checked");
+    createMessage("nQueens completed");
     flushBuffer();
         return true;
     }
 
     for(var i = 0; i < n; i++){
 
-              addStep(
+                addStep(
                 new VisibilityStep(
                     i,
-                    "hidden",
-                    "visible"
+                    col,
+                    "visible",
+                    "hidden"
               ));
-              createMessage("Queen on square " + i);
+              createMessage("Queen: Row " + (i +1 ) + " Column "+ (col+1));
               flushBuffer();
+               
+
         
-        if(issafe(board,i,col,n))
+        if(queenHit(board,i,col,n))
         {
+          
+
             board[i][col] = 1;
 
 
 
-            if(solveNQUtil(board,col+1,n)==true){
+            if(solveNQ(board,col+1,n)==true){
+             
+              
                 return true;
             }
 
+                            
             board[i][col] = 0;
         }
+
+
+             
+            
+
+
+            flushBuffer();
+            addStep(
+                new VisibilityStep(
+                    i,
+                    col,
+                    "hidden",
+                    "visible"
+              ));
+              createMessage("Backtracking... ");
+              flushBuffer();
+
     }
+
+
+                  
+
     return false;
 }
 
-  function printSolution(board,n){
-    for(var i=0;i<n;++i){
-        for(var j = 0 ; j<n;++j){
-            
-            process.stdout.write(" " + board[i][j]+ " ");
-        }
-        console.log("");
-    }
-  }
+ 
 
 
-  function issafe(board, row, col,n){
+  function queenHit(board, row, col,n){
     for(var i= 0; i<col;i++){
+
+
         if(board[row][i]==1){
+
+
+              addStep(new EmptyStep());
+              createMessage("Queen (" + (row+1)+ " , "+ (i+1)+") is in range.");
+              flushBuffer();
+     
             return false;
         }
     }
 
     for(var i = row, j =col; i>=0 &&j>=0; i--,j--){
         if(board[i][j]==1){
+
+
+              addStep(new EmptyStep());
+              createMessage("Queen (" + (i+1)+ " , "+ (j+1)+") is in range.");
+              flushBuffer();
             return false;
         }
     }
 
     for(var i = row, j =col; j>=0 && i < n; i++,j--){
         if(board[i][j]==1){
+
+
+            addStep(new EmptyStep());
+            createMessage("Queen (" + (i+1)+ " , "+ (j+1)+") is in range.");
+            flushBuffer();
             return false;
         }
     }
-
-    return true;
+    
+              addStep(new EmptyStep());
+              createMessage("No queens are in range.");
+              flushBuffer();
+              return true;
 
 }
 
-function solveNQ(){
+function NQ(){
 
 
 
@@ -269,18 +302,18 @@ function solveNQ(){
 
     console.log(board);
 
-    if(solveNQUtil(board, 0)==false){
+    if(solveNQ(board, 0)==false){
         console.log("");
         return false;
     }
 
-    printSolution(board);
+ 
     return true;
 
 
 }
 
- solveNQ();
+ NQ();
 
 
 
@@ -310,21 +343,68 @@ turnOffRunning() {
 
   backward() {
 
+    console.log("BACKWARD CLICKED");
+    if (this.state.running) return;
+    if (this.state.stepId - 1 < 0) return;
+
+    var stepId = this.state.stepId;
+    document.getElementById("message").innerHTML = this.state.messages[stepId - 1];
+    for (const step of this.state.steps[stepId - 1]) step.backward();
+  
+    this.setState({ stepId: stepId - 1 });
+    d3.timeout(this.turnOffRunning, this.state.waitTime);
+
   }
 
   run() {
+
+    if (!this.state.running) return;
+    if (this.state.stepId === this.state.steps.length) {
+      this.setState({ running: false });
+      return;
+    }
+   
+
+    document.getElementById("message").innerHTML = this.state.messages[this.state.stepId];
+    for (const step of this.state.steps[this.state.stepId]) step.forward();
+
+    this.setState({ stepId: this.state.stepId + 1 });
+    d3.timeout(this.run, this.state.waitTime);
   
   }
 
   play() {
+
+    console.log("PLAY CLICKED");
+    if (this.state.running) return;
+    this.setState({ running: true });
+    this.run();
    
   }
 
   pause() {
 
+    console.log("PAUSE CLICKED");
+    this.setState({ running: false });
+
   }
 
   restart() {
+
+    console.log("RESTART CLICKED");
+    if (this.state.stepId - 1 < 0) return;
+
+    var stepId = this.state.stepId;
+ 
+    document.getElementById("message").innerHTML = this.state.messages[0];
+    while (stepId - 1 >= 0) {
+      for (const step of this.state.steps[--stepId]) step.backward();
+      
+      d3.timeout(this.turnOffRunning, this.state.waitTime);
+    }
+
+    this.setState({ running: false });
+    this.setState({ stepId: 0 });
  
   }
 
@@ -335,17 +415,13 @@ turnOffRunning() {
   componentDidUpdate(prevProps, prevState) {
         if (this.state.n !== prevState.n) {
       console.log("SIZE CHANGED");
-      //this.initialize();
       this.nqueens(this.state.board, this.state.col,this.state.row,this.state.n);
     }
-    //else if (this.state.n !== prevState.n) {
-     //this.nqueens(this.state.board, this.state.col,this.state.row,this.state.n);
-     //console.log("no hits");
-  //}
-    //else if (this.state.running !== prevState.running) {
-     // this.run();
-     // console.log("We ran");
-   //}
+
+    else if (this.state.running !== prevState.running) {
+      this.run();
+      console.log("We ran");
+   }
 
   }
   
