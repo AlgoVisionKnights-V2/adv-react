@@ -95,7 +95,7 @@ export default class DepthFirstSearch extends React.Component {
 
     let graph = createDefaultGraph(this.ref, isWeighted, isDirected);
     let stack = [];
-    stack.push(new Number(this.ref, "stack", "7%", "10%", "Stack: ", "grey", "visible"));
+    stack.push(new Number(this.ref, "stack", "7%", "10%", "Stack", "grey", "visible"));
     
     this.setState({graph: graph, stack: stack});
   }
@@ -114,7 +114,7 @@ export default class DepthFirstSearch extends React.Component {
     let numStack = [];
 
     function flushBuffer() {
-      if (stepBuffer.length == 0) return;
+      if (stepBuffer.length === 0) return;
       steps.push(stepBuffer);
       stepBuffer = [];
       messages.push(currentMessage);
@@ -130,7 +130,7 @@ export default class DepthFirstSearch extends React.Component {
     let nodeStack = [];
     let edgeStack = [];
     addStep(new EmptyStep());
-    createMessage("Since node " + head + " was randomly selected as the head for the graph, we begin the search there.");
+    createMessage("Node " + head + " was randomly selected as the start of our search.");
     flushBuffer();
 
     console.log("Currently visiting: " + head);
@@ -144,7 +144,7 @@ export default class DepthFirstSearch extends React.Component {
         "yellow"
       )
     );
-    createMessage("Currently at node " + head);
+    createMessage("Currently at node " + head + ".");
     flushBuffer();
 
     addStep(
@@ -154,7 +154,7 @@ export default class DepthFirstSearch extends React.Component {
     flushBuffer();
 
     for (let node = 0; node < graph.adjacencyList[head].length; node++) {
-      if (nodeVisited[graph.adjacencyList[head][node][1]] == false) {
+      if (nodeVisited[graph.adjacencyList[head][node][1]] === false) {
         nodeStack.push(graph.adjacencyList[head][node][1]);
         edgeStack.push(graph.adjacencyList[head][node][2]);
         let ys = 20 + (numsInStack*10);
@@ -175,14 +175,14 @@ export default class DepthFirstSearch extends React.Component {
       }
     }
     
-    while (nodeStack.length != 0) {
+    while (nodeStack.length !== 0) {
       let s = nodeStack.pop();
       let e = edgeStack.pop();
       let n = numStack.pop();
       addStep(
         new EmptyStep()
       );
-      createMessage("Checking the last node added to the stack");
+      createMessage("Checking the last node added to the stack.");
       flushBuffer();
 
       addStep(
@@ -193,11 +193,11 @@ export default class DepthFirstSearch extends React.Component {
           "hidden"
         )
       );
-      createMessage("Removing " + s + " from the stack");
+      createMessage("Removing " + s + " from the stack.");
       flushBuffer();
       numsInStack--;
 
-      if (nodeVisited[s] == false)
+      if (nodeVisited[s] === false)
       {
         addStep(
           new EdgeColorChangeStep(
@@ -207,7 +207,7 @@ export default class DepthFirstSearch extends React.Component {
             "yellow"
           )
         );
-        createMessage("Traveling to node " + s);
+        createMessage("Traveling to node " + s + ".");
         flushBuffer();
 
         nodeVisited[s] = true;
@@ -220,7 +220,7 @@ export default class DepthFirstSearch extends React.Component {
             "yellow"
           )
         );
-        createMessage("Marking node " + s + " as visited");
+        createMessage("Marking node " + s + " as visited.");
         flushBuffer();
       }
       else
@@ -233,7 +233,7 @@ export default class DepthFirstSearch extends React.Component {
             "yellow"
           )
         );
-        createMessage("Traveling to node " + s);
+        createMessage("Traveling to node " + s + ".");
         flushBuffer();
 
         addStep(
@@ -245,7 +245,7 @@ export default class DepthFirstSearch extends React.Component {
             "white"
           )
         );
-        createMessage("Node " + s + " has already been visited");
+        createMessage("Node " + s + " has already been visited.");
         flushBuffer();
 
         addStep(
@@ -257,7 +257,7 @@ export default class DepthFirstSearch extends React.Component {
             "yellow"
           )
         );
-        createMessage("Node " + s + " has already been visited");
+        createMessage("Node " + s + " has already been visited.");
         flushBuffer();
 
         addStep(
@@ -268,7 +268,7 @@ export default class DepthFirstSearch extends React.Component {
             "black"
           )
         );
-        createMessage("Traveling back to parent node");
+        createMessage("Traveling back to parent node.");
         flushBuffer();
       }
 
@@ -279,7 +279,7 @@ export default class DepthFirstSearch extends React.Component {
       flushBuffer();
 
       for (let node = 0; node < graph.adjacencyList[s].length; node++) {
-        if (nodeVisited[graph.adjacencyList[s][node][1]] == false) {
+        if (nodeVisited[graph.adjacencyList[s][node][1]] === false) {
           nodeStack.push(graph.adjacencyList[s][node][1]);
           edgeStack.push(graph.adjacencyList[s][node][2]);
           let ys = 20 + (numsInStack*10);
@@ -300,6 +300,10 @@ export default class DepthFirstSearch extends React.Component {
         }
       }
     }
+
+    addStep(new EmptyStep());
+    createMessage("The stack is empty.");
+    flushBuffer();
 
     addStep(new EmptyStep());
     createMessage("Depth First Search has been completed.");
@@ -331,12 +335,12 @@ export default class DepthFirstSearch extends React.Component {
     if (this.state.running) return;
     if (this.state.stepId - 1 < 0) return;
 
-    var stepId = this.state.stepId;
+    var stepId = this.state.stepId - 1;
 
-    document.getElementById("message").innerHTML = this.state.messages[this.state.stepId - 1];
-    for (const step of this.state.steps[stepId - 1]) step.backward();
+    document.getElementById("message").innerHTML = (stepId - 1 < 0) ? "<h1>Welcome to Depth First Search (DFS)!</h1>" : this.state.messages[stepId - 1];
+    for (const step of this.state.steps[stepId]) step.backward();
     // this.state.steps[--stepId].backward();
-    this.setState({ stepId: stepId - 1 });
+    this.setState({stepId: stepId});
     d3.timeout(this.turnOffRunning, this.state.waitTime);
   }
 
@@ -369,7 +373,7 @@ export default class DepthFirstSearch extends React.Component {
     if (this.state.stepId - 1 < 0) return;
 
     var stepId = this.state.stepId;
-    document.getElementById("message").innerHTML = this.state.messages[0];
+    document.getElementById("message").innerHTML = "<h1>Welcome to Depth First Search (DFS)!</h1>";
     while (stepId - 1 >= 0) {
       for (const step of this.state.steps[--stepId]) step.backward();
       // this.state.steps[--stepId].backward();
@@ -404,7 +408,7 @@ export default class DepthFirstSearch extends React.Component {
 					<button onClick={this.backward}>&lt;</button>
 					<button onClick={this.forward}>&gt;</button>
 				</div>
-				<div class="center-screen" id="message-pane"><span id="message"></span></div>
+				<div class="center-screen" id="message-pane"><span id="message"><h1>Welcome to Depth First Search (DFS)!</h1></span></div>
 				<div ref={this.ref} class="center-screen"></div>
 			</div>
 		)
