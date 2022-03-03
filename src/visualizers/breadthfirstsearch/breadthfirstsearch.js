@@ -246,7 +246,7 @@ export default class BreadthFirstSearch extends React.Component {
           nodeQueue.push(currNode);
 
         
-          var factor = 20 + (queueLength*10);
+          let factor = 20 + (queueLength*10);
           
           queue.push(new Number(this.ref, "queue" + currNode, "7%", factor + "%", currNode, "grey", "hidden"));
           
@@ -298,7 +298,7 @@ export default class BreadthFirstSearch extends React.Component {
           nodeQueue.push(adjNode);
           nodeStack.push(adjNode);
 
-          var factor = 20 + (queueLength*10);
+          let factor = 20 + (queueLength*10);
           
           queue.push(new Number(this.ref, "queue" + adjNode, "7%", factor + "%", adjNode, "grey", "hidden"));
           
@@ -358,7 +358,7 @@ export default class BreadthFirstSearch extends React.Component {
 
     }
 
-      var head = nodeQueue.shift();
+      nodeQueue.shift();
 
       createMessage("Node " + currNode + " exits the queue.");
       
