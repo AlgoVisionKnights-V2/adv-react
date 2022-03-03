@@ -107,7 +107,7 @@ const algorithms = {
 		{
 			name: "Dijkstra's",
 			path: 'dijkstras',
-			type: 'unity',
+			type: 'js',
 			description: <Dijkstras />,
 		},
 		{
