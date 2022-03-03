@@ -99,7 +99,7 @@ export default class Dijkstras extends React.Component {
             steps: [],
             stepId: 0,
             stepTime: 500,
-            waitTime: 4000,
+            waitTime: 3000,
 		};
 
 		this.ref = React.createRef();
@@ -139,12 +139,12 @@ export default class Dijkstras extends React.Component {
 
 		var visitedNum = 0;
 
-		messages.push("<h1>Node " + first + " is main node.</h1>");
+		messages.push("<h1>Node " + first + " is the main node.</h1>");
 		steps.push(new ColorNodeStep(first, "gray", "green"));
 
 		graph.distances[first] = 0;
 
-		messages.push("<h1>Node " + first + " distance is 0.</h1>");
+		messages.push("<h1>Node " + first + "'s distance is 0.</h1>");
 		steps.push(new SetInfoStep(first, -1, -1, -1, 0));
 
 		console.log("LIST");
@@ -185,7 +185,7 @@ export default class Dijkstras extends React.Component {
 					messages.push("<h1>" + graph.distances[head[0]] + " + " + weight + " < ∞.</h1>");
 					steps.push(new EmptyStep());
 
-					messages.push("<h1>Distance through " + head[0] + " is less than the current distance.</h1>");
+					messages.push("<h1>Distance through " + head[0] + " is less than " + v + "'s current distance.</h1>");
 					steps.push(new EmptyStep());
 
 					messages.push("<h1>" + v +"'s parent is now " + head[0] + ".</h1>");
@@ -212,7 +212,7 @@ export default class Dijkstras extends React.Component {
 					messages.push("<h1>" + graph.distances[head[0]] + " + " + weight + " < " + graph.distances[v] + ".</h1>");
 					steps.push(new EmptyStep());
 
-					messages.push("<h1>Distance through " + head[0] + " is less than the current distance.</h1>");
+					messages.push("<h1>Distance through " + head[0] + " is less than " + v + "'s current distance.</h1>");
 					steps.push(new ColorEdgeStep(graph.parentEdges[v], "black", "gray"));
 
 					messages.push("<h1>" + v +"'s parent is now " + head[0] + ".</h1>");
@@ -239,10 +239,10 @@ export default class Dijkstras extends React.Component {
 					messages.push("<h1>" + graph.distances[head[0]] + " + " + weight + " > " + graph.distances[v] + ".</h1>");
 					steps.push(new EmptyStep());
 
-					messages.push("<h1>Distance through " + head[0] + " is not less than the current distance. No change.</h1>");
+					messages.push("<h1>Distance through " + head[0] + " is not less than " + v + "'s current distance. No change.</h1>");
 					steps.push(new ColorEdgeStep(edge, "white", (graph.parentEdges.includes(edge)) ? "black" : "gray"));
 
-					messages.push("<h1>Distance through " + head[0] + " is not less than the current distance. No change.</h1>");
+					messages.push("<h1>Distance through " + head[0] + " is not less than " + v + "'s current distance. No change.</h1>");
 				}
 
 				steps.push(new ColorNodeStep(v, "red", "gray"));
@@ -257,7 +257,7 @@ export default class Dijkstras extends React.Component {
 			steps.push(new ColorNodeStep(head[0], "yellow", (head[0] !== first) ? "black" : "green"));
 		}
 
-        messages.push("<h1>Found shortest paths from Node " + first +  " to all nodes</h1>");
+        messages.push("<h1>Found shortest paths from Node " + first +  " to all nodes.</h1>");
 		steps.push(new EmptyStep());
 
 		messages.push("<h1>Finished Dijkstra's!</h1>");
@@ -373,7 +373,7 @@ export default class Dijkstras extends React.Component {
 		console.log(this.state.steps[stepId]);
 		this.state.steps[stepId].backward(d3.select(this.ref.current).select("svg"));
 		
-		document.getElementById("message").innerHTML = this.state.messages[stepId];
+		document.getElementById("message").innerHTML = (stepId - 1 < 0) ? "<h1>Welcome to Dijkstra's!</h1>" : this.state.messages[stepId - 1];
 		this.setState({stepId: stepId});
 		d3.timeout(this.turnOffRunning, this.state.waitTime);
 	}
