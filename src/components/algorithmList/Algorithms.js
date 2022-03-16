@@ -190,7 +190,7 @@ const algorithms = {
 		{
 			name: 'Fibonacci Sequence',
 			path: 'fibonaccisequence',
-			type: 'unity',
+			type: 'js',
 			description: <FibonacciSequence />
 		},
 		{
