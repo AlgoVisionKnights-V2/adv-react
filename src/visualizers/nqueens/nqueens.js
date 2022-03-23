@@ -2,9 +2,7 @@ import React from "react";
 import * as d3 from "d3";
 import "./nqueens.css";
 
-function randInRange(lo, hi) {
-  return Math.floor(Math.random() * (hi - lo)) + lo;
-}
+
 
 class EmptyStep {
   forward() {}
@@ -82,7 +80,7 @@ export default class Queens extends React.Component {
 
   initialize() {
 
-    let n = randInRange(4, 7);
+    let n = 6;
 
     const queen = {
       name: "Black Queen",    
