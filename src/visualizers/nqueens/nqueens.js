@@ -2,9 +2,7 @@ import React from "react";
 import * as d3 from "d3";
 import "./nqueens.css";
 
-function randInRange(lo, hi) {
-  return Math.floor(Math.random() * (hi - lo)) + lo;
-}
+
 
 class EmptyStep {
   forward() {}
@@ -19,11 +17,30 @@ class VisibilityStep {
   }
 
   forward() {
-    d3.select("#code"+ this.rowID + this.colID).attr("visibility", this.visibility);    
+    d3.select("#code"+ this.rowID + this.colID).attr("visibility", this.visibility);
   }
 
   backward() {
     d3.select("#code"+ this.rowID + this.colID).attr("visibility", (this.visibility === "visible") ? "hidden" : "visible");
+  }
+}
+
+class TileStep{
+    constructor( rowID,colID,color){
+    this.rowID = rowID;
+    this.colID = colID;
+    this.color = color;
+  
+  }
+
+    forward(){ 
+    
+    d3.select("#code"+ this.rowID + this.colID).attr("fill",this.color);
+  
+  }
+
+  backward(){
+    d3.select("#code"+ this.rowID + this.colID).attr("fill", (this.color === "white") ? "black" : "white");
   }
 }
 
@@ -61,7 +78,7 @@ export default class Queens extends React.Component {
 
   initialize() {
 
-    let n = randInRange(4, 7);
+    let n = 6;
 
     const queen = {
       name: "Black Queen",    
@@ -87,7 +104,7 @@ export default class Queens extends React.Component {
           .attr("height",size + "px");
 
         if ((i+j)%2===0) {
-          tile.attr("fill", "#d55e00");
+          tile.attr("fill", "#f26885");
         }
         else {
           tile.attr("fill", "#f0e442");
@@ -154,37 +171,49 @@ export default class Queens extends React.Component {
     }
 
     function queenSafe(board, row, col, n){
+      var flag = true;
       for(var i= 0; i<col;i++) {
         if(board[row][i]==1) {
-          steps.push(new EmptyStep());
+          steps.push(new TileStep(row,i,"white"));
+          messages.push("<h1>Queen at (" + (row+1)+ " , "+ (i+1)+") is in range.</h1>");
+          steps.push(new TileStep(row,i,"black"));
           messages.push("<h1>Queen at (" + (row+1)+ " , "+ (i+1)+") is in range.</h1>");
 
-          return false;
+          flag = false;
+          //return false;
         }
       }
 
       for(var i = row, j = col; i>=0 &&j>=0; i--,j--) {
         if(board[i][j]==1) {
-          steps.push(new EmptyStep());
+          steps.push(new TileStep(i,j,"white"));
+          messages.push("<h1>Queen at (" + (i+1)+ " , "+ (j+1)+") is in range.</h1>");
+          steps.push(new TileStep(i,j,"black"));
           messages.push("<h1>Queen at (" + (i+1)+ " , "+ (j+1)+") is in range.</h1>");
           
-          return false;
+          flag = false;
+          //return false;
         }
       }
 
       for(var i = row, j = col; j>=0 && i < n; i++,j--){
         if(board[i][j]==1){
-          steps.push(new EmptyStep());
+          steps.push(new TileStep(i,j,"white"));
+          messages.push("<h1>Queen at (" + (i+1)+ " , "+ (j+1)+") is in range.</h1>");
+          steps.push(new TileStep(i,j,"black"));
           messages.push("<h1>Queen at (" + (i+1)+ " , "+ (j+1)+") is in range.</h1>");
           
-          return false;
+          flag = false;
+          //return false;
         }
       }
+
+      if(flag==false) return flag;
 
       steps.push(new EmptyStep());
       messages.push("<h1>No queens are in range.</h1>");
 
-      return true;
+      return flag;
     }
 
     function NQ() {
