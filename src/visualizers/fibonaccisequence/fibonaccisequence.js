@@ -3,14 +3,7 @@ import * as d3 from "d3";
 import "./fibonaccisequence.css";
 import LabeledNode from "../../foundation/graph/LabeledNode";
 import UndirectedEdge from "../../foundation/graph/UndirectedEdge";
-import WeightedUndirectedEdge from "../../foundation/graph/WeightedUndirectedEdge";
-import Number from "../../foundation/Number";
 import { create } from "d3";
-
-// returns a random number in the range [lo, hi)
-function randInRange(lo, hi) {
-  return Math.floor(Math.random() * (hi - lo)) + lo;
-}
 
 class EmptyStep {
   forward() {}
@@ -20,7 +13,7 @@ class EmptyStep {
 class EdgeColorChangeStep {
   constructor(ref, edgeId, oldColor, newColor) {
     this.ref = ref;
-    this.edgeId = "#" + edgeId;
+    this.edgeId = "#edge" + edgeId;
     this.oldColor = oldColor;
     this.newColor = newColor;
   }
@@ -35,8 +28,8 @@ class EdgeColorChangeStep {
 class NodeColorChangeStep {
   constructor(ref, circleId, textId, oldColor, newColor) {
     this.ref = ref;
-    this.circleId = "#" + circleId;
-    this.textId = "#" + textId;
+    this.circleId = "#node" + circleId;
+    this.textId = "#label" + textId;
     this.oldColor = oldColor;
     this.newColor = newColor;
   }
@@ -103,6 +96,78 @@ function createFibGraph(ref) {
     edgeInfo: [],
     nodeInfo: [],
   };
+  graph.edgeInfo.push(new UndirectedEdge(
+    ref,
+    "edge" + 0,
+    47.5 + "%",
+    13.5 + "%",
+    27.5 + "%",
+    17.5 + "%",
+    "hidden"
+  ));
+  graph.edgeInfo.push(new UndirectedEdge(
+    ref,
+    "edge" + 1,
+    22.5 + "%",
+    22.5 + "%",
+    14.5 + "%",
+    27.5 + "%",
+    "hidden"
+  ));
+  graph.edgeInfo.push(new UndirectedEdge(
+    ref,
+    "edge" + 2,
+    9.5 + "%",
+    32.5 + "%",
+    8.5 + "%",
+    37.5 + "%",
+    "hidden"
+  ));
+  graph.edgeInfo.push(new UndirectedEdge(
+    ref,
+    "edge" + 3,
+    14.5 + "%",
+    32.5 + "%",
+    15.5 + "%",
+    37.5 + "%",
+    "hidden"
+  ));
+  graph.edgeInfo.push(new UndirectedEdge(
+    ref,
+    "edge" + 4,
+    27.5 + "%",
+    22.5 + "%",
+    34.5 + "%",
+    27.5 + "%",
+    "hidden"
+  ));
+  graph.edgeInfo.push(new UndirectedEdge(
+    ref,
+    "edge" + 5,
+    52.5 + "%",
+    12.5 + "%",
+    72.5 + "%",
+    17.5 + "%",
+    "hidden"
+  ));
+  graph.edgeInfo.push(new UndirectedEdge(
+    ref,
+    "edge" + 6,
+    72.5 + "%",
+    22.5 + "%",
+    64.5 + "%",
+    27.5 + "%",
+    "hidden"
+  ));
+  graph.edgeInfo.push(new UndirectedEdge(
+    ref,
+    "edge" + 7,
+    77.5 + "%",
+    22.5 + "%",
+    84.5 + "%",
+    27.5 + "%",
+    "hidden"
+  ));
 
   graph.nodeInfo.push(new LabeledNode(
     ref,
@@ -285,79 +350,6 @@ function createFibGraph(ref) {
     "gray"
   ));
 
-  graph.edgeInfo.push(new UndirectedEdge(
-    ref,
-    "edge" + 0,
-    47.5 + "%",
-    13.5 + "%",
-    27.5 + "%",
-    17.5 + "%",
-    "hidden"
-  ));
-  graph.edgeInfo.push(new UndirectedEdge(
-    ref,
-    "edge" + 1,
-    22.5 + "%",
-    22.5 + "%",
-    14.5 + "%",
-    27.5 + "%",
-    "hidden"
-  ));
-  graph.edgeInfo.push(new UndirectedEdge(
-    ref,
-    "edge" + 2,
-    9.5 + "%",
-    32.5 + "%",
-    8.5 + "%",
-    37.5 + "%",
-    "hidden"
-  ));
-  graph.edgeInfo.push(new UndirectedEdge(
-    ref,
-    "edge" + 3,
-    14.5 + "%",
-    32.5 + "%",
-    15.5 + "%",
-    37.5 + "%",
-    "hidden"
-  ));
-  graph.edgeInfo.push(new UndirectedEdge(
-    ref,
-    "edge" + 4,
-    27.5 + "%",
-    22.5 + "%",
-    34.5 + "%",
-    27.5 + "%",
-    "hidden"
-  ));
-  graph.edgeInfo.push(new UndirectedEdge(
-    ref,
-    "edge" + 5,
-    52.5 + "%",
-    12.5 + "%",
-    72.5 + "%",
-    17.5 + "%",
-    "hidden"
-  ));
-  graph.edgeInfo.push(new UndirectedEdge(
-    ref,
-    "edge" + 6,
-    72.5 + "%",
-    22.5 + "%",
-    64.5 + "%",
-    27.5 + "%",
-    "hidden"
-  ));
-  graph.edgeInfo.push(new UndirectedEdge(
-    ref,
-    "edge" + 7,
-    77.5 + "%",
-    22.5 + "%",
-    84.5 + "%",
-    27.5 + "%",
-    "hidden"
-  ));
-
   return graph;
 }
 
@@ -421,6 +413,7 @@ export default class FibonacciSequence extends React.Component {
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 0, 0, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 0, 0, "gray", "white"));
     createMessage("We begin by calling fib(4)");
     flushBuffer();
 
@@ -428,11 +421,15 @@ export default class FibonacciSequence extends React.Component {
     createMessage("Since we do not know what fib(4) is, we use the formula fib(n) = fib(n-1) + fib(n-2)")
     flushBuffer();
 
+    addStep(new NodeColorChangeStep(this.ref.current, 0, 0, "white", "gray"));
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 0, "hidden", "visible"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 0, "gray", "white"));
     createMessage("Calculating fib(n-1)");
     flushBuffer();
 
+    addStep(new EdgeColorChangeStep(this.ref.current, 0, "white", "gray"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 1, 1, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 1, 1, "gray", "white"));
     createMessage("fib(n-1) is equal to fib(3)");
     flushBuffer();
 
@@ -440,11 +437,15 @@ export default class FibonacciSequence extends React.Component {
     createMessage("Since we do not know what fib(3) is, we use the formula fib(n) = fib(n-1) + fib(n-2)");
     flushBuffer();
 
+    addStep(new NodeColorChangeStep(this.ref.current, 1, 1, "white", "gray"));
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 1, "hidden", "visible"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 1, "gray", "white"));
     createMessage("Calculating fib(n-1)");
     flushBuffer();
 
+    addStep(new EdgeColorChangeStep(this.ref.current, 1, "white", "gray"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 2, 2, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 2, 2, "gray", "white"));
     createMessage("fib(n-1) is equal to fib(2)");
     flushBuffer();
 
@@ -452,68 +453,95 @@ export default class FibonacciSequence extends React.Component {
     createMessage("Since we do not know what fib(2) is, we use the formula fib(n) = fib(n-1) + fib(n-2)");
     flushBuffer();
 
+    addStep(new NodeColorChangeStep(this.ref.current, 2, 2, "white", "gray"));
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 2, "hidden", "visible"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 2, "gray", "white"));
     createMessage("Calculating fib(n-1)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 3, 3, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 3, 3, "gray", "white"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 2, "white", "gray"));
     createMessage("fib(n-1) is equal to fib(1)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 3, 3, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 12, 12, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 12, 12, "gray", "white"));
     createMessage("Since we do know that fib(1) is 1, we return it value");
     flushBuffer();
 
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 3, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 12, 12, "white", "gray"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 3, "gray", "white"));
     createMessage("Calculating fib(n-2)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 4, 4, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 4, 4, "gray", "white"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 3, "white", "gray"));
     createMessage("fib(n-2) is equal to fib(0)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 4, 4, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 13, 13, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 13, 13, "gray", "white"));
     createMessage("Since we do know that fib(0) is 0, we return it value");
     flushBuffer();
 
     addStep(new EmptyStep());
+    addStep(new NodeColorChangeStep(this.ref.current, 12, 12, "gray", "white"));
     createMessage("Using the values of fib(1) and fib(0) we can calculate fib(2)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 2, 2, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 11, 11, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 11, 11, "gray", "white"));
+    addStep(new NodeColorChangeStep(this.ref.current, 12, 12, "white", "gray"));
+    addStep(new NodeColorChangeStep(this.ref.current, 13, 13, "white", "gray"));
     createMessage("1 + 0 = 1");
     flushBuffer();
 
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 4, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 11, 11, "white", "gray"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 4, "gray", "white"));
     createMessage("Calculating fib(n-2)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 5, 5, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 5, 5, "gray", "white"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 4, "white", "gray"));
     createMessage("fib(n-2) is equal to fib(1)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 5, 5, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 14, 14, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 14, 14, "gray", "white"));
     createMessage("Since we do know that fib(1) is 1, we return it value");
     flushBuffer();
 
     addStep(new EmptyStep());
+    addStep(new NodeColorChangeStep(this.ref.current, 11, 11, "gray", "white"));
     createMessage("Using the values of fib(2) and fib(1) we can calculate fib(3)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 1, 1, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 10, 10, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 10, 10, "gray", "white"));
+    addStep(new NodeColorChangeStep(this.ref.current, 11, 11, "white", "gray"));
+    addStep(new NodeColorChangeStep(this.ref.current, 14, 14, "white", "gray"));
     createMessage("1 + 1 = 2");
     flushBuffer();
 
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 5, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 10, 10, "white", "gray"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 5, "gray", "white"));
     createMessage("Calculating fib(n-2)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 6, 6, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 6, 6, "gray", "white"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 5, "white", "gray"));
     createMessage("fib(n-2) is equal to fib(2)");
     flushBuffer();
 
@@ -522,50 +550,69 @@ export default class FibonacciSequence extends React.Component {
     flushBuffer();
 
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 6, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 6, 6, "white", "gray"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 6, "gray", "white"));
     createMessage("Calculating fib(n-1)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 7, 7, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 7, 7, "gray", "white"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 6, "white", "gray"));
     createMessage("fib(n-1) is equal to fib(1)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 7, 7, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 16, 16, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 16, 16, "gray", "white"));
     createMessage("Since we do know that fib(1) is 1, we return it value");
     flushBuffer();
 
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 7, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 16, 16, "white", "gray"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 7, "gray", "white"));
     createMessage("Calculating fib(n-2)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 8, 8, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 8, 8, "gray", "white"));
+    addStep(new EdgeColorChangeStep(this.ref.current, 7, "white", "gray"));
     createMessage("fib(n-2) is equal to fib(0)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 8, 8, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 17, 17, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 17, 17, "gray", "white"));
     createMessage("Since we do know that fib(0) is 0, we return it value");
     flushBuffer();
 
     addStep(new EmptyStep());
+    addStep(new NodeColorChangeStep(this.ref.current, 16, 16, "gray", "white"));
     createMessage("Using the values of fib(1) and fib(0) we can calculate fib(2)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 6, 6, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 15, 15, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 15, 15, "gray", "white"));
+    addStep(new NodeColorChangeStep(this.ref.current, 16, 16, "white", "gray"));
+    addStep(new NodeColorChangeStep(this.ref.current, 17, 17, "white", "gray"));
     createMessage("1 + 0 = 1");
     flushBuffer();
 
     addStep(new EmptyStep());
+    addStep(new NodeColorChangeStep(this.ref.current, 10, 10, "gray", "white"));
     createMessage("Using the values of fib(3) and fib(2) we can calculate fib(4)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 0, 0, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 9, 9, "hidden", "visible"));
+    addStep(new NodeColorChangeStep(this.ref.current, 9, 9, "gray", "white"));
+    addStep(new NodeColorChangeStep(this.ref.current, 15, 15, "white", "gray"));
+    addStep(new NodeColorChangeStep(this.ref.current, 10, 10, "white", "gray"));
     createMessage("2 + 1 = 3");
     flushBuffer();
 
     addStep(new EmptyStep());
+    addStep(new NodeColorChangeStep(this.ref.current, 9, 9, "white", "gray"));
     createMessage("The Fibonacci function has completed, returning fib(4) = 3");
     flushBuffer();
 
