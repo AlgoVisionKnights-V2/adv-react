@@ -150,14 +150,14 @@ export default class Queens extends React.Component {
         if(queenSafe(board,i,col,n)) {
           board[i][col] = 1;
 
-          if(solveNQ(board, col+1, n)==true) {
+          if(solveNQ(board, col+1, n)===true) {
             return true;
           }
 
           board[i][col] = 0;
         }
 
-        if (i + 1 != n) {
+        if (i + 1 !== n) {
           steps.push(new VisibilityStep(i, col, "hidden"));
           messages.push("<h1>Moving to next available space.</h1>");
         }
@@ -172,8 +172,9 @@ export default class Queens extends React.Component {
 
     function queenSafe(board, row, col, n){
       var flag = true;
-      for(var i= 0; i<col;i++) {
-        if(board[row][i]==1) {
+      var i , j;
+      for( i= 0; i<col;i++) {
+        if(board[row][i]===1) {
           steps.push(new TileStep(row,i,"white"));
           messages.push("<h1>Queen at (" + (row+1)+ " , "+ (i+1)+") is in range.</h1>");
           steps.push(new TileStep(row,i,"black"));
@@ -184,8 +185,8 @@ export default class Queens extends React.Component {
         }
       }
 
-      for(var i = row, j = col; i>=0 &&j>=0; i--,j--) {
-        if(board[i][j]==1) {
+      for( i = row, j = col; i>=0 &&j>=0; i--,j--) {
+        if(board[i][j]===1) {
           steps.push(new TileStep(i,j,"white"));
           messages.push("<h1>Queen at (" + (i+1)+ " , "+ (j+1)+") is in range.</h1>");
           steps.push(new TileStep(i,j,"black"));
@@ -196,8 +197,8 @@ export default class Queens extends React.Component {
         }
       }
 
-      for(var i = row, j = col; j>=0 && i < n; i++,j--){
-        if(board[i][j]==1){
+      for( i = row, j = col; j>=0 && i < n; i++,j--){
+        if(board[i][j]===1){
           steps.push(new TileStep(i,j,"white"));
           messages.push("<h1>Queen at (" + (i+1)+ " , "+ (j+1)+") is in range.</h1>");
           steps.push(new TileStep(i,j,"black"));
@@ -208,7 +209,7 @@ export default class Queens extends React.Component {
         }
       }
 
-      if(flag==false) return flag;
+      if(flag===false) return flag;
 
       steps.push(new EmptyStep());
       messages.push("<h1>No queens are in range.</h1>");
@@ -218,12 +219,13 @@ export default class Queens extends React.Component {
 
     function NQ() {
       const board = new Array(n);
+      var i;
 
-      for(var i = 0; i < n;i++) {
+      for( i = 0; i < n;i++) {
         board[i] = new Array(n);
       }
 
-      for(var i = 0;i<n;i++) {
+      for(i = 0;i<n;i++) {
         for(var j = 0;j<n;j++) {
           board[i][j] = 0;
         }
@@ -231,7 +233,7 @@ export default class Queens extends React.Component {
 
       console.log(board);
 
-      if(solveNQ(board, 0)==false) {
+      if(solveNQ(board, 0)===false) {
         console.log("");
         return false;
       }
