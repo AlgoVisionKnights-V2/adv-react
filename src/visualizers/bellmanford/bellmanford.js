@@ -79,7 +79,7 @@ export default class BellmanFord extends React.Component {
       steps: [],
       stepId: 0,
       stepTime: 0,
-      waitTime: 500,
+      waitTime: 5000,
     };
 
     this.ref = React.createRef();
