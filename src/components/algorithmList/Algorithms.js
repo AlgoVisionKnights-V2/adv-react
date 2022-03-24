@@ -196,7 +196,7 @@ const algorithms = {
 		{
 			name: 'Towers of Hanoi', 
 			path: 'towersofhanoi', 
-			type: 'unity',
+			type: 'js',
 			description: <TowersofHanoi />
 		},
 	],
