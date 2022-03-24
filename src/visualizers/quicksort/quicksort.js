@@ -3,324 +3,384 @@ import "./quicksort.css";
 import * as d3 from "d3";
 
 class EmptyStep {
-	forward() {
+	forward(svg) {
 		
 	}
 
-	backward() {
+	fastForward(svg) {
+
+	}
+
+	backward(svg) {
 
 	}
 }
 
 class ColorLowStep {
-	constructor(id1, id2, ids, ref) {
+	constructor(id1, id2, ids) {
 		this.id1 = id1;
         this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
 	}
 
-	forward() {
-		var color1 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill");
-		var color2 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill");
-		var prev1 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
+	forward(svg) {
+		var color1 = svg.select("#" + this.ids[this.id1]).select("rect").style("fill");
+		var color2 = svg.select("#" + this.ids[this.id2]).select("rect").style("fill");
+		var prev1 = svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
+
+		// Change prevColor to whatever it's colored now
+		svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color1);
 		
+		// Fill previous bar with whatever it was before blue (if blue)
 		if (color1 === "blue") {
-			d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", prev1);
+			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", prev1);
 		}
 
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color1);
+		svg.select("#lowTxt" + this.id1).attr("visibility", "hidden");
+		svg.select("#arrowpath" + this.id1).attr("visibility", "hidden");
 
-		if (color2 !== "green")
-			d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill", "blue");
+		svg.select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
 
-		d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
+		// As long as the new bar isn't sorted
+		if (color2 !== "green") {
+			svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "blue");
+			svg.select("#lowTxt" + this.id2).attr("visibility", "visible");
+			svg.select("#arrowpath" + this.id2).attr("visibility", "visible");
+		}
 	}
 
-	backward() {
-		// var color1 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill");
-		// var color2 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill");
-		// var prev1 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
-		// var prev2 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("prevColor");
-		
-		// d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", prev1);
-		// d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color1);
+	fastForward(svg) {
+		this.forward(svg);
+	}
 
-		// d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill", prev2);
-		// d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
+	backward(svg) {
+		// var color1 = svg.select("#" + this.ids[this.id1]).select("rect").style("fill");
+		// var color2 = svg.select("#" + this.ids[this.id2]).select("rect").style("fill");
+		// var prev1 = svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
+		// var prev2 = svg.select("#" + this.ids[this.id2]).select("rect").attr("prevColor");
+		
+		// svg.select("#" + this.ids[this.id1]).select("rect").style("fill", prev1);
+		// svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color1);
+
+		// svg.select("#" + this.ids[this.id2]).select("rect").style("fill", prev2);
+		// svg.select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
 	}
 }
 
 class ColorHighStep {
-	constructor(id1, id2, ids, ref) {
+	constructor(id1, id2, ids) {
 		this.id1 = id1;
         this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
 	}
 
-	forward() {
-		var color1 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill");
-		var color2 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill");
-		var prev1 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
-		var prev2 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("prevColor");
+	forward(svg) {
+		var color1 = svg.select("#" + this.ids[this.id1]).select("rect").style("fill");
+		var color2 = svg.select("#" + this.ids[this.id2]).select("rect").style("fill");
+		var prev1 = svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
 		
+		// Change prevColor to whatever it's colored now
+		svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color1);
+
+		// Fill previous bar with whatever it was before red (if red)
 		if (color1 === "red") {
-			d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", prev1);
+			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", prev1);
 		}
 
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color1);
+		svg.select("#highTxt" + this.id1).attr("visibility", "hidden");
+		svg.select("#arrowpath" + this.id1).attr("visibility", "hidden");
 
-		if (color2 !== "green")
-			d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
 
-		d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
+		// As long as the new bar isn't sorted
+		if (color2 !== "green") {
+			svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "red");
+			svg.select("#highTxt" + this.id2).attr("visibility", "visible");
+			svg.select("#arrowpath" + this.id2).attr("visibility", "visible");
+		}
 	}
 
-	backward() {
-		// var color1 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill");
-		// var color2 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill");
-		// var prev1 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
-		// var prev2 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("prevColor");
-		
-		// d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", prev1);
-		// d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color1);
+	fastForward(svg) {
+		this.forward(svg);
+	}
 
-		// d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill", prev2);
-		// d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
+	backward(svg) {
+		// var color1 = svg.select("#" + this.ids[this.id1]).select("rect").style("fill");
+		// var color2 = svg.select("#" + this.ids[this.id2]).select("rect").style("fill");
+		// var prev1 = svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
+		// var prev2 = svg.select("#" + this.ids[this.id2]).select("rect").attr("prevColor");
+		
+		// svg.select("#" + this.ids[this.id1]).select("rect").style("fill", prev1);
+		// svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color1);
+
+		// svg.select("#" + this.ids[this.id2]).select("rect").style("fill", prev2);
+		// svg.select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
 	}
 }
 
 class ColorPivotStep {
-	constructor(id1, id2, ids, ref) {
+	constructor(id1, ids) {
 		this.id1 = id1;
-        this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
 	}
 
-	forward() {
-		var color1 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill");
-		var color2 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill");
-		var prev1 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
-		var prev2 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("prevColor");
-		
-		if (color1 === "#f1c232") {
-			d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", prev1);
-		}
+	forward(svg) {
+		var color = svg.select("#" + this.ids[this.id1]).select("rect").style("fill");
 
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color1);
-
-		d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill", "#f1c232");
-		d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
+		svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color);
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#f1c232");
+		svg.select("#pivTxt" + this.id1).attr("visibility", "visible");
+		svg.select("#arrowpath" + this.id1).attr("visibility", "visible");
 	}
 
-	backward() {
-		// var color1 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill");
-		// var color2 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill");
-		// var prev1 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
-		// var prev2 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("prevColor");
-		
-		// d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", prev1);
-		// d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color1);
+	fastForward(svg) {
+		this.forward(svg);
+	}
 
-		// d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill", prev2);
-		// d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
+	backward(svg) {
+		// var prevColor = svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
+
+		// svg.select("#" + this.ids[this.id1]).select("rect").style("fill", prevColor);
+		// svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor", "gray");
 	}
 }
 
 class PartitionStep {
-	constructor(id1, id2, ids, ref) {
+	constructor(id1, id2, ids, stepTime) {
 		this.id1 = id1;
         this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
+		this.stepTime = stepTime;
 	}
 
-	forward() {
+	forward(svg) {
         for (var i = this.id1; i <= this.id2; i++) {
-            var newybar = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("rect").attr("y")) - 100;
-            var newytxt = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("text").attr("y")) - 100;
-            d3.select(this.ref).select("#" + this.ids[i]).select("rect").transition().duration(this.stepTime).attr("y", newybar);
-            d3.select(this.ref).select("#" + this.ids[i]).select("text").transition().duration(this.stepTime).attr("y", newytxt);
+            var newybar = parseInt(svg.select("#" + this.ids[i]).select("rect").attr("y")) - 100;
+            var newytxt = parseInt(svg.select("#" + this.ids[i]).select("text").attr("y")) - 100;
+            svg.select("#" + this.ids[i]).select("rect").transition().duration(this.stepTime).attr("y", newybar);
+            svg.select("#" + this.ids[i]).select("text").transition().duration(this.stepTime).attr("y", newytxt);
         }
 	}
 
-	backward() {
-        // for (var i = this.id1; i <= this.id2; i++) {
-        //     var newybar = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("rect").attr("y")) + 100;
-        //     var newytxt = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("text").attr("y")) + 100;
-        //     d3.select(this.ref).select("#" + this.ids[i]).select("rect").transition().duration(this.stepTime).attr("y", newybar);
-        //     d3.select(this.ref).select("#" + this.ids[i]).select("text").transition().duration(this.stepTime).attr("y", newytxt);
-        // }
+	fastForward(svg) {
+        for (var i = this.id1; i <= this.id2; i++) {
+            var newybar = parseInt(svg.select("#" + this.ids[i]).select("rect").attr("y")) - 100;
+            var newytxt = parseInt(svg.select("#" + this.ids[i]).select("text").attr("y")) - 100;
+            svg.select("#" + this.ids[i]).select("rect").attr("y", newybar);
+            svg.select("#" + this.ids[i]).select("text").attr("y", newytxt);
+        }
+	}
+
+	backward(svg) {
+        for (var i = this.id1; i <= this.id2; i++) {
+            var newybar = parseInt(svg.select("#" + this.ids[i]).select("rect").attr("y")) + 100;
+            var newytxt = parseInt(svg.select("#" + this.ids[i]).select("text").attr("y")) + 100;
+            svg.select("#" + this.ids[i]).select("rect").attr("y", newybar);
+            svg.select("#" + this.ids[i]).select("text").attr("y", newytxt);
+        }
 	}
 }
 
 class UnpartitionStep {
-	constructor(id1, id2, ids, ref) {
+	constructor(id1, id2, ids, stepTime) {
 		this.id1 = id1;
         this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
+		this.stepTime = stepTime;
 	}
 
-    forward() {
+    forward(svg) {
         if (this.id2 !== this.ids.length - 1) {
-            d3.select(this.ref).select("#divisor").attr("visibility", "visible");
-            d3.select(this.ref).select("#sortTxt").attr("visibility", "visible");
+            svg.select("#divisor").attr("visibility", "visible");
+            svg.select("#sortTxt").attr("visibility", "visible");
         }
 
         for (var i = this.id1; i <= this.id2; i++) {
-            var newybar = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("rect").attr("y")) + 100;
-            var newytxt = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("text").attr("y")) + 100;
-            d3.select(this.ref).select("#" + this.ids[i]).select("rect").transition().duration(this.stepTime).attr("y", newybar);
-            d3.select(this.ref).select("#" + this.ids[i]).select("text").transition().duration(this.stepTime).attr("y", newytxt);
+            var newybar = parseInt(svg.select("#" + this.ids[i]).select("rect").attr("y")) + 100;
+            var newytxt = parseInt(svg.select("#" + this.ids[i]).select("text").attr("y")) + 100;
+            svg.select("#" + this.ids[i]).select("rect").transition().duration(this.stepTime).attr("y", newybar);
+            svg.select("#" + this.ids[i]).select("text").transition().duration(this.stepTime).attr("y", newytxt);
         }
 	}
 
-	backward() {
-        // d3.select(this.ref).select("#divisor").attr("visibility", "hidden");
-        // d3.select(this.ref).select("#sortTxt").attr("visibility", "hidden");
+	fastForward(svg) {
+        if (this.id2 !== this.ids.length - 1) {
+            svg.select("#divisor").attr("visibility", "visible");
+            svg.select("#sortTxt").attr("visibility", "visible");
+        }
 
-        // for (var i = this.id1; i <= this.id2; i++) {
-        //     var newybar = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("rect").attr("y")) - 100;
-        //     var newytxt = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("text").attr("y")) - 100;
-        //     d3.select(this.ref).select("#" + this.ids[i]).select("rect").transition().duration(this.stepTime).attr("y", newybar);
-        //     d3.select(this.ref).select("#" + this.ids[i]).select("text").transition().duration(this.stepTime).attr("y", newytxt);
-        // }
+        for (var i = this.id1; i <= this.id2; i++) {
+            var newybar = parseInt(svg.select("#" + this.ids[i]).select("rect").attr("y")) + 100;
+            var newytxt = parseInt(svg.select("#" + this.ids[i]).select("text").attr("y")) + 100;
+            svg.select("#" + this.ids[i]).select("rect").attr("y", newybar);
+            svg.select("#" + this.ids[i]).select("text").attr("y", newytxt);
+        }
+	}
+
+	backward(svg) {
+        for (var i = this.id1; i <= this.id2; i++) {
+            var newybar = parseInt(svg.select("#" + this.ids[i]).select("rect").attr("y")) - 100;
+            var newytxt = parseInt(svg.select("#" + this.ids[i]).select("text").attr("y")) - 100;
+            svg.select("#" + this.ids[i]).select("rect").attr("y", newybar);
+            svg.select("#" + this.ids[i]).select("text").attr("y", newytxt);
+        }
 	}
 }
 
 class SortedStep {
-	constructor(id1, ids, ref) {
+	constructor(id1, ids, stepTime) {
 		this.id1 = id1;
 		this.ids = ids;
-		this.ref = ref;
+		this.stepTime = stepTime;
 	}
 
-	forward() {
+	forward(svg) {
 
-        d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".insertTxt").attr("visibility", "hidden");
+        svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".ptrTxt").attr("visibility", "hidden");
 
-		var prev = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill");
+		var prev = svg.select("#" + this.ids[this.id1]).select("rect").style("fill");
 
-        d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", "green");
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("prevColor", prev);
+        svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "green");
+		svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor", prev);
 
 		for (var i = 0; i < this.ids.length; i++) {
 			if (i === this.id1)
 				continue;
 
-			var color = d3.select(this.ref).select("#" + this.ids[i]).select("rect").style("fill");
+			var color = svg.select("#" + this.ids[i]).select("rect").style("fill");
 
 			if (color !== "green") {
-				d3.select(this.ref).select("#" + this.ids[i]).select("rect").attr("prevColor", color);
+				svg.select("#" + this.ids[i]).select("rect").attr("prevColor", color);
 				console.log("" + i + " was " + color);
-				d3.select(this.ref).select("#" + this.ids[i]).select("rect").style("fill", "gray");
+				svg.select("#" + this.ids[i]).select("rect").style("fill", "gray");
 			}
 		}
 	}
 
-	backward() {
-        // d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		// d3.select(this.ref).selectAll(".insertTxt").attr("visibility", "hidden");
+	fastForward(svg) {
+		this.forward(svg);
+	}
+
+	backward(svg) {
+        // svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		// svg.selectAll(".insertTxt").attr("visibility", "hidden");
 
         // for (var i = 0; i < this.ids.length; i++) {
-		// 	var color = d3.select(this.ref).select("#" + this.ids[i]).select("rect").attr("prevColor");
+		// 	var color = svg.select("#" + this.ids[i]).select("rect").attr("prevColor");
 
-		// 	d3.select(this.ref).select("#" + this.ids[i]).select("rect").style("fill", color);
+		// 	svg.select("#" + this.ids[i]).select("rect").style("fill", color);
 		// }
 	}
 }
 
 class SwapStep {
-	constructor(id1, id2, ids, ref, stepTime) {
+	constructor(id1, id2, ids, stepTime) {
 		this.id1 = id1;
 		this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
 		this.stepTime = stepTime;
 	}
 
-	runSwap() {
+	runSwap(svg) {
 
 		if (this.id1 === this.id2) {
 			return;
 		}
 
-		var newxbar1 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("x");
-		var newxbar2 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("x");
+		var newxbar1 = svg.select("#" + this.ids[this.id2]).select("rect").attr("x");
+		var newxbar2 = svg.select("#" + this.ids[this.id1]).select("rect").attr("x");
 
-		var newxtxt1 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("text").attr("x");
-		var newxtxt2 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("text").attr("x");
+		var newxtxt1 = svg.select("#" + this.ids[this.id2]).select("text").attr("x");
+		var newxtxt2 = svg.select("#" + this.ids[this.id1]).select("text").attr("x");
 
 		console.log("SWAPPING.");
 
-		d3.select(this.ref)
-			.select("#" + this.ids[this.id1])
+		svg.select("#" + this.ids[this.id1])
 			.select("rect")
 				.transition()
 				.duration(this.stepTime)
 				.attr("x", newxbar1);
 
-		d3.select(this.ref)
-			.select("#" + this.ids[this.id1])
+		svg.select("#" + this.ids[this.id1])
 			.select("text")
 				.transition()
 				.duration(this.stepTime)
 				.attr("x", newxtxt1);
 
-		d3.select(this.ref)
-			.select("#" + this.ids[this.id2])
+		svg.select("#" + this.ids[this.id2])
 			.select("rect")
 				.transition()
 				.duration(this.stepTime)
-				.attr("x", newxbar2)
+				.attr("x", newxbar2);
 
-		d3.select(this.ref)
-			.select("#" + this.ids[this.id2])
+		svg.select("#" + this.ids[this.id2])
 			.select("text")
 				.transition()
 				.duration(this.stepTime)
 				.attr("x", newxtxt2);
 
-		var bar1 = d3.select(this.ref).select("#" + this.ids[this.id1]);
+		var bar1 = svg.select("#" + this.ids[this.id1]);
 
 			bar1.attr("id", null);
 
-		var bar2 = d3.select(this.ref).select("#" + this.ids[this.id2]);
+		var bar2 = svg.select("#" + this.ids[this.id2]);
 
 			bar2.attr("id", null);
 
 			bar1.attr("id", this.ids[this.id2]);
 			bar2.attr("id", this.ids[this.id1]);
 
-		var newColor2 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill");
-		var newColor1 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill");
+		var newColor2 = svg.select("#" + this.ids[this.id1]).select("rect").style("fill");
+		var newColor1 = svg.select("#" + this.ids[this.id2]).select("rect").style("fill");
 
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", newColor1);
-		d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill", newColor2);
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", newColor1);
+		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", newColor2);
 	}
 
-	forward() {
-		this.runSwap();
-
-        d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".insertTxt").attr("visibility", "hidden");
-
-		// d3.select(this.ref).select("#arrowpath" + this.id2).attr("visibility", "visible");
-		// d3.select(this.ref).select("#insertTxt" + this.id2).attr("visibility", "visible");
+	forward(svg) {
+		this.runSwap(svg);
 	}
 
-	backward() {
-		this.runSwap();
+	fastForward(svg) {
+		if (this.id1 === this.id2) {
+			return;
+		}
 
-        d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".insertTxt").attr("visibility", "hidden");
+		var newxbar1 = svg.select("#" + this.ids[this.id2]).select("rect").attr("x");
+		var newxbar2 = svg.select("#" + this.ids[this.id1]).select("rect").attr("x");
 
-		// d3.select(this.ref).select("#arrowpath" + this.id1).attr("visibility", "visible");
-		// d3.select(this.ref).select("#insertTxt" + this.id1).attr("visibility", "visible");
+		var newxtxt1 = svg.select("#" + this.ids[this.id2]).select("text").attr("x");
+		var newxtxt2 = svg.select("#" + this.ids[this.id1]).select("text").attr("x");
+
+		console.log("SWAPPING.");
+
+		svg.select("#" + this.ids[this.id1]).select("rect").attr("x", newxbar1);
+		svg.select("#" + this.ids[this.id1]).select("text").attr("x", newxtxt1);
+
+		svg.select("#" + this.ids[this.id2]).select("rect").attr("x", newxbar2);
+		svg.select("#" + this.ids[this.id2]).select("text").attr("x", newxtxt2);
+
+		var bar1 = svg.select("#" + this.ids[this.id1]);
+
+			bar1.attr("id", null);
+
+		var bar2 = svg.select("#" + this.ids[this.id2]);
+
+			bar2.attr("id", null);
+
+			bar1.attr("id", this.ids[this.id2]);
+			bar2.attr("id", this.ids[this.id1]);
+
+		var newColor2 = svg.select("#" + this.ids[this.id1]).select("rect").style("fill");
+		var newColor1 = svg.select("#" + this.ids[this.id2]).select("rect").style("fill");
+
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", newColor1);
+		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", newColor2);
+	}
+
+	backward(svg) {
+		this.runSwap(svg);
 	}
 }
 
@@ -358,26 +418,22 @@ export default class QuickSort extends React.Component {
 		}
 	}
 
-	compare() {
-		return true;
-	}
-
-	quickSort(low, high, arr, size, ids, steps, messages)
+	quickSort(low, high, arr, size, ids, steps, messages, stepTime)
     {
         var split;
         if (low < high)
         {
 			messages.push("<h1>Recursively calling QuickSort from index " + low + " through " + high + ".</h1>");
-            steps.push(new PartitionStep(low, high, ids, this.ref.current));
+            steps.push(new PartitionStep(low, high, ids, stepTime));
              
 
-            split = this.partition(low, high, arr, size, ids, steps, messages);
+            split = this.partition(low, high, arr, ids, steps, messages, stepTime);
 
 			messages.push("<h1>Returned from calling QuickSort from index " + low + " through " + high + ".</h1>");
-			steps.push(new UnpartitionStep(low, high, ids, this.ref.current));            
+			steps.push(new UnpartitionStep(low, high, ids, stepTime));            
              
-            this.quickSort(low, split - 1, arr, split - low, ids, steps, messages);
-            this.quickSort(split + 1, high, arr, high - split + 1, ids, steps, messages);
+            this.quickSort(low, split - 1, arr, split - low, ids, steps, messages, stepTime);
+            this.quickSort(split + 1, high, arr, high - split + 1, ids, steps, messages, stepTime);
         }
         else
         {
@@ -389,31 +445,31 @@ export default class QuickSort extends React.Component {
                 }
                 
 				messages.push("<h1>Recursively calling QuickSort on index " + low + ".</h1>");
-				steps.push(new PartitionStep(low, low, ids, this.ref.current));
+				steps.push(new PartitionStep(low, low, ids, stepTime));
 
 				messages.push("<h1>Index " + low + " is a single element partition. It is already in its sorted position.</h1>");
-				steps.push(new SortedStep(low, ids, this.ref.current));
+				steps.push(new SortedStep(low, ids, stepTime));
                  
 				messages.push("<h1>Index " + low + " is a single element partition. It is already in its sorted position.</h1>");
-				steps.push(new UnpartitionStep(low, low, ids, this.ref.current));
+				steps.push(new UnpartitionStep(low, low, ids, stepTime));
 
             }    
             else if (low <= high)
             {
 				messages.push("<h1>Recursively calling QuickSort on index " + high + ".</h1>");
-				steps.push(new PartitionStep(high, high, ids, this.ref.current));
+				steps.push(new PartitionStep(high, high, ids, stepTime));
 
 				messages.push("<h1>Index " + high + " is a single element partition. It is already in its sorted position.</h1>");
-				steps.push(new SortedStep(high, ids, this.ref.current));
+				steps.push(new SortedStep(high, ids, stepTime));
 
 				messages.push("<h1>Index " + high + " is a single element partition. It is already in its sorted position.</h1>");
-				steps.push(new UnpartitionStep(high, high, ids, this.ref.current));
+				steps.push(new UnpartitionStep(high, high, ids, stepTime));
 
             }
         }
     }
 
-    partition(low, high, arr, size, ids, steps, messages)
+    partition(low, high, arr, ids, steps, messages, stepTime)
     {
         var pivot = low++; 
         var pHigh = high;
@@ -421,13 +477,13 @@ export default class QuickSort extends React.Component {
         
         // Set/color the pointers
         messages.push("<h1>Index " + low + " is the Low pointer.</h1>");
-		steps.push(new ColorLowStep(low, low, ids, this.ref.current));
+		steps.push(new ColorLowStep(low, low, ids));
 
         messages.push("<h1>Index " + high + " is the High pointer.</h1>");
-		steps.push(new ColorHighStep(high, high, ids, this.ref.current));
+		steps.push(new ColorHighStep(high, high, ids));
 
         messages.push("<h1>Index " + pivot + " is the pivot.</h1>");
-		steps.push(new ColorPivotStep(pivot, pivot, ids, this.ref.current));
+		steps.push(new ColorPivotStep(pivot, ids));
 
         while (low <= high)
         {
@@ -446,7 +502,7 @@ export default class QuickSort extends React.Component {
                 else
                 {
 					messages.push("<h1>Low is not greater than the Pivot, move Low to the right.</h1>");
-					steps.push(new ColorLowStep(low, ++low, ids, this.ref.current));
+					steps.push(new ColorLowStep(low, ++low, ids));
                 }
             }
 
@@ -458,7 +514,7 @@ export default class QuickSort extends React.Component {
 
             while (high >= low && arr[high] > arr[pivot]){
 				messages.push("<h1>High is not less than the Pivot, move High to the left.</h1>");
-				steps.push(new ColorHighStep(high, --high, ids, this.ref.current));                 
+				steps.push(new ColorHighStep(high, --high, ids));                 
             }
 
             if (high >= low && arr[high] <= arr[pivot])
@@ -472,16 +528,16 @@ export default class QuickSort extends React.Component {
                 [arr[low], arr[high]] = [arr[high], arr[low]];
 
 				messages.push("<h1>High is less than the Pivot. Swap Low and High!</h1>");
-				steps.push(new SwapStep(low, high, ids, this.ref.current, this.state.stepTime));
+				steps.push(new SwapStep(low, high, ids, stepTime));
 
                 messages.push("<h1>After swapping positions, move both pointers.</h1>");
 				steps.push(new EmptyStep());
 
 				messages.push("<h1>After swapping positions, move both pointers.</h1>");
-				steps.push(new ColorLowStep(low, ++low, ids, this.ref.current));
+				steps.push(new ColorLowStep(low, ++low, ids));
 
 				messages.push("<h1>After swapping positions, move both pointers.</h1>");
-				steps.push(new ColorHighStep(high, --high, ids, this.ref.current));             
+				steps.push(new ColorHighStep(high, --high, ids));             
             }
         }
 		
@@ -489,15 +545,15 @@ export default class QuickSort extends React.Component {
 		[arr[pivot], arr[high]] = [arr[high], arr[pivot]];
 
 		messages.push("<h1>High and Low pointers have crossed. Swap High and Pivot!</h1>");
-		steps.push(new SwapStep(pivot, high, ids, this.ref.current, this.state.stepTime));
+		steps.push(new SwapStep(pivot, high, ids, stepTime));
         
 		messages.push("<h1>Pivot is now in its sorted spot.</h1>");
-		steps.push(new SortedStep(high, ids, this.ref.current));
+		steps.push(new SortedStep(high, ids, stepTime));
          
         return high;
     }
 
-    sort(arr, ids, size)
+    sort(arr, ids, size, stepTime)
 	{
 		var steps = [];
 		var messages = [];
@@ -505,12 +561,14 @@ export default class QuickSort extends React.Component {
 		messages.push("<h1>Beginning Quick Sort!</h1>");
 		steps.push(new EmptyStep());
 
-        this.quickSort(0, size - 1, arr, size, ids, steps, messages);
+        this.quickSort(0, size - 1, arr, size, ids, steps, messages, stepTime);
+
+		console.log("Sorted");
+		this.printArray(arr, size);
 
 		messages.push("<h1>Finished Quick Sort!</h1>");
 		steps.push(new EmptyStep());
 
-		this.setState({arr: arr});
 		this.setState({steps: steps});
 		this.setState({messages: messages});
 
@@ -518,7 +576,7 @@ export default class QuickSort extends React.Component {
 		console.log(messages);
 	}
 
-	initialize() {
+	dataInit() {
 		var arr = [];
 
 		// fills arr with random numbers [15, 70]
@@ -527,17 +585,19 @@ export default class QuickSort extends React.Component {
 			arr[i] = 15 + Math.floor(Math.random() * 56);
 		}
 
-		this.setState({arr: arr});
-
 		console.log("Unsorted");
 		this.printArray(arr, this.state.size);
 
+		this.setState({arr: arr});
+	}
+
+	initialize() {
 		const barWidth = 70;
 		const barOffset = 30;
 		const height = 500;
 
 		let yScale = d3.scaleLinear()
-			.domain([0, d3.max(arr)])
+			.domain([0, d3.max(this.state.arr)])
 			.range([0, height]);
 
 		var svg = d3.select(this.ref.current)
@@ -546,7 +606,7 @@ export default class QuickSort extends React.Component {
 				.attr("height", height + 250);
 
 		var bars = svg.selectAll(".bar")
-					.data(arr)
+					.data(this.state.arr)
 					.enter().append("g")
 					.attr("class", "bar")
 					.attr("id", function (_, i) {
@@ -594,7 +654,7 @@ export default class QuickSort extends React.Component {
 
 		bars.append("path")
 			.attr("d", (_, i) => {
-				return d3.line()([[i * (barWidth + barOffset) + (barWidth / 2) + 65, height + 185], [i * (barWidth + barOffset) + (barWidth / 2) + 65, height + 135]]);
+				return d3.line()([[i * (barWidth + barOffset) + (barWidth / 2) + 65, height + 85], [i * (barWidth + barOffset) + (barWidth / 2) + 65, height + 35]]);
 			})
 			.attr("stroke-width", 1)
 			.attr("stroke", "white")
@@ -607,7 +667,7 @@ export default class QuickSort extends React.Component {
 			.attr("visibility", "hidden");
 
 		bars.append("text").text("Low")
-			.attr("y", height + 215)
+			.attr("y", height + 115)
 			.attr("x", (_, i) => {
 				return i * (barWidth + barOffset) + (barWidth / 2) + 65;
 			})
@@ -623,7 +683,7 @@ export default class QuickSort extends React.Component {
 			.attr("visibility", "hidden");
 
         bars.append("text").text("High")
-			.attr("y", height + 215)
+			.attr("y", height + 115)
 			.attr("x", (_, i) => {
 				return i * (barWidth + barOffset) + (barWidth / 2) + 65;
 			})
@@ -639,7 +699,7 @@ export default class QuickSort extends React.Component {
 			.attr("visibility", "hidden");
 
         bars.append("text").text("Pivot")
-			.attr("y", height + 215)
+			.attr("y", height + 115)
 			.attr("x", (_, i) => {
 				return i * (barWidth + barOffset) + (barWidth / 2) + 65;
 			})
@@ -662,6 +722,10 @@ export default class QuickSort extends React.Component {
 		}
 
 		this.setState({ids: ids});
+
+		svg.attr("visibility", "hidden");
+
+		return svg;
 	}
 
 	turnOffRunning() {
@@ -673,7 +737,7 @@ export default class QuickSort extends React.Component {
 		if (this.state.running) return;
 		if (this.state.stepId === this.state.steps.length) return;
 		
-		this.state.steps[this.state.stepId].forward();
+		this.state.steps[this.state.stepId].forward(d3.select(this.ref.current).select("svg"));
 		console.log(this.state.steps[this.state.stepId]);
 		document.getElementById("message").innerHTML = this.state.messages[this.state.stepId];
 		this.setState({stepId: this.state.stepId + 1});
@@ -686,10 +750,27 @@ export default class QuickSort extends React.Component {
 		if (this.state.running) return;
 		if (this.state.stepId - 1 < 0) return;
 
-		var stepId = this.state.stepId;
+		var stepId = this.state.stepId - 1;
 
-		this.state.steps[--stepId].backward();
-        console.log(this.state.steps[stepId]);
+		// Easy backward functions so just run that
+		if (this.state.steps[stepId] instanceof EmptyStep || this.state.steps[stepId] instanceof PartitionStep ||
+			this.state.steps[stepId] instanceof UnpartitionStep || this.state.steps[stepId] instanceof SwapStep) {
+				console.log(this.state.steps[stepId]);
+				this.state.steps[stepId].backward(d3.select(this.ref.current).select("svg"));
+		}
+		else { // Or make a new svg and run steps up until step before
+			d3.select(this.ref.current).select("svg").remove();
+
+			var svg = this.initialize();
+
+			for (var i = 0; i < stepId; i++) {
+				this.state.steps[i].fastForward(svg);
+				console.log(this.state.steps[i]);
+			}
+
+			svg.attr("visibility", "visible");
+		}
+
 		document.getElementById("message").innerHTML = this.state.messages[stepId];
 		this.setState({stepId: stepId});
 		d3.timeout(this.turnOffRunning, this.state.waitTime);
@@ -701,7 +782,7 @@ export default class QuickSort extends React.Component {
 			this.setState({running: false});
 			return;
 		}
-		this.state.steps[this.state.stepId].forward();
+		this.state.steps[this.state.stepId].forward(d3.select(this.ref.current).select("svg"));
 		document.getElementById("message").innerHTML = this.state.messages[this.state.stepId];
 		this.setState({stepId: this.state.stepId + 1});
 		d3.timeout(this.run, this.state.waitTime);
@@ -711,7 +792,7 @@ export default class QuickSort extends React.Component {
 		console.log("PLAY CLICKED");
 		if (this.state.running) return;
 		this.setState({running: true});
-		this.run();
+		this.run(d3.select(this.ref.current).select("svg"));
 	}
 
 	pause() {
@@ -721,31 +802,49 @@ export default class QuickSort extends React.Component {
 
 	restart() {
 		console.log("RESTART CLICKED");
-        this.setState({running: false, arr: [], steps: [], ids: [], messages: [], stepId: 0});
 
-        d3.select(this.ref.current).select("svg").remove();
+		var svg = d3.select(this.ref.current).select("svg");
+		console.log(svg);
+
+        svg.remove();
+		console.log("Removed og");
+
         document.getElementById("message").innerHTML = "<h1>Welcome to Quick Sort!</h1>";
+
+		console.log("Reset state");
+		this.setState({running: false, steps: [], ids: [], messages: [], stepId: 0});
 	}
 
 	componentDidMount() {
-		this.initialize();
+		this.dataInit();
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		if (this.state.arr.length > prevState.arr.length) {
-			this.sort(this.state.arr, this.state.ids, this.state.size);
+			var svg = d3.select(this.ref.current).select("svg");
 
-			console.log("Sorted");
-			this.printArray(this.state.arr, this.state.size);
+		// Data array changed in dataInit -> Make visual
+		if (this.state.arr.length > prevState.arr.length) {
+			svg = this.initialize();
+			svg.attr("visibility", "visible");
 		}
+		// IDs array changed in initialize -> sort copy of array to get steps and messages
+		else if (this.state.ids.length > prevState.ids.length) {
+			console.log("We initialized. Time to sort.");
+			this.sort([...this.state.arr], this.state.ids, this.state.size, this.state.stepTime);
+		}
+		// Running changed
 		else if (this.state.running !== prevState.running)
 		{
-			this.run();
+			this.run(svg);
 			console.log("We ran");
 		}
+		// For reset
         else if (this.state.steps.length !== prevState.steps.length && this.state.steps.length === 0) {
-			console.log("Steps changed");
-			this.initialize();
+			console.log("We're restarting");
+			svg = this.initialize();
+			console.log("Made it out");
+			svg.attr("visibility", "visible");
+			console.log("All good");
 		}
 	}
 
