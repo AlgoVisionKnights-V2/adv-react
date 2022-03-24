@@ -98,7 +98,7 @@ const algorithms = {
 		{
 			name: 'Hash Table',
 			path: 'hashtable',
-			type: 'unity',
+			type: 'js',
 			description: <HashTable />,
 		},
 	],
