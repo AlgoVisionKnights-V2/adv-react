@@ -17,7 +17,7 @@ class VisibilityStep {
   }
 
   forward() {
-    d3.select("#code"+ this.rowID + this.colID).attr("visibility", this.visibility);    
+    d3.select("#code"+ this.rowID + this.colID).attr("visibility", this.visibility);
   }
 
   backward() {
@@ -40,9 +40,7 @@ class TileStep{
   }
 
   backward(){
-   
     d3.select("#code"+ this.rowID + this.colID).attr("fill", (this.color === "white") ? "black" : "white");
-    
   }
 }
 

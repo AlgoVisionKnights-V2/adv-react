@@ -3,11 +3,6 @@ import * as d3 from "d3";
 import "./prims.css";
 import createDefaultGraph from "../../foundation/graph/CreateDefaultGraph";
 
-// returns a random number in the range [lo, hi)
-function randInRange(lo, hi) {
-  return Math.floor(Math.random() * (hi - lo)) + lo;
-}
-
 class EmptyStep {
   forward() {}
   backward() {}
@@ -93,7 +88,7 @@ export default class Prims extends React.Component {
     var steps = [];
     var stepBuffer = [];
     function flushBuffer() {
-      if (stepBuffer.length == 0) return;
+      if (stepBuffer.length === 0) return;
       steps.push(stepBuffer);
       stepBuffer = [];
       messages.push(currentMessage);
@@ -106,15 +101,15 @@ export default class Prims extends React.Component {
     };
 
     addStep(new EmptyStep());
-    createMessage("We will be constructing the Minimum Spanning Tree (MST).");
+    createMessage("We will construct the Minimum Spanning Tree (MST).");
     flushBuffer();
 
     addStep(new EmptyStep());
-    createMessage("Select an arbitrary node to start building the MST from.");
+    createMessage("We will maintain a minimum priority queue of edges based on weight.");
     flushBuffer();
 
     addStep(new EmptyStep());
-    createMessage("We will maintain a minimum priority queue of the edges based on edge weight.");
+    createMessage("Select an arbitrary node to start building the MST.");
     flushBuffer();
 
     var pq = [];
@@ -130,7 +125,7 @@ export default class Prims extends React.Component {
         "white"
       )
     );
-    createMessage("We will start by choosing node 0 to build the MST from.");
+    createMessage("We will start with node 0 to build the MST from.");
     flushBuffer();
 
     addStep(new EmptyStep());
@@ -149,7 +144,7 @@ export default class Prims extends React.Component {
           "yellow"
         )
       );
-      createMessage("Insert the edge (" + node1 + ", " + node2 + ") into the queue.");
+      createMessage("Insert edge (" + node1 + ", " + node2 + ") into the queue.");
       flushBuffer();
 
       pq.push(edgeId);
@@ -157,7 +152,7 @@ export default class Prims extends React.Component {
 
     for (let i = 0; pq.length > 0 && i < 50; i++) {
       addStep(new EmptyStep());
-      createMessage("Select the edge of lowest weight that is in the queue.");
+      createMessage("Select the lowest weighted edge in the queue.");
       flushBuffer();
 
       pq.sort(comparator);
@@ -176,11 +171,20 @@ export default class Prims extends React.Component {
         )
       );
       createMessage(
-        "The edge (" + node1 + ", " + node2 + ") is the lowest weighted edge in the queue."
+        "The lowest weighted edge in the queue is (" + node1 + ", " + node2 + ")."
       );
       flushBuffer();
 
       if (nodeVisited[node1] && nodeVisited[node2]) {
+        addStep(new EmptyStep());
+        createMessage(
+          "Both nodes " +
+            node1 +
+            " and " +
+            node2 +
+            " have already been added to the MST.");
+        flushBuffer();
+
         addStep(
           new EdgeColorChangeStep(
             this.ref.current,
@@ -190,17 +194,22 @@ export default class Prims extends React.Component {
             "#444444"
           )
         );
-        createMessage(
-          "Since both nodes " +
-            node1 +
-            " and " +
-            node2 +
-            " have been added to the MST, ignore this edge."
-        );
+        createMessage("Ignore this edge.");
         flushBuffer();
         // these nodes are already connected, ignore the edge
         continue;
       }
+
+      var unvisitedNode = nodeVisited[node1] ? node2 : node1;
+      nodeVisited[unvisitedNode] = true;
+      edgeSelected[edgeId] = true;
+
+      addStep(new EmptyStep());
+      createMessage(
+        "Node " +
+          unvisitedNode +
+        " has not been added to the MST.");
+      flushBuffer();
 
       addStep(
         new EdgeColorChangeStep(
@@ -211,17 +220,6 @@ export default class Prims extends React.Component {
           "green"
         )
       );
-      var unvisitedNode = nodeVisited[node1] ? node2 : node1;
-      nodeVisited[unvisitedNode] = true;
-      edgeSelected[edgeId] = true;
-      createMessage(
-        "Since node " +
-          unvisitedNode +
-          " has not been added to the MST, include this edge and node " +
-          unvisitedNode +
-          " in the MST."
-      );
-
       addStep(
         new NodeColorChangeStep(
           this.ref.current,
@@ -231,11 +229,16 @@ export default class Prims extends React.Component {
           "white"
         )
       );
+      createMessage(
+        "Include this edge and node " +
+          unvisitedNode +
+          " in the MST."
+      );
       flushBuffer();
 
       addStep(new EmptyStep());
       createMessage(
-        "Insert all unvisited edges that are incident to node " + unvisitedNode + " into the queue."
+        "Insert all unvisited edges incident to node " + unvisitedNode + " into the queue."
       );
       flushBuffer();
 
@@ -276,6 +279,9 @@ export default class Prims extends React.Component {
     createMessage("The edges in the MST are: " + mstEdges + ".");
     flushBuffer();
 
+    console.log(steps);
+    console.log(messages);
+
     this.setState({ steps: steps, messages: messages });
   }
 
@@ -302,11 +308,11 @@ export default class Prims extends React.Component {
     if (this.state.running) return;
     if (this.state.stepId - 1 < 0) return;
 
-    var stepId = this.state.stepId;
-    document.getElementById("message").innerHTML = this.state.messages[stepId - 1];
-    for (const step of this.state.steps[stepId - 1]) step.backward();
+    var stepId = this.state.stepId - 1;
+    document.getElementById("message").innerHTML = (stepId - 1 < 0) ? "<h1>Welcome to Prim's!</h1>" : this.state.messages[stepId - 1];
+    for (const step of this.state.steps[stepId]) step.backward();
     // this.state.steps[--stepId].backward();
-    this.setState({ stepId: stepId - 1 });
+    this.setState({stepId: stepId});
     d3.timeout(this.turnOffRunning, this.state.waitTime);
   }
 
@@ -340,7 +346,7 @@ export default class Prims extends React.Component {
     if (this.state.stepId - 1 < 0) return;
 
     var stepId = this.state.stepId;
-    document.getElementById("message").innerHTML = this.state.messages[0];
+    document.getElementById("message").innerHTML = "<h1>Welcome to Prim's!</h1>";
     while (stepId - 1 >= 0) {
       for (const step of this.state.steps[--stepId]) step.backward();
       // this.state.steps[--stepId].backward();
@@ -380,7 +386,7 @@ export default class Prims extends React.Component {
         </div>
         <div class="center-screen">
           <span id="message">
-            <h1>Welcome to Prim's</h1>
+            <h1>Welcome to Prim's!</h1>
           </span>
         </div>
         <div ref={this.ref} class="center-screen"></div>

@@ -93,7 +93,7 @@ class StackChangeStep {
 
 
 export default class BreadthFirstSearch extends React.Component {
-      constructor(props) {
+    constructor(props) {
     super(props);
 
     this.state = {
@@ -120,7 +120,7 @@ export default class BreadthFirstSearch extends React.Component {
 
 
     initialize() {
-    var svg = d3.select(this.ref.current).append("svg").attr("width", "1500px").attr("height", "750px");
+    var svg = d3.select(this.ref.current).append("svg").attr("width", "1500px").attr("height", "650px");
 
     let isWeighted = false;
     let isDirected = false;
@@ -128,7 +128,7 @@ export default class BreadthFirstSearch extends React.Component {
     let graph = createDefaultGraph(this.ref, isWeighted, isDirected);
 
     let queue = [];
-    queue.push(new Number(this.ref, "queue", "7%", "5%", "Queue: ", "grey", "visible"));
+    queue.push(new Number(this.ref, "queue", "10%", "5%", "Queue", "grey", "visible"));
     
     for(var i=0; i<graph.numberOfNodes;i++){
 
@@ -145,25 +145,25 @@ export default class BreadthFirstSearch extends React.Component {
 
       if (i === 0) {
 				lTxt
-					.attr("y", (parseInt(node.attr("cy")) - 8) + "%")
-					.attr("x", (parseInt(node.attr("cx")) - 4) + "%");
+					.attr("y", (parseInt(node.attr("cy")) - 10) + "%")
+					.attr("x", (parseInt(node.attr("cx")) - 8) + "%");
 
 			}
 			else if (i === 1 || i === 3) {
 				lTxt
-					.attr("y", (parseInt(node.attr("cy")) - 12) + "%")
+					.attr("y", (parseInt(node.attr("cy")) - 10) + "%")
 					.attr("x", (parseInt(node.attr("cx")) - 6) + "%");
 
 			}
 			else if (i === 2 || i === 4) {
 				lTxt
-					.attr("y", (parseInt(node.attr("cy")) + 11) + "%")
+					.attr("y", (parseInt(node.attr("cy")) + 13) + "%")
 					.attr("x", (parseInt(node.attr("cx")) - 6) + "%");
 
 			}
 			else if (i === 5) {
 				lTxt
-					.attr("y", (parseInt(node.attr("cy")) - 12) + "%")
+					.attr("y", (parseInt(node.attr("cy")) - 10) + "%")
 					.attr("x", (parseInt(node.attr("cx")) + 2) + "%");
 				
 			}
@@ -175,283 +175,283 @@ export default class BreadthFirstSearch extends React.Component {
 
   }
 
-breadthfirstsearch(graph,queue){
+    breadthfirstsearch(graph,queue) {
 
-    var nodeQueue = [];
-    var nodeStack = [];
-    var nodeLevel = Array(6).fill(0);
-    var queueLength = 0;
-    var nodeVisited = Array.from({ length: graph.numberOfNodes }, () => false);
-    var edgeSelected = Array.from({ length: graph.numberOfEdges }, () => false);
-    var currentNode = Array.from({ length: graph.numberOfNodes }, () => false);
-      console.log("Graph:" + graph.edges);
+        var nodeQueue = [];
+        var nodeStack = [];
+        var nodeLevel = Array(6).fill(0);
+        var queueLength = 0;
+        var nodeVisited = Array.from({ length: graph.numberOfNodes }, () => false);
+        var edgeSelected = Array.from({ length: graph.numberOfEdges }, () => false);
+        var currentNode = Array.from({ length: graph.numberOfNodes }, () => false);
+          console.log("Graph:" + graph.edges);
 
-      console.log("Node Queue:" + nodeQueue);
+          console.log("Node Queue:" + nodeQueue);
 
-    var messages = [];
-    var currentMessage = "";
-    function createMessage(msg) {
-      currentMessage = "<h1>" + msg + "</h1>";
-    }
-    var steps = [];
-    var stepBuffer = [];
+        var messages = [];
+        var currentMessage = "";
+        function createMessage(msg) {
+          currentMessage = "<h1>" + msg + "</h1>";
+        }
+        var steps = [];
+        var stepBuffer = [];
 
-    function flushBuffer() {
-      if (stepBuffer.length == 0) return;
-      steps.push(stepBuffer);
-      stepBuffer = [];
-      messages.push(currentMessage);
-    }
+        function flushBuffer() {
+          if (stepBuffer.length === 0) return;
+          steps.push(stepBuffer);
+          stepBuffer = [];
+          messages.push(currentMessage);
+        }
 
-       function addStep(step) {
-      stepBuffer.push(step);
-    }
-    
-    addStep(new EmptyStep());
-    createMessage("We will be implementing Breadth First Search in the graph below.");
-    flushBuffer();
-
-
-
-var temp = randInRange(0, graph.numberOfNodes);
-nodeLevel[temp] = 0;
+          function addStep(step) {
+          stepBuffer.push(step);
+        }
+        
+        addStep(new EmptyStep());
+        createMessage("Beginning Breadth First Search!");
+        flushBuffer();
 
 
-let currNode, adjNode, edgeId;
 
-for(var i=0; i<graph.numberOfNodes;++i){
+    var temp = randInRange(0, graph.numberOfNodes);
+    nodeLevel[temp] = 0;
 
-for (const edge of graph.adjacencyList[temp]) {
-   
-      [currNode, adjNode, edgeId] = edge;
-      console.log(currNode.edgeInfo);
 
-if(currentNode[currNode]==false){
-      createMessage("Current Node: " + currNode + ".");
-      addStep(
-      new NodeColorChangeStep(
-        this.ref.current,
-        graph.nodeInfo[currNode].circle.attr.id,
-        graph.nodeInfo[currNode].text.attr.id,
-        "gray",
-        "white"
-      )
-    );
-    flushBuffer();
+    let currNode, adjNode, edgeId;
 
-    currentNode[currNode]=true;
-}
+    for(var i=0; i<graph.numberOfNodes;++i){
 
-if(!(nodeQueue.includes(currNode))){ 
-      nodeQueue.push(currNode);
-
-     
-      var factor = 20 + (queueLength*10);
+    for (const edge of graph.adjacencyList[temp]) {
       
-      queue.push(new Number(this.ref, "queue" + currNode, "7%", factor + "%", currNode, "grey", "hidden"));
-      
-      createMessage("Node " + currNode + " added to the queue.");
-        addStep(
-          new StackChangeStep(
+          [currNode, adjNode, edgeId] = edge;
+          console.log(currNode.edgeInfo);
+
+    if(currentNode[currNode] === false){
+          createMessage("Current Node: " + currNode + ".");
+          addStep(
+          new NodeColorChangeStep(
             this.ref.current,
-            "queue" + currNode,
-            "hidden",
-            "visible"
+            graph.nodeInfo[currNode].circle.attr.id,
+            graph.nodeInfo[currNode].text.attr.id,
+            "gray",
+            "white"
           )
         );
         flushBuffer();
-        queueLength++;
-      
-}
 
+        currentNode[currNode]=true;
+    }
 
-if(!(nodeVisited[adjNode])&& nodeLevel[adjNode]==0)
-nodeLevel[adjNode]=nodeLevel[currNode]+1;
+    if(!(nodeQueue.includes(currNode))){ 
+          nodeQueue.push(currNode);
 
-     
-
-
-if(!(nodeVisited[adjNode])){
-
-
-
-  if(edgeSelected[adjNode]==false){
-
-
-    createMessage(
-    "Node " + currNode + " shares an edge with Node " + adjNode  
-    );
-
-    addStep(
-        new EdgeColorChangeStep(
-        this.ref.current,
-        graph.edgeInfo[edgeId].attr.id,
-        "gray",
-        "#d55e00"
-        )
-    );
-
-    flushBuffer();
-
-    if(!(nodeQueue.includes(adjNode))){
-
-      nodeQueue.push(adjNode);
-      nodeStack.push(adjNode);
-
-      var factor = 20 + (queueLength*10);
-      
-      queue.push(new Number(this.ref, "queue" + adjNode, "7%", factor + "%", adjNode, "grey", "hidden"));
-      
-      createMessage("Node " + adjNode + " added to  queue.");
         
-      addStep(
-          new StackChangeStep(
-          this.ref.current,
-          "queue" + adjNode,
-          "hidden",
-          "visible"
-          )
-        );
-
-      flushBuffer();
-      queueLength++;
-      
+          let factor = 20 + (queueLength*10);
+          
+          queue.push(new Number(this.ref, "queue" + currNode, "7%", factor + "%", currNode, "grey", "hidden"));
+          
+          createMessage("Node " + currNode + " added to the queue.");
+            addStep(
+              new StackChangeStep(
+                this.ref.current,
+                "queue" + currNode,
+                "hidden",
+                "visible"
+              )
+            );
+            flushBuffer();
+            queueLength++;
+          
     }
 
 
-    console.log("Queue:" + nodeQueue);
+    if(!(nodeVisited[adjNode])&& nodeLevel[adjNode] === 0)
+    nodeLevel[adjNode]=nodeLevel[currNode]+1;
 
-     
-    nodeVisited[currNode]=true;
-    edgeSelected[adjNode]=true;
-  }
+        
 
-  else{
 
-    createMessage("Node "+ adjNode +" has been previously visited.");
-    
-    addStep(
-        new EdgeColorChangeStep(
+    if(!(nodeVisited[adjNode])){
+
+
+
+      if(edgeSelected[adjNode] === false){
+
+
+        createMessage(
+        "Node " + currNode + " shares an edge with Node " + adjNode + "."
+        );
+
+        addStep(
+            new EdgeColorChangeStep(
+            this.ref.current,
+            graph.edgeInfo[edgeId].attr.id,
+            "gray",
+            "#d55e00"
+            )
+        );
+
+        flushBuffer();
+
+        if(!(nodeQueue.includes(adjNode))){
+
+          nodeQueue.push(adjNode);
+          nodeStack.push(adjNode);
+
+          let factor = 20 + (queueLength*10);
+          
+          queue.push(new Number(this.ref, "queue" + adjNode, "7%", factor + "%", adjNode, "grey", "hidden"));
+          
+          createMessage("Node " + adjNode + " added to  queue.");
+            
+          addStep(
+              new StackChangeStep(
+              this.ref.current,
+              "queue" + adjNode,
+              "hidden",
+              "visible"
+              )
+            );
+
+          flushBuffer();
+          queueLength++;
+          
+        }
+
+
+        console.log("Queue:" + nodeQueue);
+
+        
+        nodeVisited[currNode]=true;
+        edgeSelected[adjNode]=true;
+      }
+
+      else{
+
+        createMessage("Node "+ adjNode +" has been previously visited.");
+        
+        addStep(
+            new EdgeColorChangeStep(
+            this.ref.current,
+            graph.edgeInfo[edgeId].attr.id,
+            "gray",
+            "black"
+            )
+        );
+        
+
+        flushBuffer();
+        nodeVisited[currNode]=true;
+      }
+
+    }
+
+    else{
+
+      
+        createMessage("Node " + currNode + "  shares an edge with " + adjNode + ".");
+        addStep(new EmptyStep());
+        flushBuffer();
+
+    }
+
+
+    }
+
+      nodeQueue.shift();
+
+      createMessage("Node " + currNode + " exits the queue.");
+      
+      addStep(
+        new StackChangeStep(
         this.ref.current,
-        graph.edgeInfo[edgeId].attr.id,
-        "gray",
-        "black"
+        "queue" + currNode,
+        "visible",
+        "hidden"
         )
-    );
-    
+      );
+      
+      flushBuffer();
 
-    flushBuffer();
-    nodeVisited[currNode]=true;
-  }
+      createMessage("Node " + currNode + " is checked. Node Level: " + nodeLevel[currNode] + ".");
 
-}
-
-else{
-
-   
-    createMessage("Node " + currNode + "  shares an edge with " + adjNode);
-    addStep(new EmptyStep());
-    flushBuffer();
-
-}
-
-
-}
-
-  var head = nodeQueue.shift();
-
-  createMessage("Node " + currNode + " exits the queue.");
-  
-  addStep(
-    new StackChangeStep(
-    this.ref.current,
-    "queue" + currNode,
-    "visible",
-    "hidden"
-    )
-  );
-  
-  flushBuffer();
-
-  createMessage("Node " + currNode + " is checked. Node Level: " + nodeLevel[currNode]);
-
-  if(nodeLevel[currNode]==0){
-    addStep(
-      new NodeColorChangeStep(
-      this.ref.current,
-      graph.nodeInfo[currNode].circle.attr.id,
-      graph.nodeInfo[currNode].text.attr.id,
-      "white",
-      "#f0e442"
-      )
-    );
+      if(nodeLevel[currNode] === 0){
+        addStep(
+          new NodeColorChangeStep(
+          this.ref.current,
+          graph.nodeInfo[currNode].circle.attr.id,
+          graph.nodeInfo[currNode].text.attr.id,
+          "white",
+          "#f0e442"
+          )
+        );
 
 
 
-  }
+      }
 
-  else if(nodeLevel[currNode]==1){
-    addStep(
-      new NodeColorChangeStep(
-      this.ref.current,
-      graph.nodeInfo[currNode].circle.attr.id,
-      graph.nodeInfo[currNode].text.attr.id,
-      "white",
-      "#cc79a7"
-      )
-    );
+      else if(nodeLevel[currNode] === 1){
+        addStep(
+          new NodeColorChangeStep(
+          this.ref.current,
+          graph.nodeInfo[currNode].circle.attr.id,
+          graph.nodeInfo[currNode].text.attr.id,
+          "white",
+          "#cc79a7"
+          )
+        );
 
-  
-  }
+      
+      }
 
-  else if(nodeLevel[currNode]==2){
-    addStep(
-      new NodeColorChangeStep(
-      this.ref.current,
-      graph.nodeInfo[currNode].circle.attr.id,
-      graph.nodeInfo[currNode].text.attr.id,
-      "white",
-      "#0072b2"
-      )
-    );
-
-
-  }
-
-  else if(nodeLevel[currNode]==3){
-    addStep(
-      new NodeColorChangeStep(
-      this.ref.current,
-      graph.nodeInfo[currNode].circle.attr.id,
-      graph.nodeInfo[currNode].text.attr.id,
-      "white",
-      "#009e73"
-      )
-    );
-
-  }
-  addStep( new SetInfoStep(currNode,0,nodeLevel[currNode]));  
-  flushBuffer();
+      else if(nodeLevel[currNode] === 2){
+        addStep(
+          new NodeColorChangeStep(
+          this.ref.current,
+          graph.nodeInfo[currNode].circle.attr.id,
+          graph.nodeInfo[currNode].text.attr.id,
+          "white",
+          "#0072b2"
+          )
+        );
 
 
-temp = nodeStack.shift();
+      }
+
+      else if(nodeLevel[currNode] === 3){
+        addStep(
+          new NodeColorChangeStep(
+          this.ref.current,
+          graph.nodeInfo[currNode].circle.attr.id,
+          graph.nodeInfo[currNode].text.attr.id,
+          "white",
+          "#009e73"
+          )
+        );
+
+      }
+      addStep(new SetInfoStep(currNode,0,nodeLevel[currNode]));  
+      flushBuffer();
 
 
-}
+    temp = nodeStack.shift();
 
-  createMessage("Breadth First Search Finished!");
-  
-  addStep(new EmptyStep());
 
-  flushBuffer();
+    }
 
-  this.setState({ steps: steps, messages: messages });
+      createMessage("Breadth First Search Finished!");
+      
+      addStep(new EmptyStep());
 
-}
+      flushBuffer();
+
+      this.setState({ steps: steps, messages: messages });
+
+    }
 
     turnOffRunning() {
-    this.setState({ running: false });
-  }
+      this.setState({ running: false });
+    }
 
   forward() {
     console.log("FORWARD CLICKED");
@@ -476,11 +476,11 @@ temp = nodeStack.shift();
 
     let svg = d3.select(this.ref.current).select("svg");
 
-    var stepId = this.state.stepId;
-    document.getElementById("message").innerHTML = this.state.messages[stepId - 1];
-    for (const step of this.state.steps[stepId - 1]) step.backward(svg);
+    var stepId = this.state.stepId - 1;
+    document.getElementById("message").innerHTML = (stepId - 1 < 0) ? "<h1>Welcome to Breadth First Search!</h1>" : this.state.messages[stepId - 1];
+    for (const step of this.state.steps[stepId]) step.backward(svg);
   
-    this.setState({ stepId: stepId - 1 });
+    this.setState({stepId: stepId});
     d3.timeout(this.turnOffRunning, this.state.waitTime);
   }
 
@@ -557,7 +557,7 @@ temp = nodeStack.shift();
         </div>
         <div class="center-screen">
           <span id="message">
-            <h1>Welcome to Breadth First Search's</h1>
+            <h1>Welcome to Breadth First Search!</h1>
           </span>
         </div>
         <div ref={this.ref} class="center-screen"></div>
