@@ -3,7 +3,6 @@ import * as d3 from "d3";
 import "./fibonaccisequence.css";
 import LabeledNode from "../../foundation/graph/LabeledNode";
 import UndirectedEdge from "../../foundation/graph/UndirectedEdge";
-import { create } from "d3";
 
 class EmptyStep {
   forward() {}
@@ -398,7 +397,7 @@ export default class FibonacciSequence extends React.Component {
     var stepBuffer = [];
 
     function flushBuffer() {
-      if (stepBuffer.length == 0) return;
+      if (stepBuffer.length === 0) return;
       steps.push(stepBuffer);
       stepBuffer = [];
       messages.push(currentMessage);
