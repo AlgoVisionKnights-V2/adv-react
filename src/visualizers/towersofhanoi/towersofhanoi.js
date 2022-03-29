@@ -236,6 +236,18 @@ export default class Prims extends React.Component {
     console.log(cnts);
 
     let oldDisks = [0, 1, 2];
+    
+    addStep(new EmptyStep());
+    createMessage(`The goal is to move all the disks from the source peg to the destination peg.`);
+    flushBuffer();
+
+    addStep(new EmptyStep());
+    createMessage(`You can take a disk at the top of any peg and place it on any other peg.`);
+    flushBuffer();
+
+    addStep(new EmptyStep());
+    createMessage(`The only rule is that you cannot place a disk of some size on another disk that is smaller than it.`);
+    flushBuffer();
 
     // hanoi(# of disks, peg 1, peg 2, peg 3)
     function hanoi(n, source, auxillary, destination) {
