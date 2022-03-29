@@ -354,8 +354,9 @@ export default class BellmanFord extends React.Component {
 
     var stepId = this.state.stepId;
     document.getElementById("message").innerHTML = this.state.messages[0];
+    let svg = d3.select(this.ref.current).select("svg");
     while (stepId - 1 >= 0) {
-      for (const step of this.state.steps[--stepId]) step.backward();
+      for (const step of this.state.steps[--stepId]) step.backward(svg);
       // this.state.steps[--stepId].backward();
       d3.timeout(this.turnOffRunning, this.state.waitTime);
     }
