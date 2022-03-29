@@ -113,7 +113,7 @@ const algorithms = {
 		{
 			name: 'Bellman Ford',
 			path: 'bellmanford',
-			type: 'unity',
+			type: 'js',
 			description: <BellmanFord />,
 		},
 		{
