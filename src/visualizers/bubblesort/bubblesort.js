@@ -3,51 +3,49 @@ import "./bubblesort.css";
 import * as d3 from "d3";
 
 class EmptyStep {
-	forward() {
+	forward(svg) {
 		
 	}
 
-	backward() {
+	backward(svg) {
 
 	}
 }
 
 class UncolorStep {
-	constructor(id1, ids, ref) {
+	constructor(id1, ids) {
 		this.id1 = id1;
 		this.ids = ids;
-		this.ref = ref;
 	}
 
-	forward() {
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");
+	forward(svg) {
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");
 	}
 
-	backward() {
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+	backward(svg) {
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
 	}
 }
 
 class SortedStep {
-	constructor(id1, ids, ref) {
+	constructor(id1, ids) {
 		this.id1 = id1;
 		this.ids = ids;
-		this.ref = ref;
 	}
 
-	forward() {
+	forward(svg) {
 		var barWidth = 70;
 		var barOffset = 30;
         var height = 700;
 		var sorty = 50;
-		var sortx = parseInt(d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("x"));
+		var sortx = parseInt(svg.select("#" + this.ids[this.id1]).select("rect").attr("x"));
 
 		if (this.id1 === 0) {
-			d3.select(this.ref).select("#divisor").attr("visibility", "hidden");
-			d3.select(this.ref).select("#sortTxt").attr("visibility", "hidden");
+			svg.select("#divisor").attr("visibility", "hidden");
+			svg.select("#sortTxt").attr("visibility", "hidden");
 		}
 		else if (this.id1 === this.ids.length - 1) {
-            d3.select(this.ref).select("svg").append("line")
+            svg.append("line")
 				.style("stroke", "white")
 				.style("stroke-width", 7)
 				.attr("x1", sortx - (barOffset / 2))
@@ -56,7 +54,7 @@ class SortedStep {
 				.attr("y2", height - 50)
 				.attr("id", "divisor");
 
-			d3.select(this.ref).select("svg").append("text").text("Sorted")
+			svg.append("text").text("Sorted")
 				.attr("y", sorty)
 				.attr("x", sortx + 65)
 				.attr("id", "sortTxt")
@@ -67,173 +65,160 @@ class SortedStep {
 				.style("fill", "white");
 		}
 		else {
-			var newDivx = parseInt(d3.select(this.ref).select("#divisor").attr("x1")) - (barWidth + barOffset);
-			var newSortx = parseInt(d3.select(this.ref).select("#sortTxt").attr("x")) - ((barWidth + barOffset) / 2);
+			var newDivx = parseInt(svg.select("#divisor").attr("x1")) - (barWidth + barOffset);
+			var newSortx = parseInt(svg.select("#sortTxt").attr("x")) - ((barWidth + barOffset) / 2);
 
-			d3.select(this.ref).select("#divisor")
-				.transition()
-				.duration(this.stepTime)
-					.attr("x1", newDivx)
-					.attr("x2", newDivx);
+			svg.select("#divisor")
+				.attr("x1", newDivx)
+				.attr("x2", newDivx);
 
-			d3.select(this.ref).select("#sortTxt")
-				.transition()
-				.duration(this.stepTime)
-					.attr("x", newSortx);
+			svg.select("#sortTxt").attr("x", newSortx);
 		}
 
-        d3.select(this.ref).select("#arrowpath" + this.id1).attr("visibility", "hidden");
-        d3.select(this.ref).select("#bubbleTxt" + this.id1).attr("visibility", "hidden");
-        d3.select(this.ref).selectAll(".qTxt").attr("visibility", "hidden");
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", "green");
+        svg.select("#arrowpath" + this.id1).attr("visibility", "hidden");
+        svg.select("#bubbleTxt" + this.id1).attr("visibility", "hidden");
+        svg.selectAll(".qTxt").attr("visibility", "hidden");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "green");
 	}
 
-	backward() {
+	backward(svg) {
         var barWidth = 70;
 		var barOffset = 30;
 
 		if (this.id1 === 0) {
-            d3.select(this.ref).select("#divisor").attr("visibility", "visible");
-			d3.select(this.ref).select("#sortTxt").attr("visibility", "visible");
+            svg.select("#divisor").attr("visibility", "visible");
+			svg.select("#sortTxt").attr("visibility", "visible");
 		}
 		else if (this.id1 === this.ids.length - 1) {
-			d3.select(this.ref).select("#divisor").remove();
-			d3.select(this.ref).select("#sortTxt").remove();
+			svg.select("#divisor").remove();
+			svg.select("#sortTxt").remove();
 		}
 		else {
-			var newDivx = parseInt(d3.select(this.ref).select("#divisor").attr("x1")) + barWidth + barOffset;
-			var newSortx = parseInt(d3.select(this.ref).select("#sortTxt").attr("x")) + ((barWidth + barOffset) / 2);
+			var newDivx = parseInt(svg.select("#divisor").attr("x1")) + barWidth + barOffset;
+			var newSortx = parseInt(svg.select("#sortTxt").attr("x")) + ((barWidth + barOffset) / 2);
 
-			d3.select(this.ref).select("#divisor")
-				.transition()
-				.duration(this.stepTime)
+			svg.select("#divisor")
 					.attr("x1", newDivx)
 					.attr("x2", newDivx);
 
-			d3.select(this.ref).select("#sortTxt")
-				.transition()
-				.duration(this.stepTime)
-					.attr("x", newSortx);
+			svg.select("#sortTxt").attr("x", newSortx);
 		}
 
-        d3.select(this.ref).select("#arrowpath" + this.id1).attr("visibility", "visible");
-		d3.select(this.ref).select("#bubbleTxt" + this.id1).attr("visibility", "visible");
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+        svg.select("#arrowpath" + this.id1).attr("visibility", "visible");
+		svg.select("#bubbleTxt" + this.id1).attr("visibility", "visible");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
 	}
 }
 
 class QSwapStep {
-	constructor(id, ids, ref) {
+	constructor(id, ids) {
 		this.id = id;
 		this.ids = ids;
-		this.ref = ref;
 	}
 
-	forward() {
-        d3.select(this.ref).selectAll(".qTxt").attr("visibility", "hidden");
-        d3.select(this.ref).selectAll("#qTxt" + this.id).attr("visibility", "visible");
+	forward(svg) {
+        svg.selectAll(".qTxt").attr("visibility", "hidden");
+        svg.selectAll("#qTxt" + this.id).attr("visibility", "visible");
 
-		d3.select(this.ref).select("#" + this.ids[this.id]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id]).select("rect").style("fill", "red");
 	}
 
-	backward() {
-		d3.select(this.ref).selectAll(".qTxt").attr("visibility", "hidden");
+	backward(svg) {
+		svg.selectAll(".qTxt").attr("visibility", "hidden");
 
-		d3.select(this.ref).select("#" + this.ids[this.id]).select("rect").style("fill", "gray");
+		svg.select("#" + this.ids[this.id]).select("rect").style("fill", "gray");
 	}
 }
 
 class BubbleSwapStep {
-	constructor(id1, id2, ids, ref) {
+	constructor(id1, id2, ids) {
 		this.id1 = id1;
 		this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
 	}
 
-	forward() {
-		d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".bubbleTxt").attr("visibility", "hidden");
-        d3.select(this.ref).selectAll(".qTxt").attr("visibility", "hidden");        
+	forward(svg) {
+		svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".bubbleTxt").attr("visibility", "hidden");
+        svg.selectAll(".qTxt").attr("visibility", "hidden");        
 
-		d3.select(this.ref).select("#arrowpath" + this.id2).attr("visibility", "visible");
-		d3.select(this.ref).select("#bubbleTxt" + this.id2).attr("visibility", "visible");        
+		svg.select("#arrowpath" + this.id2).attr("visibility", "visible");
+		svg.select("#bubbleTxt" + this.id2).attr("visibility", "visible");        
 
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");
-		d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");
+		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "red");
 	}
 
-	backward() {
-		d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".bubbleTxt").attr("visibility", "hidden");
+	backward(svg) {
+		svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".bubbleTxt").attr("visibility", "hidden");
 
-        if (this.id2 != 0) {
-		    d3.select(this.ref).select("#arrowpath" + this.id1).attr("visibility", "visible");
-		    d3.select(this.ref).select("#bubbleTxt" + this.id1).attr("visibility", "visible");
-            d3.select(this.ref).select("#qTxt" + this.id2).attr("visibility", "visible");
+        if (this.id2 !== 0) {
+		    svg.select("#arrowpath" + this.id1).attr("visibility", "visible");
+		    svg.select("#bubbleTxt" + this.id1).attr("visibility", "visible");
+            svg.select("#qTxt" + this.id2).attr("visibility", "visible");
         }
 
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
-		d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill", "gray");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "gray");
 	}
 }
 
 class SwapStep {
-	constructor(id1, id2, ids, ref, stepTime) {
+	constructor(id1, id2, ids, stepTime) {
 		this.id1 = id1;
 		this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
 		this.stepTime = stepTime;
 	}
 
-	runSwap() {
+	runSwap(svg) {
 
 		if (this.id1 === this.id2) {
 			return;
 		}
 
-		var newxbar1 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("x");
-		var newxbar2 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("x");
+		var newxbar1 = svg.select("#" + this.ids[this.id2]).select("rect").attr("x");
+		var newxbar2 = svg.select("#" + this.ids[this.id1]).select("rect").attr("x");
 
-		var newxtxt1 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("text").attr("x");
-		var newxtxt2 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("text").attr("x");
+		var newxtxt1 = svg.select("#" + this.ids[this.id2]).select("text").attr("x");
+		var newxtxt2 = svg.select("#" + this.ids[this.id1]).select("text").attr("x");
 
 		console.log("SWAPPING.");
 
-		d3.select(this.ref)
+		svg
 			.select("#" + this.ids[this.id1])
 			.select("rect")
 				.transition()
 				.duration(this.stepTime)
 				.attr("x", newxbar1);
 
-		d3.select(this.ref)
+		svg
 			.select("#" + this.ids[this.id1])
 			.select("text")
 				.transition()
 				.duration(this.stepTime)
 				.attr("x", newxtxt1);
 
-		d3.select(this.ref)
+		svg
 			.select("#" + this.ids[this.id2])
 			.select("rect")
 				.transition()
 				.duration(this.stepTime)
 				.attr("x", newxbar2)
 
-		d3.select(this.ref)
+		svg
 			.select("#" + this.ids[this.id2])
 			.select("text")
 				.transition()
 				.duration(this.stepTime)
 				.attr("x", newxtxt2);
 
-		var bar1 = d3.select(this.ref).select("#" + this.ids[this.id1]);
+		var bar1 = svg.select("#" + this.ids[this.id1]);
 
 			bar1.attr("id", null);
 
-		var bar2 = d3.select(this.ref).select("#" + this.ids[this.id2]);
+		var bar2 = svg.select("#" + this.ids[this.id2]);
 
 			bar2.attr("id", null);
 
@@ -241,25 +226,25 @@ class SwapStep {
 			bar2.attr("id", this.ids[this.id1]);
 	}
 
-	forward() {
-		this.runSwap();
+	forward(svg) {
+		this.runSwap(svg);
 
-        d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".bubbleTxt").attr("visibility", "hidden");
+        svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".bubbleTxt").attr("visibility", "hidden");
 
-		d3.select(this.ref).select("#arrowpath" + this.id2).attr("visibility", "visible");
-		d3.select(this.ref).select("#bubbleTxt" + this.id2).attr("visibility", "visible");
+		svg.select("#arrowpath" + this.id2).attr("visibility", "visible");
+		svg.select("#bubbleTxt" + this.id2).attr("visibility", "visible");
 	}
 
-	backward() {
-		this.runSwap();
+	backward(svg) {
+		this.runSwap(svg);
 
-        d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".bubbleTxt").attr("visibility", "hidden");
+        svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".bubbleTxt").attr("visibility", "hidden");
 
-		d3.select(this.ref).select("#arrowpath" + this.id1).attr("visibility", "visible");
-		d3.select(this.ref).select("#bubbleTxt" + this.id1).attr("visibility", "visible");
-        d3.select(this.ref).select("#qTxt" + this.id2).attr("visibility", "visible");
+		svg.select("#arrowpath" + this.id1).attr("visibility", "visible");
+		svg.select("#bubbleTxt" + this.id1).attr("visibility", "visible");
+        svg.select("#qTxt" + this.id2).attr("visibility", "visible");
 	}
 }
 
@@ -276,7 +261,7 @@ export default class BubbleSort extends React.Component {
 			running: false,
 			stepId: 0,
 			stepTime: 300,
-			waitTime: (9 * 2000) / 8
+			waitTime: 2000
 		};
 
 		this.ref = React.createRef();
@@ -297,7 +282,7 @@ export default class BubbleSort extends React.Component {
 		}
 	}
 
-	sort(arr, ids, size)
+	sort(arr, ids, size, stepTime)
 	{
 		var steps = [];
 		var messages = [];
@@ -308,36 +293,45 @@ export default class BubbleSort extends React.Component {
 
         for (i = 0; i < size; i++) {
             messages.push("<h1>Select the leftmost element.</h1>");
-		    steps.push(new BubbleSwapStep(0, 0, ids, this.ref.current, this.state.stepTime));
+		    steps.push(new BubbleSwapStep(0, 0, ids));
 
             for(j = 0; j < size - i - 1; j++){
                 messages.push("<h1>Attempt to Bubble Up.</h1>");
-		        steps.push(new QSwapStep(j+1, ids, this.ref.current));
+		        steps.push(new QSwapStep(j+1, ids));
                 
                 if (arr[j] > arr[j+1]) {
-                    messages.push("<h1>" + arr[j] + " > " + arr[j+1] + ".<br>Bubble Up!</h1>");
-		            steps.push(new SwapStep(j, j+1, ids, this.ref.current, this.state.stepTime));
+					messages.push("<h1>" + arr[j] + " > " + arr[j+1] + "</h1>");
+		            steps.push(new EmptyStep());
+
+                    messages.push("<h1>Bubble Up!</h1>");
+		            steps.push(new SwapStep(j, j+1, ids, stepTime));
                     [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
 
-                    messages.push("<h1>" + arr[j+1] + " > " + arr[j] + ".<br>Bubble Up!</h1>");
-		            steps.push(new UncolorStep(j, ids, this.ref.current));
+                    messages.push("<h1>Bubble Up!</h1>");
+		            steps.push(new UncolorStep(j, ids));
                 }
                 else {
-                    messages.push("<h1>" + arr[j] + " < " + arr[j + 1] + ".<br>No change.</h1>");
-		            steps.push(new UncolorStep(j+1, ids, this.ref.current));
+					messages.push("<h1>" + arr[j] + " < " + arr[j + 1] + "</h1>");
+		            steps.push(new EmptyStep());
+
+                    messages.push("<h1>No change.</h1>");
+		            steps.push(new UncolorStep(j+1, ids));
 
                     messages.push("<h1>Increment our Bubble pointer.</h1>");
-                    steps.push(new BubbleSwapStep(j, j+1, ids, this.ref.current, this.state.stepTime));
+                    steps.push(new BubbleSwapStep(j, j+1, ids, stepTime));
                 }
             }
 
+			messages.push("<h1>Reached the end of the unsorted array.</h1>");
+			steps.push(new EmptyStep());
+
             messages.push("<h1>" + arr[j] + " sorted.</h1>");
-		    steps.push(new SortedStep(j, ids, this.ref.current));
+		    steps.push(new SortedStep(j, ids));
 
             messages.push("<h1>" + arr[j] + " is now it its sorted position.</h1>");
 		    steps.push(new EmptyStep());
 
-            if (i != size - 1) {
+            if (i !== size - 1) {
                 messages.push("<h1>Reset our Bubble pointer.</h1>");
 		        steps.push(new EmptyStep());
             }
@@ -346,7 +340,9 @@ export default class BubbleSort extends React.Component {
 		messages.push("<h1>Finished Bubble Sort!</h1>");
 		steps.push(new EmptyStep());
 
-		this.setState({arr: arr});
+		console.log("Sorted");
+		this.printArray(arr, size);
+
 		this.setState({steps: steps});
 		this.setState({messages: messages});
 
@@ -354,31 +350,30 @@ export default class BubbleSort extends React.Component {
 		console.log(messages);
 	}
 
-	initialize() {
+	dataInit(size) {
 		var arr = [];
 
 		// fills arr with random numbers [15, 70]
-		for (let i = 0; i < this.state.size; i++)
+		for (let i = 0; i < size; i++)
 		{
 			arr[i] = 15 + Math.floor(Math.random() * 56);
 		}
 
 		this.setState({arr: arr});
+	}
 
-		console.log("Unsorted");
-		this.printArray(arr, this.state.size);
-
+	initialize(arr, size, ref) {
 		const barWidth = 70;
 		const barOffset = 30;
-		const height = 500;
+		const height = 450;
 
 		let yScale = d3.scaleLinear()
 			.domain([0, d3.max(arr)])
 			.range([0, height]);
 
-		var svg = d3.select(this.ref.current)
+		var svg = d3.select(ref)
 			.append("svg")
-				.attr("width", (this.state.size * (barWidth + barOffset)) + 100)
+				.attr("width", (size * (barWidth + barOffset)) + 100)
 				.attr("height", height + 250);
 
 		var bars = svg.selectAll(".bar")
@@ -476,12 +471,16 @@ export default class BubbleSort extends React.Component {
 
 		var ids = [];
 
-		for (let i = 0; i < this.state.size; i++)
+		for (let i = 0; i < size; i++)
 		{
 			ids.push("g" + i);
 		}
 
 		this.setState({ids: ids});
+
+		svg.attr("visibility", "hidden");
+
+        return svg;
 	}
 
 	turnOffRunning() {
@@ -490,10 +489,10 @@ export default class BubbleSort extends React.Component {
 
 	forward() {
 		console.log("FORWARD CLICKED");
-		if (this.state.running) return;
+		if (this.state.running) this.setState({running: false});
 		if (this.state.stepId === this.state.steps.length) return;
 		
-		this.state.steps[this.state.stepId].forward();
+		this.state.steps[this.state.stepId].forward(d3.select(this.ref.current).select("svg"));
 		console.log(this.state.steps[this.state.stepId]);
 		document.getElementById("message").innerHTML = this.state.messages[this.state.stepId];
 		this.setState({stepId: this.state.stepId + 1});
@@ -503,13 +502,13 @@ export default class BubbleSort extends React.Component {
 
 	backward() {
 		console.log("BACKWARD CLICKED");
-		if (this.state.running) return;
+		if (this.state.running) this.setState({running: false});
 		if (this.state.stepId - 1 < 0) return;
 
-		var stepId = this.state.stepId;
+		var stepId = this.state.stepId - 1;
 
-		this.state.steps[--stepId].backward();
-		document.getElementById("message").innerHTML = this.state.messages[stepId];
+		this.state.steps[stepId].backward(d3.select(this.ref.current).select("svg"));
+		document.getElementById("message").innerHTML = (stepId - 1 < 0) ? "<h1>Welcome to Bubble Sort!</h1>" : this.state.messages[stepId - 1];
 		this.setState({stepId: stepId});
 		d3.timeout(this.turnOffRunning, this.state.waitTime);
 	}
@@ -520,7 +519,7 @@ export default class BubbleSort extends React.Component {
 			this.setState({running: false});
 			return;
 		}
-		this.state.steps[this.state.stepId].forward();
+		this.state.steps[this.state.stepId].forward(d3.select(this.ref.current).select("svg"));
 		document.getElementById("message").innerHTML = this.state.messages[this.state.stepId];
 		this.setState({stepId: this.state.stepId + 1});
 		d3.timeout(this.run, this.state.waitTime);
@@ -540,31 +539,39 @@ export default class BubbleSort extends React.Component {
 
 	restart() {
 		console.log("RESTART CLICKED");
-        this.setState({running: false, arr: [], steps: [], ids: [], messages: [], stepId: 0});
 
-        d3.select(this.ref.current).select("svg").remove();
+		d3.select(this.ref.current).select("svg").remove();
         document.getElementById("message").innerHTML = "<h1>Welcome to Bubble Sort!</h1>";
+
+        this.setState({running: false, steps: [], ids: [], messages: [], stepId: 0});
 	}
 
 	componentDidMount() {
-		this.initialize();
+		this.dataInit(this.state.size);
 	}
 
 	componentDidUpdate(prevProps, prevState) {
+		// Component mounted and unsorted array created -> Initialize visualizer
 		if (this.state.arr.length > prevState.arr.length) {
-			this.sort(this.state.arr, this.state.ids, this.state.size);
-
-			console.log("Sorted");
+			console.log("Unsorted");
 			this.printArray(this.state.arr, this.state.size);
+			this.initialize(this.state.arr, this.state.size, this.ref.current);
 		}
-		else if (this.state.running !== prevState.running)
+		// Visualizer initialized -> Sort copy of array and get steps
+		else if (this.state.ids.length > prevState.ids.length) {
+			d3.select(this.ref.current).select("svg").attr("visibility", "visible");
+			this.sort([...this.state.arr], this.state.ids, this.state.size, this.state.stepTime);
+		}
+		// Part of restart -> Reinitialize with original array
+        else if (this.state.steps.length !== prevState.steps.length && this.state.steps.length === 0) {
+			console.log("Steps changed");
+			var svg = this.initialize(this.state.arr, this.state.size, this.ref.current);
+			svg.attr("visibility", "visible");
+		}
+		else if (this.state.running !== prevState.running && this.state.running === true)
 		{
 			this.run();
 			console.log("We ran");
-		}
-        else if (this.state.steps.length !== prevState.steps.length && this.state.steps.length === 0) {
-			console.log("Steps changed");
-			this.initialize();
 		}
 	}
 

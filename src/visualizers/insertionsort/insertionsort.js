@@ -3,94 +3,91 @@ import "./insertionsort.css";
 import * as d3 from "d3";
 
 class EmptyStep {
-	forward() {
+	forward(svg) {
 		
 	}
 
-	backward() {
+	backward(svg) {
 
 	}
 }
 
 class PartitionStep {
-	constructor(id1, id2, ids, ref) {
+	constructor(id1, id2, ids) {
 		this.id1 = id1;
         this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
 	}
 
-	forward() {
+	forward(svg) {
         for (var i = this.id1; i <= this.id2; i++) {
-            var newybar = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("rect").attr("y")) - 100;
-            var newytxt = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("text").attr("y")) - 100;
-            d3.select(this.ref).select("#" + this.ids[i]).select("rect").transition().duration(this.stepTime).attr("y", newybar);
-            d3.select(this.ref).select("#" + this.ids[i]).select("text").transition().duration(this.stepTime).attr("y", newytxt);
+            var newybar = parseInt(svg.select("#" + this.ids[i]).select("rect").attr("y")) - 100;
+            var newytxt = parseInt(svg.select("#" + this.ids[i]).select("text").attr("y")) - 100;
+            svg.select("#" + this.ids[i]).select("rect").attr("y", newybar);
+            svg.select("#" + this.ids[i]).select("text").attr("y", newytxt);
         }
 	}
 
-	backward() {
+	backward(svg) {
         for (var i = this.id1; i <= this.id2; i++) {
-            var newybar = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("rect").attr("y")) + 100;
-            var newytxt = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("text").attr("y")) + 100;
-            d3.select(this.ref).select("#" + this.ids[i]).select("rect").transition().duration(this.stepTime).attr("y", newybar);
-            d3.select(this.ref).select("#" + this.ids[i]).select("text").transition().duration(this.stepTime).attr("y", newytxt);
+            var newybar = parseInt(svg.select("#" + this.ids[i]).select("rect").attr("y")) + 100;
+            var newytxt = parseInt(svg.select("#" + this.ids[i]).select("text").attr("y")) + 100;
+            svg.select("#" + this.ids[i]).select("rect").attr("y", newybar);
+            svg.select("#" + this.ids[i]).select("text").attr("y", newytxt);
         }
 	}
 }
 
 class UnpartitionStep {
-	constructor(id1, id2, ids, ref) {
+	constructor(id1, id2, ids) {
 		this.id1 = id1;
         this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
 	}
 
-    forward() {
+    forward(svg) {
         if (this.id2 !== this.ids.length - 1) {
-            d3.select(this.ref).select("#divisor").attr("visibility", "visible");
-            d3.select(this.ref).select("#sortTxt").attr("visibility", "visible");
+            svg.select("#divisor").attr("visibility", "visible");
+            svg.select("#sortTxt").attr("visibility", "visible");
         }
 
         for (var i = this.id1; i <= this.id2; i++) {
-            var newybar = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("rect").attr("y")) + 100;
-            var newytxt = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("text").attr("y")) + 100;
-            d3.select(this.ref).select("#" + this.ids[i]).select("rect").transition().duration(this.stepTime).attr("y", newybar);
-            d3.select(this.ref).select("#" + this.ids[i]).select("text").transition().duration(this.stepTime).attr("y", newytxt);
+            var newybar = parseInt(svg.select("#" + this.ids[i]).select("rect").attr("y")) + 100;
+            var newytxt = parseInt(svg.select("#" + this.ids[i]).select("text").attr("y")) + 100;
+            svg.select("#" + this.ids[i]).select("rect").attr("y", newybar);
+            svg.select("#" + this.ids[i]).select("text").attr("y", newytxt);
         }
 	}
 
-	backward() {
-        d3.select(this.ref).select("#divisor").attr("visibility", "hidden");
-        d3.select(this.ref).select("#sortTxt").attr("visibility", "hidden");
+	backward(svg) {
+        svg.select("#divisor").attr("visibility", "hidden");
+        svg.select("#sortTxt").attr("visibility", "hidden");
 
         for (var i = this.id1; i <= this.id2; i++) {
-            var newybar = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("rect").attr("y")) - 100;
-            var newytxt = parseInt(d3.select(this.ref).select("#" + this.ids[i]).select("text").attr("y")) - 100;
-            d3.select(this.ref).select("#" + this.ids[i]).select("rect").transition().duration(this.stepTime).attr("y", newybar);
-            d3.select(this.ref).select("#" + this.ids[i]).select("text").transition().duration(this.stepTime).attr("y", newytxt);
+            var newybar = parseInt(svg.select("#" + this.ids[i]).select("rect").attr("y")) - 100;
+            var newytxt = parseInt(svg.select("#" + this.ids[i]).select("text").attr("y")) - 100;
+            svg.select("#" + this.ids[i]).select("rect").attr("y", newybar);
+            svg.select("#" + this.ids[i]).select("text").attr("y", newytxt);
         }
 	}
 }
 
 class PartSortedStep {
-	constructor(id1, id2, ids, ref) {
+	constructor(id1, id2, ids) {
 		this.id1 = id1;
 		this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
 	}
 
-	forward() {
+	forward(svg) {
 		var barWidth = 70;
 		var barOffset = 30;
         var height = 700;
 		var sorty = 150;
-		var sortx = parseInt(d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("x"));
+		var sortx = parseInt(svg.select("#" + this.ids[this.id1]).select("rect").attr("x"));
 
 		if (this.id2 === 0) {
-            d3.select(this.ref).select("svg").append("line")
+            svg.append("line")
 				.style("stroke", "white")
 				.style("stroke-width", 7)
 				.attr("x1", barWidth + (barOffset / 2) + 65)
@@ -99,7 +96,7 @@ class PartSortedStep {
 				.attr("y2", height + 50)
 				.attr("id", "divisor");
 
-			d3.select(this.ref).select("svg").append("text").text("Sorted")
+			svg.append("text").text("Sorted")
 				.attr("y", sorty)
 				.attr("x", sortx)
 				.attr("id", "sortTxt")
@@ -110,61 +107,60 @@ class PartSortedStep {
 				.style("fill", "white");
 		}
 		else if (this.id1 === this.ids.length - 1) {
-            d3.select(this.ref).select("#divisor").attr("visibility", "hidden");
-			d3.select(this.ref).select("#sortTxt").attr("visibility", "hidden");
+            svg.select("#divisor").attr("visibility", "hidden");
+			svg.select("#sortTxt").attr("visibility", "hidden");
 		}
 
-        d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".insertTxt").attr("visibility", "hidden");
+        svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".insertTxt").attr("visibility", "hidden");
 
         for (var i = this.id1; i <= this.id2; i++)
-		    d3.select(this.ref).select("#" + this.ids[i]).select("rect").style("fill", "green");
+		    svg.select("#" + this.ids[i]).select("rect").style("fill", "green");
 	}
 
-	backward() {
+	backward(svg) {
 		if (this.id2 === 0) {
-            d3.select(this.ref).select("#divisor").remove();
-			d3.select(this.ref).select("#sortTxt").remove();
+            svg.select("#divisor").remove();
+			svg.select("#sortTxt").remove();
 		}
 
 		for (var i = this.id1 + 1; i < this.id2; i++) {
-			d3.select(this.ref).select("#" + this.ids[i]).select("rect").style("fill", "grey");
+			svg.select("#" + this.ids[i]).select("rect").style("fill", "grey");
 		}
 
-		d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "red");
 
 		if (this.id1 === 0) {
-			d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", "grey");
+			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "grey");
 		}
 	}
 }
 
 class SortedStep {
-	constructor(id1, id2, ids, ref) {
+	constructor(id1, id2, ids) {
 		this.id1 = id1;
 		this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
 	}
 
-	forward() {
+	forward(svg) {
 		var barWidth = 70;
 		var barOffset = 30;
         var height = 700;
-		var sorty = 150;
-		var sortx = parseInt(d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("x"));
+		var sorty = 70;
+		var sortx = parseInt(svg.select("#" + this.ids[this.id1]).select("rect").attr("x"));
 
 		if (this.id2 === 0) {
-            d3.select(this.ref).select("svg").append("line")
+            svg.append("line")
 				.style("stroke", "white")
 				.style("stroke-width", 7)
 				.attr("x1", barWidth + (barOffset / 2) + 65)
-				.attr("y1", 100)
+				.attr("y1", 25)
 				.attr("x2", barWidth + (barOffset / 2) + 65)
-				.attr("y2", height + 50)
+				.attr("y2", height - 75)
 				.attr("id", "divisor");
 
-			d3.select(this.ref).select("svg").append("text").text("Sorted")
+			svg.append("text").text("Sorted")
 				.attr("y", sorty)
 				.attr("x", sortx)
 				.attr("id", "sortTxt")
@@ -175,172 +171,160 @@ class SortedStep {
 				.style("fill", "white");
 		}
 		else if (this.id1 === this.ids.length - 1) {
-            d3.select(this.ref).select("#divisor").attr("visibility", "hidden");
-			d3.select(this.ref).select("#sortTxt").attr("visibility", "hidden");
+            svg.select("#divisor").attr("visibility", "hidden");
+			svg.select("#sortTxt").attr("visibility", "hidden");
 		}
 		else {
 			console.log("AFTER " + this.id2);
-			var newDivx = parseInt(d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("x")) + barWidth + (barOffset / 2);
-			var newSortx = (parseInt(d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("x")) + barOffset) / 2;
+			var newDivx = parseInt(svg.select("#" + this.ids[this.id2]).select("rect").attr("x")) + barWidth + (barOffset / 2);
+			var newSortx = (parseInt(svg.select("#" + this.ids[this.id2]).select("rect").attr("x")) + barOffset) / 2;
 
-			d3.select(this.ref).select("#divisor")
-				.transition()
-				.duration(this.stepTime)
-					.attr("x1", newDivx)
-					.attr("x2", newDivx);
+			svg.select("#divisor")
+				.attr("x1", newDivx)
+				.attr("x2", newDivx);
 
-			d3.select(this.ref).select("#sortTxt")
-				.transition()
-				.duration(this.stepTime)
-					.attr("x", newSortx);
+			svg.select("#sortTxt").attr("x", newSortx);
 		}
 
-        d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".insertTxt").attr("visibility", "hidden");
+        svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".insertTxt").attr("visibility", "hidden");
 
         for (var i = this.id1; i <= this.id2; i++)
-		    d3.select(this.ref).select("#" + this.ids[i]).select("rect").style("fill", "green");
+		    svg.select("#" + this.ids[i]).select("rect").style("fill", "green");
 	}
 
-	backward() {
+	backward(svg) {
 		var barOffset = 30;
 
 		if (this.id2 === 0) {
-            d3.select(this.ref).select("#divisor").remove();
-			d3.select(this.ref).select("#sortTxt").remove();
+            svg.select("#divisor").remove();
+			svg.select("#sortTxt").remove();
 		}
 		else {
 			console.log("BEFORE " + this.id2);
-			var newDivx = parseInt(d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("x")) - (barOffset / 2);
-			var newSortx = (parseInt(d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("x")) - barOffset) / 2;
+			var newDivx = parseInt(svg.select("#" + this.ids[this.id2]).select("rect").attr("x")) - (barOffset / 2);
+			var newSortx = (parseInt(svg.select("#" + this.ids[this.id2]).select("rect").attr("x")) - barOffset) / 2;
 
 			if (this.id2 === 1) {
-				newSortx = parseInt(d3.select(this.ref).select("#" + this.ids[0]).select("rect").attr("x"));
+				newSortx = parseInt(svg.select("#" + this.ids[0]).select("rect").attr("x"));
 			}
 
-			d3.select(this.ref).select("#divisor")
-				.transition()
-				.duration(this.stepTime)
-					.attr("x1", newDivx)
-					.attr("x2", newDivx);
+			svg.select("#divisor")
+				.attr("x1", newDivx)
+				.attr("x2", newDivx);
 
-			d3.select(this.ref).select("#sortTxt")
-				.transition()
-				.duration(this.stepTime)
-					.attr("x", newSortx);
+			svg.select("#sortTxt").attr("x", newSortx);
 		}
 
-        d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".insertTxt").attr("visibility", "hidden");
+        svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".insertTxt").attr("visibility", "hidden");
 
-        if (this.id2 != 0) {
-            d3.select(this.ref).select("#arrowpath" + this.id1).attr("visibility", "visible");
-		    d3.select(this.ref).select("#insertTxt" + this.id1).attr("visibility", "visible");
-			d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+        if (this.id2 !== 0) {
+            svg.select("#arrowpath" + this.id1).attr("visibility", "visible");
+		    svg.select("#insertTxt" + this.id1).attr("visibility", "visible");
+			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
         }
 
 		for (var i = this.id1 + 1; i <= this.id2; i++)
-		    	d3.select(this.ref).select("#" + this.ids[i]).select("rect").style("fill", "grey");
+		    	svg.select("#" + this.ids[i]).select("rect").style("fill", "grey");
 
 		if (this.id2 === 0) {
-			d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", "grey");
+			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "grey");
 		}
 	}
 }
 
 class InsertSwapStep {
-	constructor(id1, ids, ref) {
+	constructor(id1, ids) {
 		this.id1 = id1;
 		this.ids = ids;
-		this.ref = ref;
 	}
 
-	forward() {
-        d3.select(this.ref).select("#divisor").attr("visibility", "hidden");
-		d3.select(this.ref).select("#sortTxt").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".insertTxt").attr("visibility", "hidden");        
+	forward(svg) {
+        svg.select("#divisor").attr("visibility", "hidden");
+		svg.select("#sortTxt").attr("visibility", "hidden");
+		svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".insertTxt").attr("visibility", "hidden");        
 
-		d3.select(this.ref).select("#arrowpath" + this.id1).attr("visibility", "visible");
-		d3.select(this.ref).select("#insertTxt" + this.id1).attr("visibility", "visible");
+		svg.select("#arrowpath" + this.id1).attr("visibility", "visible");
+		svg.select("#insertTxt" + this.id1).attr("visibility", "visible");
         
         for (var i = 0; i < this.id1; i++) {
-            d3.select(this.ref).select("#" + this.ids[i]).select("rect").style("fill", "gray");
+            svg.select("#" + this.ids[i]).select("rect").style("fill", "gray");
         }
 
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
 	}
 
-	backward() {
-        d3.select(this.ref).select("#divisor").attr("visibility", "visible");
-		d3.select(this.ref).select("#sortTxt").attr("visibility", "visible");
-		d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".insertTxt").attr("visibility", "hidden");
+	backward(svg) {
+        svg.select("#divisor").attr("visibility", "visible");
+		svg.select("#sortTxt").attr("visibility", "visible");
+		svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".insertTxt").attr("visibility", "hidden");
 
 		for (var i = 0; i < this.id1; i++) {
-            d3.select(this.ref).select("#" + this.ids[i]).select("rect").style("fill", "green");
+            svg.select("#" + this.ids[i]).select("rect").style("fill", "green");
         }
 
-		d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");
 	}
 }
 
 class SwapStep {
-	constructor(id1, id2, ids, ref, stepTime) {
+	constructor(id1, id2, ids, stepTime) {
 		this.id1 = id1;
 		this.id2 = id2;
 		this.ids = ids;
-		this.ref = ref;
 		this.stepTime = stepTime;
 	}
 
-	runSwap() {
+	runSwap(svg) {
 
 		if (this.id1 === this.id2) {
 			return;
 		}
 
-		var newxbar1 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("rect").attr("x");
-		var newxbar2 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("rect").attr("x");
+		var newxbar1 = svg.select("#" + this.ids[this.id2]).select("rect").attr("x");
+		var newxbar2 = svg.select("#" + this.ids[this.id1]).select("rect").attr("x");
 
-		var newxtxt1 = d3.select(this.ref).select("#" + this.ids[this.id2]).select("text").attr("x");
-		var newxtxt2 = d3.select(this.ref).select("#" + this.ids[this.id1]).select("text").attr("x");
+		var newxtxt1 = svg.select("#" + this.ids[this.id2]).select("text").attr("x");
+		var newxtxt2 = svg.select("#" + this.ids[this.id1]).select("text").attr("x");
 
 		console.log("SWAPPING.");
 
-		d3.select(this.ref)
+		svg
 			.select("#" + this.ids[this.id1])
 			.select("rect")
 				.transition()
 				.duration(this.stepTime)
 				.attr("x", newxbar1);
 
-		d3.select(this.ref)
+		svg
 			.select("#" + this.ids[this.id1])
 			.select("text")
 				.transition()
 				.duration(this.stepTime)
 				.attr("x", newxtxt1);
 
-		d3.select(this.ref)
+		svg
 			.select("#" + this.ids[this.id2])
 			.select("rect")
 				.transition()
 				.duration(this.stepTime)
 				.attr("x", newxbar2)
 
-		d3.select(this.ref)
+		svg
 			.select("#" + this.ids[this.id2])
 			.select("text")
 				.transition()
 				.duration(this.stepTime)
 				.attr("x", newxtxt2);
 
-		var bar1 = d3.select(this.ref).select("#" + this.ids[this.id1]);
+		var bar1 = svg.select("#" + this.ids[this.id1]);
 
 			bar1.attr("id", null);
 
-		var bar2 = d3.select(this.ref).select("#" + this.ids[this.id2]);
+		var bar2 = svg.select("#" + this.ids[this.id2]);
 
 			bar2.attr("id", null);
 
@@ -348,24 +332,24 @@ class SwapStep {
 			bar2.attr("id", this.ids[this.id1]);
 	}
 
-	forward() {
-		this.runSwap();
+	forward(svg) {
+		this.runSwap(svg);
 
-        d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".insertTxt").attr("visibility", "hidden");
+        svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".insertTxt").attr("visibility", "hidden");
 
-		d3.select(this.ref).select("#arrowpath" + this.id2).attr("visibility", "visible");
-		d3.select(this.ref).select("#insertTxt" + this.id2).attr("visibility", "visible");
+		svg.select("#arrowpath" + this.id2).attr("visibility", "visible");
+		svg.select("#insertTxt" + this.id2).attr("visibility", "visible");
 	}
 
-	backward() {
-		this.runSwap();
+	backward(svg) {
+		this.runSwap(svg);
 
-        d3.select(this.ref).selectAll(".arrowpath").attr("visibility", "hidden");
-		d3.select(this.ref).selectAll(".insertTxt").attr("visibility", "hidden");
+        svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".insertTxt").attr("visibility", "hidden");
 
-		d3.select(this.ref).select("#arrowpath" + this.id1).attr("visibility", "visible");
-		d3.select(this.ref).select("#insertTxt" + this.id1).attr("visibility", "visible");
+		svg.select("#arrowpath" + this.id1).attr("visibility", "visible");
+		svg.select("#insertTxt" + this.id1).attr("visibility", "visible");
 	}
 }
 
@@ -382,7 +366,7 @@ export default class InsertionSort extends React.Component {
 			running: false,
 			stepId: 0,
 			stepTime: 300,
-			waitTime: (9 * 2000) / 8
+			waitTime: 2000
 		};
 
 		this.ref = React.createRef();
@@ -403,7 +387,7 @@ export default class InsertionSort extends React.Component {
 		}
 	}
 
-	sort(arr, ids, size)
+	sort(arr, ids, size, stepTime)
 	{
 		var steps = [];
 		var messages = [];
@@ -413,43 +397,46 @@ export default class InsertionSort extends React.Component {
 		steps.push(new EmptyStep());
 
         messages.push("<h1>Index 0 is a one element array, and is therefore sorted.</h1>");
-		steps.push(new SortedStep(0, 0, ids, this.ref.current));
+		steps.push(new SortedStep(0, 0, ids));
         
         for(i = 1; i < size; i++)
         {
             messages.push("<h1>Selecting our next insertion index.</h1>");
-		    steps.push(new InsertSwapStep(i, ids, this.ref.current));
+		    steps.push(new InsertSwapStep(i, ids));
 
             messages.push("<h1>Pull elements out of our " + (i+1) + " index array and sort them (left to right).</h1>");
-		    steps.push(new PartitionStep(0, i, ids, this.ref.current));
+		    steps.push(new PartitionStep(0, i, ids));
             
             for(j = i-1; j >= 0; j--)
             {
                 if(arr[j] > arr[j+1])
                 {
-                    messages.push("<h1>" + arr[j] + " > " + arr[j+1] + ". Scooch " + arr[j] + " to the right.</h1>");
-                    steps.push(new SwapStep(j+1, j, ids, this.ref.current, this.state.stepTime));
+                    messages.push("<h1>" + arr[j] + " > " + arr[j+1] + "</h1>");
+                    steps.push(new EmptyStep());
+					messages.push("<h1>Scooch " + arr[j] + " to the right.</h1>");
+                    steps.push(new SwapStep(j+1, j, ids, stepTime));
                     [arr[j+1], arr[j]] = [arr[j], arr[j+1]];
                 }
                 else
                 {
-                    messages.push("<h1>" + arr[j] + " < " + arr[j+1] + ". Insert is in its sorted spot.</h1>");
-		            steps.push(new PartSortedStep(0, j + 1, ids, this.ref.current));
+					messages.push("<h1>" + arr[j] + " < " + arr[j+1] + "</h1>");
+					steps.push(new EmptyStep());
+                    messages.push("<h1>Insert is in its sorted spot.</h1>");
+		            steps.push(new PartSortedStep(0, j + 1, ids));
 
                     break;
                 }
             }
             messages.push("<h1>Indices 0 through " + i + " are in sorted order.</h1>");
-		    steps.push(new SortedStep(j + 1, i, ids, this.ref.current));
+		    steps.push(new SortedStep(j + 1, i, ids));
 
             messages.push("<h1>Indices 0 through " + i + " are in sorted order.</h1>");
-		    steps.push(new UnpartitionStep(0, i, ids, this.ref.current));
+		    steps.push(new UnpartitionStep(0, i, ids));
         }
 
 		messages.push("<h1>Finished Insertion Sort!</h1>");
 		steps.push(new EmptyStep());
 
-		this.setState({arr: arr});
 		this.setState({steps: steps});
 		this.setState({messages: messages});
 
@@ -457,20 +444,19 @@ export default class InsertionSort extends React.Component {
 		console.log(messages);
 	}
 
-	initialize() {
+	dataInit(size) {
 		var arr = [];
 
 		// fills arr with random numbers [15, 70]
-		for (let i = 0; i < this.state.size; i++)
+		for (let i = 0; i < size; i++)
 		{
 			arr[i] = 15 + Math.floor(Math.random() * 56);
 		}
 
 		this.setState({arr: arr});
+	}
 
-		console.log("Unsorted");
-		this.printArray(arr, this.state.size);
-
+	initialize(arr, size, ref) {
 		const barWidth = 70;
 		const barOffset = 30;
 		const height = 500;
@@ -479,10 +465,10 @@ export default class InsertionSort extends React.Component {
 			.domain([0, d3.max(arr)])
 			.range([0, height]);
 
-		var svg = d3.select(this.ref.current)
+		var svg = d3.select(ref)
 			.append("svg")
-				.attr("width", (this.state.size * (barWidth + barOffset)) + 100)
-				.attr("height", height + 350);
+				.attr("width", (size * (barWidth + barOffset)) + 100)
+				.attr("height", height + 300);
 
 		var bars = svg.selectAll(".bar")
 					.data(arr)
@@ -501,7 +487,7 @@ export default class InsertionSort extends React.Component {
 					return (i * (barWidth + barOffset)) + 65;
 				})
 				.attr("y", (d) => {
-					return (height + 200) - yScale(d);
+					return (height + 75) - yScale(d);
 				})
 				.style("fill", "gray");
 
@@ -510,7 +496,7 @@ export default class InsertionSort extends React.Component {
 					console.log("BAR " + d);
 					return d;
 				})
-				.attr("y", (height + 200) - 15)
+				.attr("y", (height + 75) - 15)
 				.attr("x", (_, i) => {
 					return i * (barWidth + barOffset) + (barWidth / 2) + 65;
 				})
@@ -533,7 +519,7 @@ export default class InsertionSort extends React.Component {
 
 		bars.append("path")
 			.attr("d", (_, i) => {
-				return d3.line()([[i * (barWidth + barOffset) + (barWidth / 2) + 65, height + 285], [i * (barWidth + barOffset) + (barWidth / 2) + 65, height + 235]]);
+				return d3.line()([[i * (barWidth + barOffset) + (barWidth / 2) + 65, height + 165], [i * (barWidth + barOffset) + (barWidth / 2) + 65, height + 115]]);
 			})
 			.attr("stroke-width", 1)
 			.attr("stroke", "white")
@@ -546,7 +532,7 @@ export default class InsertionSort extends React.Component {
 			.attr("visibility", "hidden");
 
 		bars.append("text").text("Insert")
-			.attr("y", height + 315)
+			.attr("y", height + 190)
 			.attr("x", (_, i) => {
 				return i * (barWidth + barOffset) + (barWidth / 2) + 65;
 			})
@@ -563,12 +549,16 @@ export default class InsertionSort extends React.Component {
 
 		var ids = [];
 
-		for (let i = 0; i < this.state.size; i++)
+		for (let i = 0; i < size; i++)
 		{
 			ids.push("g" + i);
 		}
 
 		this.setState({ids: ids});
+
+		svg.attr("visibility", "hidden");
+
+        return svg;
 	}
 
 	turnOffRunning() {
@@ -580,7 +570,7 @@ export default class InsertionSort extends React.Component {
 		if (this.state.running) return;
 		if (this.state.stepId === this.state.steps.length) return;
 		
-		this.state.steps[this.state.stepId].forward();
+		this.state.steps[this.state.stepId].forward(d3.select(this.ref.current).select("svg"));
 		console.log(this.state.steps[this.state.stepId]);
 		document.getElementById("message").innerHTML = this.state.messages[this.state.stepId];
 		this.setState({stepId: this.state.stepId + 1});
@@ -593,11 +583,11 @@ export default class InsertionSort extends React.Component {
 		if (this.state.running) return;
 		if (this.state.stepId - 1 < 0) return;
 
-		var stepId = this.state.stepId;
+		var stepId = this.state.stepId - 1;
 
-		this.state.steps[--stepId].backward();
+		this.state.steps[stepId].backward(d3.select(this.ref.current).select("svg"));
         console.log(this.state.steps[stepId]);
-		document.getElementById("message").innerHTML = this.state.messages[stepId];
+		document.getElementById("message").innerHTML = (stepId - 1 < 0) ? "<h1>Welcome to Insertion Sort!</h1>" : this.state.messages[stepId - 1];
 		this.setState({stepId: stepId});
 		d3.timeout(this.turnOffRunning, this.state.waitTime);
 	}
@@ -608,7 +598,7 @@ export default class InsertionSort extends React.Component {
 			this.setState({running: false});
 			return;
 		}
-		this.state.steps[this.state.stepId].forward();
+		this.state.steps[this.state.stepId].forward(d3.select(this.ref.current).select("svg"));
 		document.getElementById("message").innerHTML = this.state.messages[this.state.stepId];
 		this.setState({stepId: this.state.stepId + 1});
 		d3.timeout(this.run, this.state.waitTime);
@@ -628,31 +618,39 @@ export default class InsertionSort extends React.Component {
 
 	restart() {
 		console.log("RESTART CLICKED");
-        this.setState({running: false, arr: [], steps: [], ids: [], messages: [], stepId: 0});
 
         d3.select(this.ref.current).select("svg").remove();
         document.getElementById("message").innerHTML = "<h1>Welcome to Insertion Sort!</h1>";
+
+		this.setState({running: false, steps: [], ids: [], messages: [], stepId: 0});
 	}
 
 	componentDidMount() {
-		this.initialize();
+		this.dataInit(this.state.size);
 	}
 
 	componentDidUpdate(prevProps, prevState) {
+		// Component mounted and unsorted array created -> Initialize visualizer
 		if (this.state.arr.length > prevState.arr.length) {
-			this.sort(this.state.arr, this.state.ids, this.state.size);
-
-			console.log("Sorted");
+			console.log("Unsorted");
 			this.printArray(this.state.arr, this.state.size);
+			this.initialize(this.state.arr, this.state.size, this.ref.current);
 		}
-		else if (this.state.running !== prevState.running)
+		// Visualizer initialized -> Sort copy of array and get steps
+		else if (this.state.ids.length > prevState.ids.length) {
+			d3.select(this.ref.current).select("svg").attr("visibility", "visible");
+			this.sort([...this.state.arr], this.state.ids, this.state.size, this.state.stepTime);
+		}
+		// Part of restart -> Reinitialize with original array
+        else if (this.state.steps.length !== prevState.steps.length && this.state.steps.length === 0) {
+			console.log("Steps changed");
+			var svg = this.initialize(this.state.arr, this.state.size, this.ref.current);
+			svg.attr("visibility", "visible");
+		}
+		else if (this.state.running !== prevState.running && this.state.running === true)
 		{
 			this.run();
 			console.log("We ran");
-		}
-        else if (this.state.steps.length !== prevState.steps.length && this.state.steps.length === 0) {
-			console.log("Steps changed");
-			this.initialize();
 		}
 	}
 
