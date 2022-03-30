@@ -405,12 +405,12 @@ export default class Prims extends React.Component {
     console.log("RESTART CLICKED");
     if (this.state.stepId - 1 < 0) return;
 
+    let svg = d3.select(this.ref.current).select("svg");
+
     var stepId = this.state.stepId;
-    document.getElementById("message").innerHTML = this.state.messages[0];
+    document.getElementById("message").innerHTML = "<h1>Welcome to Towers of Hanoi</h1>";
     while (stepId - 1 >= 0) {
-      for (const step of this.state.steps[--stepId]) step.backward();
-      // this.state.steps[--stepId].backward();
-      d3.timeout(this.turnOffRunning, this.state.waitTime);
+      for (const step of this.state.steps[--stepId]) step.backward(svg);
     }
 
     this.setState({ running: false });
