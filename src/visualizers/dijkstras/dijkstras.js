@@ -140,7 +140,7 @@ export default class Dijkstras extends React.Component {
 		var visitedNum = 0;
 
 		messages.push("<h1>Node " + first + " is the main node.</h1>");
-		steps.push(new ColorNodeStep(first, "gray", "green"));
+		steps.push(new ColorNodeStep(first, "gray", "#1ACA1E"));
 
 		graph.distances[first] = 0;
 
@@ -164,7 +164,7 @@ export default class Dijkstras extends React.Component {
 			}
 
 			messages.push("<h1>Node " + head[0] + " is the current head node.</h1>");
-			steps.push(new ColorNodeStep(head[0], (head[0] === first) ? "green" : "gray", "yellow"));
+			steps.push(new ColorNodeStep(head[0], (head[0] === first) ? "#1ACA1E" : "gray", "#648FFF"));
 
 			for (var i = 0; i < graph.adjacencyList[head[0]].length; i++) {
 				var v = graph.adjacencyList[head[0]][i][1];
@@ -176,11 +176,11 @@ export default class Dijkstras extends React.Component {
 				}
 
 				messages.push("<h1>Compare " + head[0] + " to " + v + ".</h1>");
-				steps.push(new ColorNodeStep(v, (graph.visited[head[0]]) ? "black" : "gray", "red"));
+				steps.push(new ColorNodeStep(v, (graph.visited[head[0]]) ? "black" : "gray", "#EF3F88"));
 
 				if (graph.distances[v] === -1) {
 					messages.push("<h1>Compare " + head[0] + " to " + v + ".</h1>");
-					steps.push(new ColorEdgeStep(edge, (graph.parentEdges.includes(edge)) ? "black" : "gray", "white"));
+					steps.push(new ColorEdgeStep(edge, (graph.parentEdges.includes(edge)) ? "#1ACA1E" : "gray", "white"));
 
 					messages.push("<h1>" + graph.distances[head[0]] + " + " + weight + " < ∞.</h1>");
 					steps.push(new EmptyStep());
@@ -200,20 +200,20 @@ export default class Dijkstras extends React.Component {
 					graph.distances[v] = graph.distances[head[0]] + weight;
 					
 					messages.push("<h1>" + v +"'s distance is now " + graph.distances[v] + ".</h1>");
-					steps.push(new ColorEdgeStep(edge, "white", "black"));
+					steps.push(new ColorEdgeStep(edge, "white", "#1ACA1E"));
 
 					messages.push("<h1>" + v +"'s distance is now " + graph.distances[v] + ".</h1>");
 				}
 				else if (graph.distances[head[0]] + weight < graph.distances[v]) {
 
 					messages.push("<h1>Compare " + head[0] + " to " + v + ".</h1>");
-					steps.push(new ColorEdgeStep(edge, (graph.parentEdges.includes(edge)) ? "black" : "gray", "white"));
+					steps.push(new ColorEdgeStep(edge, (graph.parentEdges.includes(edge)) ? "#1ACA1E" : "gray", "white"));
 
 					messages.push("<h1>" + graph.distances[head[0]] + " + " + weight + " < " + graph.distances[v] + ".</h1>");
 					steps.push(new EmptyStep());
 
 					messages.push("<h1>Distance through " + head[0] + " is less than " + v + "'s current distance.</h1>");
-					steps.push(new ColorEdgeStep(graph.parentEdges[v], "black", "gray"));
+					steps.push(new ColorEdgeStep(graph.parentEdges[v], "#1ACA1E", "#444444"));
 
 					messages.push("<h1>" + v +"'s parent is now " + head[0] + ".</h1>");
 					steps.push(new SetInfoStep(v, graph.parents[v], head[0], -1, -1));
@@ -227,25 +227,25 @@ export default class Dijkstras extends React.Component {
 					graph.distances[v] = graph.distances[head[0]] + weight;
 					
 					messages.push("<h1>" + v +"'s distance is now " + graph.distances[v] + ".</h1>");
-					steps.push(new ColorEdgeStep(edge, "white", "black"));
+					steps.push(new ColorEdgeStep(edge, "white", "#1ACA1E"));
 
 					messages.push("<h1>" + v +"'s distance is now " + graph.distances[v] + ".</h1>");
 				}
 				else
 				{
 					messages.push("<h1>Compare " + head[0] + " to " + v + ".</h1>");
-					steps.push(new ColorEdgeStep(edge, (graph.parentEdges.includes(edge)) ? "black" : "gray", "white"));
+					steps.push(new ColorEdgeStep(edge, (graph.parentEdges.includes(edge)) ? "#1ACA1E" : "gray", "white"));
 
 					messages.push("<h1>" + graph.distances[head[0]] + " + " + weight + " > " + graph.distances[v] + ".</h1>");
 					steps.push(new EmptyStep());
 
 					messages.push("<h1>Distance through " + head[0] + " is not less than " + v + "'s current distance. No change.</h1>");
-					steps.push(new ColorEdgeStep(edge, "white", (graph.parentEdges.includes(edge)) ? "black" : "gray"));
+					steps.push(new ColorEdgeStep(edge, "white", (graph.parentEdges.includes(edge)) ? "#1ACA1E" : "#444444"));
 
 					messages.push("<h1>Distance through " + head[0] + " is not less than " + v + "'s current distance. No change.</h1>");
 				}
 
-				steps.push(new ColorNodeStep(v, "red", "gray"));
+				steps.push(new ColorNodeStep(v, "#EF3F88", "gray"));
 
 				this.minInsert(minQueue, v, graph.distances[v]);
 			}
@@ -254,7 +254,7 @@ export default class Dijkstras extends React.Component {
 			visitedNum++;
 
 			messages.push("<h1>Finished with Node " + head[0] + ".</h1>");
-			steps.push(new ColorNodeStep(head[0], "yellow", (head[0] !== first) ? "black" : "green"));
+			steps.push(new ColorNodeStep(head[0], "#648FFF", (head[0] !== first) ? "black" : "#1ACA1E"));
 		}
 
         messages.push("<h1>Found shortest paths from Node " + first +  " to all nodes.</h1>");
