@@ -115,7 +115,7 @@ class PartSortedStep {
 		svg.selectAll(".insertTxt").attr("visibility", "hidden");
 
         for (var i = this.id1; i <= this.id2; i++)
-		    svg.select("#" + this.ids[i]).select("rect").style("fill", "green");
+		    svg.select("#" + this.ids[i]).select("rect").style("fill", "#1ACA1E");
 	}
 
 	backward(svg) {
@@ -128,7 +128,7 @@ class PartSortedStep {
 			svg.select("#" + this.ids[i]).select("rect").style("fill", "grey");
 		}
 
-		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "#EF3F88");
 
 		if (this.id1 === 0) {
 			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "grey");
@@ -190,7 +190,7 @@ class SortedStep {
 		svg.selectAll(".insertTxt").attr("visibility", "hidden");
 
         for (var i = this.id1; i <= this.id2; i++)
-		    svg.select("#" + this.ids[i]).select("rect").style("fill", "green");
+		    svg.select("#" + this.ids[i]).select("rect").style("fill", "#1ACA1E");
 	}
 
 	backward(svg) {
@@ -222,7 +222,7 @@ class SortedStep {
         if (this.id2 !== 0) {
             svg.select("#arrowpath" + this.id1).attr("visibility", "visible");
 		    svg.select("#insertTxt" + this.id1).attr("visibility", "visible");
-			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#EF3F88");
         }
 
 		for (var i = this.id1 + 1; i <= this.id2; i++)
@@ -253,7 +253,7 @@ class InsertSwapStep {
             svg.select("#" + this.ids[i]).select("rect").style("fill", "gray");
         }
 
-		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#EF3F88");
 	}
 
 	backward(svg) {
@@ -263,7 +263,7 @@ class InsertSwapStep {
 		svg.selectAll(".insertTxt").attr("visibility", "hidden");
 
 		for (var i = 0; i < this.id1; i++) {
-            svg.select("#" + this.ids[i]).select("rect").style("fill", "green");
+            svg.select("#" + this.ids[i]).select("rect").style("fill", "#1ACA1E");
         }
 
 		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");

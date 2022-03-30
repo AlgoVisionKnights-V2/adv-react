@@ -343,7 +343,7 @@ export default class HeapSort extends React.Component {
       addStep(new FlipVisibilityStep(this.ref.current, stepTime, heapVals[i].attr.id));
       addStep(new FlipVisibilityStep(this.ref.current, stepTime, heapCircs[i].attr.id));
       addStep(
-        new ChangeNumberColorStep(this.ref.current, stepTime, vals[i].attr.id, "gray", "#e6f078")
+        new ChangeNumberColorStep(this.ref.current, stepTime, vals[i].attr.id, "gray", "#FFCE36")
       );
       flushBuffer();
       currentMessage = "<h1>This node has no children.</h1>";
@@ -353,7 +353,7 @@ export default class HeapSort extends React.Component {
           stepTime,
           heapVals[i].attr.id,
           "white",
-          "#e6f078"
+          "#FFCE36"
         )
       );
       flushBuffer();
@@ -364,7 +364,7 @@ export default class HeapSort extends React.Component {
       addStep(new FlipVisibilityStep(this.ref.current, stepTime, heapCircs[i].attr.id));
       addStep(new FlipVisibilityStep(this.ref.current, stepTime, heapVals[i].attr.id));
       addStep(
-        new ChangeNumberColorStep(this.ref.current, stepTime, vals[i].attr.id, "gray", "#e6f078")
+        new ChangeNumberColorStep(this.ref.current, stepTime, vals[i].attr.id, "gray", "#FFCE36")
       );
 
       let l = i * 2;
@@ -408,7 +408,7 @@ export default class HeapSort extends React.Component {
           stepTime,
           heapVals[v].attr.id,
           "white",
-          "#e6f078"
+          "#FFCE36"
         )
       );
       flushBuffer();
@@ -458,7 +458,7 @@ export default class HeapSort extends React.Component {
       // change this ^^^
       currentMessage = "<h1>" + arr[i] + " is now in it's sorted position.</h1>";
       addStep(
-        new ChangeNumberColorStep(this.ref.current, stepTime, vals[i].attr.id, "#e6f078", "green")
+        new ChangeNumberColorStep(this.ref.current, stepTime, vals[i].attr.id, "#FFCE36", "#1ACA1E")
       );
       flushBuffer();
 
@@ -473,7 +473,7 @@ export default class HeapSort extends React.Component {
           this.ref.current,
           stepTime,
           heapVals[1].attr.id,
-          "#e6f078",
+          "#FFCE36",
           "white"
         )
       );
@@ -509,7 +509,7 @@ export default class HeapSort extends React.Component {
           stepTime,
           heapVals[v].attr.id,
           "white",
-          "#e6f078"
+          "#FFCE36"
         )
       );
       flushBuffer();
@@ -520,13 +520,13 @@ export default class HeapSort extends React.Component {
     addStep(new FlipVisibilityStep(this.ref.current, stepTime, heapVals[1].attr.id));
     addStep(new FlipVisibilityStep(this.ref.current, stepTime, heapCircs[1].attr.id));
     addStep(
-      new ChangeNumberColorStep(this.ref.current, stepTime, vals[1].attr.id, "#e6f078", "green")
+      new ChangeNumberColorStep(this.ref.current, stepTime, vals[1].attr.id, "#FFCE36", "#1ACA1E")
     );
     flushBuffer();
 
     // addStep(new FlipVisibilityStep(this.ref.current, stepTime, circNumIds[1]));
     // addStep(new FlipVisibilityStep(this.ref.current, stepTime, circIds[1]));
-    // addStep(new ChangeNumberColorStep(this.ref.current, stepTime, numIds[1], "#e6f078", "green"));
+    // addStep(new ChangeNumberColorStep(this.ref.current, stepTime, numIds[1], "#FFCE36", "#1ACA1E"));
     // flushBuffer();
 
     this.setState({
@@ -560,12 +560,12 @@ export default class HeapSort extends React.Component {
     if (this.state.running) return;
     if (this.state.stepId - 1 < 0) return;
 
-    var stepId = this.state.stepId;
+    var stepId = this.state.stepId - 1;
 
-    document.getElementById("message").innerHTML = this.state.messages[this.state.stepId - 1];
-    for (const step of this.state.steps[stepId - 1]) step.backward();
+    document.getElementById("message").innerHTML = (stepId - 1 < 0) ? "<h1>Welcome to Heap Sort!</h1>" : this.state.messages[stepId - 1];
+    for (const step of this.state.steps[stepId]) step.backward();
     // this.state.steps[--stepId].backward();
-    this.setState({ stepId: stepId - 1 });
+    this.setState({ stepId: stepId });
     d3.timeout(this.turnOffRunning, this.state.waitTime);
   }
 
@@ -598,7 +598,7 @@ export default class HeapSort extends React.Component {
     if (this.state.stepId - 1 < 0) return;
 
     var stepId = this.state.stepId;
-    document.getElementById("message").innerHTML = this.state.messages[0];
+    document.getElementById("message").innerHTML = "<h1>Welcome to Heap Sort!</h1>";
     while (stepId - 1 >= 0) {
       for (const step of this.state.steps[--stepId]) step.backward();
       // this.state.steps[--stepId].backward();
@@ -646,7 +646,7 @@ export default class HeapSort extends React.Component {
           <button onClick={this.forward}>&gt;</button>
         </div>
         <div class="center-screen">
-          <span id="message"></span>
+          <span id="message"><h1>Welcome to Heap Sort!</h1></span>
         </div>
         <div ref={this.ref} class="center-screen"></div>
       </div>

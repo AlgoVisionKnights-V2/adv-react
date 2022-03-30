@@ -141,7 +141,7 @@ export default class Prims extends React.Component {
           graph.edgeInfo[edgeId].line.attr.id,
           graph.edgeInfo[edgeId].text.attr.id,
           "gray",
-          "yellow"
+          "#FFCE36"
         )
       );
       createMessage("Insert edge (" + node1 + ", " + node2 + ") into the queue.");
@@ -166,7 +166,7 @@ export default class Prims extends React.Component {
           this.ref.current,
           graph.edgeInfo[currentId].line.attr.id,
           graph.edgeInfo[currentId].text.attr.id,
-          "yellow",
+          "#FFCE36",
           "white"
         )
       );
@@ -217,7 +217,7 @@ export default class Prims extends React.Component {
           graph.edgeInfo[currentId].line.attr.id,
           graph.edgeInfo[currentId].text.attr.id,
           "white",
-          "green"
+          "#1ACA1E"
         )
       );
       addStep(
@@ -253,7 +253,7 @@ export default class Prims extends React.Component {
             graph.edgeInfo[edgeId].line.attr.id,
             graph.edgeInfo[edgeId].text.attr.id,
             "gray",
-            "yellow"
+            "#FFCE36"
           )
         );
         createMessage("Insert the edge (" + from + ", " + to + ") into the queue.");

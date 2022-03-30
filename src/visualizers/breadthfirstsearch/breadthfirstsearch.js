@@ -234,7 +234,7 @@ export default class BreadthFirstSearch extends React.Component {
             graph.nodeInfo[currNode].circle.attr.id,
             graph.nodeInfo[currNode].text.attr.id,
             "gray",
-            "white"
+            "#1ACA1E"
           )
         );
         flushBuffer();
@@ -287,7 +287,7 @@ export default class BreadthFirstSearch extends React.Component {
             this.ref.current,
             graph.edgeInfo[edgeId].attr.id,
             "gray",
-            "#d55e00"
+            "white"
             )
         );
 
@@ -382,7 +382,7 @@ export default class BreadthFirstSearch extends React.Component {
           graph.nodeInfo[currNode].circle.attr.id,
           graph.nodeInfo[currNode].text.attr.id,
           "white",
-          "#f0e442"
+          "#FFB050"
           )
         );
 
@@ -397,7 +397,7 @@ export default class BreadthFirstSearch extends React.Component {
           graph.nodeInfo[currNode].circle.attr.id,
           graph.nodeInfo[currNode].text.attr.id,
           "white",
-          "#cc79a7"
+          "#EF3F88"
           )
         );
 
@@ -411,7 +411,7 @@ export default class BreadthFirstSearch extends React.Component {
           graph.nodeInfo[currNode].circle.attr.id,
           graph.nodeInfo[currNode].text.attr.id,
           "white",
-          "#0072b2"
+          "#648FFF"
           )
         );
 
@@ -425,7 +425,7 @@ export default class BreadthFirstSearch extends React.Component {
           graph.nodeInfo[currNode].circle.attr.id,
           graph.nodeInfo[currNode].text.attr.id,
           "white",
-          "#009e73"
+          "#CC01BE"
           )
         );
 
