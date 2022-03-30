@@ -104,10 +104,10 @@ export default class Queens extends React.Component {
           .attr("height",size + "px");
 
         if ((i+j)%2===0) {
-          tile.attr("fill", "#f26885");
+          tile.attr("fill", "#EF3F88");
         }
         else {
-          tile.attr("fill", "#f0e442");
+          tile.attr("fill", "#FFCE36");
         }
 
         const piece = svg.append("text")
