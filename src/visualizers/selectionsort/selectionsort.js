@@ -24,7 +24,7 @@ class UncolorStep {
 	}
 
 	backward(svg) {
-		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#EF3F88");
 		svg.selectAll(".qTxt").attr("visibility", "hidden");
 		svg.selectAll("#qTxt" + this.id1).attr("visibility", "visible");
 	}
@@ -82,7 +82,7 @@ class SortedStep {
 			svg.select("#sortTxt").attr("x", newSortx);
 		}
 
-		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "green");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#1ACA1E");
 	}
 
 	backward(svg) {
@@ -108,7 +108,7 @@ class SortedStep {
 			svg.select("#sortTxt").attr("x", newSortx);
 		}
 
-		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#EF3F88");
 		svg.select("#arrowpath" + this.id1).attr("visibility", "visible");
 		svg.select("#smallestTxt" + this.id1).attr("visibility", "visible");
 	}
@@ -123,14 +123,14 @@ class ColorSwapStep {
 
 	forward(svg) {
 		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");
-		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "#EF3F88");
 
 		svg.selectAll(".qTxt").attr("visibility", "hidden");
         svg.selectAll("#qTxt" + this.id2).attr("visibility", "visible");
 	}
 
 	backward(svg) {
-		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#EF3F88");
 		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "gray");
 
 		svg.selectAll(".qTxt").attr("visibility", "hidden");
@@ -149,8 +149,6 @@ class SmallestSwapStep {
 	}
 
 	forward(svg) {
-		var prevFill = svg.select("#" + this.ids[this.id1]).select("rect").style("fill");
-
 		svg.selectAll(".arrowpath").attr("visibility", "hidden");
 		svg.selectAll(".smallestTxt").attr("visibility", "hidden");
 		svg.selectAll(".qTxt").attr("visibility", "hidden");
@@ -158,11 +156,8 @@ class SmallestSwapStep {
 		svg.select("#arrowpath" + this.id2).attr("visibility", "visible");
 		svg.select("#smallestTxt" + this.id2).attr("visibility", "visible");
 
-		if (prevFill !== "green") {
-			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");
-		}
-		
-		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");
+		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "#EF3F88");
 	}
 
 	backward(svg) {
@@ -174,8 +169,8 @@ class SmallestSwapStep {
 			svg.select("#arrowpath" + this.id1).attr("visibility", "visible");
 			svg.select("#smallestTxt" + this.id1).attr("visibility", "visible");
 			svg.selectAll("#qTxt" + this.id2).attr("visibility", "visible");
-			svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "red");
-			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+			svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "#EF3F88");
+			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#EF3F88");
 		}
 		else {
 			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "grey");

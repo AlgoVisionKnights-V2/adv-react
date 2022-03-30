@@ -28,24 +28,33 @@ class ColorLowStep {
 		var color2 = svg.select("#" + this.ids[this.id2]).select("rect").style("fill");
 		var prev1 = svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
 
-		// Change prevColor to whatever it's colored now
+		// Change prevColor of old bar to whatever it's colored now
 		svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color1);
 		
 		// Fill previous bar with whatever it was before blue (if blue)
-		if (color1 === "blue") {
+		if (color1 === "rgb(100, 143, 255)") {
 			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", prev1);
 		}
 
 		svg.select("#lowTxt" + this.id1).attr("visibility", "hidden");
-		svg.select("#arrowpath" + this.id1).attr("visibility", "hidden");
+		svg.select("#lowTxt2_" + this.id1).attr("visibility", "hidden");
+		svg.select("#arrowpath" + this.id1).attr("visibility", (prev1 !== "gray") ? "visible" : "hidden");
 
 		svg.select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
 
 		// As long as the new bar isn't sorted
-		if (color2 !== "green") {
-			svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "blue");
-			svg.select("#lowTxt" + this.id2).attr("visibility", "visible");
+		if (color2 !== "rgb(26, 202, 30)") {
+			svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "#648FFF");
 			svg.select("#arrowpath" + this.id2).attr("visibility", "visible");
+
+			if (color2 !== "gray")
+			{
+				svg.select("#lowTxt2_" + this.id2).attr("visibility", "visible");
+			}
+			else
+			{
+				svg.select("#lowTxt" + this.id2).attr("visibility", "visible");
+			}
 		}
 	}
 
@@ -79,24 +88,31 @@ class ColorHighStep {
 		var color2 = svg.select("#" + this.ids[this.id2]).select("rect").style("fill");
 		var prev1 = svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor");
 		
-		// Change prevColor to whatever it's colored now
-		svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color1);
+		// Change prevColor of new bar to whatever it's colored now
+		svg.select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
 
 		// Fill previous bar with whatever it was before red (if red)
-		if (color1 === "red") {
+		if (color1 === "rgb(239, 63, 136)") {
 			svg.select("#" + this.ids[this.id1]).select("rect").style("fill", prev1);
 		}
 
 		svg.select("#highTxt" + this.id1).attr("visibility", "hidden");
-		svg.select("#arrowpath" + this.id1).attr("visibility", "hidden");
-
-		svg.select("#" + this.ids[this.id2]).select("rect").attr("prevColor", color2);
+		svg.select("#highTxt2_" + this.id1).attr("visibility", "hidden");
+		svg.select("#arrowpath" + this.id1).attr("visibility", (prev1 !== "gray") ? "visible" : "hidden");
 
 		// As long as the new bar isn't sorted
-		if (color2 !== "green") {
-			svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "red");
-			svg.select("#highTxt" + this.id2).attr("visibility", "visible");
+		if (color2 !== "rgb(26, 202, 30)") {
+			svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "#EF3F88");
 			svg.select("#arrowpath" + this.id2).attr("visibility", "visible");
+
+			if (color2 !== "gray")
+			{
+				svg.select("#highTxt2_" + this.id2).attr("visibility", "visible");
+			}
+			else
+			{
+				svg.select("#highTxt" + this.id2).attr("visibility", "visible");
+			}
 		}
 	}
 
@@ -128,7 +144,7 @@ class ColorPivotStep {
 		var color = svg.select("#" + this.ids[this.id1]).select("rect").style("fill");
 
 		svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor", color);
-		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#f1c232");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#FFCE36");
 		svg.select("#pivTxt" + this.id1).attr("visibility", "visible");
 		svg.select("#arrowpath" + this.id1).attr("visibility", "visible");
 	}
@@ -241,7 +257,7 @@ class SortedStep {
 
 		var prev = svg.select("#" + this.ids[this.id1]).select("rect").style("fill");
 
-        svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "green");
+        svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#1ACA1E");
 		svg.select("#" + this.ids[this.id1]).select("rect").attr("prevColor", prev);
 
 		for (var i = 0; i < this.ids.length; i++) {
@@ -250,9 +266,8 @@ class SortedStep {
 
 			var color = svg.select("#" + this.ids[i]).select("rect").style("fill");
 
-			if (color !== "green") {
+			if (color !== "rgb(26, 202, 30)") {
 				svg.select("#" + this.ids[i]).select("rect").attr("prevColor", color);
-				console.log("" + i + " was " + color);
 				svg.select("#" + this.ids[i]).select("rect").style("fill", "gray");
 			}
 		}
@@ -682,6 +697,22 @@ export default class QuickSort extends React.Component {
 			.style("fill", "white")
 			.attr("visibility", "hidden");
 
+		bars.append("text").text("Low")
+			.attr("y", height + 145)
+			.attr("x", (_, i) => {
+				return i * (barWidth + barOffset) + (barWidth / 2) + 65;
+			})
+			.attr("class", "ptrTxt")
+			.attr("id", (_, i) => {
+				return "lowTxt2_" + i;
+			})
+			.style("text-anchor", "middle")
+			.style("font-family", "Merriweather")
+			.attr("font-weight", "bold")
+			.style("font-size", "26px")
+			.style("fill", "white")
+			.attr("visibility", "hidden");
+
         bars.append("text").text("High")
 			.attr("y", height + 115)
 			.attr("x", (_, i) => {
@@ -690,6 +721,22 @@ export default class QuickSort extends React.Component {
 			.attr("class", "ptrTxt")
 			.attr("id", (_, i) => {
 				return "highTxt" + i;
+			})
+			.style("text-anchor", "middle")
+			.style("font-family", "Merriweather")
+			.attr("font-weight", "bold")
+			.style("font-size", "26px")
+			.style("fill", "white")
+			.attr("visibility", "hidden");
+
+		bars.append("text").text("High")
+			.attr("y", height + 145)
+			.attr("x", (_, i) => {
+				return i * (barWidth + barOffset) + (barWidth / 2) + 65;
+			})
+			.attr("class", "ptrTxt")
+			.attr("id", (_, i) => {
+				return "highTxt2_" + i;
 			})
 			.style("text-anchor", "middle")
 			.style("font-family", "Merriweather")
@@ -771,7 +818,7 @@ export default class QuickSort extends React.Component {
 			svg.attr("visibility", "visible");
 		}
 
-		document.getElementById("message").innerHTML = this.state.messages[stepId];
+		document.getElementById("message").innerHTML = (stepId - 1 < 0) ? "<h1>Welcome to Insertion Sort!</h1>" : this.state.messages[stepId - 1];
 		this.setState({stepId: stepId});
 		d3.timeout(this.turnOffRunning, this.state.waitTime);
 	}

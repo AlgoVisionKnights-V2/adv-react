@@ -23,7 +23,7 @@ class UncolorStep {
 	}
 
 	backward(svg) {
-		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#EF3F88");
 	}
 }
 
@@ -78,7 +78,7 @@ class SortedStep {
         svg.select("#arrowpath" + this.id1).attr("visibility", "hidden");
         svg.select("#bubbleTxt" + this.id1).attr("visibility", "hidden");
         svg.selectAll(".qTxt").attr("visibility", "hidden");
-		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "green");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#1ACA1E");
 	}
 
 	backward(svg) {
@@ -106,7 +106,7 @@ class SortedStep {
 
         svg.select("#arrowpath" + this.id1).attr("visibility", "visible");
 		svg.select("#bubbleTxt" + this.id1).attr("visibility", "visible");
-		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#EF3F88");
 	}
 }
 
@@ -120,7 +120,7 @@ class QSwapStep {
         svg.selectAll(".qTxt").attr("visibility", "hidden");
         svg.selectAll("#qTxt" + this.id).attr("visibility", "visible");
 
-		svg.select("#" + this.ids[this.id]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id]).select("rect").style("fill", "#EF3F88");
 	}
 
 	backward(svg) {
@@ -146,7 +146,7 @@ class BubbleSwapStep {
 		svg.select("#bubbleTxt" + this.id2).attr("visibility", "visible");        
 
 		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");
-		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "#EF3F88");
 	}
 
 	backward(svg) {
@@ -159,7 +159,7 @@ class BubbleSwapStep {
             svg.select("#qTxt" + this.id2).attr("visibility", "visible");
         }
 
-		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "red");
+		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#EF3F88");
 		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "gray");
 	}
 }
