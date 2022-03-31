@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import "./fibonaccisequence.css";
 import LabeledNode from "../../foundation/graph/LabeledNode";
 import UndirectedEdge from "../../foundation/graph/UndirectedEdge";
+import "../css/button.css";
 
 class EmptyStep {
   forward() {}
@@ -708,11 +709,11 @@ export default class FibonacciSequence extends React.Component {
 		return (
 			<div>
 				<div class="center-screen" id="banner">
-					<button onClick={this.play}>Play</button>
-					<button onClick={this.pause}>Pause</button>
-					<button onClick={this.restart}>Restart</button>
-					<button onClick={this.backward}>&lt;</button>
-					<button onClick={this.forward}>&gt;</button>
+					<button class="button" onClick={this.play}>Play</button>
+					<button class="button" onClick={this.pause}>Pause</button>
+					<button class="button" onClick={this.restart}>Restart</button>
+					<button class="button" onClick={this.backward}>Step Backward</button>
+					<button class="button" onClick={this.forward}>Step Forward</button>
 				</div>
 				<div class="center-screen" id="message-pane"><span id="message"></span></div>
 				<div ref={this.ref} class="center-screen"></div>
