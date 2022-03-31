@@ -26,7 +26,11 @@ const queries = [
 	{ name: 'Inorder', path: 'inorder' },
 	{ name: 'Postorder', path: 'postorder' },
 	{ name: 'nQueens', path: 'nqueens' },
-	{name: 'Heap Sort', path: 'heapsort' },
+	{ name: 'Heap Sort', path: 'heapsort' },
+	{ name: 'Fibonacci Sequence', path: 'fibonaccisequence' },
+	{ name: 'Hash Table', path: 'hashtable' },
+	{ name: 'Towers of Hanoi', path: 'towersofhanoi' },
+	{ name: 'Recursion', path: 'recursion' },
 ];
 
 export default queries;
