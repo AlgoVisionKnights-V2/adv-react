@@ -1,6 +1,7 @@
 import React from "react";
 import * as d3 from "d3";
 import "./hashtable.css";
+import "../css/button.css";
 
 // returns a random number in the range [lo, hi)
 function randInRange(lo, hi) {
@@ -760,11 +761,11 @@ export default class HashTable extends React.Component {
             <button onClick={this.handleSearch}>Search</button>
           </div> */}
 
-          <button onClick={this.play}>Play</button>
-          <button onClick={this.pause}>Pause</button>
-          <button onClick={this.restart}>Restart</button>
-          <button onClick={this.backward}>&lt;</button>
-          <button onClick={this.forward}>&gt;</button>
+          <button class="button" onClick={this.play}>Play</button>
+          <button class="button" onClick={this.pause}>Pause</button>
+          <button class="button" onClick={this.restart}>Restart</button>
+          <button class="button" onClick={this.backward}>Step Backward</button>
+          <button class="button" onClick={this.forward}>Step Forward</button>
         </div>
         <div class="center-screen">
           <span id="message">

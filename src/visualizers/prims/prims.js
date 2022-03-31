@@ -2,6 +2,7 @@ import React from "react";
 import * as d3 from "d3";
 import "./prims.css";
 import createDefaultGraph from "../../foundation/graph/CreateDefaultGraph";
+import "../css/button.css";
 
 class EmptyStep {
   forward() {}
@@ -378,11 +379,11 @@ export default class Prims extends React.Component {
     return (
       <div>
         <div class="center-screen">
-          <button onClick={this.play}>Play</button>
-          <button onClick={this.pause}>Pause</button>
-          <button onClick={this.restart}>Restart</button>
-          <button onClick={this.backward}>&lt;</button>
-          <button onClick={this.forward}>&gt;</button>
+          <button class="button" onClick={this.play}>Play</button>
+          <button class="button" onClick={this.pause}>Pause</button>
+          <button class="button" onClick={this.restart}>Restart</button>
+          <button class="button" onClick={this.backward}>Step Backward</button>
+          <button class="button" onClick={this.forward}>Step Forward</button>
         </div>
         <div class="center-screen">
           <span id="message">

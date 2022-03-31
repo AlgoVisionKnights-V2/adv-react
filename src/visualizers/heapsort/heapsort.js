@@ -4,6 +4,7 @@ import "./heapsort.css";
 import UndirectedEdge from "../../foundation/graph/UndirectedEdge";
 import UnlabeledNode from "../../foundation/graph/UnlabeledNode";
 import Number from "../../foundation/Number";
+import "../css/button.css";
 
 // returns a random number in the range [lo, hi)
 function randInRange(lo, hi) {
@@ -639,11 +640,11 @@ export default class HeapSort extends React.Component {
     return (
       <div>
         <div class="center-screen">
-          <button onClick={this.play}>Play</button>
-          <button onClick={this.pause}>Pause</button>
-          <button onClick={this.restart}>Restart</button>
-          <button onClick={this.backward}>&lt;</button>
-          <button onClick={this.forward}>&gt;</button>
+          <button class="button" onClick={this.play}>Play</button>
+          <button class="button" onClick={this.pause}>Pause</button>
+          <button class="button" onClick={this.restart}>Restart</button>
+          <button class="button" onClick={this.backward}>Step Backward</button>
+          <button class="button" onClick={this.forward}>Step Forward</button>
         </div>
         <div class="center-screen">
           <span id="message"><h1>Welcome to Heap Sort!</h1></span>
