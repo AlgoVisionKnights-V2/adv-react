@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import "./depthfirstsearch.css";
 import createDefaultGraph from "../../foundation/graph/CreateDefaultGraph";
 import Number from "../../foundation/Number";
+import "../css/button.css";
 
 // returns a random number in the range [lo, hi)
 function randInRange(lo, hi) {
@@ -402,11 +403,11 @@ export default class DepthFirstSearch extends React.Component {
 		return (
 			<div>
 				<div class="center-screen" id="banner">
-					<button onClick={this.play}>Play</button>
-					<button onClick={this.pause}>Pause</button>
-					<button onClick={this.restart}>Restart</button>
-					<button onClick={this.backward}>&lt;</button>
-					<button onClick={this.forward}>&gt;</button>
+					<button class="button" onClick={this.play}>Play</button>
+					<button class="button" onClick={this.pause}>Pause</button>
+					<button class="button" onClick={this.restart}>Restart</button>
+					<button class="button" onClick={this.backward}>Step Backward</button>
+					<button class="button" onClick={this.forward}>Step Forward</button>
 				</div>
 				<div class="center-screen" id="message-pane"><span id="message"><h1>Welcome to Depth First Search (DFS)!</h1></span></div>
 				<div ref={this.ref} class="center-screen"></div>
