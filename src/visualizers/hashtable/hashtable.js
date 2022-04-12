@@ -2,6 +2,7 @@ import React from "react";
 import * as d3 from "d3";
 import "./hashtable.css";
 import "../css/button.css";
+import "../css/messages.css";
 
 // returns a random number in the range [lo, hi)
 function randInRange(lo, hi) {

@@ -5,6 +5,7 @@ import UndirectedEdge from "../../foundation/graph/UndirectedEdge";
 import UnlabeledNode from "../../foundation/graph/UnlabeledNode";
 import Number from "../../foundation/Number";
 import "../css/button.css";
+import "../css/messages.css";
 
 // returns a random number in the range [lo, hi)
 function randInRange(lo, hi) {

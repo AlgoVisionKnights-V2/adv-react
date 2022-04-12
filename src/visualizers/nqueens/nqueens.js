@@ -2,7 +2,7 @@ import React from "react";
 import * as d3 from "d3";
 import "./nqueens.css";
 import "../css/button.css";
-
+import "../css/messages.css";
 
 
 class EmptyStep {

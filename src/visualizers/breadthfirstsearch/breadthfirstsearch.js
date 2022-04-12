@@ -4,6 +4,7 @@ import "./breadthfirstsearch.css";
 import createDefaultGraph from "../../foundation/graph/CreateDefaultGraph";
 import Number from "../../foundation/Number";
 import "../css/button.css";
+import "../css/messages.css";
 
 function randInRange(lo, hi) {
   return Math.floor(Math.random() * (hi - lo)) + lo;

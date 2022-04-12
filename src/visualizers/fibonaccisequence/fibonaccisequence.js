@@ -4,6 +4,7 @@ import "./fibonaccisequence.css";
 import LabeledNode from "../../foundation/graph/LabeledNode";
 import UndirectedEdge from "../../foundation/graph/UndirectedEdge";
 import "../css/button.css";
+import "../css/messages.css";
 
 class EmptyStep {
   forward() {}

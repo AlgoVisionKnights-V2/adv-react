@@ -2,6 +2,7 @@ import React from "react";
 import "./quicksort.css";
 import * as d3 from "d3";
 import "../css/button.css";
+import "../css/messages.css";
 
 class EmptyStep {
 	forward(svg) {

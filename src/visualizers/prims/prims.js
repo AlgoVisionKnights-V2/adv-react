@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import "./prims.css";
 import createDefaultGraph from "../../foundation/graph/CreateDefaultGraph";
 import "../css/button.css";
+import "../css/messages.css";
 
 class EmptyStep {
   forward() {}
