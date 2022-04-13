@@ -79,7 +79,7 @@ export default class Queens extends React.Component {
 
   initialize() {
 
-    let n = 6;
+    let n = 4;
 
     const queen = {
       name: "Black Queen",    
