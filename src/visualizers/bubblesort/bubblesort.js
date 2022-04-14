@@ -566,7 +566,7 @@ export default class BubbleSort extends React.Component {
 
 	forward() {
 		console.log("FORWARD CLICKED");
-		if (this.state.running) this.setState({running: false});
+		if (this.state.running) return;
 		if (this.state.stepId === this.state.steps.length) return;
 		
 		this.state.steps[this.state.stepId].fastForward(d3.select(this.ref.current).select("svg"));
@@ -579,7 +579,7 @@ export default class BubbleSort extends React.Component {
 
 	backward() {
 		console.log("BACKWARD CLICKED");
-		if (this.state.running) this.setState({running: false});
+		if (this.state.running) return;
 		if (this.state.stepId - 1 < 0) return;
 
 		var stepId = this.state.stepId - 1;
