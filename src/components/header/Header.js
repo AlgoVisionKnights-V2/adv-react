@@ -115,6 +115,7 @@ function Header({
 		setFilterData(result);
 	};
 
+	// NOTE: For V1 only
 	// Check which device the user in on.
 	//const renderDownload = () => {
 	//	if (isElectron || isMobile || isTablet) {
