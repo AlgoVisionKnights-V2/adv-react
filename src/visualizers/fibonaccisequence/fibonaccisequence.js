@@ -410,89 +410,89 @@ export default class FibonacciSequence extends React.Component {
     }
 
     addStep(new EmptyStep());
-    createMessage("Current objective is to find the 4th fibonacci number");
+    createMessage("For example, we will find the 4th Fibonacci number.");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 0, 0, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 0, 0, "gray", "white"));
-    createMessage("We begin by calling fib(4)");
+    createMessage("We begin by calling fib(4).");
     flushBuffer();
 
     addStep(new EmptyStep());
-    createMessage("Since we do not know what fib(4) is, we use the formula fib(n) = fib(n-1) + fib(n-2)")
+    createMessage("Since 4 is not a base case, we use the formula fib(n) = fib(n-1) + fib(n-2).")
     flushBuffer();
 
     addStep(new NodeColorChangeStep(this.ref.current, 0, 0, "white", "gray"));
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 0, "hidden", "visible"));
     addStep(new EdgeColorChangeStep(this.ref.current, 0, "gray", "white"));
-    createMessage("Calculating fib(n-1)");
+    createMessage("Calculating fib(n-1).");
     flushBuffer();
 
     addStep(new EdgeColorChangeStep(this.ref.current, 0, "white", "gray"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 1, 1, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 1, 1, "gray", "white"));
-    createMessage("fib(n-1) is equal to fib(3)");
+    createMessage("fib(n-1) = fib(3)");
     flushBuffer();
 
     addStep(new EmptyStep());
-    createMessage("Since we do not know what fib(3) is, we use the formula fib(n) = fib(n-1) + fib(n-2)");
+    createMessage("Since 3 is not a base case, we use the formula fib(n) = fib(n-1) + fib(n-2).");
     flushBuffer();
 
     addStep(new NodeColorChangeStep(this.ref.current, 1, 1, "white", "gray"));
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 1, "hidden", "visible"));
     addStep(new EdgeColorChangeStep(this.ref.current, 1, "gray", "white"));
-    createMessage("Calculating fib(n-1)");
+    createMessage("Calculating fib(n-1).");
     flushBuffer();
 
     addStep(new EdgeColorChangeStep(this.ref.current, 1, "white", "gray"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 2, 2, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 2, 2, "gray", "white"));
-    createMessage("fib(n-1) is equal to fib(2)");
+    createMessage("fib(n-1) = fib(2)");
     flushBuffer();
 
     addStep(new EmptyStep());
-    createMessage("Since we do not know what fib(2) is, we use the formula fib(n) = fib(n-1) + fib(n-2)");
+    createMessage("Since 2 is not a base case, we use the formula fib(n) = fib(n-1) + fib(n-2).");
     flushBuffer();
 
     addStep(new NodeColorChangeStep(this.ref.current, 2, 2, "white", "gray"));
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 2, "hidden", "visible"));
     addStep(new EdgeColorChangeStep(this.ref.current, 2, "gray", "white"));
-    createMessage("Calculating fib(n-1)");
+    createMessage("Calculating fib(n-1).");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 3, 3, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 3, 3, "gray", "white"));
     addStep(new EdgeColorChangeStep(this.ref.current, 2, "white", "gray"));
-    createMessage("fib(n-1) is equal to fib(1)");
+    createMessage("fib(n-1) = fib(1)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 3, 3, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 12, 12, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 12, 12, "gray", "white"));
-    createMessage("Since we do know that fib(1) is 1, we return it value");
+    createMessage("Since 1 is a base case, we return its value of 1.");
     flushBuffer();
 
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 3, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 12, 12, "white", "gray"));
     addStep(new EdgeColorChangeStep(this.ref.current, 3, "gray", "white"));
-    createMessage("Calculating fib(n-2)");
+    createMessage("Calculating fib(n-2).");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 4, 4, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 4, 4, "gray", "white"));
     addStep(new EdgeColorChangeStep(this.ref.current, 3, "white", "gray"));
-    createMessage("fib(n-2) is equal to fib(0)");
+    createMessage("fib(n-2) = fib(0)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 4, 4, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 13, 13, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 13, 13, "gray", "white"));
-    createMessage("Since we do know that fib(0) is 0, we return it value");
+    createMessage("Since 0 is a base case, we return its value of 0.");
     flushBuffer();
 
     addStep(new EmptyStep());
     addStep(new NodeColorChangeStep(this.ref.current, 12, 12, "gray", "white"));
-    createMessage("Using the values of fib(1) and fib(0) we can calculate fib(2)");
+    createMessage("Using the values of fib(1) and fib(0), we can calculate fib(2).");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 2, 2, "visible", "hidden"));
@@ -506,24 +506,24 @@ export default class FibonacciSequence extends React.Component {
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 4, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 11, 11, "white", "gray"));
     addStep(new EdgeColorChangeStep(this.ref.current, 4, "gray", "white"));
-    createMessage("Calculating fib(n-2)");
+    createMessage("Calculating fib(n-2).");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 5, 5, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 5, 5, "gray", "white"));
     addStep(new EdgeColorChangeStep(this.ref.current, 4, "white", "gray"));
-    createMessage("fib(n-2) is equal to fib(1)");
+    createMessage("fib(n-2) = fib(1)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 5, 5, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 14, 14, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 14, 14, "gray", "white"));
-    createMessage("Since we do know that fib(1) is 1, we return it value");
+    createMessage("Since 1 is a base case, we return its value of 1.");
     flushBuffer();
 
     addStep(new EmptyStep());
     addStep(new NodeColorChangeStep(this.ref.current, 11, 11, "gray", "white"));
-    createMessage("Using the values of fib(2) and fib(1) we can calculate fib(3)");
+    createMessage("Using the values of fib(2) and fib(1), we can calculate fib(3).");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 1, 1, "visible", "hidden"));
@@ -537,58 +537,58 @@ export default class FibonacciSequence extends React.Component {
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 5, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 10, 10, "white", "gray"));
     addStep(new EdgeColorChangeStep(this.ref.current, 5, "gray", "white"));
-    createMessage("Calculating fib(n-2)");
+    createMessage("Calculating fib(n-2).");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 6, 6, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 6, 6, "gray", "white"));
     addStep(new EdgeColorChangeStep(this.ref.current, 5, "white", "gray"));
-    createMessage("fib(n-2) is equal to fib(2)");
+    createMessage("fib(n-2) = fib(2)");
     flushBuffer();
 
     addStep(new EmptyStep());
-    createMessage("Since we do not know what fib(2) is, we use the formula fib(n) = fib(n-1) + fib(n-2)");
+    createMessage("Since 2 is not a base case, we use the formula fib(n) = fib(n-1) + fib(n-2).");
     flushBuffer();
 
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 6, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 6, 6, "white", "gray"));
     addStep(new EdgeColorChangeStep(this.ref.current, 6, "gray", "white"));
-    createMessage("Calculating fib(n-1)");
+    createMessage("Calculating fib(n-1).");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 7, 7, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 7, 7, "gray", "white"));
     addStep(new EdgeColorChangeStep(this.ref.current, 6, "white", "gray"));
-    createMessage("fib(n-1) is equal to fib(1)");
+    createMessage("fib(n-1) = fib(1)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 7, 7, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 16, 16, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 16, 16, "gray", "white"));
-    createMessage("Since we do know that fib(1) is 1, we return it value");
+    createMessage("Since 1 is a base case, we return its value of 1.");
     flushBuffer();
 
     addStep(new EdgeVisibilityChangeStep(this.ref.current, 7, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 16, 16, "white", "gray"));
     addStep(new EdgeColorChangeStep(this.ref.current, 7, "gray", "white"));
-    createMessage("Calculating fib(n-2)");
+    createMessage("Calculating fib(n-2).");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 8, 8, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 8, 8, "gray", "white"));
     addStep(new EdgeColorChangeStep(this.ref.current, 7, "white", "gray"));
-    createMessage("fib(n-2) is equal to fib(0)");
+    createMessage("fib(n-2) = fib(0)");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 8, 8, "visible", "hidden"));
     addStep(new NodeVisibilityChangeStep(this.ref.current, 17, 17, "hidden", "visible"));
     addStep(new NodeColorChangeStep(this.ref.current, 17, 17, "gray", "white"));
-    createMessage("Since we do know that fib(0) is 0, we return it value");
+    createMessage("Since 0 is a base case, we return its value of 0.");
     flushBuffer();
 
     addStep(new EmptyStep());
     addStep(new NodeColorChangeStep(this.ref.current, 16, 16, "gray", "white"));
-    createMessage("Using the values of fib(1) and fib(0) we can calculate fib(2)");
+    createMessage("Using the values of fib(1) and fib(0), we can calculate fib(2).");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 6, 6, "visible", "hidden"));
@@ -601,7 +601,7 @@ export default class FibonacciSequence extends React.Component {
 
     addStep(new EmptyStep());
     addStep(new NodeColorChangeStep(this.ref.current, 10, 10, "gray", "white"));
-    createMessage("Using the values of fib(3) and fib(2) we can calculate fib(4)");
+    createMessage("Using the values of fib(3) and fib(2), we can calculate fib(4).");
     flushBuffer();
 
     addStep(new NodeVisibilityChangeStep(this.ref.current, 0, 0, "visible", "hidden"));
@@ -614,7 +614,11 @@ export default class FibonacciSequence extends React.Component {
 
     addStep(new EmptyStep());
     addStep(new NodeColorChangeStep(this.ref.current, 9, 9, "white", "gray"));
-    createMessage("The Fibonacci function has completed, returning fib(4) = 3");
+    createMessage("The Fibonacci function has completed, returning fib(4) = 3.");
+    flushBuffer();
+
+    addStep(new EmptyStep());
+    createMessage("Finished Fibonacci Sequence!");
     flushBuffer();
 
     this.setState({steps: steps, messages: messages});
@@ -640,16 +644,15 @@ export default class FibonacciSequence extends React.Component {
 
   backward() {
     console.log("BACKWARD CLICKED");
-    if (this.state.running) return;
-    if (this.state.stepId - 1 < 0) return;
+		if (this.state.running) this.setState({running: false});
+		if (this.state.stepId - 1 < 0) return;
 
-    var stepId = this.state.stepId;
+		var stepId = this.state.stepId - 1;
 
-    document.getElementById("message").innerHTML = this.state.messages[this.state.stepId - 1];
-    for (const step of this.state.steps[stepId - 1]) step.backward();
-    // this.state.steps[--stepId].backward();
-    this.setState({ stepId: stepId - 1 });
-    d3.timeout(this.turnOffRunning, this.state.waitTime);
+		for (const step of this.state.steps[stepId]) step.backward();
+		document.getElementById("message").innerHTML = (stepId - 1 < 0) ? "<h1>Welcome to Fibonacci Sequence!</h1>" : this.state.messages[stepId - 1];
+		this.setState({stepId: stepId});
+		d3.timeout(this.turnOffRunning, this.state.waitTime);
   }
 
   run() {
@@ -678,18 +681,11 @@ export default class FibonacciSequence extends React.Component {
 
   restart() {
     console.log("RESTART CLICKED");
-    if (this.state.stepId - 1 < 0) return;
 
-    var stepId = this.state.stepId;
-    document.getElementById("message").innerHTML = this.state.messages[0];
-    while (stepId - 1 >= 0) {
-      for (const step of this.state.steps[--stepId]) step.backward();
-      // this.state.steps[--stepId].backward();
-      d3.timeout(this.turnOffRunning, this.state.waitTime);
-    }
+		d3.select(this.ref.current).select("svg").remove();
+    document.getElementById("message").innerHTML = "<h1>Welcome to Fibonacci Sequence!</h1>";
 
-    this.setState({ running: false });
-    this.setState({ stepId: 0 });
+    this.setState({running: false, steps: [], ids: [], messages: [], stepId: 0});
   }
 
   componentDidMount() {
@@ -704,6 +700,11 @@ export default class FibonacciSequence extends React.Component {
       this.run();
       console.log("We ran");
     }
+    // For reset
+    else if (this.state.steps.length !== prevState.steps.length && this.state.steps.length === 0) {
+			console.log("We're restarting");
+			this.initialize();
+		}
   }
 
   render() {
@@ -716,7 +717,7 @@ export default class FibonacciSequence extends React.Component {
 					<button class="button" onClick={this.backward}>Step Backward</button>
 					<button class="button" onClick={this.forward}>Step Forward</button>
 				</div>
-				<div class="center-screen" id="message-pane"><span id="message"></span></div>
+				<div class="center-screen" id="message-pane"><span id="message"><h1>Welcome to Fibonacci Sequence!</h1></span></div>
 				<div ref={this.ref} class="center-screen"></div>
 			</div>
 		)

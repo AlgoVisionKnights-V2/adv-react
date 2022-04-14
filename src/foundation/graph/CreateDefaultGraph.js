@@ -2,7 +2,6 @@ import randInRange from "../../utils/RandInRange";
 import DirectedEdge from "./DirectedEdge";
 import LabeledNode from "./LabeledNode";
 import UndirectedEdge from "./UndirectedEdge";
-import UnlabeledNode from "./UnlabeledNode";
 import WeightedDirectedEdge from "./WeightedDirectedEdge";
 import WeightedUndirectedEdge from "./WeightedUndirectedEdge";
 

@@ -6,11 +6,6 @@ import Number from "../../foundation/Number";
 import "../css/button.css";
 import "../css/messages.css";
 
-// returns a random number in the range [lo, hi)
-function randInRange(lo, hi) {
-  return Math.floor(Math.random() * (hi - lo)) + lo;
-}
-
 class EmptyStep {
   forward(svg) {}
   backward(svg) {}
@@ -158,7 +153,7 @@ export default class Prims extends React.Component {
 
         textxys[i].push({ x: cx + "%", y: cy + "%" });
 
-        if (i == 0) {
+        if (i === 0) {
           disks[i].push(
             new Disk(
               this.ref,
@@ -213,7 +208,7 @@ export default class Prims extends React.Component {
     var steps = [];
     var stepBuffer = [];
     function flushBuffer() {
-      if (stepBuffer.length == 0) return;
+      if (stepBuffer.length === 0) return;
       steps.push(stepBuffer);
       stepBuffer = [];
       messages.push(currentMessage);
@@ -240,7 +235,7 @@ export default class Prims extends React.Component {
     let oldDisks = [0, 1, 2];
     
     addStep(new EmptyStep());
-    createMessage(`The goal is to move all the disks from the source peg to the destination peg.`);
+    createMessage(`The goal is to move all the disks from the Source peg to the Destination peg.`);
     flushBuffer();
 
     addStep(new EmptyStep());
@@ -248,23 +243,23 @@ export default class Prims extends React.Component {
     flushBuffer();
 
     addStep(new EmptyStep());
-    createMessage(`The only rule is that you cannot place a disk of some size on another disk that is smaller than it.`);
+    createMessage(`However, you cannot place a disk on top of another disk smaller than itself.`);
     flushBuffer();
 
     // hanoi(# of disks, peg 1, peg 2, peg 3)
     function hanoi(n, source, auxillary, destination) {
-      if (n == 0) return;
+      if (n === 0) return;
 
       addStep(new SetPegsStep([source, auxillary, destination], oldDisks));
-      createMessage(`Move the top ${n} disk(s) from the source peg to the destination peg.`);
+      createMessage(`Move the top ${n} disk(s) from the Source to the Destination.`);
       addStep(new EmptyStep());
       flushBuffer();
 
       if (n > 1) {
         createMessage(
-          `First, move the top ${
+          `First, focus on moving the top ${
             n - 1
-          } disk(s) from the source peg to the auxillary peg via recursive call.`
+          } disk(s) to the Auxillary via recursive call.`
         );
         addStep(new ChangeOpacityStep("disk" + n, 0.25, 1.0));
         flushBuffer();
@@ -274,7 +269,7 @@ export default class Prims extends React.Component {
       hanoi(n - 1, source, destination, auxillary);
 
       if (n > 1) {
-        createMessage(`The top ${n - 1} disk(s) have successfully moved to the auxillary peg.`);
+        createMessage(`The top ${n - 1} disk(s) have successfully moved to the Auxillary.`);
         addStep(new SetPegsStep([source, auxillary, destination], oldDisks));
         addStep(new ChangeOpacityStep("disk" + n, 1.0, 0.25));
         flushBuffer();
@@ -297,7 +292,7 @@ export default class Prims extends React.Component {
       let oldTextPos = textxys[source][cnts[source] - 1];
       let newTextPos = textxys[destination][cnts[destination]];
 
-      createMessage(`Move disk ${n} from the source peg to the destination peg.`);
+      createMessage(`Move disk ${n} from the Source to the Destination.`);
 
       addStep(
         new MoveDiskStep(
@@ -324,7 +319,7 @@ export default class Prims extends React.Component {
         createMessage(
           `Move the top ${
             n - 1
-          } disk(s) from the auxillary peg to the destination peg via recursive call.`
+          } disk(s) to the Destination via recursive call.`
         );
         addStep(new ChangeOpacityStep("disk" + n, 0.25, 1.0));
         flushBuffer();
@@ -334,7 +329,7 @@ export default class Prims extends React.Component {
       hanoi(n - 1, auxillary, source, destination);
 
       if (n > 1) {
-        createMessage(`The top ${n} disk(s) have successfully moved to the destination peg.`);
+        createMessage(`The top ${n} disk(s) have successfully moved to the Destination.`);
         addStep(new ChangeOpacityStep("disk" + n, 1.0, 0.25));
         flushBuffer();
       }
@@ -346,7 +341,7 @@ export default class Prims extends React.Component {
     console.log(disks);
     console.log(cnts);
 
-    createMessage(`All 5 disks have made it to the destination peg!`);
+    createMessage(`All 5 disks have made it to the Destination!`);
     addStep(new EmptyStep());
     flushBuffer();
 
@@ -379,11 +374,11 @@ export default class Prims extends React.Component {
 
     let svg = d3.select(this.ref.current).select("svg");
 
-    var stepId = this.state.stepId;
-    document.getElementById("message").innerHTML = this.state.messages[stepId - 1];
-    for (const step of this.state.steps[stepId - 1]) step.backward(svg);
+    var stepId = this.state.stepId - 1;
+    document.getElementById("message").innerHTML = (stepId - 1 < 0) ? "<h1>Welcome to Towers of Hanoi!</h1>" : this.state.messages[stepId - 1];
+    for (const step of this.state.steps[stepId]) step.backward(svg);
 
-    this.setState({ stepId: stepId - 1 });
+    this.setState({ stepId: stepId });
     d3.timeout(this.turnOffRunning, this.state.waitTime);
   }
 
@@ -422,7 +417,7 @@ export default class Prims extends React.Component {
     let svg = d3.select(this.ref.current).select("svg");
 
     var stepId = this.state.stepId;
-    document.getElementById("message").innerHTML = "<h1>Welcome to Towers of Hanoi</h1>";
+    document.getElementById("message").innerHTML = "<h1>Welcome to Towers of Hanoi!</h1>";
     while (stepId - 1 >= 0) {
       for (const step of this.state.steps[--stepId]) step.backward(svg);
     }
@@ -465,7 +460,7 @@ export default class Prims extends React.Component {
         </div>
         <div class="center-screen">
           <span id="message">
-            <h1>Welcome to Towers of Hanoi</h1>
+            <h1>Welcome to Towers of Hanoi!</h1>
           </span>
         </div>
         <div ref={this.ref} class="center-screen"></div>
