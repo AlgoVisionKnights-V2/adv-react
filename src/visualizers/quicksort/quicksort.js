@@ -355,11 +355,8 @@ class SwapStep {
 		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", newColor2);
 	}
 
-	forward(svg) {
-		this.runSwap(svg);
-	}
+	fastSwap(svg) {
 
-	fastForward(svg) {
 		if (this.id1 === this.id2) {
 			return;
 		}
@@ -372,11 +369,21 @@ class SwapStep {
 
 		console.log("SWAPPING.");
 
-		svg.select("#" + this.ids[this.id1]).select("rect").attr("x", newxbar1);
-		svg.select("#" + this.ids[this.id1]).select("text").attr("x", newxtxt1);
+		svg.select("#" + this.ids[this.id1])
+			.select("rect")
+				.attr("x", newxbar1);
 
-		svg.select("#" + this.ids[this.id2]).select("rect").attr("x", newxbar2);
-		svg.select("#" + this.ids[this.id2]).select("text").attr("x", newxtxt2);
+		svg.select("#" + this.ids[this.id1])
+			.select("text")
+				.attr("x", newxtxt1);
+
+		svg.select("#" + this.ids[this.id2])
+			.select("rect")
+				.attr("x", newxbar2);
+
+		svg.select("#" + this.ids[this.id2])
+			.select("text")
+				.attr("x", newxtxt2);
 
 		var bar1 = svg.select("#" + this.ids[this.id1]);
 
@@ -396,8 +403,16 @@ class SwapStep {
 		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", newColor2);
 	}
 
-	backward(svg) {
+	forward(svg) {
 		this.runSwap(svg);
+	}
+
+	fastForward(svg) {
+		this.fastSwap(svg);
+	}
+
+	backward(svg) {
+		this.fastSwap(svg);
 	}
 }
 
@@ -786,7 +801,7 @@ export default class QuickSort extends React.Component {
 		if (this.state.running) return;
 		if (this.state.stepId === this.state.steps.length) return;
 		
-		this.state.steps[this.state.stepId].forward(d3.select(this.ref.current).select("svg"));
+		this.state.steps[this.state.stepId].fastForward(d3.select(this.ref.current).select("svg"));
 		console.log(this.state.steps[this.state.stepId]);
 		document.getElementById("message").innerHTML = this.state.messages[this.state.stepId];
 		this.setState({stepId: this.state.stepId + 1});
