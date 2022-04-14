@@ -4,6 +4,7 @@ import "./depthfirstsearch.css";
 import createDefaultGraph from "../../foundation/graph/CreateDefaultGraph";
 import Number from "../../foundation/Number";
 import "../css/button.css";
+import "../css/messages.css";
 
 // returns a random number in the range [lo, hi)
 function randInRange(lo, hi) {
@@ -307,7 +308,7 @@ export default class DepthFirstSearch extends React.Component {
     flushBuffer();
 
     addStep(new EmptyStep());
-    createMessage("Depth First Search has been completed.");
+    createMessage("Finished Depth First Search!");
     flushBuffer();
 
     this.setState({ steps: steps, messages: messages });

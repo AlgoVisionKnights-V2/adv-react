@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import "./prims.css";
 import createDefaultGraph from "../../foundation/graph/CreateDefaultGraph";
 import "../css/button.css";
+import "../css/messages.css";
 
 class EmptyStep {
   forward() {}
@@ -278,6 +279,10 @@ export default class Prims extends React.Component {
 
     addStep(new EmptyStep());
     createMessage("The edges in the MST are: " + mstEdges + ".");
+    flushBuffer();
+
+    addStep(new EmptyStep());
+    createMessage("Finished Prim's!");
     flushBuffer();
 
     console.log(steps);

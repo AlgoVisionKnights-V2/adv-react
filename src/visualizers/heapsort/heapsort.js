@@ -5,6 +5,7 @@ import UndirectedEdge from "../../foundation/graph/UndirectedEdge";
 import UnlabeledNode from "../../foundation/graph/UnlabeledNode";
 import Number from "../../foundation/Number";
 import "../css/button.css";
+import "../css/messages.css";
 
 // returns a random number in the range [lo, hi)
 function randInRange(lo, hi) {
@@ -225,7 +226,7 @@ export default class HeapSort extends React.Component {
     var len = 1;
     var left = 0;
     for (let v = 2; v <= size; v++) {
-      if (left == 0) {
+      if (left === 0) {
         len = len * 2;
         dx /= 2.0;
         left = len;
@@ -340,7 +341,7 @@ export default class HeapSort extends React.Component {
 
     // All the leaves are heaps
     for (let i = size; i > size / 2; i--) {
-      currentMessage = "<h1>" + "Insert " + arr[i] + ".</h1>";
+      currentMessage = "<h1>Insert " + arr[i] + ".</h1>";
       addStep(new FlipVisibilityStep(this.ref.current, stepTime, heapVals[i].attr.id));
       addStep(new FlipVisibilityStep(this.ref.current, stepTime, heapCircs[i].attr.id));
       addStep(
@@ -361,7 +362,7 @@ export default class HeapSort extends React.Component {
     }
 
     for (let i = size / 2; i >= 1; i--) {
-      currentMessage = "<h1>" + "Insert " + arr[i] + ".</h1>";
+      currentMessage = "<h1>Insert " + arr[i] + ".</h1>";
       addStep(new FlipVisibilityStep(this.ref.current, stepTime, heapCircs[i].attr.id));
       addStep(new FlipVisibilityStep(this.ref.current, stepTime, heapVals[i].attr.id));
       addStep(
@@ -394,7 +395,7 @@ export default class HeapSort extends React.Component {
 
         if (arr[c] > arr[v]) {
           currentMessage =
-            "<h1>" + "Swap " + arr[v] + " with it's largest child: " + arr[c] + ".</h1>";
+            "<h1>Swap " + arr[v] + " with it's largest child: " + arr[c] + ".</h1>";
           swap(this.ref.current, v, c);
           flushBuffer();
           v = c;
@@ -495,7 +496,7 @@ export default class HeapSort extends React.Component {
 
         if (arr[c] > arr[v]) {
           currentMessage =
-            "<h1>" + "Swap " + arr[v] + " with it's largest child: " + arr[c] + ".</h1>";
+            "<h1>Swap " + arr[v] + " with it's largest child: " + arr[c] + ".</h1>";
           swap(this.ref.current, v, c);
           flushBuffer();
           v = c;
@@ -529,6 +530,10 @@ export default class HeapSort extends React.Component {
     // addStep(new FlipVisibilityStep(this.ref.current, stepTime, circIds[1]));
     // addStep(new ChangeNumberColorStep(this.ref.current, stepTime, numIds[1], "#FFCE36", "#1ACA1E"));
     // flushBuffer();
+
+    currentMessage = "<h1>Finished Heap Sort!</h1>";
+    addStep(new EmptyStep());
+    flushBuffer();
 
     this.setState({
       arr: arr,

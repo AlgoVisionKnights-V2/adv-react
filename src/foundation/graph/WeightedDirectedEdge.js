@@ -1,6 +1,3 @@
-import React from "react";
-import * as d3 from "d3";
-import Number from "../Number";
 import WeightedUndirectedEdge from "./WeightedUndirectedEdge";
 import UndirectedEdge from "./UndirectedEdge";
 import getEdgeWings from "./GetEdgeWings";

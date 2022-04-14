@@ -4,6 +4,7 @@ import "./breadthfirstsearch.css";
 import createDefaultGraph from "../../foundation/graph/CreateDefaultGraph";
 import Number from "../../foundation/Number";
 import "../css/button.css";
+import "../css/messages.css";
 
 function randInRange(lo, hi) {
   return Math.floor(Math.random() * (hi - lo)) + lo;
@@ -440,7 +441,7 @@ export default class BreadthFirstSearch extends React.Component {
 
     }
 
-      createMessage("Breadth First Search Finished!");
+      createMessage("Finished Breadth First Search!");
       
       addStep(new EmptyStep());
 
@@ -518,7 +519,7 @@ export default class BreadthFirstSearch extends React.Component {
 
     var stepId = this.state.stepId;
      let svg = d3.select(this.ref.current).select("svg");
-    document.getElementById("message").innerHTML = this.state.messages[0];
+    document.getElementById("message").innerHTML = "<h1>Welcome to Breadth First Search!</h1>";
     while (stepId - 1 >= 0) {
       for (const step of this.state.steps[--stepId]) step.backward(svg);
       

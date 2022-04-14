@@ -2,13 +2,8 @@ import React from "react";
 import * as d3 from "d3";
 import "./bellmanford.css";
 import createDefaultGraph from "../../foundation/graph/CreateDefaultGraph";
-import Number from "../../foundation/Number";
 import "../css/button.css";
-
-// returns a random number in the range [lo, hi)
-function randInRange(lo, hi) {
-  return Math.floor(Math.random() * (hi - lo)) + lo;
-}
+import "../css/messages.css";
 
 class EmptyStep {
   forward(svg) {}
@@ -182,7 +177,7 @@ export default class BellmanFord extends React.Component {
     var steps = [];
     var stepBuffer = [];
     function flushBuffer() {
-      if (stepBuffer.length == 0) return;
+      if (stepBuffer.length === 0) return;
       steps.push(stepBuffer);
       stepBuffer = [];
       messages.push(currentMessage);
@@ -196,7 +191,7 @@ export default class BellmanFord extends React.Component {
     flushBuffer();
 
     createMessage(
-      "We will also find the parents, which represent where the shortest distance is coming from."
+      "We will also find the parents, where the shortest distance is coming from."
     );
     addStep(new EmptyStep());
     flushBuffer();
@@ -237,16 +232,16 @@ export default class BellmanFord extends React.Component {
         let dist1 = parseInt(graph.distances[node1]);
         let dist2 = parseInt(graph.distances[node2]);
 
-        if (graph.distances[node1] == -1) {
+        if (graph.distances[node1] === -1) {
           createMessage(
             "Since the source of the edge has an infinite value, no update can be made."
           );
           addStep(new EmptyStep());
           flushBuffer();
         } else {
-          var dist2string = dist2 == -1 ? "∞" : dist2;
+          var dist2string = dist2 === -1 ? "∞" : dist2;
 
-          if (dist1 != -1 && (dist2 == -1 || dist1 + weight < dist2)) {
+          if (dist1 !== -1 && (dist2 === -1 || dist1 + weight < dist2)) {
             createMessage(
               `Since ${dist1} + ${weight} = ${
                 dist1 + weight
@@ -284,6 +279,10 @@ export default class BellmanFord extends React.Component {
     addStep(new EmptyStep());
     flushBuffer();
 
+    createMessage("Finished Bellman-Ford!");
+    addStep(new EmptyStep());
+    flushBuffer();
+
     this.setState({ steps: steps, messages: messages });
   }
 
@@ -313,11 +312,11 @@ export default class BellmanFord extends React.Component {
 
     let svg = d3.select(this.ref.current).select("svg");
 
-    var stepId = this.state.stepId;
-    document.getElementById("message").innerHTML = this.state.messages[stepId - 1];
-    for (const step of this.state.steps[stepId - 1]) step.backward(svg);
+    var stepId = this.state.stepId - 1;
+    document.getElementById("message").innerHTML = (stepId - 1 < 0) ? "<h1>Welcome to Bellman Ford!</h1>" : this.state.messages[stepId - 1];
+    for (const step of this.state.steps[stepId]) step.backward(svg);
 
-    this.setState({ stepId: stepId - 1 });
+    this.setState({ stepId: stepId });
     d3.timeout(this.turnOffRunning, this.state.waitTime);
   }
 
@@ -356,7 +355,7 @@ export default class BellmanFord extends React.Component {
     let svg = d3.select(this.ref.current).select("svg");
 
     var stepId = this.state.stepId;
-    document.getElementById("message").innerHTML = "<h1>Welcome to Bellman Ford</h1>";
+    document.getElementById("message").innerHTML = "<h1>Welcome to Bellman Ford!</h1>";
     while (stepId - 1 >= 0) {
       for (const step of this.state.steps[--stepId]) step.backward(svg);
     }
@@ -394,7 +393,7 @@ export default class BellmanFord extends React.Component {
         </div>
         <div class="center-screen">
           <span id="message">
-            <h1>Welcome to Bellman Ford</h1>
+            <h1>Welcome to Bellman Ford!</h1>
           </span>
         </div>
         <div ref={this.ref} class="center-screen"></div>

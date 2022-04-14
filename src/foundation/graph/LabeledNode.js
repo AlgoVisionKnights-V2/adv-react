@@ -1,5 +1,3 @@
-import React from "react";
-import * as d3 from "d3";
 import UnlabeledNode from "./UnlabeledNode";
 import Number from "../Number";
 
