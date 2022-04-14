@@ -9,6 +9,10 @@ class EmptyStep {
 		
 	}
 
+	fastForward(svg) {
+
+	}
+
 	backward(svg) {
 
 	}
@@ -22,6 +26,10 @@ class UncolorStep {
 
 	forward(svg) {
 		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");
+	}
+
+	fastForward(svg) {
+		this.forward(svg);
 	}
 
 	backward(svg) {
@@ -83,6 +91,10 @@ class SortedStep {
 		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#1ACA1E");
 	}
 
+	fastForward(svg) {
+		this.forward(svg);
+	}
+
 	backward(svg) {
         var barWidth = 70;
 		var barOffset = 30;
@@ -125,6 +137,10 @@ class QSwapStep {
 		svg.select("#" + this.ids[this.id]).select("rect").style("fill", "#EF3F88");
 	}
 
+	fastForward(svg) {
+		this.forward(svg);
+	}
+
 	backward(svg) {
 		svg.selectAll(".qTxt").attr("visibility", "hidden");
 
@@ -149,6 +165,10 @@ class BubbleSwapStep {
 
 		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "gray");
 		svg.select("#" + this.ids[this.id2]).select("rect").style("fill", "#EF3F88");
+	}
+
+	fastForward(svg) {
+		this.forward(svg);
 	}
 
 	backward(svg) {
@@ -228,6 +248,51 @@ class SwapStep {
 			bar2.attr("id", this.ids[this.id1]);
 	}
 
+	fastSwap(svg) {
+		if (this.id1 === this.id2) {
+			return;
+		}
+
+		var newxbar1 = svg.select("#" + this.ids[this.id2]).select("rect").attr("x");
+		var newxbar2 = svg.select("#" + this.ids[this.id1]).select("rect").attr("x");
+
+		var newxtxt1 = svg.select("#" + this.ids[this.id2]).select("text").attr("x");
+		var newxtxt2 = svg.select("#" + this.ids[this.id1]).select("text").attr("x");
+
+		console.log("SWAPPING.");
+
+		svg
+			.select("#" + this.ids[this.id1])
+			.select("rect")
+				.attr("x", newxbar1);
+
+		svg
+			.select("#" + this.ids[this.id1])
+			.select("text")
+				.attr("x", newxtxt1);
+
+		svg
+			.select("#" + this.ids[this.id2])
+			.select("rect")
+				.attr("x", newxbar2)
+
+		svg
+			.select("#" + this.ids[this.id2])
+			.select("text")
+				.attr("x", newxtxt2);
+
+		var bar1 = svg.select("#" + this.ids[this.id1]);
+
+			bar1.attr("id", null);
+
+		var bar2 = svg.select("#" + this.ids[this.id2]);
+
+			bar2.attr("id", null);
+
+			bar1.attr("id", this.ids[this.id2]);
+			bar2.attr("id", this.ids[this.id1]);
+	}
+
 	forward(svg) {
 		this.runSwap(svg);
 
@@ -238,8 +303,18 @@ class SwapStep {
 		svg.select("#bubbleTxt" + this.id2).attr("visibility", "visible");
 	}
 
+	fastForward(svg) {
+		this.fastSwap(svg);
+
+        svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".bubbleTxt").attr("visibility", "hidden");
+
+		svg.select("#arrowpath" + this.id2).attr("visibility", "visible");
+		svg.select("#bubbleTxt" + this.id2).attr("visibility", "visible");
+	}
+
 	backward(svg) {
-		this.runSwap(svg);
+		this.fastSwap(svg);
 
         svg.selectAll(".arrowpath").attr("visibility", "hidden");
 		svg.selectAll(".bubbleTxt").attr("visibility", "hidden");
@@ -494,7 +569,7 @@ export default class BubbleSort extends React.Component {
 		if (this.state.running) this.setState({running: false});
 		if (this.state.stepId === this.state.steps.length) return;
 		
-		this.state.steps[this.state.stepId].forward(d3.select(this.ref.current).select("svg"));
+		this.state.steps[this.state.stepId].fastForward(d3.select(this.ref.current).select("svg"));
 		console.log(this.state.steps[this.state.stepId]);
 		document.getElementById("message").innerHTML = this.state.messages[this.state.stepId];
 		this.setState({stepId: this.state.stepId + 1});

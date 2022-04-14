@@ -9,6 +9,10 @@ class EmptyStep {
 		
 	}
 
+	fastForward(svg) {
+		
+	}
+
 	backward(svg) {
 
 	}
@@ -28,6 +32,10 @@ class PartitionStep {
             svg.select("#" + this.ids[i]).select("rect").attr("y", newybar);
             svg.select("#" + this.ids[i]).select("text").attr("y", newytxt);
         }
+	}
+
+	fastForward(svg) {
+		this.forward(svg);
 	}
 
 	backward(svg) {
@@ -59,6 +67,10 @@ class UnpartitionStep {
             svg.select("#" + this.ids[i]).select("rect").attr("y", newybar);
             svg.select("#" + this.ids[i]).select("text").attr("y", newytxt);
         }
+	}
+
+	fastForward(svg) {
+		this.forward(svg);
 	}
 
 	backward(svg) {
@@ -118,6 +130,10 @@ class PartSortedStep {
 
         for (var i = this.id1; i <= this.id2; i++)
 		    svg.select("#" + this.ids[i]).select("rect").style("fill", "#1ACA1E");
+	}
+
+	fastForward(svg) {
+		this.forward(svg);
 	}
 
 	backward(svg) {
@@ -195,6 +211,10 @@ class SortedStep {
 		    svg.select("#" + this.ids[i]).select("rect").style("fill", "#1ACA1E");
 	}
 
+	fastForward(svg) {
+		this.forward(svg);
+	}
+
 	backward(svg) {
 		var barOffset = 30;
 
@@ -256,6 +276,9 @@ class InsertSwapStep {
         }
 
 		svg.select("#" + this.ids[this.id1]).select("rect").style("fill", "#EF3F88");
+	}
+	fastForward(svg) {
+		this.forward(svg);
 	}
 
 	backward(svg) {
@@ -334,6 +357,52 @@ class SwapStep {
 			bar2.attr("id", this.ids[this.id1]);
 	}
 
+	fastSwap(svg) {
+		
+		if (this.id1 === this.id2) {
+			return;
+		}
+
+		var newxbar1 = svg.select("#" + this.ids[this.id2]).select("rect").attr("x");
+		var newxbar2 = svg.select("#" + this.ids[this.id1]).select("rect").attr("x");
+
+		var newxtxt1 = svg.select("#" + this.ids[this.id2]).select("text").attr("x");
+		var newxtxt2 = svg.select("#" + this.ids[this.id1]).select("text").attr("x");
+
+		console.log("SWAPPING.");
+
+		svg
+			.select("#" + this.ids[this.id1])
+			.select("rect")
+				.attr("x", newxbar1);
+
+		svg
+			.select("#" + this.ids[this.id1])
+			.select("text")
+				.attr("x", newxtxt1);
+
+		svg
+			.select("#" + this.ids[this.id2])
+			.select("rect")
+				.attr("x", newxbar2)
+
+		svg
+			.select("#" + this.ids[this.id2])
+			.select("text")
+				.attr("x", newxtxt2);
+
+		var bar1 = svg.select("#" + this.ids[this.id1]);
+
+			bar1.attr("id", null);
+
+		var bar2 = svg.select("#" + this.ids[this.id2]);
+
+			bar2.attr("id", null);
+
+			bar1.attr("id", this.ids[this.id2]);
+			bar2.attr("id", this.ids[this.id1]);
+	}
+
 	forward(svg) {
 		this.runSwap(svg);
 
@@ -344,8 +413,18 @@ class SwapStep {
 		svg.select("#insertTxt" + this.id2).attr("visibility", "visible");
 	}
 
+	fastForward(svg) {
+		this.fastSwap(svg);
+
+        svg.selectAll(".arrowpath").attr("visibility", "hidden");
+		svg.selectAll(".insertTxt").attr("visibility", "hidden");
+
+		svg.select("#arrowpath" + this.id2).attr("visibility", "visible");
+		svg.select("#insertTxt" + this.id2).attr("visibility", "visible");
+	}
+
 	backward(svg) {
-		this.runSwap(svg);
+		this.fastSwap(svg);
 
         svg.selectAll(".arrowpath").attr("visibility", "hidden");
 		svg.selectAll(".insertTxt").attr("visibility", "hidden");
@@ -572,7 +651,7 @@ export default class InsertionSort extends React.Component {
 		if (this.state.running) return;
 		if (this.state.stepId === this.state.steps.length) return;
 		
-		this.state.steps[this.state.stepId].forward(d3.select(this.ref.current).select("svg"));
+		this.state.steps[this.state.stepId].fastForward(d3.select(this.ref.current).select("svg"));
 		console.log(this.state.steps[this.state.stepId]);
 		document.getElementById("message").innerHTML = this.state.messages[this.state.stepId];
 		this.setState({stepId: this.state.stepId + 1});
