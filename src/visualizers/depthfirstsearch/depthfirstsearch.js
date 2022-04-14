@@ -308,7 +308,7 @@ export default class DepthFirstSearch extends React.Component {
     flushBuffer();
 
     addStep(new EmptyStep());
-    createMessage("Depth First Search has been completed.");
+    createMessage("Finished Depth First Search!");
     flushBuffer();
 
     this.setState({ steps: steps, messages: messages });

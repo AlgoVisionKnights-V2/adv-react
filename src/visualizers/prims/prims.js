@@ -281,6 +281,10 @@ export default class Prims extends React.Component {
     createMessage("The edges in the MST are: " + mstEdges + ".");
     flushBuffer();
 
+    addStep(new EmptyStep());
+    createMessage("Finished Prim's!");
+    flushBuffer();
+
     console.log(steps);
     console.log(messages);
 

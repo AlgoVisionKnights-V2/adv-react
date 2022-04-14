@@ -290,7 +290,7 @@ export default class HashTable extends React.Component {
   }
 
   flushBuffer() {
-    if (this.stepBuffer.length == 0) return;
+    if (this.stepBuffer.length === 0) return;
     this.steps.push(this.stepBuffer);
     this.stepBuffer = [];
     this.messages.push(this.currentMessage);
@@ -302,7 +302,7 @@ export default class HashTable extends React.Component {
 
   insertion(x) {
     console.log("made it to insertion");
-    if (this.info.size == this.info.tableLen) {
+    if (this.info.size === this.info.tableLen) {
       this.createMessage(`The hash table is currently full.`);
       this.addStep(new EmptyStep());
       this.flushBuffer();
@@ -350,7 +350,7 @@ export default class HashTable extends React.Component {
       this.flushBuffer();
       this.info.arrowPos = newArrowPos;
 
-      if (this.info.deleted[index] && firstDeleted == -1) {
+      if (this.info.deleted[index] && firstDeleted === -1) {
         this.createMessage(
           `Remember that the first deleted element we've found is at index ${index}.`
         );
@@ -361,15 +361,15 @@ export default class HashTable extends React.Component {
         continue;
       }
 
-      if (this.info.table[index] == x) {
+      if (this.info.table[index] === x) {
         this.createMessage(`Since ${x} already exists, we will not reinsert it.`);
         this.addStep(new EmptyStep());
         this.flushBuffer();
         return;
       }
 
-      if (this.info.table[index] == null) {
-        if (firstDeleted == -1) {
+      if (this.info.table[index] === null) {
+        if (firstDeleted === -1) {
           let newText = `${x}`;
 
           this.createMessage(
@@ -420,7 +420,7 @@ export default class HashTable extends React.Component {
   }
 
   deletion(x) {
-    if (this.info.size == 0) {
+    if (this.info.size === 0) {
       this.createMessage(`There are no entries, so there is nothing to remove.`);
       this.addStep(new EmptyStep());
       this.flushBuffer();
@@ -463,7 +463,7 @@ export default class HashTable extends React.Component {
         continue;
       }
 
-      if (this.info.table[index] == x) {
+      if (this.info.table[index] === x) {
         this.createMessage(`We have found ${x}! Mark it as deleted.`);
         this.addStep(new ChangeEntryColorStep(`Entry${index}`, `#444444`, `white`));
         this.flushBuffer();
@@ -519,7 +519,7 @@ export default class HashTable extends React.Component {
         continue;
       }
 
-      if (this.info.table[index] == x) {
+      if (this.info.table[index] === x) {
         this.createMessage(`We have found ${x}!`);
         this.addStep(new EmptyStep());
         this.flushBuffer();
@@ -527,7 +527,7 @@ export default class HashTable extends React.Component {
         return;
       }
 
-      if (this.info.table[index] == null) break;
+      if (this.info.table[index] === null) break;
 
       this.createMessage(`The value at index ${index} does not match, continue.`);
       this.addStep(new EmptyStep());
@@ -573,16 +573,22 @@ export default class HashTable extends React.Component {
       let [index, ins] = instructions[i];
       let value = map[index];
 
-      if (ins == "INSERT") {
+      if (ins === "INSERT") {
         this.insertion(value);
       }
-      if (ins == "DELETE") {
+      if (ins === "DELETE") {
         this.deletion(value);
       }
-      if (ins == "SEARCH") {
+      if (ins === "SEARCH") {
         this.search(value);
       }
     }
+
+    this.createMessage(`Finished with Hash Table example!`);
+    this.addStep(new EmptyStep());
+    this.flushBuffer();
+
+    this.setState({ message: this.messages, steps: this.steps });    
   }
 
   turnOffRunning() {
@@ -591,7 +597,7 @@ export default class HashTable extends React.Component {
 
   forward() {
     if (this.running) return;
-    if (this.stepId == this.steps.length) return;
+    if (this.stepId === this.steps.length) return;
     this.running = true;
 
     let svg = d3.select(this.ref.current).select("svg");
@@ -611,19 +617,20 @@ export default class HashTable extends React.Component {
     this.running = true;
 
     let svg = d3.select(this.ref.current).select("svg");
+    let stepId = this.stepId - 1;
 
-    document.getElementById("message").innerHTML = this.messages[this.stepId - 1];
+    document.getElementById("message").innerHTML = (stepId - 1 < 0) ? "<h1>Welcome to Hash Table!</h1>" : this.messages[stepId - 1];
 
-    for (const step of this.steps[this.stepId - 1]) step.backward(svg);
+    for (const step of this.steps[stepId]) step.backward(svg);
 
-    this.stepId = this.stepId - 1;
+    this.stepId = stepId;
 
     this.running = false;
   }
 
   run() {
     if (!this.running) return;
-    if (this.stepId == this.steps.length) {
+    if (this.stepId === this.steps.length) {
       this.running = false;
       return;
     }
@@ -681,7 +688,7 @@ export default class HashTable extends React.Component {
 
   fastForward() {
     if (this.running) return;
-    if (this.stepId == this.steps.length) return;
+    if (this.stepId === this.steps.length) return;
     this.running = true;
 
     let svg = d3.select(this.ref.current).select("svg");
