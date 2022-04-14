@@ -4,7 +4,7 @@ import React from 'react';
 // Material UI
 import { ListItem, ListItemText } from '@material-ui/core';
 
-function NavGroup({ name }) {
+function NavLink({ name }) {
 	return (
 		<ListItem id='accordian-button' button>
 			<ListItemText id='accordian-text'>{name}</ListItemText>
@@ -12,4 +12,4 @@ function NavGroup({ name }) {
 	);
 }
 
-export default NavGroup;
+export default NavLink;

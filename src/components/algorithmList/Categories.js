@@ -51,6 +51,11 @@ const groups = [
 	// 	title: 'Dynamic Programming',
 	// 	description: 'Yet to be filled.',
 	// },
+	{
+		path: 'recursion',
+		title: 'Recursion',
+		description: 'Recusion is a technique used when creating algorithms, where the algorithm calls itself within the algorithm. Popular problems solved through this method include the Towers of Hanoi and the Fibonacci Sequence.',
+	},
 ];
 
 export default groups;

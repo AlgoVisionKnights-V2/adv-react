@@ -17,7 +17,10 @@
 .Preorder,
 .Inorder,
 .Postorder,
-.Queens {
+.Queens,
+.TowersOfHanoi,
+.FibonacciSequence,
+.HashTable {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;

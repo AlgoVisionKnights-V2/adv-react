@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 import Algorithm from '../algorithm/Algorithm';
 
 function Category({ inCategory, algorithms }) {
-	// const description = category.description
+	console.log('Category');
+	console.log(algorithms);
+
 	return (
 		<div className='Category'>
 			{algorithms.map((algorithm) => (

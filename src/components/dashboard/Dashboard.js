@@ -4,6 +4,8 @@ import Algorithm from '../algorithm/Algorithm';
 import { Link } from 'react-router-dom';
 
 function Dashboard({ categories, inCategory }) {
+	console.log('Dashboard');
+
 	return (
 		<div className='Dashboard'>
 			{categories.map((category) => (
